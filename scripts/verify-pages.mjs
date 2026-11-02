@@ -6,6 +6,8 @@ async function walk(dir) { for (const name of await readdir(dir)) { const file =
 await walk('dist');
 assert.ok(files.includes('dist/index.html'));
 assert.ok(files.includes('dist/.nojekyll'));
+assert.ok(files.includes('dist/shortcuts/CookBook Groceries.shortcut'), 'Include the installable Reminders Shortcut.');
+assert.equal((await readFile('dist/shortcuts/CookBook Groceries.shortcut')).subarray(0, 4).toString(), 'AEA1', 'The distributed Shortcut must be signed by Apple.');
 assert.ok(!files.some(file => /(?:\.env|\.openai|backups|household.*\.json|server\/|\.map$)/.test(file)), 'Private or server files must not enter the Pages artifact.');
 for (const file of files.filter(file => /\.(html|css|js)$/.test(file))) {
     const text = await readFile(file,'utf8');

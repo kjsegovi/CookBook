@@ -41,6 +41,8 @@ The server retains recipe search/read, pantry, plan, leftovers, availability, im
 
 ## Validation
 
+Shopping’s **Sync groceries** button exchanges checkmarks with an existing Apple Reminders list using the bundled **CookBook Groceries** Shortcut. It updates linked quantities and preserves unrelated reminders. Sync is user-triggered, confirms both sides before reporting success, and keeps pantry purchases separate. Deploy the updated Edge Function as well as the website. See [two-way Reminders setup](SETUP.md#two-way-grocery-sync-with-apple-reminders).
+
 ```sh
 npm test
 npm run check

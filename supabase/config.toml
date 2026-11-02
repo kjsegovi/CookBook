@@ -24,7 +24,7 @@ enable_confirmations = true
 secure_password_change = true
 
 [functions.cookbook]
-# The function verifies each bearer token with Auth.getUser. This also supports
-# projects using new asymmetric signing keys / public publishable keys.
+# Browser/MCP requests verify bearer tokens with Auth.getUser. Native Reminders
+# finish/ack requests verify signed, expiring grocery-only scopes instead.
 verify_jwt = false
 import_map = "./functions/cookbook/deno.json"

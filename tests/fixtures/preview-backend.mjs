@@ -7,13 +7,17 @@ const f=fixture('owner',['http://127.0.0.1:4173']);
 const recipe={...blankRecipe(),title:'[Sample] Lemon rice bowl',servings:4,ingredients:[parseIngredient('400 g rice'),parseIngredient('1 lemon')],steps:['Rinse the rice.','Cook, then finish with lemon.']};
 let state=applyCommand(initialState(),'recipe.save',recipe,crypto.randomUUID());
 state=applyCommand(state,'pantry.save',{name:'rice',amount:300,unit:'g'},crypto.randomUUID());
+state=applyCommand(state,'shopping.save',{name:'[Sample] Rice',amount:200,unit:'g',group:'Ingredients'},crypto.randomUUID());
+state=applyCommand(state,'shopping.save',{name:'[Sample] Lemons',amount:2,unit:'',group:'Produce'},crypto.randomUUID());
 f.seed(state);
 const user={id:'user',aud:'authenticated',role:'authenticated',email:'qa@example.test',email_confirmed_at:new Date().toISOString(),app_metadata:{provider:'email',providers:['email']},user_metadata:{display_name:'Local QA'},created_at:new Date().toISOString()};
 const jwt=Buffer.from(JSON.stringify({alg:'HS256',typ:'JWT'})).toString('base64url')+'.'+Buffer.from(JSON.stringify({sub:user.id,exp:Math.floor(Date.now()/1000)+3600,role:'authenticated',aud:'authenticated'})).toString('base64url')+'.local-test-signature';
 createServer(async(req,res)=>{
     const origin=req.headers.origin;
-    if(origin!=='http://127.0.0.1:4173'){res.writeHead(403);res.end();return;}
+    const nativeSync=!origin&&/^\/functions\/v1\/cookbook\/reminders\/(finish|ack)$/.test(new URL(req.url,'http://127.0.0.1').pathname);
+    if(origin!=='http://127.0.0.1:4173'&&!nativeSync){res.writeHead(403);res.end();return;}
     const headers={'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Headers':req.headers['access-control-request-headers']||'authorization,apikey,content-type,x-household-id,x-client-info,x-supabase-api-version','Access-Control-Allow-Methods':'GET,POST,PUT,OPTIONS','Content-Type':'application/json'};
+    if(!origin)delete headers['Access-Control-Allow-Origin'];
     if(req.method==='OPTIONS'){res.writeHead(204,headers);res.end();return;}
     const chunks=[];for await(const chunk of req)chunks.push(chunk);const bytes=Buffer.concat(chunks),url=new URL(req.url,'http://127.0.0.1:54321');
     let status=200,data;

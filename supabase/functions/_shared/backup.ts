@@ -1,9 +1,11 @@
 import { z } from 'zod';
 import { DomainError, normalizeRecipe, type State } from './domain.ts';
+import { remindersConnectionsSchema } from './reminders-domain.ts';
 const id = z.string().min(1).max(100), text = (max: number) => z.string().max(max);
 const amount = z.number().finite().min(0).max(1000000), quantity = amount.nullable();
 const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(s => { const d = new Date(s + 'T12:00:00Z'); return !Number.isNaN(d.valueOf()) && d.toISOString().slice(0, 10) === s; });
 const stateSchema = z.object({
+    reminders: remindersConnectionsSchema.optional(),
     recipes: z.array(z.unknown()).max(2000),
     pantry: z.array(z.object({ id, name: text(200).min(1), amount: quantity, unit: text(40), location: z.enum(['Pantry','Fridge','Freezer']), note: text(500) }).strict()).max(10000),
     plan: z.array(z.object({ id, date, slot: z.enum(['Breakfast','Lunch','Dinner','Snack']), kind: z.enum(['cook','leftover']), recipeId: id, batchId: text(100), cookServings: amount, eatServings: amount, done: z.boolean(), note: text(500), auto: z.boolean().optional() }).strict()).max(10000),
@@ -22,6 +24,8 @@ export function readBackup(input: unknown): State {
     const s = envelope.data.state;
     const recipes = s.recipes.map(r => normalizeRecipe(r)), drafts = s.drafts.map(d => ({ ...d, recipe: normalizeRecipe(d.recipe, true) }));
     const state: State = { ...s, recipes, drafts, operations: [] };
+    // A restored household must establish its own external list connections.
+    if (state.reminders) state.reminders = [];
     for (const collection of [state.recipes, state.pantry, state.plan, state.batches, state.shopping, state.ingredients, state.drafts, state.movements]) {
         if (new Set(collection.map(row => row.id)).size !== collection.length) throw new DomainError('This backup contains duplicate record IDs.');
     }

@@ -72,7 +72,7 @@ function HouseholdApp() {
     if (!session) return <Login />;
     if (error) return <div className="loading-state"><h1>Your kitchen couldn’t load</h1><p role="alert">{error}</p><button className="button" onClick={() => location.reload()}>Try again</button><button className="text-link" onClick={() => supabase?.auth.signOut()}>Sign out</button></div>;
     if (!household) return <Welcome onReady={id => { selectHousehold(id); setHousehold(id); }} />;
-    return <Suspense fallback={<div className="loading-state" role="status"><BookOpen /><h1>Opening your kitchen…</h1></div>}><Kitchen key={session.user.id + household} userName={session.user.user_metadata.display_name || session.user.email || 'Your household'} initialPath={path} /></Suspense>;
+    return <Suspense fallback={<div className="loading-state" role="status"><BookOpen /><h1>Opening your kitchen…</h1></div>}><Kitchen key={session.user.id + household} householdId={household} userName={session.user.user_metadata.display_name || session.user.email || 'Your household'} initialPath={path} /></Suspense>;
 }
 
 function Login({ initialMode = 'signin', canReset = false, onRecovered }: { initialMode?: Mode; canReset?: boolean; onRecovered?: () => void }) {

@@ -6,6 +6,7 @@ import { importLink } from './importer.ts';
 import { readBackup } from './backup.ts';
 import { handleMcp } from './mcp.ts';
 import { challenge, protectedResource } from './oauth.ts';
+import { beginRemindersSync, finishRemindersSync, remindersSyncStatus } from './reminders-api.ts';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export function photoExtension(data: Uint8Array, type: string) {
@@ -14,7 +15,7 @@ export function photoExtension(data: Uint8Array, type: string) {
     if (type === 'image/webp' && new TextDecoder().decode(data.slice(0,4)) === 'RIFF' && new TextDecoder().decode(data.slice(8,12)) === 'WEBP') return 'webp';
     throw new DomainError('Choose a valid JPEG, PNG, or WebP photo.');
 }
-export function createHandler(admin: SupabaseClient, allowedOrigins: string[]) {
+export function createHandler(admin: SupabaseClient, allowedOrigins: string[], remindersSecret?: string) {
     return async (request: Request): Promise<Response> => {
         const origin = request.headers.get('origin');
         const cors = new Headers({ Vary: 'Origin', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-household-id, x-client-info' });
@@ -26,6 +27,10 @@ export function createHandler(admin: SupabaseClient, allowedOrigins: string[]) {
             const url = new URL(request.url);
             const path = url.pathname.match(/^\/(?:functions\/v1\/)?cookbook(?:\/(.*))?$/)?.[1] ?? '';
             if (path === '.well-known/oauth-protected-resource' && request.method === 'GET') return respond(json(protectedResource(request)));
+            if ((path === 'reminders/finish' || path === 'reminders/ack') && request.method === 'POST') {
+                // Native Shortcuts gets only a signed, expiring grocery scope, never a user JWT.
+                return respond(json(await finishRemindersSync(admin, await body(request), remindersSecret, path === 'reminders/ack')));
+            }
             const token = request.headers.get('authorization')?.match(/^Bearer (\S+)$/i)?.[1];
             if (!token) throw new DomainError('Sign in to open your kitchen.', 401);
             const { data: { user }, error: authError } = await admin.auth.getUser(token);
@@ -44,9 +49,12 @@ export function createHandler(admin: SupabaseClient, allowedOrigins: string[]) {
                 member = data;
             }
             const store = householdStore(admin, householdId);
+            if (path === 'reminders/begin' && request.method === 'POST') return respond(json(await beginRemindersSync(request, admin, householdId, user.id, await body(request, 5000), allowedOrigins, remindersSecret)));
+            if (path === 'reminders/status' && request.method === 'GET') return respond(json(await remindersSyncStatus(admin, householdId, user.id, url.searchParams.get('id') ?? '')));
             if (path === 'state' && request.method === 'GET') return respond(json(await store.snapshot()));
             if (path === 'command' && request.method === 'POST') {
                 const input = await body(request);
+                if (String(input.type).startsWith('reminders.')) throw new DomainError('Use the grocery sync connection for Reminders updates.', 403);
                 return respond(json(await store.command(input.type, input.payload, input.id, input.revision)));
             }
             if (path === 'import' && request.method === 'POST') {

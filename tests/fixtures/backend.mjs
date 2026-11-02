@@ -22,7 +22,7 @@ export function fixture(role='owner', allowedOrigins=['https://kitchen.example.t
         },
         storage:{from:()=>({upload:async()=>{calls.storage++;return{error:null};},createSignedUrl:async key=>{calls.storage++;return{data:{signedUrl:'https://photos.example.test/'+key},error:null};}})},
     };
-    const handler=createHandler(admin,allowedOrigins);
+    const handler=createHandler(admin,allowedOrigins,'synthetic-test-reminders-signing-key');
     const send=async(path,{method='GET',body,token='valid',household=householdId,origin='https://kitchen.example.test',headers={}}={})=>{
         const h=new Headers(headers);if(token)h.set('authorization','Bearer '+token);if(household)h.set('x-household-id',household);if(origin)h.set('origin',origin);
         if(body!==undefined)h.set('content-type','application/json');

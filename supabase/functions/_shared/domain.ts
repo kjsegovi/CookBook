@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { acknowledgeRemindersSync, applyRemindersSync, type RemindersConnection } from './reminders-domain.ts';
 
 export const DEFAULT_CATEGORIES = ['Breakfast', 'Entrées', 'Sauces', 'Sides', 'Snacks', 'Pastries & Desserts'];
 export type IngredientLine = {
@@ -84,6 +85,7 @@ export type ImportDraft = {
     createdAt: string;
 };
 export type State = {
+    reminders?: RemindersConnection[];
     recipes: Recipe[];
     pantry: PantryItem[];
     plan: PlanEntry[];
@@ -296,6 +298,12 @@ export function applyCommand(original: State, type: string, p: any, operationId:
     if (p.__expected && JSON.stringify(expectedRecord) !== p.__expected)
         throw new DomainError('This item changed. Close this form and reopen it to review the latest version.', 409);
     switch (type) {
+        case 'reminders.sync':
+            applyRemindersSync(s, p.scope, p.observations, p.observationsHash);
+            break;
+        case 'reminders.ack':
+            acknowledgeRemindersSync(s, p.scope);
+            break;
         case 'recipe.update': {
             const existing = recipeById(p.recipeId);
             if (typeof p.expectedUpdatedAt !== 'string' || !p.expectedUpdatedAt || existing.updatedAt !== p.expectedUpdatedAt)
