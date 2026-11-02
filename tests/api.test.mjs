@@ -8,20 +8,54 @@ import { fixture, householdId } from './fixtures/backend.mjs';
 const otherId='10000000-0000-4000-8000-000000000002';
 const sample=()=>({...blankRecipe(),title:'[Sample] Rice',ingredients:[parseIngredient('100 g rice')],steps:['Cook.']});
 const publishBody=(recipe,operationId=crypto.randomUUID(),revision=0)=>({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'save_recipe',arguments:{recipe,operationId,revision}}});
+test('MCP discovery, initialization and tool listing return complete results with list caching hints',async()=>{
+    const f=fixture();
+    for(const method of ['server/discover','initialize','tools/list']){
+        const {response,data}=await f.send('mcp',{method:'POST',body:{jsonrpc:'2.0',id:1,method}});
+        assert.equal(response.status,200);assert.equal(data.result.resultType,'complete');
+        if(method==='server/discover')assert.deepEqual(data.result.supportedVersions,['2026-07-28']);
+        if(method==='initialize')assert.equal(data.result.protocolVersion,'2026-07-28');
+        if(method==='tools/list'){
+            assert.ok(Array.isArray(data.result.tools));assert.ok(data.result.tools.length>0);
+            assert.deepEqual(data.result.tools.find(tool=>tool.name==='save_recipe').inputSchema.required,['recipe','operationId','revision']);
+            assert.equal(data.result.ttlMs,300000);assert.equal(data.result.cacheScope,'private');
+        }
+    }
+});
+test('MCP method-not-found and request errors have no resultType',async()=>{
+    const f=fixture();
+    const unknown=await f.send('mcp',{method:'POST',body:{jsonrpc:'2.0',id:1,method:'unknown'}});
+    assert.deepEqual(unknown.data,{jsonrpc:'2.0',id:1,error:{code:-32601,message:'Method not found'}});
+    const invalid=await f.send('mcp',{method:'POST'});
+    assert.equal(invalid.response.status,415);
+    assert.deepEqual(invalid.data,{error:'Send this request as JSON.'});
+});
 test('MCP save_recipe publishes the normalized record and advances the revision',async()=>{
     const f=fixture(),recipe={title:'  Rice  ',ingredients:[{name:'rice',amount:100,unit:'g'}],steps:['Cook.']};
     const {response,data}=await f.send('mcp',{method:'POST',body:publishBody(recipe)});
-    assert.equal(response.status,200);assert.equal(data.result.isError,undefined);
+    assert.equal(response.status,200);assert.equal(data.result.isError,undefined);assert.equal(data.result.resultType,'complete');
     assert.equal(data.result.structuredContent.message,'Recipe saved to the household library.');
     assert.equal(data.result.structuredContent.revision,1);assert.equal(f.row.revision,1);
     assert.equal(f.row.state.recipes.length,1);assert.equal(f.row.state.recipes[0].title,'Rice');
     assert.deepEqual(data.result.structuredContent.recipe,f.row.state.recipes[0]);
     for(const key of ['pantry','plan','shopping'])assert.deepEqual(f.row.state[key],[]);
 });
+test('MCP search_recipes returns the current stored household revision with total and recipes',async()=>{
+    const f=fixture();
+    const search=()=>f.send('mcp',{method:'POST',body:{jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'search_recipes',arguments:{}}}});
+    const empty=await search();
+    assert.equal(empty.response.status,200);assert.deepEqual(empty.data.result.structuredContent,{revision:f.row.revision,total:0,recipes:[]});
+    await f.send('mcp',{method:'POST',body:publishBody(sample())});
+    const {response,data}=await search();
+    assert.equal(response.status,200);assert.equal(data.result.isError,undefined);
+    assert.equal(f.row.revision,1);assert.equal(data.result.structuredContent.revision,f.row.revision);
+    assert.equal(data.result.structuredContent.total,1);assert.equal(data.result.structuredContent.recipes[0].id,f.row.state.recipes[0].id);
+    assert.deepEqual(JSON.parse(data.result.content[0].text),data.result.structuredContent);
+});
 test('MCP save_recipe rejects incomplete recipes with the domain sentence',async()=>{
     for(const recipe of [{title:'Rice',ingredients:[{name:'rice'}]}, {ingredients:[{name:'rice'}],steps:['Cook.']}, {title:'Rice',steps:['Cook.']}]){
         const f=fixture(),{response,data}=await f.send('mcp',{method:'POST',body:publishBody(recipe)});
-        assert.equal(response.status,200);assert.equal(data.result.isError,true);
+        assert.equal(response.status,200);assert.equal(data.result.isError,true);assert.equal(data.result.resultType,'complete');
         assert.equal(data.result.content[0].text,'Add a title, at least one named ingredient, and instructions before saving.');
         assert.deepEqual(f.row.state.recipes,[]);assert.equal(f.row.revision,0);
     }
