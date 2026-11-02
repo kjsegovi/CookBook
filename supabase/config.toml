@@ -1,0 +1,30 @@
+project_id = "cookbook"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 17
+
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://127.0.0.1:5173", "http://127.0.0.1:5173/?auth=recovery", "http://localhost:5173/?auth=recovery"]
+enable_signup = true
+minimum_password_length = 12
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+secure_password_change = true
+
+[functions.cookbook]
+# The function verifies each bearer token with Auth.getUser. This also supports
+# projects using new asymmetric signing keys / public publishable keys.
+verify_jwt = false
+import_map = "./functions/cookbook/deno.json"

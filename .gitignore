@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+.env*
+!.env.example
+*.tsbuildinfo
+.DS_Store
+backups/
+outputs/
+supabase/.temp/
+supabase/.branches/
+# Retained original GPT Sites checkout, history and local data. Never publish it.
+cookbook-app/
