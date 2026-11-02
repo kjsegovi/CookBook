@@ -6,6 +6,17 @@
     <meta name="description" content="Your recipes, pantry, weekly meals, and good leftovers, together in one kitchen." />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="theme-color" content="#35664b" />
+    <script>
+      const savedPath = new URLSearchParams(location.search).get('cookbook_path');
+      const consentPath = savedPath || location.pathname + location.search + location.hash;
+      const match = consentPath.match(/^(\/(?:.*\/)?)oauth\/consent\/?(?:[?#]|$)/);
+      if (match && !consentPath.startsWith('//')) {
+        const base = document.createElement('base');
+        base.href = location.origin + match[1];
+        document.head.append(base);
+        if (savedPath) history.replaceState(null, '', savedPath);
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>CookBook · Your household kitchen</title>
   </head>

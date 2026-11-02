@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opening CookBook</title>
+    <script>
+      const base = location.pathname.replace(/\/oauth\/consent\/?$/, '/');
+      if (base !== location.pathname) location.replace(base + 'index.html?cookbook_path=' + encodeURIComponent(location.pathname + location.search + location.hash));
+    </script>
+  </head>
+  <body><h1>Opening CookBook…</h1><p>If this page stays open, check the link from your client and try again.</p></body>
+</html>

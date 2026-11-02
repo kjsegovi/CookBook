@@ -16,7 +16,7 @@ Follow the [setup guide](SETUP.md) to configure Supabase, run the app locally, p
 
 ## Behavior retained
 
-Recipes include ingredients, instructions, source attribution, photos, personal notes, categories, tags, favorites, and want-to-try status. Recipe-page and YouTube imports create reviewable drafts; inaccessible sources leave explicit warnings instead of guessed ingredients. Only confirmed cooking deducts pantry ingredients. Batch cooking reserves leftovers without counting the ingredients again. Shopping accounts for stock, quantity uncertainty, manual rows, and explicit overrides. Export includes the complete household document.
+Recipes include ingredients, instructions, source attribution, photos, personal notes, categories, tags, favorites, and want-to-try status. Recipe-page and YouTube imports create reviewable drafts; inaccessible sources leave explicit warnings instead of guessed ingredients. Only confirmed cooking deducts pantry ingredients. Batch cooking reserves leftovers without counting the ingredients again: cooking more than you eat schedules the extra portions as leftover meals on the following days, one meal per usual serving (up to four days ahead, skipping days already planned), and those auto-planned meals shrink or disappear if you later reduce the batch. Settings can turn this off. Shopping accounts for stock, quantity uncertainty, manual rows, and explicit overrides. Export includes the complete household document.
 
 Updates use a conditional database revision so concurrent edits cannot silently overwrite each other. Stable operation IDs make cooking and other retries duplicate-safe. Open recipe and inventory forms also check the record they were opened from. The document is bounded to about 1.7 MB; migrate to normalized tables before increasing this limit.
 
@@ -28,7 +28,16 @@ The standalone server is included at:
 https://YOUR_PROJECT_REF.supabase.co/functions/v1/cookbook/mcp
 ```
 
-It retains recipe search/read, pantry, plan, leftovers, availability, import drafts, draft saving, and direct `update_recipe` edits. Calls require a **Supabase user access token** as `Authorization: Bearer …` plus the user's `x-household-id` header. The same membership and revision checks apply. Tokens expire, so a client must manage its own Supabase session refresh. The old Sites plugin no longer connects to this server. Interactive OAuth setup for a new Codex/ChatGPT connector is a separate integration step; this rewrite does not claim that the old plugin works automatically or expose a permanent secret to replace it.
+Connect using OAuth: the client discovers Supabase's authorization server through the protected resource metadata at `https://YOUR_PROJECT_REF.supabase.co/functions/v1/cookbook/.well-known/oauth-protected-resource`. Sign in to CookBook in the browser, review the client, redirect host, and requested scopes, then approve or deny the request. Use **Return to the client** on the confirmation screen to complete the callback. The client needs no copied secret or pasted access token; it manages OAuth tokens and refresh. See [Connect an MCP client](SETUP.md#connect-an-mcp-client) for registration steps.
+
+For Hermes, replace `<mcp url>` with the endpoint above:
+
+```sh
+hermes mcp add cookbook --url <mcp url> --auth oauth
+hermes mcp test cookbook
+```
+
+The server retains recipe search/read, pantry, plan, leftovers, availability, imports, and direct `update_recipe` edits. **`save_recipe` publishes to the recipe library; `save_recipe_draft` is review-only.** The same household membership and revision checks apply. The service-role key must never go to a client. The old Sites plugin no longer connects to this server.
 
 ## Validation
 

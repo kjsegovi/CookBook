@@ -1,7 +1,7 @@
 import { createHandler } from '../../supabase/functions/_shared/api.ts';
 import { initialState } from '../../supabase/functions/_shared/domain.ts';
 export const householdId='10000000-0000-4000-8000-000000000001',otherId='10000000-0000-4000-8000-000000000002';
-export function fixture(role='owner', allowedOrigins=['https://kitchen.example.test']) {
+export function fixture(role='owner', allowedOrigins=['https://kitchen.example.test'], memberships=[{household_id:householdId}]) {
     let row={state:initialState(),revision:0};
     const calls={storage:0,queries:0};
     const admin={
@@ -13,10 +13,11 @@ export function fixture(role='owner', allowedOrigins=['https://kitchen.example.t
                 update(data){query.patch=data;return query;},
                 async single(){return{data:structuredClone(row),error:null};},
                 async maybeSingle(){
-                    if(table==='household_members')return{data:filters.household_id===householdId&&filters.user_id==='user'?{role}:null,error:null};
+                    if(table==='household_members')return{data:filters.user_id==='user'&&memberships.some(m=>m.household_id===filters.household_id)?{role}:null,error:null};
                     if(query.patch){if(filters.id!==householdId||filters.revision!==row.revision)return{data:null,error:null};row=structuredClone(query.patch);return{data:{revision:row.revision},error:null};}
                     return{data:structuredClone(row),error:null};
                 },
+                then(resolve,reject){return Promise.resolve({data:filters.user_id==='user'?structuredClone(memberships):[],error:null}).then(resolve,reject);},
             };return query;
         },
         storage:{from:()=>({upload:async()=>{calls.storage++;return{error:null};},createSignedUrl:async key=>{calls.storage++;return{data:{signedUrl:'https://photos.example.test/'+key},error:null};}})},

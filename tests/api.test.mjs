@@ -7,6 +7,109 @@ import { readBackup } from '../supabase/functions/_shared/backup.ts';
 import { fixture, householdId } from './fixtures/backend.mjs';
 const otherId='10000000-0000-4000-8000-000000000002';
 const sample=()=>({...blankRecipe(),title:'[Sample] Rice',ingredients:[parseIngredient('100 g rice')],steps:['Cook.']});
+const publishBody=(recipe,operationId=crypto.randomUUID(),revision=0)=>({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'save_recipe',arguments:{recipe,operationId,revision}}});
+test('MCP save_recipe publishes the normalized record and advances the revision',async()=>{
+    const f=fixture(),recipe={title:'  Rice  ',ingredients:[{name:'rice',amount:100,unit:'g'}],steps:['Cook.']};
+    const {response,data}=await f.send('mcp',{method:'POST',body:publishBody(recipe)});
+    assert.equal(response.status,200);assert.equal(data.result.isError,undefined);
+    assert.equal(data.result.structuredContent.message,'Recipe saved to the household library.');
+    assert.equal(data.result.structuredContent.revision,1);assert.equal(f.row.revision,1);
+    assert.equal(f.row.state.recipes.length,1);assert.equal(f.row.state.recipes[0].title,'Rice');
+    assert.deepEqual(data.result.structuredContent.recipe,f.row.state.recipes[0]);
+    for(const key of ['pantry','plan','shopping'])assert.deepEqual(f.row.state[key],[]);
+});
+test('MCP save_recipe rejects incomplete recipes with the domain sentence',async()=>{
+    for(const recipe of [{title:'Rice',ingredients:[{name:'rice'}]}, {ingredients:[{name:'rice'}],steps:['Cook.']}, {title:'Rice',steps:['Cook.']}]){
+        const f=fixture(),{response,data}=await f.send('mcp',{method:'POST',body:publishBody(recipe)});
+        assert.equal(response.status,200);assert.equal(data.result.isError,true);
+        assert.equal(data.result.content[0].text,'Add a title, at least one named ingredient, and instructions before saving.');
+        assert.deepEqual(f.row.state.recipes,[]);assert.equal(f.row.revision,0);
+    }
+});
+test('MCP save_recipe retries with the same operationId publish only once',async()=>{
+    const f=fixture(),body=publishBody({title:'Rice',ingredients:[{name:'rice'}],steps:['Cook.']});
+    const first=await f.send('mcp',{method:'POST',body}),retry=await f.send('mcp',{method:'POST',body});
+    assert.equal(first.data.result.isError,undefined);assert.equal(retry.data.result.isError,undefined);
+    assert.equal(f.row.state.recipes.length,1);assert.equal(f.row.revision,1);
+    assert.deepEqual(retry.data.result.structuredContent,first.data.result.structuredContent);
+});
+test('OAuth protected resource metadata is public and uses the request origin',async()=>{
+    const f=fixture(),{response,data}=await f.send('.well-known/oauth-protected-resource',{token:'',household:''});
+    assert.equal(response.status,200);
+    assert.deepEqual(data,{resource:'https://backend.example.test/functions/v1/cookbook',authorization_servers:['https://backend.example.test/auth/v1'],scopes_supported:[],bearer_methods_supported:['header'],resource_name:'CookBook kitchen',resource_documentation:'https://backend.example.test/functions/v1/cookbook'});
+    assert.equal(response.headers.get('access-control-allow-origin'),'https://kitchen.example.test');assert.equal(f.calls.queries,0);
+    const alternate=await f.handler(new Request('https://alternate.example.test/cookbook/.well-known/oauth-protected-resource'));
+    assert.equal(alternate.status,200);assert.equal((await alternate.json()).resource,'https://alternate.example.test/functions/v1/cookbook');
+});
+test('every authentication failure includes the OAuth resource challenge',async()=>{
+    const f=fixture();
+    for(const token of ['', 'invalid','unconfirmed']){
+        const {response,data}=await f.send('mcp',{method:'POST',token,body:publishBody(sample())});
+        assert.equal(response.status,401);
+        assert.equal(data.error,token?'Confirm your email and sign in to open your kitchen.':'Sign in to open your kitchen.');
+        assert.match(response.headers.get('www-authenticate')??'',/^Bearer resource_metadata=".+\/\.well-known\/oauth-protected-resource"$/);
+    }
+});
+test('OAuth discovery advertises HTTPS behind the gateway and preserves loopback schemes',async()=>{
+    const f=fixture();
+    for(const [requestOrigin,publicOrigin] of [
+        ['http://backend.example.test','https://backend.example.test'],
+        ['https://backend.example.test','https://backend.example.test'],
+        ['http://localhost:54321','http://localhost:54321'],
+        ['http://127.0.0.1:54321','http://127.0.0.1:54321'],
+        ['http://[::1]:54321','http://[::1]:54321'],
+        ['https://localhost:54321','https://localhost:54321'],
+    ]){
+        const response=await f.handler(new Request(requestOrigin+'/functions/v1/cookbook/.well-known/oauth-protected-resource'));
+        assert.equal(response.status,200);
+        const metadata=await response.json();
+        assert.equal(metadata.resource,publicOrigin+'/functions/v1/cookbook');
+        assert.deepEqual(metadata.authorization_servers,[publicOrigin+'/auth/v1']);
+        assert.equal(metadata.resource_documentation,publicOrigin+'/functions/v1/cookbook');
+        const unauthorized=await f.handler(new Request(requestOrigin+'/functions/v1/cookbook/mcp',{method:'POST'}));
+        assert.equal(unauthorized.status,401);
+        assert.equal(unauthorized.headers.get('www-authenticate'),`Bearer resource_metadata="${publicOrigin}/functions/v1/cookbook/.well-known/oauth-protected-resource"`);
+    }
+});
+test('OAuth discovery honours the explicit public URL override',async()=>{
+    const previous=globalThis.Deno;
+    try{
+        globalThis.Deno={env:{get:name=>name==='COOKBOOK_PUBLIC_URL'?'https://public.example.test/':undefined}};
+        const f=fixture();
+        const response=await f.handler(new Request('http://backend.example.test/functions/v1/cookbook/.well-known/oauth-protected-resource'));
+        assert.equal(response.status,200);
+        const metadata=await response.json();
+        assert.equal(metadata.resource,'https://public.example.test/functions/v1/cookbook');
+        assert.deepEqual(metadata.authorization_servers,['https://public.example.test/auth/v1']);
+        assert.equal(metadata.resource_documentation,'https://public.example.test/functions/v1/cookbook');
+        const unauthorized=await f.handler(new Request('http://backend.example.test/functions/v1/cookbook/mcp',{method:'POST'}));
+        assert.equal(unauthorized.status,401);
+        assert.equal(unauthorized.headers.get('www-authenticate'),'Bearer resource_metadata="https://public.example.test/functions/v1/cookbook/.well-known/oauth-protected-resource"');
+    }finally{
+        if(previous===undefined)delete globalThis.Deno;else globalThis.Deno=previous;
+    }
+});
+test('MCP resolves a single membership when x-household-id is absent',async()=>{
+    const f=fixture(),{response,data}=await f.send('mcp',{method:'POST',household:'',body:publishBody(sample())});
+    assert.equal(response.status,200);assert.equal(data.result.isError,undefined);assert.equal(f.row.state.recipes.length,1);
+});
+test('MCP refuses absent or ambiguous memberships before loading household data',async()=>{
+    for(const memberships of [[],[{household_id:householdId},{household_id:otherId}]]){
+        const f=fixture('owner',undefined,memberships),{response,data}=await f.send('mcp',{method:'POST',household:'',body:publishBody(sample())});
+        assert.equal(response.status,403);
+        if(memberships.length)assert.match(data.error,/x-household-id/);else assert.equal(data.error,'You do not have access to any household.');
+        assert.equal(f.calls.queries,1);assert.equal(f.row.revision,0);
+    }
+});
+test('explicit MCP households retain strict membership checks and browser state requires a header',async()=>{
+    const f=fixture();
+    const denied=await f.send('mcp',{method:'POST',household:otherId,body:publishBody(sample())});
+    assert.equal(denied.response.status,403);assert.equal(denied.data.error,'You do not have access to this household.');
+    const invalid=await f.send('mcp',{method:'POST',household:'invalid',body:publishBody(sample())});
+    assert.equal(invalid.response.status,403);assert.equal(invalid.data.error,'Choose a household first.');
+    const browser=await f.send('state',{household:''});
+    assert.equal(browser.response.status,403);assert.equal(browser.data.error,'Choose a household first.');assert.equal(f.calls.queries,1);
+});
 test('API verifies sign-in and household membership before touching household data',async()=>{
     const f=fixture();
     for(const token of ['', 'invalid','unconfirmed'])assert.equal((await f.send('state',{token})).response.status,401);

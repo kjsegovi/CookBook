@@ -5,6 +5,7 @@ import { householdStore } from './store.ts';
 import { importLink } from './importer.ts';
 import { readBackup } from './backup.ts';
 import { handleMcp } from './mcp.ts';
+import { challenge, protectedResource } from './oauth.ts';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export function photoExtension(data: Uint8Array, type: string) {
@@ -19,19 +20,30 @@ export function createHandler(admin: SupabaseClient, allowedOrigins: string[]) {
         const cors = new Headers({ Vary: 'Origin', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-household-id, x-client-info' });
         if (origin && !allowedOrigins.includes(origin)) return json({ error: 'This website is not allowed to access your kitchen.' }, 403);
         if (origin) cors.set('Access-Control-Allow-Origin', origin);
-        const respond = (response: Response) => { for (const [key, value] of cors) response.headers.set(key, value); return response; };
+        const respond = (response: Response) => { for (const [key, value] of cors) response.headers.set(key, value); if (response.status === 401) response.headers.set('WWW-Authenticate', challenge(request)); return response; };
         if (request.method === 'OPTIONS') return respond(new Response(null, { status: 204 }));
         try {
+            const url = new URL(request.url);
+            const path = url.pathname.match(/^\/(?:functions\/v1\/)?cookbook(?:\/(.*))?$/)?.[1] ?? '';
+            if (path === '.well-known/oauth-protected-resource' && request.method === 'GET') return respond(json(protectedResource(request)));
             const token = request.headers.get('authorization')?.match(/^Bearer (\S+)$/i)?.[1];
             if (!token) throw new DomainError('Sign in to open your kitchen.', 401);
             const { data: { user }, error: authError } = await admin.auth.getUser(token);
             if (authError || !user || !user.email_confirmed_at) throw new DomainError('Confirm your email and sign in to open your kitchen.', 401);
-            const householdId = request.headers.get('x-household-id') ?? '';
-            if (!uuid.test(householdId)) throw new DomainError('Choose a household first.', 403);
-            const { data: member, error: memberError } = await admin.from('household_members').select('role').eq('household_id', householdId).eq('user_id', user.id).maybeSingle();
-            if (memberError || !member) throw new DomainError('You do not have access to this household.', 403);
-            const store = householdStore(admin, householdId), url = new URL(request.url);
-            const path = url.pathname.match(/^\/(?:functions\/v1\/)?cookbook(?:\/(.*))?$/)?.[1] ?? '';
+            let householdId = request.headers.get('x-household-id') ?? '';
+            let member: { role: string } | null = null;
+            if (path === 'mcp' && !request.headers.has('x-household-id')) {
+                const { data: memberships, error: membershipError } = await admin.from('household_members').select('household_id').eq('user_id', user.id);
+                if (membershipError || !memberships?.length) throw new DomainError('You do not have access to any household.', 403);
+                if (memberships.length > 1) throw new DomainError('Send x-household-id to choose which household to access.', 403);
+                householdId = memberships[0].household_id;
+            } else {
+                if (!uuid.test(householdId)) throw new DomainError('Choose a household first.', 403);
+                const { data, error: memberError } = await admin.from('household_members').select('role').eq('household_id', householdId).eq('user_id', user.id).maybeSingle();
+                if (memberError || !data) throw new DomainError('You do not have access to this household.', 403);
+                member = data;
+            }
+            const store = householdStore(admin, householdId);
             if (path === 'state' && request.method === 'GET') return respond(json(await store.snapshot()));
             if (path === 'command' && request.method === 'POST') {
                 const input = await body(request);
@@ -47,7 +59,7 @@ export function createHandler(admin: SupabaseClient, allowedOrigins: string[]) {
             }
             if (path === 'export' && request.method === 'GET') return respond(json({ format: 'cookbook-household-v1', exportedAt: new Date().toISOString(), ...await store.snapshot() }));
             if (path === 'restore' && request.method === 'POST') {
-                if (member.role !== 'owner') throw new DomainError('Only the household owner can restore a backup.', 403);
+                if (member?.role !== 'owner') throw new DomainError('Only the household owner can restore a backup.', 403);
                 const state = readBackup(await body(request)), current = await store.snapshot();
                 if (Object.entries(current.state).some(([key,value]) => key !== 'operations' && Array.isArray(value) && value.length)) throw new DomainError('Restore into an empty kitchen so existing records are preserved.', 409);
                 const saved = await store.replace(state, current.revision);

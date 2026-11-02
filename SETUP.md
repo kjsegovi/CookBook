@@ -62,4 +62,10 @@ Create an account, confirm the email, sign in, and create your kitchen. Open **K
 
 To share a kitchen, the owner creates an invitation code for a specific email in Kitchen settings. Share that code privately. The recipient creates and confirms an account with that exact email, then chooses **Join your household**. Codes expire after seven days, are stored as hashes, and can be used once. Creating another code for the same email replaces the previous code. No invitation email is sent automatically. Each account belongs to one household. Removing an existing member is currently an administrator operation in the Supabase database.
 
-For MCP connection details and verification commands, see the [project README](README.md#mcp-outside-gpt-sites).
+## Connect an MCP client
+
+In the Supabase dashboard, open **Authentication → OAuth Server** and enable the **OAuth 2.1 server**. Set the **Authorization Path** to `/oauth/consent` (the Site URL from step 2 supplies the repository base). Register a **public client** with redirect URI `http://127.0.0.1:8765/callback`, then use its client ID in your MCP client's OAuth configuration. The consent screen lets users sign in and approve without first creating or joining a household.
+
+For Hermes, pin `oauth.redirect_port` to `8765` so its callback matches the registered redirect URI, and configure the registered public client ID. Run `hermes mcp add cookbook --url <mcp url> --auth oauth`, then `hermes mcp test cookbook`, using the endpoint in the [project README](README.md#mcp-outside-gpt-sites). Finish sign-in and consent in the browser, then follow the return link to deliver the OAuth callback; no copied secret is needed.
+
+For verification commands, see the [project README](README.md#validation).

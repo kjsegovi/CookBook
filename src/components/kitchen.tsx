@@ -1,9 +1,46 @@
 'use client';
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { BookOpen, Plus, Search, ArrowUpRight, ArrowLeft, ArrowRight, Heart, Clock3, SlidersHorizontal, CalendarDays, Leaf, ShoppingBasket, Refrigerator, X, Check, Link2, Upload, Printer, Settings, RefreshCw, ChefHat, Trash2, Pencil, MoreHorizontal, Download, CheckCircle2, CircleHelp, Utensils, Snowflake, Copy } from 'lucide-react';
-import { availability, blankRecipe, canonical, convert, formatAmount, fraction, initialState, parseIngredient, requirements, reserved, uid, weekEnd, type State, type Recipe, type PantryItem, type PlanEntry, type PreparedBatch, type ShoppingItem, type ImportDraft } from '@/lib/domain';
+import { availability, autoLeftovers, blankRecipe, canonical, convert, formatAmount, fraction, initialState, parseIngredient, requirements, reserved, uid, weekEnd, type State, type Recipe, type PantryItem, type PlanEntry, type PreparedBatch, type ShoppingItem, type ImportDraft } from '@/lib/domain';
 import { ApiError, getSnapshot, saveCommand, importRecipe, uploadPhoto, photoUrl } from '@/lib/api';
 import HouseholdSettings from './household-settings';
+import type { OAuthAuthorizationDetails } from '@supabase/supabase-js';
+import { appUrl, requireClient } from '@/lib/supabase';
+
+export function ConsentView({ authorizationId }: { authorizationId: string | null }) {
+    const [details, setDetails] = useState<OAuthAuthorizationDetails | null>(null), [busy, setBusy] = useState(false), [error, setError] = useState(''), [result, setResult] = useState(''), [redirect, setRedirect] = useState('');
+    const inFlight = useRef(false);
+    useEffect(() => {
+        if (!authorizationId) return;
+        let active = true;
+        const load = async () => {
+            try {
+                const { data, error } = await requireClient().auth.oauth.getAuthorizationDetails(authorizationId);
+                if (!active) return;
+                if (error) throw error;
+                if ('redirect_url' in data) { window.location.assign(data.redirect_url); return; }
+                new URL(data.redirect_uri);
+                setDetails(data);
+            } catch { if (active) setError('Please restart authorization from your client to try again.'); }
+        };
+        void load();
+        return () => { active = false; };
+    }, [authorizationId]);
+    const decide = async (approve: boolean) => {
+        if (!authorizationId || !details || inFlight.current) return;
+        inFlight.current = true; setBusy(true); setError('');
+        try {
+            const oauth = requireClient().auth.oauth;
+            const { data, error } = await (approve ? oauth.approveAuthorization(authorizationId, { skipBrowserRedirect: true }) : oauth.denyAuthorization(authorizationId, { skipBrowserRedirect: true }));
+            if (error) throw error;
+            setRedirect(data.redirect_url);
+            setResult('You can close this window and return to ' + details.client.name + '.');
+        } catch { setError('Please restart authorization from your client to try again.'); }
+        finally { inFlight.current = false; setBusy(false); }
+    };
+    return <main className="consent-view"><BookOpen aria-hidden="true" /><h1>{authorizationId ? 'Connect to CookBook' : 'This authorization link is incomplete'}</h1>{!authorizationId ? <a className="text-link" href={appUrl()}>Back home</a> : <>{error && <div className="alert error" role="alert">{error}</div>}<div aria-live="polite">{result && <><p>{result}</p><a className="button" href={redirect}>Return to {details?.client.name}</a></>}</div>{!result && (details ? <><h2>{details.client.name}</h2><p>Redirect host: <strong>{new URL(details.redirect_uri).host}</strong></p><h3>Requested scopes</h3>{details.scope.trim() ? <ul>{details.scope.trim().split(/\s+/).map(scope => <li key={scope}>{scope.replace(/[_:]/g, ' ')}</li>)}</ul> : <p>No scopes requested.</p>}<div className="inline-actions"><Action disabled={busy} onClick={() => void decide(true)}>Approve</Action><Action secondary disabled={busy} onClick={() => void decide(false)}>Deny</Action></div></> : !error && <p role="status">Loading authorization details…</p>)}</>}</main>;
+}
+
 type Modal = {
     type: string;
     data?: any;
@@ -196,7 +233,7 @@ function PlanCard({ entry: p, state, busy, onEdit, onCook, onEat, commit }: {
     onCook: () => void;
     onEat: () => void;
     commit: Commit;
-}) { const recipe = state.recipes.find(r => r.id === p.recipeId), batch = state.batches.find(b => b.id === p.batchId); return <article className={'plan-card ' + (p.done ? 'completed' : '')}><a href={'#/recipes/' + p.recipeId}>{recipe?.title ?? batch?.title ?? 'Saved meal'}</a><p>{p.kind === 'leftover' ? <><Refrigerator size={13}/> {p.eatServings} leftover portions</> : <><ChefHat size={13}/> Cook {p.cookServings} · eat {p.eatServings}</>}</p>{p.note && <small>{p.note}</small>}{p.done ? <span className="done-label"><Check size={13}/>{p.kind === 'cook' ? 'Cooked' : 'Eaten'}</span> : <><button className="text-link" disabled={busy || p.kind === 'leftover' && !batch} onClick={p.kind === 'cook' ? onCook : onEat}>{p.kind === 'cook' ? 'Mark as cooked' : batch ? 'Eat leftovers' : 'Cook batch first'}</button><div className="plan-card-actions"><IconButton label={'Edit ' + (recipe?.title ?? 'meal')} onClick={onEdit}><Pencil size={14}/></IconButton><IconButton label={'Remove ' + (recipe?.title ?? 'meal') + ' from plan'} disabled={busy} onClick={() => commit('plan.delete', { id: p.id })}><X size={14}/></IconButton></div></>}</article>; }
+}) { const recipe = state.recipes.find(r => r.id === p.recipeId), batch = state.batches.find(b => b.id === p.batchId); return <article className={'plan-card ' + (p.done ? 'completed' : '')}><a href={'#/recipes/' + p.recipeId}>{recipe?.title ?? batch?.title ?? 'Saved meal'}</a><p>{p.kind === 'leftover' ? <><Refrigerator size={13}/> {p.eatServings} leftover portions{p.auto && <span className="auto-tag">Auto</span>}</> : <><ChefHat size={13}/> Cook {p.cookServings} · eat {p.eatServings}</>}</p>{p.note && <small>{p.note}</small>}{p.done ? <span className="done-label"><Check size={13}/>{p.kind === 'cook' ? 'Cooked' : 'Eaten'}</span> : <><button className="text-link" disabled={busy || p.kind === 'leftover' && !batch} onClick={p.kind === 'cook' ? onCook : onEat}>{p.kind === 'cook' ? 'Mark as cooked' : batch ? 'Eat leftovers' : 'Cook batch first'}</button><div className="plan-card-actions"><IconButton label={'Edit ' + (recipe?.title ?? 'meal')} onClick={onEdit}><Pencil size={14}/></IconButton><IconButton label={'Remove ' + (recipe?.title ?? 'meal') + ' from plan'} disabled={busy} onClick={() => commit('plan.delete', { id: p.id })}><X size={14}/></IconButton></div></>}</article>; }
 function Pantry({ state, onEdit, onAliases, commit, busy }: {
     state: State;
     onEdit: (p: PantryItem) => void;
@@ -310,6 +347,12 @@ function PortionStrip({ cooked, eaten }: {
     cooked: number;
     eaten: number;
 }) { return <div className="portion-summary"><div className="portion-bar" aria-hidden="true"><span style={{ width: Math.min(100, Math.max(0, eaten / Math.max(1, cooked) * 100)) + '%' }}/></div><div><span><strong>{eaten}</strong> to eat now</span><span><strong>{Math.max(0, cooked - eaten)}</strong> for later</span></div></div>; }
+function AutoLeftoverNote({ state, entry, remaining }: {
+    state: State;
+    entry?: PlanEntry;
+    remaining: number;
+}) { const batchId = entry?.id ?? '', meals = autoLeftovers(state, batchId, remaining, entry?.date ?? today()), assigned = meals.reduce((n, m) => n + m.portions, 0), unplanned = Math.max(0, Math.round((remaining - reserved(state, batchId) - assigned) * 100) / 100), slot = entry?.slot ?? 'Dinner'; if (!meals.length)
+    return <p className="muted">{remaining > 0 ? 'Auto leftovers are off in Kitchen settings, or these portions are already planned.' : 'Nothing left over from this meal.'}</p>; return <div className="portion-summary auto-leftovers"><div className="leftover-days">{meals.map(m => <span key={m.date}>{shortDate(m.date, { weekday: 'short', month: 'short', day: 'numeric' })}<strong>{m.portions}</strong></span>)}</div><p>{`Planned as ${slot} leftovers: ${meals.length} ${meals.length === 1 ? 'meal' : 'meals'}${unplanned ? `, ${unplanned} more ${unplanned === 1 ? 'portion' : 'portions'} left unplanned` : ''}.`}</p></div>; }
 function CookForm({ recipe, entry, state: latestState, busy, commit, onDone }: {
     recipe: Recipe;
     entry?: PlanEntry;
@@ -339,7 +382,7 @@ function CookForm({ recipe, entry, state: latestState, busy, commit, onDone }: {
             left = Math.max(0, left - convert(actual, p.unit, n.unit)!);
     }
 } setUsage(rows); }, [needs, state]); return <form className="form-stack" onSubmit={async (e) => { e.preventDefault(); const f = new FormData(e.currentTarget); if (await commit('cook', { recipeId: recipe.id, planId: entry?.id, cookServings: cooked, eatServings: eaten, usage, location: field(f, 'location') }))
-    onDone(); }}><p className="dialog-description"><strong>{recipe.title}</strong><br />Review what you actually used before updating your pantry.</p><div className="form-grid"><label>Servings cooked<input required type="number" step="0.25" min="0.25" value={cooked} onChange={e => setCooked(Number(e.target.value))}/></label><label>Servings eaten now<input required type="number" step="0.25" min="0" max={cooked} value={eaten} onChange={e => setEaten(Number(e.target.value))}/></label></div><PortionStrip cooked={cooked} eaten={eaten}/><label>Keep remaining portions in<select name="location"><option>Fridge</option><option>Freezer</option></select></label><div className="usage-review"><h3>Pantry deductions</h3><p className="muted">Only the measured amounts below will be deducted. Blank amounts leave stock unchanged.</p>{needs.map(n => <div className="needed-line" key={n.key}><span>{n.name}</span><strong>{n.amount === null ? 'Amount to review' : formatAmount(n.amount, n.unit) + ' needed'}</strong></div>)}{usage.map((u, i) => <label className="usage-line" key={u.pantryId + i}><span>{u.name}<small>{state.pantry.find(p => p.id === u.pantryId)?.location} · {formatAmount(state.pantry.find(p => p.id === u.pantryId)?.amount ?? null, u.unit)} on hand</small></span><input aria-label={'Deduct ' + u.name} type="number" min="0" step="any" max={state.pantry.find(p => p.id === u.pantryId)?.amount ?? undefined} value={u.amount ?? ''} placeholder="Unchanged" onChange={e => setUsage(rows => rows.map((row, j) => i === j ? { ...row, amount: e.target.value === '' ? null : Number(e.target.value) } : row))}/><span>{u.unit}</span></label>)}{needs.some(n => !n.present || n.uncertain || (n.missing ?? 0) > 0) && <p className="field-warning">Some ingredients are missing or unmeasured. Confirm your actual usage below; ingredients without measured stock will stay unchanged.</p>}</div><label className="checkbox-label"><input type="checkbox" required/>I reviewed these pantry deductions and remaining portions.</label><Action disabled={busy} type="submit"><Check size={17}/>{busy ? 'Saving…' : 'Confirm cooked meal'}</Action></form>; }
+    onDone(); }}><p className="dialog-description"><strong>{recipe.title}</strong><br />Review what you actually used before updating your pantry.</p><div className="form-grid"><label>Servings cooked<input required type="number" step="0.25" min="0.25" value={cooked} onChange={e => setCooked(Number(e.target.value))}/></label><label>Servings eaten now<input required type="number" step="0.25" min="0" max={cooked} value={eaten} onChange={e => setEaten(Number(e.target.value))}/></label></div><PortionStrip cooked={cooked} eaten={eaten}/><AutoLeftoverNote state={state} entry={entry} remaining={Math.max(0, cooked - eaten)}/><label>Keep remaining portions in<select name="location"><option>Fridge</option><option>Freezer</option></select></label><div className="usage-review"><h3>Pantry deductions</h3><p className="muted">Only the measured amounts below will be deducted. Blank amounts leave stock unchanged.</p>{needs.map(n => <div className="needed-line" key={n.key}><span>{n.name}</span><strong>{n.amount === null ? 'Amount to review' : formatAmount(n.amount, n.unit) + ' needed'}</strong></div>)}{usage.map((u, i) => <label className="usage-line" key={u.pantryId + i}><span>{u.name}<small>{state.pantry.find(p => p.id === u.pantryId)?.location} · {formatAmount(state.pantry.find(p => p.id === u.pantryId)?.amount ?? null, u.unit)} on hand</small></span><input aria-label={'Deduct ' + u.name} type="number" min="0" step="any" max={state.pantry.find(p => p.id === u.pantryId)?.amount ?? undefined} value={u.amount ?? ''} placeholder="Unchanged" onChange={e => setUsage(rows => rows.map((row, j) => i === j ? { ...row, amount: e.target.value === '' ? null : Number(e.target.value) } : row))}/><span>{u.unit}</span></label>)}{needs.some(n => !n.present || n.uncertain || (n.missing ?? 0) > 0) && <p className="field-warning">Some ingredients are missing or unmeasured. Confirm your actual usage below; ingredients without measured stock will stay unchanged.</p>}</div><label className="checkbox-label"><input type="checkbox" required/>I reviewed these pantry deductions and remaining portions.</label><Action disabled={busy} type="submit"><Check size={17}/>{busy ? 'Saving…' : 'Confirm cooked meal'}</Action></form>; }
 function BatchForm({ batch, state, busy, commit, onDone, onEat }: {
     batch: PreparedBatch;
     state: State;
@@ -382,4 +425,4 @@ function SettingsPage({ state, commit, busy }: {
     state: State;
     commit: Commit;
     busy: boolean;
-}) { return <div className="settings-layout"><form className="form-stack settings-form" onSubmit={async (e) => { e.preventDefault(); const f = new FormData(e.currentTarget); await commit('settings.save', { servings: Number(field(f, 'servings')), weekStartsOn: Number(field(f, 'weekStartsOn')), categories: field(f, 'categories') }); }}><h2>The way you cook</h2><div className="form-grid"><label>Usual servings per meal<input name="servings" required type="number" step="0.25" min="0.25" defaultValue={state.settings.servings}/></label><label>Start the week on<select name="weekStartsOn" defaultValue={state.settings.weekStartsOn}><option value="1">Monday</option><option value="0">Sunday</option></select></label></div><label>Recipe categories, one per line<textarea name="categories" required rows={8} defaultValue={state.settings.categories.join('\n')}/></label><p className="muted">Existing recipes keep their category when you change this list.</p><Action disabled={busy} type="submit">Save kitchen settings</Action></form><HouseholdSettings/></div>; }
+}) { return <div className="settings-layout"><form className="form-stack settings-form" onSubmit={async (e) => { e.preventDefault(); const f = new FormData(e.currentTarget); await commit('settings.save', { servings: Number(field(f, 'servings')), weekStartsOn: Number(field(f, 'weekStartsOn')), autoLeftovers: f.get('autoLeftovers') === 'on', categories: field(f, 'categories') }); }}><h2>The way you cook</h2><div className="form-grid"><label>Usual servings per meal<input name="servings" required type="number" step="0.25" min="0.25" defaultValue={state.settings.servings}/></label><label>Start the week on<select name="weekStartsOn" defaultValue={state.settings.weekStartsOn}><option value="1">Monday</option><option value="0">Sunday</option></select></label></div><label className="checkbox-label auto-leftovers-toggle"><input type="checkbox" name="autoLeftovers" defaultChecked={state.settings.autoLeftovers !== false}/>Plan leftover meals automatically</label><p className="muted">When you cook more than you eat, the extra portions are scheduled as leftovers for the following days, one meal per usual serving.</p><label>Recipe categories, one per line<textarea name="categories" required rows={8} defaultValue={state.settings.categories.join('\n')}/></label><p className="muted">Existing recipes keep their category when you change this list.</p><Action disabled={busy} type="submit">Save kitchen settings</Action></form><HouseholdSettings/></div>; }

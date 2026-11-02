@@ -3,11 +3,36 @@ import type { Session } from '@supabase/supabase-js';
 import { ArrowRight, BookOpen, Eye, EyeOff, Leaf, LockKeyhole, Mail } from 'lucide-react';
 import { appUrl, configured, requireClient, supabase } from './lib/supabase';
 import { selectHousehold } from './lib/api';
+import { consentRequest } from './lib/consent';
 
 type Mode = 'signin' | 'forgot' | 'recovery';
 const Kitchen = lazy(() => import('./components/kitchen'));
+const ConsentView = lazy(() => import('./components/kitchen').then(module => ({ default: module.ConsentView })));
 function route() { return location.hash.startsWith('#/') ? location.hash.slice(1).split('?')[0] : '/'; }
 export default function App() {
+    const request = consentRequest(window.location.pathname + window.location.search, import.meta.env.BASE_URL);
+    if (request.isConsent) return <Suspense fallback={<div className="loading-state" role="status">Opening authorization…</div>}><ConsentSession authorizationId={request.authorizationId} /></Suspense>;
+    return <HouseholdApp />;
+}
+function ConsentSession({ authorizationId }: { authorizationId: string | null }) {
+    const [session, setSession] = useState<Session | null>(null), [ready, setReady] = useState(!configured), [error, setError] = useState('');
+    useEffect(() => {
+        if (!supabase || !authorizationId) return;
+        let active = true;
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, current) => { if (active) { setSession(current); setReady(true); } });
+        supabase.auth.getSession().then(({ data, error }) => {
+            if (!active) return;
+            if (error) setError('Please sign in again to continue this authorization request.');
+            setSession(data.session); setReady(true);
+        }).catch(() => { if (active) { setError('Please sign in again to continue this authorization request.'); setReady(true); } });
+        return () => { active = false; subscription.unsubscribe(); };
+    }, [authorizationId]);
+    if (!authorizationId) return <ConsentView authorizationId={null} />;
+    if (!ready) return <div className="loading-state" role="status">Opening authorization…</div>;
+    if (!session) return <>{error && <div className="alert error" role="alert">{error}</div>}<Login /></>;
+    return <ConsentView key={session.user.id + authorizationId} authorizationId={authorizationId} />;
+}
+function HouseholdApp() {
     const [session, setSession] = useState<Session | null>(null), [ready, setReady] = useState(!configured);
     const [path, setPath] = useState(route), [recovery, setRecovery] = useState(new URLSearchParams(location.search).get('auth') === 'recovery');
     const [household, setHousehold] = useState<string | null>(null), [checking, setChecking] = useState(false), [error, setError] = useState('');

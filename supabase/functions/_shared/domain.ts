@@ -49,6 +49,7 @@ export type PlanEntry = {
     eatServings: number;
     done: boolean;
     note: string;
+    auto?: boolean;
 };
 export type PreparedBatch = {
     id: string;
@@ -108,6 +109,7 @@ export type State = {
         categories: string[];
         servings: number;
         weekStartsOn: number;
+        autoLeftovers?: boolean;
     };
 };
 export class DomainError extends Error {
@@ -115,7 +117,7 @@ export class DomainError extends Error {
     constructor(message: string, status = 400) { super(message); this.status = status; }
 }
 export const uid = () => crypto.randomUUID();
-export const initialState = (): State => ({ recipes: [], pantry: [], plan: [], batches: [], shopping: [], shoppingWeek: '', ingredients: [], drafts: [], movements: [], operations: [], settings: { categories: [...DEFAULT_CATEGORIES], servings: 2, weekStartsOn: 1 } });
+export const initialState = (): State => ({ recipes: [], pantry: [], plan: [], batches: [], shopping: [], shoppingWeek: '', ingredients: [], drafts: [], movements: [], operations: [], settings: { categories: [...DEFAULT_CATEGORIES], servings: 2, weekStartsOn: 1, autoLeftovers: true } });
 export const clean = (v: unknown, max = 500): string => String(v ?? '').trim().slice(0, max);
 export function number(v: unknown, fallback = 0) { const n = Number(v); return Number.isFinite(n) ? n : fallback; }
 function positive(v: unknown, label: string, allowZero = false) { const n = Number(v); if (!Number.isFinite(n) || n < (allowZero ? 0 : 0.000001) || n > 1000000)
@@ -236,6 +238,24 @@ export function weekEnd(week: string) { const d = new Date(week + 'T12:00:00Z');
 function validDate(v: unknown) { const s = clean(v, 10); if (!/^\d{4}-\d{2}-\d{2}$/.test(s) || Number.isNaN(Date.parse(s + 'T12:00:00Z')) || new Date(s + 'T12:00:00Z').toISOString().slice(0, 10) !== s)
     throw new DomainError('Choose a valid date.'); return s; }
 export function reserved(state: State, batchId: string, exceptId = '') { return state.plan.filter(p => p.kind === 'leftover' && p.batchId === batchId && !p.done && p.id !== exceptId).reduce((n, p) => n + p.eatServings, 0); }
+export function shiftDate(date: string, days: number) { const d = new Date(date + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + days); return d.toISOString().slice(0, 10); }
+export const AUTO_LEFTOVER_DAYS = 4;
+export function autoLeftovers(state: State, batchId: string, remaining: number, startDate: string) {
+    const meals: { date: string; portions: number }[] = [];
+    if (state.settings.autoLeftovers === false)
+        return meals;
+    const taken = new Set(state.plan.filter(p => p.kind === 'leftover' && p.batchId === batchId && !p.done).map(p => p.date));
+    let left = remaining - reserved(state, batchId);
+    for (let day = 1; day <= AUTO_LEFTOVER_DAYS && left > 0.000001; day++) {
+        const date = shiftDate(startDate, day);
+        if (taken.has(date))
+            continue;
+        const portions = Math.min(state.settings.servings, left);
+        meals.push({ date, portions });
+        left -= portions;
+    }
+    return meals;
+}
 const recipeChangesSchema = z.object({
     title: z.string().trim().min(1).max(200),
     description: z.string().max(3000),
@@ -418,6 +438,8 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             s.batches.push({ id: batchId, recipeId: r.id, title: r.title, remaining: cooked - eaten, cookedServings: cooked, preparedAt: at, location: p.location === 'Freezer' ? 'Freezer' : 'Fridge', planId: entry?.id ?? '' });
             if (entry)
                 entry.done = true;
+            for (const meal of autoLeftovers(s, batchId, cooked - eaten, entry?.date ?? at.slice(0, 10)))
+                s.plan.push({ id: uid(), date: meal.date, slot: entry?.slot ?? 'Dinner', kind: 'leftover', recipeId: r.id, batchId, cookServings: 0, eatServings: meal.portions, done: false, note: '', auto: true });
             r.wantToTry = false;
             break;
         }
@@ -443,6 +465,17 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             if (!b)
                 throw new DomainError('Batch not found.');
             const n = positive(p.remaining, 'Remaining portions', true);
+            let excess = reserved(s, b.id) - n;
+            if (excess > 0.000001)
+                for (const planned of s.plan.filter(x => x.auto && x.kind === 'leftover' && x.batchId === b.id && !x.done).sort((x, y) => y.date.localeCompare(x.date)))
+                    if (excess > 0.000001) {
+                        const trim = Math.min(excess, planned.eatServings);
+                        if (trim >= planned.eatServings - 0.000001)
+                            s.plan = s.plan.filter(x => x.id !== planned.id);
+                        else
+                            planned.eatServings -= trim;
+                        excess -= trim;
+                    }
             if (n < reserved(s, b.id))
                 throw new DomainError('Remove leftover meal assignments before reducing below reserved portions.');
             b.remaining = n;
@@ -531,6 +564,7 @@ export function applyCommand(original: State, type: string, p: any, operationId:
         case 'settings.save': {
             s.settings.servings = positive(p.servings, 'Default servings');
             s.settings.weekStartsOn = p.weekStartsOn === 0 ? 0 : 1;
+            s.settings.autoLeftovers = p.autoLeftovers === undefined ? s.settings.autoLeftovers !== false : !!p.autoLeftovers;
             const cats = clean(p.categories, 2000).split('\n').map(c => c.trim()).filter(Boolean);
             if (!cats.length || cats.length > 40)
                 throw new DomainError('Enter between 1 and 40 categories.');
