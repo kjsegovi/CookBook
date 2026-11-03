@@ -1,17 +1,19 @@
+import { LoadBoundary } from './components/load-boundary';
 import { lazy, Suspense, useEffect, useState, type FormEvent } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { ArrowRight, BookOpen, Eye, EyeOff, Leaf, LockKeyhole, Mail } from 'lucide-react';
 import { appUrl, configured, requireClient, supabase } from './lib/supabase';
-import { selectHousehold } from './lib/api';
+import { cachedSnapshot, getSnapshot, selectSession, type Snapshot } from './lib/api';
 import { consentRequest } from './lib/consent';
 
 type Mode = 'signin' | 'forgot' | 'recovery';
-const Kitchen = lazy(() => import('./components/kitchen'));
-const ConsentView = lazy(() => import('./components/kitchen').then(module => ({ default: module.ConsentView })));
+const loadKitchen = () => import('./components/kitchen');
+const Kitchen = lazy(loadKitchen);
+const ConsentView = lazy(() => import('./components/consent-view'));
 function route() { return location.hash.startsWith('#/') ? location.hash.slice(1).split('?')[0] : '/'; }
 export default function App() {
     const request = consentRequest(window.location.pathname + window.location.search, import.meta.env.BASE_URL);
-    if (request.isConsent) return <Suspense fallback={<div className="loading-state" role="status">Opening authorization…</div>}><ConsentSession authorizationId={request.authorizationId} /></Suspense>;
+    if (request.isConsent) return <LoadBoundary><Suspense fallback={<div className="loading-state" role="status">Opening authorization…</div>}><ConsentSession authorizationId={request.authorizationId} /></Suspense></LoadBoundary>;
     return <HouseholdApp />;
 }
 function ConsentSession({ authorizationId }: { authorizationId: string | null }) {
@@ -35,7 +37,7 @@ function ConsentSession({ authorizationId }: { authorizationId: string | null })
 function HouseholdApp() {
     const [session, setSession] = useState<Session | null>(null), [ready, setReady] = useState(!configured);
     const [path, setPath] = useState(route), [recovery, setRecovery] = useState(new URLSearchParams(location.search).get('auth') === 'recovery');
-    const [household, setHousehold] = useState<string | null>(null), [checking, setChecking] = useState(false), [error, setError] = useState('');
+    const [cookbook, setCookbook] = useState<{ userId: string; snapshot: Snapshot } | null>(null), [checking, setChecking] = useState(false), [error, setError] = useState('');
     useEffect(() => {
         const changeRoute = () => setPath(route());
         window.addEventListener('hashchange', changeRoute);
@@ -45,7 +47,7 @@ function HouseholdApp() {
             if (!active) return;
             setSession(current); setReady(true);
             if (event === 'PASSWORD_RECOVERY') setRecovery(true);
-            if (!current) { setHousehold(null); selectHousehold(''); }
+            if (!current) { setCookbook(null); selectSession(''); }
         });
         supabase.auth.getSession().then(({ data, error }) => {
             if (!active) return;
@@ -58,21 +60,24 @@ function HouseholdApp() {
     useEffect(() => {
         if (!userId || !supabase) return;
         let active = true;
-        setHousehold(null); selectHousehold(''); setChecking(true); setError('');
-        supabase.from('household_members').select('household_id').eq('user_id', userId).maybeSingle().then(({ data, error }) => {
-            if (!active) return;
-            if (error) setError('Your household could not load. Please try again.');
-            else if (data) { selectHousehold(data.household_id); setHousehold(data.household_id); }
-            setChecking(false);
-        });
+        selectSession(userId);
+        const cached = cachedSnapshot();
+        setCookbook(cached ? { userId, snapshot: cached } : null); setChecking(true); setError('');
+        void loadKitchen().catch(() => { /* The lazy view handles a failed load. */ });
+        getSnapshot().then(snapshot => {
+            if (active) setCookbook({ userId, snapshot });
+        }).catch(error => {
+            if (active) setError(error instanceof Error ? error.message : 'Your cookbook could not load. Please try again.');
+        }).finally(() => { if (active) setChecking(false); });
         return () => { active = false; };
     }, [userId]);
-    if (!ready || checking) return <div className="loading-state" role="status"><BookOpen /><h1>Opening your kitchen…</h1></div>;
+    const snapshot = cookbook && cookbook.userId === userId ? cookbook.snapshot : null;
+    if (!ready || session && !snapshot && checking) return <div className="loading-state" role="status"><BookOpen /><h1>Opening your cookbook…</h1></div>;
     if (recovery) return <Login initialMode="recovery" canReset={!!session} onRecovered={() => { setRecovery(false); history.replaceState(null, '', appUrl()); setPath('/'); }} />;
     if (!session) return <Login />;
-    if (error) return <div className="loading-state"><h1>Your kitchen couldn’t load</h1><p role="alert">{error}</p><button className="button" onClick={() => location.reload()}>Try again</button><button className="text-link" onClick={() => supabase?.auth.signOut()}>Sign out</button></div>;
-    if (!household) return <Welcome onReady={id => { selectHousehold(id); setHousehold(id); }} />;
-    return <Suspense fallback={<div className="loading-state" role="status"><BookOpen /><h1>Opening your kitchen…</h1></div>}><Kitchen key={session.user.id + household} householdId={household} userName={session.user.user_metadata.display_name || session.user.email || 'Your household'} initialPath={path} /></Suspense>;
+    if (error && !snapshot) return <div className="loading-state"><h1>Your kitchen couldn’t load</h1><p role="alert">{error}</p><button className="button" onClick={() => location.reload()}>Try again</button><button className="text-link" onClick={() => supabase?.auth.signOut()}>Sign out</button></div>;
+    if (!snapshot) return <div className="loading-state" role="status"><BookOpen /><h1>Opening your cookbook…</h1></div>;
+    return <LoadBoundary><Suspense fallback={<div className="loading-state" role="status"><BookOpen /><h1>Opening your kitchen…</h1></div>}>{error && <div className="alert warning" role="status">Showing your saved cookbook. {error}</div>}<Kitchen key={session.user.id + snapshot.householdId} initialSnapshot={snapshot} refreshing={checking} householdId={snapshot.householdId} userName={session.user.user_metadata.display_name || session.user.email || 'Your household'} initialPath={path} /></Suspense></LoadBoundary>;
 }
 
 function Login({ initialMode = 'signin', canReset = false, onRecovered }: { initialMode?: Mode; canReset?: boolean; onRecovered?: () => void }) {
@@ -104,16 +109,5 @@ function Login({ initialMode = 'signin', canReset = false, onRecovered }: { init
         } catch (e) { setError(e instanceof Error ? e.message : 'We couldn’t complete that request. Please try again.'); }
         finally { setBusy(false); }
     };
-    return <main className="auth-layout"><section className="auth-story"><a href="#/" className="brand auth-brand" aria-label="CookBook home"><span className="brand-icon"><BookOpen size={24} /></span><span>CookBook<span className="brand-dot">.</span></span></a><div className="auth-story-body"><span className="auth-eyebrow"><Leaf size={17} /> A place for your keepers</span><h1>Good food.{' '}<br />A little less{' '}<br /><em>figuring it out.</em></h1><p>Keep the recipes you love, plan what’s next, and make the most of what’s already in your kitchen.</p><div className="auth-recipe-note"><span className="note-label">A note for next time</span><p>“A little more lemon.<br />Definitely make extra.”</p><span className="note-leaf"><Leaf size={28} /></span></div></div><p className="auth-story-footer">Your household. Your recipes. All together.</p></section><section className="auth-form-panel" aria-labelledby="login-title"><div className="auth-form-wrap"><div className="auth-lock"><LockKeyhole size={22} /></div><h2 id="login-title">{titles[mode]}</h2><p className="auth-description">{descriptions[mode]}</p>{!configured && <p className="auth-setup-note" role="status">Sign-in will be available once your kitchen is connected.</p>}{error && <div className="alert error" role="alert">{error}</div>}{notice && <div className="auth-success" role="status"><Mail size={20} /><p>{notice}</p></div>}<form className="form-stack" onSubmit={submit} key={mode}>{mode !== 'recovery' && <label>Email address<input type="email" autoComplete="email" inputMode="email" name="email" maxLength={254} required placeholder="you@example.com" /></label>}{mode !== 'forgot' && <label>Password<div className="password-field"><input type={showPassword ? 'text' : 'password'} autoComplete={mode === 'signin' ? 'current-password' : 'new-password'} name="password" required minLength={mode === 'signin' ? 1 : 12} maxLength={128} placeholder={mode === 'signin' ? 'Your password' : 'At least 12 characters'} /><button className="icon-button" type="button" aria-label={showPassword ? 'Hide password' : 'Show password'} aria-pressed={showPassword} onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff size={18} /> : <Eye size={18} />}</button></div></label>}{mode === 'recovery' && <label>Confirm new password<input type="password" name="confirmPassword" autoComplete="new-password" required minLength={12} maxLength={128} /></label>}{mode === 'signin' && <button type="button" className="text-link forgot-password" onClick={() => changeMode('forgot')}>Forgot your password?</button>}<button className="button auth-submit" disabled={busy || mode === 'recovery' && !canReset}>{busy ? 'One moment…' : mode === 'signin' ? 'Sign in' : mode === 'forgot' ? 'Send reset link' : 'Save new password'}<ArrowRight size={18} /></button></form>{mode === 'signin' ? <p className="auth-switch">Accounts are created by the kitchen administrator.</p> : mode !== 'recovery' ? <p className="auth-switch"><button className="text-link" onClick={() => changeMode('signin')}>Back to sign in</button></p> : null}<p className="auth-privacy"><LockKeyhole size={13} /> Recipes stay private to your household.</p></div></section></main>;
-}
-
-function Welcome({ onReady }: { onReady: (id: string) => void }) {
-    const [busy, setBusy] = useState(false), [error, setError] = useState('');
-    const run = async (name: string, params: Record<string, string>) => {
-        setBusy(true); setError('');
-        try { const { data, error } = await requireClient().rpc(name, params); if (error) throw error; onReady(data as string); }
-        catch (e) { setError(e instanceof Error ? e.message : 'Your household could not be opened. Please try again.'); }
-        finally { setBusy(false); }
-    };
-    return <main className="welcome-household"><BookOpen size={40} /><h1>A kitchen to call your own.</h1><p>Start a shared recipe collection, or join the household that invited you.</p>{error && <div role="alert" className="alert error">{error}</div>}<form className="form-stack" onSubmit={e => { e.preventDefault(); void run('create_household', { kitchen_name: String(new FormData(e.currentTarget).get('name')) }); }}><label>Kitchen name<input name="name" required maxLength={80} defaultValue="Our kitchen" /></label><button className="button" disabled={busy}>Create a kitchen <ArrowRight size={17} /></button></form><div className="dialog-divider"><span>Already invited?</span></div><form className="form-stack" onSubmit={e => { e.preventDefault(); void run('accept_household_invitation', { invitation_code: String(new FormData(e.currentTarget).get('code')).trim() }); }}><label>Invitation code<input name="code" required maxLength={128} autoComplete="off" placeholder="Paste the code from your household" /></label><button className="button secondary" disabled={busy}>Join your household</button></form><button className="text-link" onClick={() => supabase?.auth.signOut()}>Sign out</button></main>;
+    return <main className="auth-layout"><section className="auth-story"><a href="#/" className="brand auth-brand" aria-label="CookBook home"><span className="brand-icon"><BookOpen size={24} /></span><span>CookBook<span className="brand-dot">.</span></span></a><div className="auth-story-body"><span className="auth-eyebrow"><Leaf size={17} /> A place for your keepers</span><h1>Good food.{' '}<br />A little less{' '}<br /><em>figuring it out.</em></h1><p>Keep the recipes you love, plan what’s next, and make the most of what’s already in your kitchen.</p><div className="auth-recipe-note"><span className="note-label">A note for next time</span><p>“A little more lemon.<br />Definitely make extra.”</p><span className="note-leaf"><Leaf size={28} /></span></div></div><p className="auth-story-footer">Your household. Your recipes. All together.</p></section><section className="auth-form-panel" aria-labelledby="login-title"><div className="auth-form-wrap"><div className="auth-lock"><LockKeyhole size={22} /></div><h2 id="login-title">{titles[mode]}</h2><p className="auth-description">{descriptions[mode]}</p>{!configured && <p className="auth-setup-note" role="status">Sign-in will be available once your kitchen is connected.</p>}{error && <div className="alert error" role="alert">{error}</div>}{notice && <div className="auth-success" role="status"><Mail size={20} /><p>{notice}</p></div>}<form className="form-stack" onSubmit={submit} key={mode}>{mode !== 'recovery' && <label>Email address<input type="email" autoComplete="email" inputMode="email" name="email" maxLength={254} required placeholder="you@example.com" /></label>}{mode !== 'forgot' && <label>Password<div className="password-field"><input type={showPassword ? 'text' : 'password'} autoComplete={mode === 'signin' ? 'current-password' : 'new-password'} name="password" required minLength={mode === 'signin' ? 1 : 12} maxLength={128} placeholder={mode === 'signin' ? 'Your password' : 'At least 12 characters'} /><button className="icon-button" type="button" aria-label={showPassword ? 'Hide password' : 'Show password'} aria-pressed={showPassword} onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff size={18} /> : <Eye size={18} />}</button></div></label>}{mode === 'recovery' && <label>Confirm new password<input type="password" name="confirmPassword" autoComplete="new-password" required minLength={12} maxLength={128} /></label>}{mode === 'signin' && <button type="button" className="text-link forgot-password" onClick={() => changeMode('forgot')}>Forgot your password?</button>}<button className="button auth-submit" disabled={busy || mode === 'recovery' && !canReset}>{busy ? 'One moment…' : mode === 'signin' ? 'Sign in' : mode === 'forgot' ? 'Send reset link' : 'Save new password'}<ArrowRight size={18} /></button></form>{mode === 'signin' ? <p className="auth-switch">Every account opens this same shared cookbook.</p> : mode !== 'recovery' ? <p className="auth-switch"><button className="text-link" onClick={() => changeMode('signin')}>Back to sign in</button></p> : null}<p className="auth-privacy"><LockKeyhole size={13} /> Sign in to open your shared cookbook.</p></div></section></main>;
 }

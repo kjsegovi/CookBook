@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {initialState,blankRecipe,parseIngredient,fraction,convert,applyCommand,availability,generatedShopping,requirements,reserved} from '../supabase/functions/_shared/domain.ts';
+import { initialState, blankRecipe, parseIngredient, fraction, convert, availability, generatedShopping, requirements, reserved } from '../supabase/functions/_shared/domain.ts';
+import { applyCommand } from '../supabase/functions/_shared/commands.ts';
 const command=(s,t,p,id=crypto.randomUUID())=>applyCommand(s,t,p,id);
 const recipe=()=>({...blankRecipe(),title:'[Sample] Rice bowl',servings:4,ingredients:[parseIngredient('400 g rice')],steps:['Cook the rice.']});
 function base(){let s=initialState();const r=recipe();s=command(s,'recipe.save',r);s=command(s,'pantry.save',{name:'rice',amount:300,unit:'g'});return{s,r};}

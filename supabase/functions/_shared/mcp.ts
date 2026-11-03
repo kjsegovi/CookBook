@@ -45,7 +45,7 @@ const tools = [
     }, ['title', 'ingredients', 'steps']), operationId: string, revision: { type: 'integer', minimum: 0 } }, ['recipe', 'operationId', 'revision']), annotations: { readOnlyHint: false, destructiveHint: false } },
 ];
 export async function handleMcp(request: Request, store: ReturnType<typeof householdStore>) {
-    const { snapshot, command } = store;
+    const { snapshot } = store;
     let id: any = null;
     try {
         const data = await body(request, 200000);
@@ -62,6 +62,7 @@ export async function handleMcp(request: Request, store: ReturnType<typeof house
             return json({ jsonrpc: '2.0', id, error: { code: -32601, message: 'Method not found' } });
         const name = data.params?.name, a = data.params?.arguments ?? {};
         const current = await snapshot(), s = current.state;
+        const command = (type: string, payload: unknown, operationId: string, revision: number) => store.command(type, payload, operationId, revision, current);
         let result: any;
         switch (name) {
             case 'search_recipes': {

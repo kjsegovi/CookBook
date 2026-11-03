@@ -69,14 +69,20 @@ export function createSession(options = {}) {
         const claims = await refresh();
         if (!householdId) {
             if (!claims.sub) throw new Error('The access token has no subject claim; cannot resolve a household.');
-            const response = await fetch(project + '/rest/v1/household_members?select=household_id&user_id=eq.' + encodeURIComponent(claims.sub), {
-                headers: { apikey: anonKey, Authorization: 'Bearer ' + accessToken, Accept: 'application/json' },
-                cache: 'no-store',
-            });
-            if (!response.ok) throw new Error('CookBook household lookup failed (' + response.status + '). Set COOKBOOK_HOUSEHOLD explicitly.');
-            const rows = await response.json();
-            if (!Array.isArray(rows) || !rows.length) throw new Error('This account is not a member of any CookBook household.');
-            householdId = rows[0].household_id;
+            const headers = { apikey: anonKey, Authorization: 'Bearer ' + accessToken, 'Content-Type': 'application/json' };
+            const shared = await fetch(project + '/rest/v1/rpc/cookbook_info', { method: 'POST', headers, body: '{}', cache: 'no-store' });
+            if (shared.ok) {
+                const info = await shared.json();
+                if (!info?.householdId) throw new Error('The shared cookbook is not configured.');
+                householdId = info.householdId;
+            } else if (shared.status === 404) {
+                // Compatibility while measuring/upgrading the previous release.
+                const response = await fetch(project + '/rest/v1/household_members?select=household_id&user_id=eq.' + encodeURIComponent(claims.sub), { headers, cache: 'no-store' });
+                if (!response.ok) throw new Error('CookBook lookup failed (' + response.status + ').');
+                const rows = await response.json();
+                if (!Array.isArray(rows) || !rows.length) throw new Error('This account has no cookbook in the previous release.');
+                householdId = rows[0].household_id;
+            } else throw new Error('CookBook lookup failed (' + shared.status + ').');
             log('resolved household ' + householdId);
         }
         return accessToken;

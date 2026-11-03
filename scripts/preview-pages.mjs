@@ -3,7 +3,7 @@ import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 const root = path.resolve('dist'), base = '/CookBook/';
-const types = { '.html':'text/html; charset=utf-8', '.js':'application/javascript', '.css':'text/css', '.svg':'image/svg+xml', '.ttf':'font/ttf' };
+const types = { '.html':'text/html; charset=utf-8', '.js':'application/javascript', '.css':'text/css', '.svg':'image/svg+xml', '.ttf':'font/ttf', '.woff2':'font/woff2' };
 const server = createServer(async (request,response) => {
     try {
         const pathname = decodeURIComponent(new URL(request.url, 'http://127.0.0.1').pathname);

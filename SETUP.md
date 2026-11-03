@@ -1,6 +1,17 @@
 # CookBook setup guide
 
-Set up Supabase login and shared data, run CookBook locally, publish with GitHub Pages, and restore your saved recipe. Run commands from this project folder.
+Set up one shared personal cookbook, run it locally, and publish with GitHub Pages. Run commands from this project folder.
+
+## Upgrade the existing cookbook
+
+1. Export the current cookbook privately and keep its Storage files. Recheck the live record counts and confirm public self-service sign-up is disabled before applying the migration; provision the intended logins through Supabase administration.
+2. Apply `20261103000000_shared_cookbook.sql` through the migration runner in one transaction. It locks the original document while copying records, retains the existing revision and photo namespace, and makes the original household documents read-only archives. Requests from old functions/tabs cannot silently write to an archived document after the copy.
+3. Deploy the updated `cookbook` Edge Function, then publish this website. Complete these as one release; old tabs can temporarily fail during the transition and should reload after publication.
+4. Verify two confirmed accounts open the same recipes, pantry, plan, shopping, and settings. Check a persisted edit, sign-out, a private old/new photo, cooking/purchases, and Reminders preparation. Existing account sign-ins remain separate; the cookbook data is shared.
+
+If multiple populated cookbooks exist, the migration stops before choosing one. Review private exports and explicitly select the intended source with the migration's `cookbook.migrate_household` transaction setting. Other original documents remain archived; their contents are not merged automatically. A fresh installation creates the one empty cookbook without an account-specific setup screen.
+
+Prefer rolling forward after the new release accepts writes. The retained archives are the pre-migration state, not a current rollback copy. Export the current normalized cookbook before considering any rollback. Publishing only the website is insufficient for this release.
 
 ## 1. Create the Supabase backend
 
@@ -14,9 +25,9 @@ npx supabase secrets set ALLOWED_ORIGINS=https://YOUR_USERNAME.github.io,http://
 npx supabase functions deploy cookbook
 ```
 
-`db push` applies the migration in `supabase/migrations/`. Use a new project for this initial migration. Do not apply it to an unrelated existing application database. Alternatively, the SQL file can be applied once through Supabase's SQL editor, but deploy the Edge Function with the CLI afterward.
+`db push` applies both migrations in `supabase/migrations/`. Use a new project for initial setup, or follow the upgrade steps above for the existing CookBook. Do not apply it to an unrelated existing application database. For a manual SQL-editor installation, execute each complete migration in its own explicit transaction, then deploy the Edge Function with the CLI.
 
-`ALLOWED_ORIGINS` contains origins, without a path or trailing slash. For a custom domain, add its exact HTTPS origin to this list. The function denies browser requests from other origins. Every request also verifies the signed-in user through Supabase Auth and checks household membership; turning off the gateway's legacy JWT verification in `config.toml` does not remove these checks.
+`ALLOWED_ORIGINS` contains origins, without a path or trailing slash. For a custom domain, add its exact HTTPS origin to this list. The function denies browser requests from other origins. Edge requests verify the signed-in user through Supabase Auth. Direct database reads and small flag saves check the confirmed account, active session, and account status inside the database. Anonymous requests and raw browser writes are denied. The gateway's legacy JWT switch in `config.toml` does not replace these checks.
 
 The hosted function receives `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` from Supabase's server environment. **Never put the service-role key in GitHub Pages, a `VITE_` variable, browser code, or an MCP client.**
 
@@ -25,13 +36,14 @@ The hosted function receives `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` from
 In Supabase Authentication settings:
 
 - Enable email/password authentication and email confirmation.
+- Disable public self-service sign-up ("Allow new users to sign up"). Add logins through Supabase administration so this personal cookbook is limited to the accounts you provide.
 - Set the minimum password length to 12 or more characters.
 - Set the Site URL to `https://YOUR_USERNAME.github.io/YOUR_REPOSITORY/`.
 - Add that same URL and `https://YOUR_USERNAME.github.io/YOUR_REPOSITORY/?auth=recovery` to the redirect allowlist.
 - For local development, also allow `http://localhost:5173/`, `http://localhost:5173/?auth=recovery`, `http://127.0.0.1:5173/`, and `http://127.0.0.1:5173/?auth=recovery`.
-- Configure an email provider for confirmation and password reset delivery before inviting the household. Test delivery to an address outside the project's team. Supabase's default email service has restrictions; see [custom SMTP](https://supabase.com/docs/guides/auth/auth-smtp).
+- Configure an email provider for confirmation and password reset delivery before adding another login. Test delivery to an address outside the project's team. Supabase's default email service has restrictions; see [custom SMTP](https://supabase.com/docs/guides/auth/auth-smtp).
 
-The app includes sign-in, account creation with email confirmation, password reset requests, password recovery, session refresh, and sign-out. Passwords are handled by Supabase Auth. The app does not implement its own password database or a cosmetic browser-only login gate.
+Create and confirm accounts through Supabase Authentication administration. The website includes sign-in, password reset requests, password recovery, session refresh, and sign-out. Every confirmed account in this dedicated Supabase project opens the same cookbook; no per-account kitchen or invitation is required. Passwords are handled by Supabase Auth. The app does not implement its own password database or a cosmetic browser-only login gate.
 
 ## 3. Run locally
 
@@ -42,13 +54,13 @@ npm ci
 npm run dev
 ```
 
-Without configuration, the app shows the login screen and explains that sign-in is not connected yet. It never pretends a successful login. There is no sample household seeded into a real project.
+Without configuration, the app shows the login screen and explains that sign-in is not connected yet. It never pretends a successful login. Synthetic test records are never seeded into a real project.
 
 ## 4. Publish with GitHub Pages
 
 Push this directory as the root of your GitHub repository. In the repository settings:
 
-1. Under **Settings → Secrets and variables → Actions → Variables**, add `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` with the public values from step 3.
+1. Under **Settings → Secrets and variables → Actions → Variables**, add `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` with the public values from step 3. Optionally add `SUPABASE_FUNCTION_REGION` after comparing live request timings against automatic routing; leave it empty otherwise.
 2. Under **Settings → Pages → Build and deployment**, choose **GitHub Actions**.
 3. Push to `main`, or run **Deploy CookBook to GitHub Pages** from the Actions tab.
 
@@ -56,11 +68,11 @@ The workflow installs locked dependencies, validates configuration, runs regress
 
 GitHub Pages serves the public app files; household records and uploaded images are kept in Supabase behind authorization. See [GitHub's workflow instructions](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
-## 5. Restore the saved recipe and invite your household
+## 5. Open or restore the shared cookbook
 
-Create an account, confirm the email, sign in, and create your kitchen. Open **Kitchen settings → Restore a backup** and choose the private household export under `backups/`. Only the owner can restore, and the destination kitchen must be empty. Restore validates records and references; existing kitchen records are never overwritten. Old duplicate-operation receipts are reset because they belong to the retired deployment. The preserved export has no uploaded photos requiring a separate transfer; its recipe's external source image remains attributed to the source.
+Sign in with any confirmed account. The existing cookbook opens directly. Other accounts see the same records and edits, with no create/join/invitation step.
 
-To share a kitchen, the owner creates an invitation code for a specific email in Kitchen settings. Share that code privately. The recipient creates and confirms an account with that exact email, then chooses **Join your household**. Codes expire after seven days, are stored as hashes, and can be used once. Creating another code for the same email replaces the previous code. No invitation email is sent automatically. Each account belongs to one household. Removing an existing member is currently an administrator operation in the Supabase database.
+For an empty installation, open **Kitchen settings → Restore a backup** and choose a private CookBook export. Restore validates records and references and refuses to overwrite any existing records. Operation receipts and external Reminders connections are reset on restore. Exports contain photo references rather than the image files themselves; preserve private Storage files separately when migrating between projects.
 
 ## Two-way grocery sync with Apple Reminders
 
@@ -78,9 +90,9 @@ This connection runs when you tap it; there is no continuous background sync. A 
 
 ### Connection and privacy
 
-The website starts each run while you are signed in. The server returns an HMAC-signed scope containing only that run's groceries, household/member identity, baseline checkmarks, and a 15-minute expiration. The Shortcut posts observations to `/reminders/finish`, receives the resolved checkmarks, updates Reminders, then posts `/reminders/ack`. It never receives a login token, password, or service credential. Removing a household member revokes outstanding scopes. Retries cannot reapply an older run or submit different observations under a completed run.
+The website starts each run while you are signed in. The server returns an HMAC-signed scope containing only that run's groceries, cookbook/account identity, baseline checkmarks, and a 15-minute expiration. The Shortcut posts observations to `/reminders/finish`, receives the resolved checkmarks, updates Reminders, then posts `/reminders/ack`. It never receives a login token, password, or service credential. Deleting or disabling an account revokes its outstanding scopes. Retries cannot reapply an older run or submit different observations under a completed run.
 
-The existing server-only service credential derives the dedicated signing key; no new secrets or database tables are needed. Deploy the updated `cookbook` Edge Function before publishing the website. Browser-only deployment cannot enable the return path. Sync baselines and the latest receipt are stored with the household document, capped at 20 connections and 250 groceries per run; restored backups reset external connections. The website remembers the list name and a pending run identifier, not a reusable integration credential. Clipboard handoffs contain grocery data and that short-lived scope until the clipboard is replaced.
+The existing server-only service credential derives the dedicated signing key; no new secrets are needed. The shared-cookbook migration stores its receipts with cookbook metadata. Deploy the updated `cookbook` Edge Function before publishing the website. Browser-only deployment cannot enable the return path. Sync baselines and the latest receipt are stored with shared cookbook metadata, capped at 20 connections and 250 groceries per run; restored backups reset external connections. The website remembers the list name and a pending run identifier, not a reusable integration credential. Clipboard handoffs contain grocery data and that short-lived scope until the clipboard is replaced.
 
 ### Rebuild the installable Shortcut
 
@@ -96,7 +108,7 @@ Apple receives the generic workflow for signing. The `anyone` mode does not atta
 
 ## Connect an MCP client
 
-In the Supabase dashboard, open **Authentication → OAuth Server** and enable the **OAuth 2.1 server**. Set the **Authorization Path** to `/oauth/consent` (the Site URL from step 2 supplies the repository base). Register a **public client** with redirect URI `http://127.0.0.1:8765/callback`, then use its client ID in your MCP client's OAuth configuration. The consent screen lets users sign in and approve without first creating or joining a household.
+In the Supabase dashboard, open **Authentication → OAuth Server** and enable the **OAuth 2.1 server**. Set the **Authorization Path** to `/oauth/consent` (the Site URL from step 2 supplies the repository base). Register a **public client** with redirect URI `http://127.0.0.1:8765/callback`, then use its client ID in your MCP client's OAuth configuration. The consent screen lets users sign in and approve and open the one shared cookbook.
 
 For Hermes, pin `oauth.redirect_port` to `8765` so its callback matches the registered redirect URI, and configure the registered public client ID. Run `hermes mcp add cookbook --url <mcp url> --auth oauth`, then `hermes mcp test cookbook`, using the endpoint in the [project README](README.md#mcp-outside-gpt-sites). Finish sign-in and consent in the browser, then follow the return link to deliver the OAuth callback; no copied secret is needed.
 

@@ -14,3 +14,6 @@ if (url && !url.includes('YOUR_PROJECT')) {
     if (parsed.protocol !== 'https:' && !(parsed.protocol === 'http:' && ['127.0.0.1','localhost'].includes(parsed.hostname))) throw new Error('The Supabase URL must use HTTPS, except for local development.');
 }
 console.log(url && key ? 'Public configuration checked.' : 'Building the unconfigured login screen for local setup.');
+
+const region = env.VITE_SUPABASE_FUNCTION_REGION?.trim();
+if (region && !/^[a-z]{2}(?:-[a-z]+)+-\d+$/.test(region)) throw new Error('Use a Supabase region name or leave the optional function region empty.');

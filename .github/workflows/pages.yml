@@ -20,6 +20,7 @@ jobs:
     env:
       VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
       VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
+      VITE_SUPABASE_FUNCTION_REGION: ${{ vars.SUPABASE_FUNCTION_REGION }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

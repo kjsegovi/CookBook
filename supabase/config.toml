@@ -15,16 +15,17 @@ major_version = 17
 enabled = true
 site_url = "http://localhost:5173"
 additional_redirect_urls = ["http://127.0.0.1:5173", "http://127.0.0.1:5173/?auth=recovery", "http://localhost:5173/?auth=recovery"]
-enable_signup = true
+enable_signup = false
 minimum_password_length = 12
 
 [auth.email]
-enable_signup = true
+enable_signup = false
 enable_confirmations = true
 secure_password_change = true
 
 [functions.cookbook]
-# Browser/MCP requests verify bearer tokens with Auth.getUser. Native Reminders
+# Edge browser/MCP requests verify bearer tokens with Auth.getUser. Direct
+# read/flag RPCs verify the active confirmed session in SQL. Native Reminders
 # finish/ack requests verify signed, expiring grocery-only scopes instead.
 verify_jwt = false
 import_map = "./functions/cookbook/deno.json"

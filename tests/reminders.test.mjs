@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { remindersHandoff, remindersReturnId, REMINDERS_SHORTCUT, MAX_REMINDERS_URL_LENGTH } from '../src/lib/reminders.ts';
 import { createSyncScope, itemMarker } from '../supabase/functions/_shared/reminders-domain.ts';
 import { signScope } from '../supabase/functions/_shared/reminders-auth.ts';
-import { applyCommand, initialState } from '../supabase/functions/_shared/domain.ts';
+import { initialState } from '../supabase/functions/_shared/domain.ts';
+import { applyCommand } from '../supabase/functions/_shared/commands.ts';
 import { readBackup } from '../supabase/functions/_shared/backup.ts';
 import { fixture, householdId } from './fixtures/backend.mjs';
 import { buildRemindersShortcut } from '../scripts/reminders-shortcut.mjs';
@@ -94,7 +95,7 @@ test('forged, modified, expired and revoked scopes are rejected before grocery w
     const expired = { ...p, scope: { ...p.scope, issuedAt: Date.now() - 960000, expiresAt: Date.now() - 60000 } };
     expired.signature = await signScope(expired.scope, 'synthetic-test-reminders-signing-key');
     assert.equal((await native(f, 'finish', expired, observations(p))).response.status, 401);
-    const revoked = seed(fixture('owner', ['https://kitchen.example.test'], []));
+    const revoked = seed(fixture()); revoked.revoke();
     assert.equal((await native(revoked, 'finish', p, observations(p))).response.status, 403);
     assert.deepEqual(f.row, before);
     const bypass = await f.send('command', { method: 'POST', body: { type: 'reminders.sync', payload: {}, id: crypto.randomUUID(), revision: 0 } }); assert.equal(bypass.response.status, 403);

@@ -24,9 +24,10 @@ const receiptResult = (receipt: RemindersConnection['receipt']) => ({ ok: true, 
 export async function finishRemindersSync(admin: SupabaseClient, input: any, secret: string | undefined, acknowledge: boolean) {
     const payload = input?.payload ?? input;
     const scope = await verifyScope(payload?.scope, payload?.signature, secret);
-    // Removing a household member immediately revokes even an otherwise-valid short-lived sync.
-    const { data: member, error } = await admin.from('household_members').select('role').eq('household_id', scope.household).eq('user_id', scope.userId).maybeSingle();
-    if (error || !member) throw new DomainError('You no longer have access to this household.', 403);
+    // The signed scope belongs to the one cookbook and an existing confirmed
+    // account. Deleted/unconfirmed accounts cannot use an old native handoff.
+    const { data: allowed, error } = await admin.rpc('cookbook_sync_allowed', { cookbook_id: scope.household, account_id: scope.userId });
+    if (error || !allowed) throw new DomainError('You no longer have access to this cookbook.', 403);
     const transport = Array.isArray(input?.observations) ? input.observations.map((row: any) => {
         if (row && 'completed' in row) {
             if (!Number.isInteger(row.completed) || row.completed < 0 || row.completed > row.count) throw new DomainError('The Shortcut returned invalid grocery checkmarks.');
@@ -47,7 +48,7 @@ export async function finishRemindersSync(admin: SupabaseClient, input: any, sec
             return receiptResult(receipt);
         } else if (current.state.operations.includes(scope.id)) throw new DomainError('This grocery sync was replaced. Start again.', 409);
         try {
-            const saved = await store.command(acknowledge ? 'reminders.ack' : 'reminders.sync', { scope, observations, observationsHash: hash }, scope.id + (acknowledge ? '-ack' : ''), current.revision);
+            const saved = await store.command(acknowledge ? 'reminders.ack' : 'reminders.sync', { scope, observations, observationsHash: hash }, scope.id + (acknowledge ? '-ack' : ''), current.revision, current);
             const result = receiptFor(saved.state.reminders, scope);
             if (!result || result.id !== scope.id) throw new DomainError('This grocery sync was replaced. Start again.', 409);
             if (!acknowledge && result.observationsHash !== hash) throw new DomainError('This sync already received different checkmarks. Start a fresh sync.', 409);

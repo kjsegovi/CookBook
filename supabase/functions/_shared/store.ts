@@ -1,29 +1,46 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { applyCommand, DomainError, type State } from './domain.ts';
-export type Snapshot = { state: State; revision: number };
-export function householdStore(admin: SupabaseClient, householdId: string) {
+import { DomainError, type State } from './domain.ts';
+import { applyCommand } from './commands.ts';
+import { statePatch, type Snapshot } from './state-patch.ts';
+export type { Snapshot } from './state-patch.ts';
+
+export function householdStore(admin: SupabaseClient, householdId: string, timing?: (name: string, duration: number) => void) {
     const snapshot = async (): Promise<Snapshot> => {
-        const { data, error } = await admin.from('households').select('state,revision').eq('id', householdId).single();
-        if (error || !data) throw new DomainError('Your household could not be loaded.', 503);
-        return { state: data.state, revision: data.revision };
+        const start = performance.now();
+        const { data, error } = await admin.rpc('read_cookbook');
+        timing?.('db_read', performance.now() - start);
+        if (error || !data || data.householdId !== householdId) throw new DomainError('Your cookbook could not be loaded.', 503);
+        return data as Snapshot;
     };
-    const replace = async (state: State, revision: number): Promise<Snapshot | null> => {
-        if (new TextEncoder().encode(JSON.stringify(state)).length > 1700000) throw new DomainError('Your kitchen is full. Export your data before adding more.', 413);
-        const { data, error } = await admin.from('households').update({ state, revision: revision + 1, updated_at: new Date().toISOString() }).eq('id', householdId).eq('revision', revision).select('revision').maybeSingle();
+    const replace = async (state: State, revision: number, original?: State): Promise<Snapshot | null> => {
+        if (new TextEncoder().encode(JSON.stringify(state)).length > 1700000) throw new DomainError('Your cookbook is full. Export your data before adding more.', 413);
+        const before = original ?? (await snapshot()).state;
+        const patch = statePatch(before, state);
+        const start = performance.now();
+        const { data, error } = await admin.rpc('write_cookbook_patch', { cookbook_id: householdId, expected_revision: revision, patch });
+        timing?.('db_write', performance.now() - start);
         if (error) throw new DomainError('Your changes could not be confirmed. Please try again.', 503);
-        return data ? { state, revision: data.revision } : null;
+        return data ? { householdId, state, revision: data.revision } : null;
     };
-    const command = async (type: string, payload: unknown, operationId: string, revision: number) => {
+    const execute = async (type: string, payload: unknown, operationId: string, revision: number, basis?: Snapshot) => {
         if (typeof operationId !== 'string' || !/^[a-zA-Z0-9_-]{8,100}$/.test(operationId)) throw new DomainError('A valid action identifier is required.');
-        if (!Number.isInteger(revision) || revision < 0) throw new DomainError('Load your kitchen before saving.');
-        const current = await snapshot();
-        if (current.state.operations.includes(operationId)) return current;
-        if (current.revision !== revision) throw new DomainError('Someone else updated your kitchen. Refresh, review your changes, and save again.', 409);
-        const saved = await replace(applyCommand(current.state, type, payload, operationId), revision);
-        if (saved) return saved;
+        if (!Number.isInteger(revision) || revision < 0) throw new DomainError('Load your cookbook before saving.');
+        const current = basis ?? await snapshot();
+        if (current.householdId !== householdId) throw new DomainError('This cookbook is not available.', 403);
+        if (current.state.operations.includes(operationId)) return { before: current, saved: current, duplicate: true };
+        if (current.revision !== revision) throw new DomainError('Someone else updated your cookbook. Refresh, review your changes, and save again.', 409);
+        const saved = await replace(applyCommand(current.state, type, payload, operationId), revision, current.state);
+        if (saved) return { before: current, saved, duplicate: false };
         const latest = await snapshot();
-        if (latest.state.operations.includes(operationId)) return latest;
-        throw new DomainError('Someone else updated your kitchen. Refresh and review before saving.', 409);
+        if (latest.state.operations.includes(operationId)) return { before: latest, saved: latest, duplicate: true };
+        throw new DomainError('Someone else updated your cookbook. Refresh and review before saving.', 409);
     };
-    return { snapshot, command, replace };
+    const command = async (type: string, payload: unknown, operationId: string, revision: number, basis?: Snapshot) => (await execute(type, payload, operationId, revision, basis)).saved;
+    const commandDelta = async (type: string, payload: unknown, operationId: string, revision: number) => {
+        const { before, saved, duplicate } = await execute(type, payload, operationId, revision);
+        // A duplicate may refer to an older client revision. Send an authoritative
+        // snapshot in that uncommon case instead of applying a patch to the wrong base.
+        return duplicate ? saved : { householdId, baseRevision: before.revision, revision: saved.revision, patch: statePatch(before.state, saved.state) };
+    };
+    return { snapshot, command, commandDelta, replace };
 }

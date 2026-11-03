@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHandler } from '../supabase/functions/_shared/api.ts';
-import { initialState, blankRecipe, parseIngredient, applyCommand } from '../supabase/functions/_shared/domain.ts';
+import { initialState, blankRecipe, parseIngredient } from '../supabase/functions/_shared/domain.ts';
+import { applyCommand } from '../supabase/functions/_shared/commands.ts';
 import { readBackup } from '../supabase/functions/_shared/backup.ts';
 
 import { fixture, householdId } from './fixtures/backend.mjs';
@@ -123,33 +124,35 @@ test('OAuth discovery honours the explicit public URL override',async()=>{
         if(previous===undefined)delete globalThis.Deno;else globalThis.Deno=previous;
     }
 });
-test('MCP resolves a single membership when x-household-id is absent',async()=>{
+test('MCP opens the one shared cookbook when x-household-id is absent',async()=>{
     const f=fixture(),{response,data}=await f.send('mcp',{method:'POST',household:'',body:publishBody(sample())});
     assert.equal(response.status,200);assert.equal(data.result.isError,undefined);assert.equal(f.row.state.recipes.length,1);
 });
-test('MCP refuses absent or ambiguous memberships before loading household data',async()=>{
-    for(const memberships of [[],[{household_id:householdId},{household_id:otherId}]]){
-        const f=fixture('owner',undefined,memberships),{response,data}=await f.send('mcp',{method:'POST',household:'',body:publishBody(sample())});
-        assert.equal(response.status,403);
-        if(memberships.length)assert.match(data.error,/x-household-id/);else assert.equal(data.error,'You do not have access to any household.');
-        assert.equal(f.calls.queries,1);assert.equal(f.row.revision,0);
+test('all confirmed accounts open the same cookbook without legacy memberships or a household header',async()=>{
+    const f=fixture('member',undefined,[]);
+    for(const token of ['valid','valid-second']){
+        const read=await f.send('state',{token,household:''});
+        assert.equal(read.response.status,200);assert.equal(read.data.householdId,householdId);
     }
+    const saved=await f.send('mcp',{method:'POST',token:'valid-second',household:'',body:publishBody(sample())});
+    assert.equal(saved.response.status,200);assert.equal(saved.data.result.isError,undefined);
+    const read=await f.send('state',{token:'valid',household:''});
+    assert.equal(read.data.state.recipes.length,1);
 });
-test('explicit MCP households retain strict membership checks and browser state requires a header',async()=>{
+test('an old or invalid cookbook header cannot select another archived cookbook',async()=>{
     const f=fixture();
-    const denied=await f.send('mcp',{method:'POST',household:otherId,body:publishBody(sample())});
-    assert.equal(denied.response.status,403);assert.equal(denied.data.error,'You do not have access to this household.');
-    const invalid=await f.send('mcp',{method:'POST',household:'invalid',body:publishBody(sample())});
-    assert.equal(invalid.response.status,403);assert.equal(invalid.data.error,'Choose a household first.');
-    const browser=await f.send('state',{household:''});
-    assert.equal(browser.response.status,403);assert.equal(browser.data.error,'Choose a household first.');assert.equal(f.calls.queries,1);
+    for(const household of [otherId,'invalid']){
+        const denied=await f.send('mcp',{method:'POST',household,body:publishBody(sample())});
+        assert.equal(denied.response.status,403);assert.match(denied.data.error,/old cookbook/);
+    }
+    assert.equal(f.calls.reads,0);assert.equal(f.calls.writes,0);
 });
-test('API verifies sign-in and household membership before touching household data',async()=>{
+test('API verifies sign-in before touching the shared cookbook',async()=>{
     const f=fixture();
     for(const token of ['', 'invalid','unconfirmed'])assert.equal((await f.send('state',{token})).response.status,401);
     assert.equal(f.calls.queries,0);
     assert.equal((await f.send('state',{household:otherId})).response.status,403);
-    assert.equal((await f.send('state',{household:''})).response.status,403);
+    assert.equal((await f.send('state',{household:''})).response.status,200);
     assert.equal((await f.send('state')).response.status,200);
 });
 test('browser requests are limited to configured origins, including preflight',async()=>{
@@ -178,9 +181,10 @@ test('MCP direct recipe editing remains available behind independent authenticat
     const saved=await call('update_recipe',{recipeId:r.id,revision:current.revision,expectedUpdatedAt:current.updatedAt,operationId:crypto.randomUUID(),changes:{notes:'Covered pot'}});
     assert.equal(saved.data.result.isError,undefined);assert.equal(saved.data.result.structuredContent.recipe.notes,'Covered pot');assert.deepEqual(saved.data.result.structuredContent.recipe.ingredients,current.ingredients);
 });
-test('backup restoration is owner-only, validated and limited to an empty kitchen',async()=>{
+test('shared backup restoration is authenticated, validated and limited to an empty cookbook',async()=>{
     const state=applyCommand(initialState(),'recipe.save',sample(),crypto.randomUUID()),backup={format:'cookbook-household-v1',state};
-    const member=fixture('member');assert.equal((await member.send('restore',{method:'POST',body:backup})).response.status,403);
+    const member=fixture('member');assert.equal((await member.send('restore',{method:'POST',body:backup})).response.status,200);
+    assert.equal((await fixture().send('restore',{method:'POST',token:'',body:backup})).response.status,401);
     const f=fixture();assert.equal((await f.send('restore',{method:'POST',body:backup})).response.status,200);assert.equal(f.row.state.recipes.length,1);assert.deepEqual(f.row.state.operations,[]);
     const before=f.row;assert.equal((await f.send('restore',{method:'POST',body:backup})).response.status,409);assert.deepEqual(f.row,before);
     assert.throws(()=>readBackup({format:'cookbook-household-v1',state:{...state,pantry:[{name:'broken'}]}}),/valid CookBook/);
