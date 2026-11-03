@@ -5,7 +5,7 @@ Set up one shared personal cookbook, run it locally, and publish with GitHub Pag
 ## Upgrade the existing cookbook
 
 1. Export the current cookbook privately and keep its Storage files. Recheck the live record counts and confirm public self-service sign-up is disabled before applying the migration; provision the intended logins through Supabase administration.
-2. Apply `20261103000000_shared_cookbook.sql` through the migration runner in one transaction. It locks the original document while copying records, retains the existing revision and photo namespace, and makes the original household documents read-only archives. Requests from old functions/tabs cannot silently write to an archived document after the copy.
+2. Apply `20261103000000_shared_cookbook.sql` through the migration runner. Its explicit transaction locks the original document while copying records, retains the existing revision and photo namespace, and makes the original household documents read-only archives. Requests from old functions/tabs cannot silently write to an archived document after the copy.
 3. Deploy the updated `cookbook` Edge Function, then publish this website. Complete these as one release; old tabs can temporarily fail during the transition and should reload after publication.
 4. Verify two confirmed accounts open the same recipes, pantry, plan, shopping, and settings. Check a persisted edit, sign-out, a private old/new photo, cooking/purchases, and Reminders preparation. Existing account sign-ins remain separate; the cookbook data is shared.
 

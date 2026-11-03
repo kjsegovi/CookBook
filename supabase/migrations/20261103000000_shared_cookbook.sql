@@ -1,7 +1,8 @@
 -- One personal cookbook for every confirmed login. Original household documents
 -- remain untouched as private migration archives. No records/photos are deleted.
--- The migration runner must execute this file in one transaction. The lock
--- includes every legacy write that already committed in the migration snapshot.
+-- The explicit transaction also supports migration runners that do not wrap
+-- files automatically. The lock includes every already-committed legacy write.
+begin;
 lock table public.households in access exclusive mode;
 create schema cookbook_private;
 revoke all on schema cookbook_private from public, anon, authenticated;
@@ -176,3 +177,4 @@ revoke all on function public.cookbook_sync_allowed(uuid,uuid) from public, anon
 grant execute on function public.read_cookbook(bigint), public.cookbook_info(), public.set_cookbook_flag(text,text,boolean,text,bigint,text) to authenticated, service_role;
 grant execute on function public.write_cookbook_patch(uuid,bigint,jsonb) to service_role;
 grant execute on function public.cookbook_sync_allowed(uuid,uuid) to service_role;
+commit;
