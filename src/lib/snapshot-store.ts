@@ -1,7 +1,8 @@
 import { applyStatePatch, statePatch, type Delta, type Snapshot } from '../../supabase/functions/_shared/state-patch.ts';
 import { SnapshotCache } from './snapshot-cache.ts';
 
-type ReadResult = Snapshot | { householdId: string; revision: number; unchanged: true };
+// A read returns a full snapshot, "unchanged", or only the changes since the given revision.
+type ReadResult = Snapshot | Delta | { householdId: string; revision: number; unchanged: true };
 export class SnapshotStore {
     private current: Snapshot | null;
     private inFlight: Promise<Snapshot> | undefined;
@@ -36,6 +37,15 @@ export class SnapshotStore {
                 this.checkActive();
                 if ('unchanged' in result) throw new Error('Your cookbook could not be loaded. Please try again.');
             }
+            if ('patch' in result) {
+                const latest = this.current;
+                if (latest && latest.householdId === result.householdId && latest.revision === result.baseRevision) {
+                    return this.accept({ householdId: result.householdId, revision: result.revision, state: applyStatePatch(latest.state, result.patch) });
+                }
+                result = await this.readRemote(null);
+                this.checkActive();
+                if (!('state' in result)) throw new Error('Your cookbook could not be loaded. Please try again.');
+            }
             return this.accept(result);
         })();
         this.inFlight = promise;
@@ -53,7 +63,7 @@ export class SnapshotStore {
         // save is in transit. Never attach its patch to a different snapshot.
         const latest = await this.readRemote(null);
         this.checkActive();
-        if ('unchanged' in latest) throw new Error('Your cookbook update could not be confirmed. Refresh to check it.');
+        if (!('state' in latest)) throw new Error('Your cookbook update could not be confirmed. Refresh to check it.');
         return this.accept(latest);
     }
 }

@@ -8,13 +8,16 @@
 // works for an hour and then 401s. This keeps the long-lived refresh token in the
 // macOS Keychain, mints access tokens on demand, writes rotated refresh tokens
 // back, and forwards newline-delimited JSON-RPC straight through. The upstream
-// already speaks MCP (protocol 2026-07-28), so there is no protocol translation.
+// already speaks MCP (it negotiates 2025-03-26 through 2026-07-28), so there is
+// no protocol translation.
 //
 // One-time setup:
 //   security add-generic-password -U -s cookbook-mcp -a refresh-token -w
 //   (paste the refresh_token from the signed-in app's localStorage at the prompt)
 //
-// Register (already done for the `cookbook` server):
+// Register with Claude Code:
+//   claude mcp add cookbook -e COOKBOOK_ANON_KEY=<publishable key> -- node /path/to/scripts/cookbook-mcp.mjs
+// Or with Hermes:
 //   hermes mcp add cookbook --command node \
 //     --env COOKBOOK_ANON_KEY=<publishable key> \
 //     --args /path/to/scripts/cookbook-mcp.mjs
@@ -41,7 +44,8 @@ async function forwardOnce(message, headers) {
         body: JSON.stringify(message),
         cache: 'no-store',
     });
-    if (response.status === 204) return { status: 204, body: null };
+    // Notifications are acknowledged with 202 (older servers used 204) and no body.
+    if (response.status === 202 || response.status === 204) return { status: response.status, body: null };
     const text = await response.text();
     let body = null;
     try { body = text ? JSON.parse(text) : null; } catch { body = null; }
@@ -57,7 +61,7 @@ async function forward(message) {
         headers = await session.headers();
         result = await forwardOnce(message, headers);
     }
-    if (result.body === null && result.status !== 204) {
+    if (result.body === null && result.status !== 204 && result.status !== 202) {
         const id = message && !Array.isArray(message) ? message.id ?? null : null;
         return { jsonrpc: '2.0', id, error: { code: -32603, message: 'CookBook returned HTTP ' + result.status + (result.text ? ': ' + result.text.slice(0, 200) : '') } };
     }

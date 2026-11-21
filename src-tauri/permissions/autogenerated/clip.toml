@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-clip"
+description = "Enables the clip command without any pre-configured scope."
+commands.allow = ["clip"]
+
+[[permission]]
+identifier = "deny-clip"
+description = "Denies the clip command without any pre-configured scope."
+commands.deny = ["clip"]

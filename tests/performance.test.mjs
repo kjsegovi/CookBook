@@ -33,8 +33,11 @@ test('record patches preserve every collection, metadata, ordering and operation
     assert.strictEqual(result.recipes, before.state.recipes, 'unchanged recipes keep their objects for rendering caches');
     assert.strictEqual(result.plan, before.state.plan);
     assert.equal(patch.collections.recipes, undefined);
-    const removed = { ...next, pantry: next.pantry.slice(1), operations: [] };
+    const removed = { ...next, pantry: next.pantry.slice(1) };
     assert.deepEqual(applyStatePatch(next, statePatch(next, removed)), removed);
+    // Operation ids live in their own table: patches only ever append new ones.
+    const truncated = statePatch(next, { ...next, operations: [] });
+    assert.deepEqual(truncated.appendOperations, []); assert.equal('operations' in truncated.values, false);
 });
 
 test('JSONB key ordering does not create spurious record writes', () => {
@@ -49,13 +52,12 @@ test('an incomplete or duplicate record order cannot silently drop cookbook data
     assert.equal(before.pantry.length, 1);
 });
 
-test('snapshot cache survives reopening, expires, separates accounts and clears corrupt data', () => {
+test('snapshot cache survives reopening without expiring, separates accounts and clears corrupt data', () => {
     const storage = memory(), first = new SnapshotCache('project:user1',storage), second = new SnapshotCache('project:user2',storage), data = snapshot();
     first.write(data,100000);
-    assert.deepEqual(first.read(100001),data); assert.equal(second.read(100001),null);
-    assert.equal(first.read(100000 + 24 * 60 * 60 * 1000 + 1),null);
-    assert.equal(storage.data.size,0);
-    first.write(data,100000); assert.equal(first.read(0),null, 'future timestamps are not reused');
+    assert.deepEqual(first.read(),data); assert.equal(second.read(),null);
+    assert.deepEqual(first.read(),data,'a saved cookbook stays available offline');
+    first.clear(); assert.equal(storage.data.size,0);
     storage.setItem('cookbook-snapshot-v2:project:user1','{"snapshot":'); assert.equal(first.read(),null);
     first.write({ ...data, state: { ...data.state, pantry: null } }); assert.equal(first.read(),null);
 });

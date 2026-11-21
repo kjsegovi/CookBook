@@ -2,14 +2,20 @@ import { LoadBoundary } from './components/load-boundary';
 import { lazy, Suspense, useEffect, useState, type FormEvent } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { ArrowRight, BookOpen, Eye, EyeOff, Leaf, LockKeyhole, Mail } from 'lucide-react';
-import { appUrl, configured, requireClient, supabase } from './lib/supabase';
+import { appUrl, configured, publicAppUrl, requireClient, supabase } from './lib/supabase';
 import { cachedSnapshot, getSnapshot, selectSession, type Snapshot } from './lib/api';
 import { consentRequest } from './lib/consent';
+import { sharedLink } from './lib/share';
 
 type Mode = 'signin' | 'forgot' | 'recovery';
 const loadKitchen = () => import('./components/kitchen');
 const Kitchen = lazy(loadKitchen);
 const ConsentView = lazy(() => import('./components/consent-view'));
+// Remember who last signed in on this device, so the saved cookbook can open
+// offline when the sign-in session cannot be refreshed without a network.
+const lastUserKey = () => 'cookbook-last-user:' + location.host;
+const rememberUser = (id: string | null) => { try { if (id) localStorage.setItem(lastUserKey(), id); else localStorage.removeItem(lastUserKey()); } catch { /* Optional. */ } };
+const lastUser = () => { try { return localStorage.getItem(lastUserKey()); } catch { return null; } };
 function route() { return location.hash.startsWith('#/') ? location.hash.slice(1).split('?')[0] : '/'; }
 export default function App() {
     const request = consentRequest(window.location.pathname + window.location.search, import.meta.env.BASE_URL);
@@ -38,6 +44,11 @@ function HouseholdApp() {
     const [session, setSession] = useState<Session | null>(null), [ready, setReady] = useState(!configured);
     const [path, setPath] = useState(route), [recovery, setRecovery] = useState(new URLSearchParams(location.search).get('auth') === 'recovery');
     const [cookbook, setCookbook] = useState<{ userId: string; snapshot: Snapshot } | null>(null), [checking, setChecking] = useState(false), [error, setError] = useState('');
+    const [offlineUser, setOfflineUser] = useState<string | null>(null), [shared] = useState(() => sharedLink(location.search));
+    useEffect(() => {
+        // Drop the shared link from the address bar so a reload does not import it again.
+        if (shared) history.replaceState(null, '', location.pathname + location.hash);
+    }, [shared]);
     useEffect(() => {
         const changeRoute = () => setPath(route());
         window.addEventListener('hashchange', changeRoute);
@@ -47,37 +58,49 @@ function HouseholdApp() {
             if (!active) return;
             setSession(current); setReady(true);
             if (event === 'PASSWORD_RECOVERY') setRecovery(true);
-            if (!current) { setCookbook(null); selectSession(''); }
+            if (current) { rememberUser(current.user.id); setOfflineUser(null); }
+            if (event === 'SIGNED_OUT') { rememberUser(null); setOfflineUser(null); setCookbook(null); void selectSession(''); }
         });
-        supabase.auth.getSession().then(({ data, error }) => {
+        const restore = () => supabase!.auth.getSession().then(({ data, error }) => {
             if (!active) return;
-            if (error) setError('Your sign-in session could not be restored. Please sign in again.');
+            const offline = !data.session && (error || !navigator.onLine) && lastUser();
+            if (offline) setOfflineUser(offline);
+            else if (error) setError('Your sign-in session could not be restored. Please sign in again.');
+            if (data.session) { rememberUser(data.session.user.id); setOfflineUser(null); }
             setSession(data.session); setReady(true);
-        });
-        return () => { active = false; subscription.unsubscribe(); window.removeEventListener('hashchange', changeRoute); };
+        }).catch(() => { if (active) { const offline = lastUser(); if (offline) setOfflineUser(offline); setReady(true); } });
+        void restore();
+        // Back online: refresh the sign-in session and the cookbook.
+        const online = () => { void restore(); };
+        window.addEventListener('online', online);
+        return () => { active = false; subscription.unsubscribe(); window.removeEventListener('hashchange', changeRoute); window.removeEventListener('online', online); };
     }, []);
-    const userId = session?.user.id;
+    const userId = session?.user.id ?? offlineUser ?? undefined;
     useEffect(() => {
         if (!userId || !supabase) return;
         let active = true;
-        selectSession(userId);
-        const cached = cachedSnapshot();
-        setCookbook(cached ? { userId, snapshot: cached } : null); setChecking(true); setError('');
+        setChecking(true); setError('');
         void loadKitchen().catch(() => { /* The lazy view handles a failed load. */ });
-        getSnapshot().then(snapshot => {
-            if (active) setCookbook({ userId, snapshot });
+        selectSession(userId).then(() => {
+            if (!active) return;
+            const cached = cachedSnapshot();
+            setCookbook(cached ? { userId, snapshot: cached } : null);
+            return getSnapshot();
+        }).then(snapshot => {
+            if (active && snapshot) setCookbook({ userId, snapshot });
         }).catch(error => {
-            if (active) setError(error instanceof Error ? error.message : 'Your cookbook could not load. Please try again.');
+            if (active) setError(!navigator.onLine ? 'You’re offline.' : error instanceof Error ? error.message : 'Your cookbook could not load. Please try again.');
         }).finally(() => { if (active) setChecking(false); });
         return () => { active = false; };
     }, [userId]);
     const snapshot = cookbook && cookbook.userId === userId ? cookbook.snapshot : null;
-    if (!ready || session && !snapshot && checking) return <div className="loading-state" role="status"><BookOpen /><h1>Opening your cookbook…</h1></div>;
+    const signedIn = !!session || !!offlineUser && !!snapshot;
+    if (!ready || userId && !snapshot && checking) return <div className="loading-state" role="status"><BookOpen /><h1>Opening your cookbook…</h1></div>;
     if (recovery) return <Login initialMode="recovery" canReset={!!session} onRecovered={() => { setRecovery(false); history.replaceState(null, '', appUrl()); setPath('/'); }} />;
-    if (!session) return <Login />;
+    if (!signedIn) return <Login />;
     if (error && !snapshot) return <div className="loading-state"><h1>Your kitchen couldn’t load</h1><p role="alert">{error}</p><button className="button" onClick={() => location.reload()}>Try again</button><button className="text-link" onClick={() => supabase?.auth.signOut()}>Sign out</button></div>;
     if (!snapshot) return <div className="loading-state" role="status"><BookOpen /><h1>Opening your cookbook…</h1></div>;
-    return <LoadBoundary><Suspense fallback={<div className="loading-state" role="status"><BookOpen /><h1>Opening your kitchen…</h1></div>}>{error && <div className="alert warning" role="status">Showing your saved cookbook. {error}</div>}<Kitchen key={session.user.id + snapshot.householdId} initialSnapshot={snapshot} refreshing={checking} householdId={snapshot.householdId} userName={session.user.user_metadata.display_name || session.user.email || 'Your household'} initialPath={path} /></Suspense></LoadBoundary>;
+    return <LoadBoundary><Suspense fallback={<div className="loading-state" role="status"><BookOpen /><h1>Opening your kitchen…</h1></div>}>{error && <div className="alert warning" role="status">Showing your saved cookbook. {error}</div>}<Kitchen key={userId + snapshot.householdId} initialSnapshot={snapshot} refreshing={checking} householdId={snapshot.householdId} userName={session?.user.user_metadata.display_name || session?.user.email || 'Your household'} initialPath={path} initialImportUrl={shared} /></Suspense></LoadBoundary>;
 }
 
 function Login({ initialMode = 'signin', canReset = false, onRecovered }: { initialMode?: Mode; canReset?: boolean; onRecovered?: () => void }) {
@@ -96,7 +119,7 @@ function Login({ initialMode = 'signin', canReset = false, onRecovered }: { init
                 const { error } = await client.auth.signInWithPassword({ email, password });
                 if (error) throw new Error(error.code === 'invalid_credentials' ? 'That email and password didn’t match. Please try again.' : error.message);
             } else if (mode === 'forgot') {
-                const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: appUrl() + '?auth=recovery' });
+                const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: publicAppUrl() + '?auth=recovery' });
                 if (error) throw error;
                 setNotice('If an account exists for that email, a password reset link is on its way.');
             } else {

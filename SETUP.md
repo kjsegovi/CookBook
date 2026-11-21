@@ -106,10 +106,71 @@ shortcuts sign --mode anyone --input 'outputs/CookBook Groceries.unsigned.shortc
 
 Apple receives the generic workflow for signing. The `anyone` mode does not attach your contact information. Unsigned files remain under ignored `outputs/`. Tests execute the serialized read/merge/write/ack workflow against synthetic reminders and the actual API handler, including conflict and retry behavior. Installation, Apple permission prompts, live list-name resolution, and iCloud delivery still need an iPhone acceptance check. Apple documents [Shortcut URL handoffs](https://support.apple.com/guide/shortcuts/run-a-shortcut-from-a-url-apd624386f42/ios) and [API requests from Shortcuts](https://support.apple.com/guide/shortcuts/request-your-first-api-apd58d46713f/ios).
 
+## Save to CookBook from the share sheet
+
+Settings shows a bookmarklet for desktop browsers. For iPhone, iPad and Mac, build the share-sheet Shortcut with your website address, then sign it on a Mac:
+
+```sh
+npm run build:share-shortcut -- https://YOUR-COOKBOOK-SITE/
+shortcuts sign --mode anyone --input 'outputs/Save to CookBook.unsigned.shortcut' --output 'public/shortcuts/Save to CookBook.shortcut'
+```
+
+Sharing a page to **Save to CookBook** opens the website's import dialog with the link filled in (`?share-url=`). The installable web app also registers a share target for Android and desktop Chrome.
+
 ## Connect an MCP client
 
 In the Supabase dashboard, open **Authentication → OAuth Server** and enable the **OAuth 2.1 server**. Set the **Authorization Path** to `/oauth/consent` (the Site URL from step 2 supplies the repository base). Register a **public client** with redirect URI `http://127.0.0.1:8765/callback`, then use its client ID in your MCP client's OAuth configuration. The consent screen lets users sign in and approve and open the one shared cookbook.
 
 For Hermes, pin `oauth.redirect_port` to `8765` so its callback matches the registered redirect URI, and configure the registered public client ID. Run `hermes mcp add cookbook --url <mcp url> --auth oauth`, then `hermes mcp test cookbook`, using the endpoint in the [project README](README.md#mcp-outside-gpt-sites). Finish sign-in and consent in the browser, then follow the return link to deliver the OAuth callback; no copied secret is needed.
+
+## Connect Claude
+
+The server negotiates MCP protocol versions 2025-03-26 through 2026-07-28 and offers the tools plus an **import_recipe_from_link** prompt.
+
+- **Claude Code:** `.mcp.json` in this repository registers the production endpoint over HTTP. Start `claude` here, approve `cookbook`, and run `/mcp` to sign in. To add it elsewhere: `claude mcp add --transport http cookbook https://YOUR_PROJECT_REF.supabase.co/functions/v1/cookbook/mcp`.
+- **claude.ai and Claude Desktop:** add a custom connector with the same URL, then sign in and approve on the CookBook consent screen.
+- **If sign-in fails because the client cannot register itself**, enable dynamic client registration under **Authentication → OAuth Server**, or register a public client for that client's redirect URI as described above. Whether each Claude client completes Supabase's OAuth flow still needs a live check.
+- **Fallback that always works on a Mac:** the stdio bridge `scripts/cookbook-mcp.mjs` keeps a refresh token in the Keychain (setup steps at the top of that file): `claude mcp add cookbook -e COOKBOOK_ANON_KEY=<publishable key> -- node /path/to/CookBook/scripts/cookbook-mcp.mjs`. In Claude Desktop, add the same command under `mcpServers` in its config file.
+
+## Desktop and phone apps
+
+Both apps wrap the same built website (`dist/`) and talk to the same Supabase project. Before building either one:
+
+1. Set `VITE_PUBLIC_APP_URL` in `.env.local` to the hosted website, so password-reset emails and the bookmarklet open the website rather than an app-only address.
+2. Add the apps' origins to the Edge Function allowlist: `npx supabase secrets set ALLOWED_ORIGINS=https://YOUR-SITE,tauri://localhost,capacitor://localhost`. Reminders sync from an app returns through `cookbook://` links, which the server accepts on its own.
+
+Both apps work offline like the website: recipes, plan and shopping list open without a connection, and edits sync when you're back online.
+
+### Mac (Tauri)
+
+Needs Rust (`rustup`) and the Xcode command-line tools.
+
+```sh
+npm run desktop:build
+```
+
+This writes `src-tauri/target/release/bundle/macos/CookBook.app` and a `.dmg`. `npm run desktop:dev` runs it against the Vite dev server. In the app, **Import a link → Browse the web for a recipe** opens a browser window with a **Save to CookBook** button; it sends only the page address back to the import dialog. `cookbook://import?url=…` links also open the import dialog. The build is unsigned: open it the first time with right-click → Open. Distributing it to other Macs without that warning needs an Apple Developer ID certificate and notarization (`bundle.macOS.signingIdentity` in `src-tauri/tauri.conf.json`).
+
+### iPhone and iPad (Capacitor)
+
+Needs full Xcode (not only the command-line tools) and an Apple Developer account to install beyond the free 7-day provisioning.
+
+```sh
+sudo xcode-select -s /Applications/Xcode.app
+npx cap add ios --packagemanager SPM
+npm run build && npx cap sync ios
+npx cap open ios
+```
+
+If `cap add` reports that CocoaPods is missing, install it (`brew install cocoapods`) or retry once Xcode is selected. In Xcode:
+
+- Under **Info → URL Types**, add the scheme `cookbook`, so Reminders sync and shared links return to the app.
+- For **Save to CookBook** in the share sheet, add a **Share Extension** target that reads the shared URL and opens `cookbook://import?url=<encoded link>`. The Shortcut described above works in the meantime.
+
+The app listens for `cookbook://` links in `src/lib/native.ts`.
+
+## Release order for rebase sync
+
+`supabase/migrations/20261121000000_rebase_sync.sql` stops saves failing when anything else in the cookbook changed. Deploy in this order: `npx supabase db push`, then `npx supabase functions deploy cookbook`, then the website. Function signatures are unchanged, so tabs that are already open keep working during the rollout.
 
 For verification commands, see the [project README](README.md#validation).

@@ -12,11 +12,12 @@ const stateSchema = z.object({
     batches: z.array(z.object({ id, recipeId: id, title: text(200), remaining: amount, cookedServings: amount.positive(), preparedAt: text(40), location: z.enum(['Fridge','Freezer']), planId: text(100) }).strict()).max(10000),
     shopping: z.array(z.object({ id, key: id, name: text(200).min(1), amount: quantity, unit: text(40), note: text(500), group: text(100), checked: z.boolean(), manual: z.boolean(), override: z.boolean(), needed: quantity, uncertain: z.boolean(), addedToPantry: z.boolean() }).strict()).max(10000),
     shoppingWeek: z.union([z.literal(''), date]),
-    ingredients: z.array(z.object({ id, name: text(200).min(1), aliases: z.array(text(200)).max(200) }).strict()).max(10000),
+    ingredients: z.array(z.object({ id, name: text(200).min(1), aliases: z.array(text(200)).max(200), aisle: text(100).optional() }).strict()).max(10000),
     drafts: z.array(z.object({ id, recipe: z.unknown(), text: text(60000), warnings: z.array(text(500)).max(20), createdAt: text(40) }).strict()).max(2000),
+    menus: z.array(z.object({ id, name: text(200).min(1), description: text(2000), items: z.array(z.object({ recipeId: id, day: z.number().int().min(1).max(31), slot: z.enum(['Breakfast','Lunch','Dinner','Snack']) }).strict()).max(200), createdAt: text(40), updatedAt: text(40) }).strict()).max(500).default([]),
     movements: z.array(z.object({ id, name: text(200), amount: z.number().finite().min(-1000000).max(1000000).nullable(), unit: text(40), reason: text(500), at: text(40) }).strict()).max(20000),
     operations: z.array(id).max(50000),
-    settings: z.object({ categories: z.array(text(80).min(1)).min(1).max(40), servings: amount.positive(), weekStartsOn: z.union([z.literal(0), z.literal(1)]), autoLeftovers: z.boolean().default(true) }).strict(),
+    settings: z.object({ categories: z.array(text(80).min(1)).min(1).max(100), servings: amount.positive(), weekStartsOn: z.union([z.literal(0), z.literal(1)]), autoLeftovers: z.boolean().default(true), aisles: z.array(text(100).min(1)).max(60).optional() }).strict(),
 }).strict();
 export function readBackup(input: unknown): State {
     const envelope = z.object({ format: z.literal('cookbook-household-v1'), state: stateSchema }).passthrough().safeParse(input);
@@ -26,7 +27,7 @@ export function readBackup(input: unknown): State {
     const state: State = { ...s, recipes, drafts, operations: [] };
     // A restored household must establish its own external list connections.
     if (state.reminders) state.reminders = [];
-    for (const collection of [state.recipes, state.pantry, state.plan, state.batches, state.shopping, state.ingredients, state.drafts, state.movements]) {
+    for (const collection of [state.recipes, state.pantry, state.plan, state.batches, state.shopping, state.ingredients, state.drafts, state.movements, state.menus]) {
         if (new Set(collection.map(row => row.id)).size !== collection.length) throw new DomainError('This backup contains duplicate record IDs.');
     }
     const ids = new Set(state.recipes.map(r => r.id));

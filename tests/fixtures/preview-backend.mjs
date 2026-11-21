@@ -66,7 +66,7 @@ createServer(async(req,res)=>{
     else if(url.pathname.startsWith('/storage/')){
         const key=decodeURIComponent(url.pathname.slice(9)), photo=f.photos.get(key);
         if(!photo){res.writeHead(404);res.end();return;}
-        res.writeHead(200,{'Content-Type':key.endsWith('.webp')?'image/webp':key.endsWith('.png')?'image/png':'image/jpeg','Cache-Control':'public, max-age=3600'});res.end(photo);return;
+        res.writeHead(200,{'Content-Type':key.endsWith('.webp')?'image/webp':key.endsWith('.png')?'image/png':'image/jpeg','Cache-Control':'public, max-age=3600','Access-Control-Allow-Origin':'*'});res.end(photo);return;
     }else{status=404;data={error:'Not found'};}
     done(status,data);
 }).listen(54321,'127.0.0.1',()=>console.log('Local UI fixture: http://127.0.0.1:54321 (two synthetic accounts, one shared cookbook)'));

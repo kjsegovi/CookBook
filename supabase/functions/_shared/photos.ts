@@ -29,14 +29,20 @@ export async function uploadPhotos(request: Request, admin: SupabaseClient, hous
             thumbnail = new Uint8Array(await small.arrayBuffer()); photoExtension(thumbnail, small.type);
         }
     } else { data = await bytes(request, 5242880); type = contentType; }
-    const extension = photoExtension(data, type), key = household + '/' + crypto.randomUUID() + '.' + extension;
+    // A device that added the photo offline chooses its id up front, so the
+    // recipe already refers to it; uploading the same id again is a success.
+    const requested = new URL(request.url).searchParams.get('id');
+    if (requested !== null && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(requested)) throw new DomainError('This photo id is not valid.');
+    const extension = photoExtension(data, type), key = household + '/' + (requested ?? crypto.randomUUID()) + '.' + extension;
     const bucket = admin.storage.from('cookbook-photos');
     const results = await Promise.all([
         bucket.upload(key, data, { contentType: type, upsert: false, cacheControl: '300' }),
         ...(thumbnail ? [bucket.upload(thumbnailKey(key), thumbnail, { contentType: 'image/webp', upsert: false, cacheControl: '300' })] : []),
     ]);
+    const exists = (error: any) => !!error && (String(error.statusCode ?? error.status) === '409' || /already exists|duplicate/i.test(String(error.message)));
+    if (requested && results.every(result => !result.error || exists(result.error))) return { url: 'photo:' + key };
     if (results.some(result => result.error)) {
-        await bucket.remove(thumbnail ? [key, thumbnailKey(key)] : [key]).catch(() => {});
+        if (!requested) await bucket.remove(thumbnail ? [key, thumbnailKey(key)] : [key]).catch(() => {});
         throw new DomainError('Your photo could not be uploaded. Please try again.', 503);
     }
     return { url: 'photo:' + key };

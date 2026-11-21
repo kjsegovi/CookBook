@@ -225,3 +225,12 @@ test('serialized Shortcut adopts only unfinished v1 reminders and keeps complete
     assert.equal(reminders.length, 2); assert.equal(reminders[0].completed, true); assert.equal(reminders[0].notes, legacy);
     assert.match(reminders[1].notes, /cookbook-v2:/); assert.equal(reminders[1].title, 'rice — 100 g');
 });
+
+test('the desktop and phone apps can start a sync that returns through cookbook://', async () => {
+    const f = fixture('owner', ['https://kitchen.example.test']);
+    f.seed(applyCommand(initialState(), 'shopping.save', { name: 'rice', amount: 1, unit: 'kg' }, 'seed-rice-0001'));
+    const ok = await f.send('reminders/begin', { method: 'POST', body: { list: 'Groceries', returnUrl: 'cookbook://app/' } });
+    assert.equal(ok.response.status, 200, JSON.stringify(ok.data)); assert.match(ok.data.returnUrl, /^cookbook:\/\/app\/#\/shopping\?reminders-sync=/);
+    const other = await f.send('reminders/begin', { method: 'POST', body: { list: 'Groceries', returnUrl: 'otherapp://x/' } });
+    assert.equal(other.response.status, 403);
+});

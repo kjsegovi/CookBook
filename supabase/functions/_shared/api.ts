@@ -63,15 +63,14 @@ export function createHandler(admin: SupabaseClient, allowedOrigins: string[], r
             if (path === 'import' && request.method === 'POST') {
                 const input = await body(request, 10000), current = await store.snapshot();
                 if (current.state.operations.includes(input.id)) return respond(json({ ...current, draftId: input.id }));
-                if (input.revision !== current.revision) throw new DomainError('Your kitchen changed. Refresh and review before importing.', 409);
                 const { importLink } = await import('./importer.ts');
                 const draft = await importLink(input.url);
-                const saved = await store.command('draft.save', { id: input.id, recipe: draft.recipe, text: draft.text, warnings: draft.warnings }, input.id, input.revision);
+                const saved = await store.command('draft.save', { id: input.id, recipe: draft.recipe, text: draft.text, warnings: draft.warnings }, input.id);
                 return respond(json({ ...saved, draftId: input.id }));
             }
             if (path === 'export' && request.method === 'GET') return respond(json({ format: 'cookbook-household-v1', exportedAt: new Date().toISOString(), ...await store.snapshot() }));
             if (path === 'restore' && request.method === 'POST') {
-                const state = readBackup(await body(request)), current = await store.snapshot();
+                const state = readBackup(await body(request, 20000000)), current = await store.snapshot(); // up to 2,000 recipes
                 if (Object.entries(current.state).some(([key,value]) => key !== 'operations' && Array.isArray(value) && value.length)) throw new DomainError('Restore into an empty kitchen so existing records are preserved.', 409);
                 const saved = await store.replace(state, current.revision, current.state);
                 if (!saved) throw new DomainError('Your kitchen changed. Refresh before restoring.', 409);
@@ -85,7 +84,17 @@ export function createHandler(admin: SupabaseClient, allowedOrigins: string[], r
                 if (error || !data) throw new DomainError('Your photo could not be loaded.', 404);
                 return respond(json({ url: data.signedUrl }));
             }
-            if (path === 'mcp' && request.method === 'POST') return respond(await handleMcp(request, store));
+            if (path === 'mcp' && request.method === 'POST') {
+                // rehostImage lands with the importer rewrite; until then photos stay linked.
+                const photoTools: any = await import('./photos.ts');
+                const rehost = typeof photoTools.rehostImage === 'function' ? photoTools.rehostImage : null;
+                return respond(await handleMcp(request, store, { rehost: async (link: string) => {
+                    if (!rehost) return { reference: null };
+                    const copied = await rehost(admin, householdId, link);
+                    return typeof copied === 'string' ? { reference: copied } : { reference: copied?.reference ?? null, reason: copied?.reason };
+                } }));
+            }
+            if (path === 'mcp') return respond(new Response(null, { status: 405, headers: { Allow: 'POST' } }));
             throw new DomainError('This action is not available.', 404);
         } catch (e) { return respond(failure(e)); }
     };

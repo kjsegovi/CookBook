@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-open-clipper"
+description = "Enables the open_clipper command without any pre-configured scope."
+commands.allow = ["open_clipper"]
+
+[[permission]]
+identifier = "deny-open-clipper"
+description = "Denies the open_clipper command without any pre-configured scope."
+commands.deny = ["open_clipper"]

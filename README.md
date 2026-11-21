@@ -20,7 +20,15 @@ Updates use a conditional database revision so concurrent edits cannot silently 
 
 Shopping checkmarks respond immediately and save in the background. Rapid taps keep the latest choice; purchases and Reminders sync wait for confirmed saves. Failed saves show an error and restore the confirmed list. Checkmarks and favorites use a single authenticated database operation; other edits retain server-side domain validation and return only changed records.
 
-Opening the app can show a confirmed saved snapshot while checking its revision. Cached data is scoped to the project and signed-in account, expires after 24 hours, and is cleared on sign-out. Signed photo lookups are batched and start near the viewport. New uploads get a resized recipe image and a smaller WebP card preview; older photos use their original image. Optional screens load on demand, pantry calculations are reused, and large recipe libraries render 24 cards at a time with search across the entire collection.
+Opening the app can show a confirmed saved snapshot while checking its revision. Edits from different devices no longer block each other: the server applies each change to the current cookbook and rejects only edits to a record someone else changed first. Cached data is scoped to the project and signed-in account, expires after 24 hours, and is cleared on sign-out. Signed photo lookups are batched and start near the viewport. New uploads get a resized recipe image and a smaller WebP card preview; older photos use their original image. Optional screens load on demand, pantry calculations are reused, and large recipe libraries render 24 cards at a time with search across the entire collection.
+
+## Paprika-style features
+
+Recipes have star ratings, several categories (nest them as `Dinner / Pasta`), up to 12 photos, linked “goes well with” recipes and nutrition per serving. **Menus** group recipes you make together and add them to the plan in one step. The meal plan has a month view: drag a meal to another day, or tap it and then the day. New shopping lists sort into aisles in your shop's order, and moving an item to another aisle is remembered. **Settings → Import from Paprika** reads a `.paprikarecipes` export on your device and imports recipes, categories, ratings, nutrition and photos; importing again skips recipes already there.
+
+## Offline, desktop and phone
+
+Everything works offline: the cookbook is saved on the device, edits apply at once and wait in an outbox that syncs when you're back online. A change the server rejects (for example, someone edited the same recipe first) appears with **Keep mine**, **Save mine as a copy** and **Keep theirs**. Photos added offline upload with the next sync. See [Desktop and phone apps](SETUP.md#desktop-and-phone-apps) to build the Mac and iPhone apps.
 
 ## MCP outside GPT Sites
 
@@ -39,7 +47,13 @@ hermes mcp add cookbook --url <mcp url> --auth oauth
 hermes mcp test cookbook
 ```
 
-The server retains recipe search/read, pantry, plan, leftovers, availability, imports, and direct `update_recipe` edits. **`save_recipe` publishes to the recipe library; `save_recipe_draft` is review-only.** The same confirmed-login, shared-cookbook, and revision checks apply. The service-role key must never go to a client. The old Sites plugin no longer connects to this server.
+For Claude Code, the repository's `.mcp.json` points at the production endpoint; run `claude` in this folder and approve the `cookbook` server, or see [Connect Claude](SETUP.md#connect-claude) for Claude Desktop and claude.ai.
+
+### Save a recipe from any link
+
+Give the assistant a link (a recipe page, YouTube video, TikTok or Instagram post) and ask it to save the recipe, or use the **import_recipe_from_link** prompt. The server never calls an AI model: `fetch_recipe_source` returns the raw material (structured recipe data when the page has it, readable page text, the video description and transcript when available, image candidates and warnings), the assistant builds the recipe, and `save_recipe` or `save_recipe_draft` stores it. Pass `imageUrl` and CookBook keeps its own copy of the photo. YouTube transcripts are best effort, and Instagram and TikTok posts are often login-walled; the assistant then asks you to paste the caption.
+
+The server retains recipe search/read, pantry, plan, leftovers, availability, imports, and direct `update_recipe` edits. **`save_recipe` publishes to the recipe library; `save_recipe_draft` is review-only.** Saves no longer need the latest cookbook revision: each change is applied to the current cookbook, and only a change to the same record since you read it (`expectedUpdatedAt`) is reported as a conflict. The service-role key must never go to a client. The old Sites plugin no longer connects to this server.
 
 ## Validation
 
