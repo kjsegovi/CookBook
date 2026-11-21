@@ -40,3 +40,7 @@
 .month-day-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600}.month-add{border:0;background:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:0 4px;min-width:24px;min-height:24px}
 .month-meal{display:block;width:100%;text-align:left;border:0;border-radius:6px;background:var(--wash);color:var(--ink);font:inherit;font-size:11px;padding:3px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:grab;touch-action:none}.month-meal.leftover{background:#fff4e3}.month-meal.done{opacity:.55;cursor:default;text-decoration:line-through}.month-meal.selected{outline:2px solid var(--green)}.month-meal .slot{font-weight:700;margin-right:4px;color:var(--green)}
 @media (max-width:600px){.month-day{min-height:64px;padding:3px}.month-meal{font-size:10px;padding:2px 3px}.month-meal .slot{display:none}}
+/* Installed app: keep content clear of notches and the status bar (env() is 0 elsewhere). */
+body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+@media(display-mode:standalone){.site-header{padding-top:env(safe-area-inset-top)}}
+@media(max-width:600px){.mobile-nav{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env(safe-area-inset-right))}}
