@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.13.0" },
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "node scripts/check-config.mjs --optional && tsc --noEmit && vite build",
@@ -27,6 +29,7 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.1.2",
     "typescript": "5.9.3",
-    "vite": "8.3.5"
+    "vite": "8.3.5",
+    "vite-plugin-pwa": "2.0.0"
   }
 }
