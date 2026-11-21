@@ -64,3 +64,50 @@ export async function signedPhotos(admin: SupabaseClient, household: string, inp
     });
     return { urls };
 }
+
+const REHOST_MAX_BYTES = 5242880;
+const SUPPORTED_TYPES = { jpg: 'image/jpeg', png: 'image/png', webp: 'image/webp' } as const;
+function supportedType(data: Uint8Array) {
+    for (const type of Object.values(SUPPORTED_TYPES)) {
+        try { photoExtension(data, type); return type; } catch { /* try the next format */ }
+    }
+    return null;
+}
+function unsupportedFormat(data: Uint8Array, declared: string) {
+    const ascii = (from: number, to: number) => String.fromCharCode(...data.slice(from, to));
+    if (ascii(0, 4) === 'GIF8' || declared === 'image/gif') return 'GIF';
+    if (ascii(4, 8) === 'ftyp' && /^(avif|avis)$/.test(ascii(8, 12)) || declared === 'image/avif') return 'AVIF';
+    if (ascii(4, 8) === 'ftyp' && /^(heic|heix|mif1|msf1)$/.test(ascii(8, 12)) || /^image\/hei[cf]$/.test(declared)) return 'HEIC';
+    if (declared === 'image/svg+xml') return 'SVG';
+    return null;
+}
+export type RehostResult = { reference: string; reason?: undefined } | { reference: null; reason: string };
+/**
+ * Copies a remote recipe image into household storage so it can't disappear or be swapped later.
+ * Unsafe hosts, oversized files and bytes that aren't a real image throw a DomainError. Formats the
+ * app can't store (GIF, AVIF, HEIC, SVG) return `{ reference: null, reason }` so callers keep the hot-link.
+ */
+export async function rehostImage(admin: SupabaseClient, householdId: string, url: string): Promise<RehostResult> {
+    if (!/^[\w-]+$/.test(householdId)) throw new DomainError('Household not found.', 404);
+    // Loaded lazily, like the import route, so photo requests don't pay for the importer at cold start.
+    const { publicFetchBytes } = await import('./importer.ts');
+    const image = await publicFetchBytes(url, {
+        max: REHOST_MAX_BYTES,
+        accept: 'image/webp,image/png,image/jpeg;q=0.9,image/*;q=0.5',
+        types: /^\s*(image\/|application\/octet-stream|binary\/octet-stream)/i,
+        wrongType: 'This link is not an image.',
+        tooLarge: 'This image is larger than 5 MB.',
+        fallback: 'Keep the original image link instead.',
+    });
+    // Trust the bytes, not the header: CDNs often mislabel images.
+    const type = supportedType(image.data);
+    if (!type) {
+        const format = unsupportedFormat(image.data, image.type.split(';')[0].trim().toLowerCase());
+        if (format) return { reference: null, reason: `${format} images can't be stored in CookBook; keep the original image link.` };
+        throw new DomainError('This link did not return a valid JPEG, PNG, or WebP image.');
+    }
+    const key = householdId + '/' + crypto.randomUUID() + '.' + photoExtension(image.data, type);
+    const { error } = await admin.storage.from('cookbook-photos').upload(key, image.data, { contentType: type, upsert: false, cacheControl: '300' });
+    if (error) throw new DomainError('The recipe image could not be saved. Please try again.', 503);
+    return { reference: 'photo:' + key };
+}
