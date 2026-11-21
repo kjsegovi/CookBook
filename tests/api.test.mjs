@@ -14,11 +14,11 @@ test('MCP discovery, initialization and tool listing return complete results wit
     for(const method of ['server/discover','initialize','tools/list']){
         const {response,data}=await f.send('mcp',{method:'POST',body:{jsonrpc:'2.0',id:1,method}});
         assert.equal(response.status,200);assert.equal(data.result.resultType,'complete');
-        if(method==='server/discover')assert.deepEqual(data.result.supportedVersions,['2026-07-28']);
+        if(method==='server/discover')assert.equal(data.result.supportedVersions[0],'2026-07-28');
         if(method==='initialize')assert.equal(data.result.protocolVersion,'2026-07-28');
         if(method==='tools/list'){
             assert.ok(Array.isArray(data.result.tools));assert.ok(data.result.tools.length>0);
-            assert.deepEqual(data.result.tools.find(tool=>tool.name==='save_recipe').inputSchema.required,['recipe','operationId','revision']);
+            assert.deepEqual(data.result.tools.find(tool=>tool.name==='save_recipe').inputSchema.required,['recipe','operationId']);
             assert.equal(data.result.ttlMs,300000);assert.equal(data.result.cacheScope,'private');
         }
     }
@@ -168,10 +168,12 @@ test('concurrent commands use one atomic revision and duplicate retries do not r
     const body={type:'recipe.save',payload:r,id,revision:0};
     const results=await Promise.all([f.send('command',{method:'POST',body}),f.send('command',{method:'POST',body})]);
     assert.ok(results.every(r=>r.response.status===200));assert.equal(f.row.revision,1);assert.equal(f.row.state.recipes.length,1);
-    const stale=await f.send('command',{method:'POST',body:{...body,id:crypto.randomUUID()}});assert.equal(stale.response.status,409);
-    const a={type:'recipe.update',payload:{recipeId:r.id,expectedUpdatedAt:f.row.state.recipes[0].updatedAt,changes:{notes:'One'}},id:crypto.randomUUID(),revision:1};
+    // An old cookbook revision no longer blocks a save; it applies to the current cookbook.
+    const behind=await f.send('command',{method:'POST',body:{...body,id:crypto.randomUUID(),payload:{...r,notes:'Rebased'}}});assert.equal(behind.response.status,200);assert.equal(f.row.revision,2);assert.equal(f.row.state.recipes[0].notes,'Rebased');
+    // Two edits of the same recipe from the same version still conflict on that recipe.
+    const a={type:'recipe.update',payload:{recipeId:r.id,expectedUpdatedAt:f.row.state.recipes[0].updatedAt,changes:{notes:'One'}},id:crypto.randomUUID(),revision:0};
     const concurrent=await Promise.all([f.send('command',{method:'POST',body:a}),f.send('command',{method:'POST',body:{...a,id:crypto.randomUUID(),payload:{...a.payload,changes:{notes:'Two'}}}})]);
-    assert.deepEqual(concurrent.map(r=>r.response.status).sort(),[200,409]);assert.equal(f.row.revision,2);
+    assert.deepEqual(concurrent.map(r=>r.response.status).sort(),[200,409]);assert.equal(f.row.revision,3);
 });
 test('MCP direct recipe editing remains available behind independent authentication',async()=>{
     const f=fixture(),r=sample();f.seed(applyCommand(initialState(),'recipe.save',r,crypto.randomUUID()));

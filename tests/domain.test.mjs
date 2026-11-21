@@ -81,3 +81,72 @@ test('auto leftovers follow the usual serving size, stay within the batch, and c
 test('a shrinking batch trims its auto-planned leftovers but keeps manual ones',()=>{let{s,r}=base();s=command(s,'plan.save',{id:'cook',date:'2026-11-02',recipeId:r.id,cookServings:8,eatServings:2});s=command(s,'plan.save',{id:'manual',kind:'leftover',batchId:'cook',date:'2026-11-05',slot:'Dinner',eatServings:2});s=command(s,'cook',{planId:'cook',cookServings:8,eatServings:2,usage:[]});const batch=s.batches[0];assert.deepEqual(s.plan.filter(p=>p.auto).map(p=>[p.date,p.eatServings]),[['2026-11-03',2],['2026-11-04',2]]);const t=command(s,'batch.update',{id:batch.id,remaining:2,location:'Fridge'});assert.equal(reserved(t,batch.id),2);assert.deepEqual(t.plan.filter(p=>p.kind==='leftover').map(p=>p.date),['2026-11-05']);assert.throws(()=>command(t,'batch.update',{id:batch.id,remaining:1,location:'Fridge'}),/reserved portions/);});
 
 test('a retried cook never schedules the same leftovers twice',()=>{const{s,r}=base();const operationId=crypto.randomUUID(),payload={recipeId:r.id,cookServings:8,eatServings:2,usage:[]};const once=command(s,'cook',payload,operationId);assert.equal(once.plan.filter(p=>p.kind==='leftover').length,3);const retried=command(once,'cook',payload,operationId);assert.deepEqual(retried,once);assert.equal(retried.plan.filter(p=>p.kind==='leftover').length,3);});
+
+test('older recipes gain organisation fields; the single photo and category stay first', async () => {
+    const { normalizeRecipe, initialState, parseIngredient } = await import('../supabase/functions/_shared/domain.ts');
+    const old = { id: 'r1', title: 'Soup', category: 'Sides', image: 'https://example.com/a.jpg', ingredients: [parseIngredient('1 l stock')], steps: ['Simmer.'] };
+    const r = normalizeRecipe(old);
+    assert.deepEqual(r.categories, ['Sides']); assert.deepEqual(r.images, ['https://example.com/a.jpg']); assert.equal(r.rating, 0); assert.deepEqual(r.related, []); assert.equal(r.nutrition, null);
+    const more = normalizeRecipe({ ...r, images: [...r.images, 'https://example.com/b.jpg'], categories: ['Sides', 'Dinner / Soup'], rating: 7, related: ['r1', 'r2'], nutrition: { calories: '320', protein: 12.34, junk: 1, estimated: true } });
+    assert.equal(more.image, 'https://example.com/a.jpg'); assert.equal(more.images.length, 2); assert.equal(more.rating, 5); assert.deepEqual(more.related, ['r2'], 'a recipe cannot link to itself');
+    assert.deepEqual(more.nutrition, { calories: 320, protein: 12.3, estimated: true });
+    const newPrimary = normalizeRecipe({ ...more, image: 'https://example.com/b.jpg' });
+    assert.deepEqual(newPrimary.images, ['https://example.com/b.jpg', 'https://example.com/a.jpg'], 'changing the main photo moves it first');
+    const cleared = normalizeRecipe({ ...more, image: '' });
+    assert.deepEqual(cleared.images, ['https://example.com/b.jpg']); assert.equal(cleared.image, 'https://example.com/b.jpg');
+    assert.ok(initialState().menus);
+});
+
+test('ratings, menus and recipe deletion keep everything consistent', async () => {
+    const { initialState, parseIngredient, blankRecipe } = await import('../supabase/functions/_shared/domain.ts');
+    const { applyCommand } = await import('../supabase/functions/_shared/commands.ts');
+    const recipe = (id, extra = {}) => ({ ...blankRecipe(), id, title: id, ingredients: [parseIngredient('1 egg')], steps: ['Cook.'], ...extra });
+    let s = applyCommand(initialState(), 'recipe.save', recipe('a'), 'save-a-0001');
+    s = applyCommand(s, 'recipe.save', recipe('b', { related: ['a'] }), 'save-b-0001');
+    const updatedAt = s.recipes[0].updatedAt;
+    s = applyCommand(s, 'recipe.rate', { id: 'a', rating: 4 }, 'rate-a-0001');
+    assert.equal(s.recipes[0].rating, 4); assert.equal(s.recipes[0].updatedAt, updatedAt, 'rating does not conflict with edits');
+    assert.throws(() => applyCommand(s, 'recipe.rate', { id: 'a', rating: 6 }, 'rate-a-0002'), /0 to 5/);
+    s = applyCommand(s, 'menu.save', { id: 'holiday', name: 'Holiday', items: [{ recipeId: 'a', day: 1, slot: 'Dinner' }, { recipeId: 'b', day: 2, slot: 'Lunch' }] }, 'menu-0001');
+    s = applyCommand(s, 'menu.plan', { menuId: 'holiday', date: '2026-12-24' }, 'plan-menu-0001');
+    assert.deepEqual(s.plan.map(p => [p.recipeId, p.date, p.slot]), [['a', '2026-12-24', 'Dinner'], ['b', '2026-12-25', 'Lunch']]);
+    assert.throws(() => applyCommand(s, 'menu.save', { name: 'Bad', items: [{ recipeId: 'missing' }] }, 'menu-0002'), /removed/);
+    s.plan = [];
+    s = applyCommand(s, 'recipe.delete', { id: 'a' }, 'delete-a-0001');
+    assert.deepEqual(s.recipes[0].related, []); assert.deepEqual(s.menus[0].items.map(i => i.recipeId), ['b']);
+    s = applyCommand(s, 'recipe.update', { recipeId: 'b', expectedUpdatedAt: s.recipes[0].updatedAt, changes: { images: ['https://example.com/x.jpg'], categories: ['Dinner / Eggs'] } }, 'update-b-0001');
+    assert.equal(s.recipes[0].image, 'https://example.com/x.jpg'); assert.equal(s.recipes[0].category, 'Dinner / Eggs');
+});
+
+test('shopping lists sort into aisles and remember your corrections', async () => {
+    const { initialState, blankRecipe, parseIngredient } = await import('../supabase/functions/_shared/domain.ts');
+    const { applyCommand } = await import('../supabase/functions/_shared/commands.ts');
+    const { keywordAisle, aisleOrder } = await import('../supabase/functions/_shared/aisles.ts');
+    assert.equal(keywordAisle('frozen peas'), 'Frozen'); assert.equal(keywordAisle('tomato paste'), 'Canned & Jarred'); assert.equal(keywordAisle('red onion'), 'Produce'); assert.equal(keywordAisle('basmati rice'), 'Pantry'); assert.equal(keywordAisle('mystery'), 'Other');
+    const recipe = { ...blankRecipe(), id: 'r', title: 'Bowl', servings: 2, ingredients: ['200 g basmati rice', '1 red onion', '2 eggs'].map(parseIngredient), steps: ['Cook.'] };
+    let s = applyCommand(initialState(), 'recipe.save', recipe, 'save-r-0001');
+    s = applyCommand(s, 'plan.save', { id: 'p', recipeId: 'r', date: '2026-11-23', cookServings: 2, eatServings: 2 }, 'plan-p-0001');
+    s = applyCommand(s, 'shopping.generate', { week: '2026-11-23' }, 'gen-0001');
+    assert.deepEqual(Object.fromEntries(s.shopping.map(i => [i.name, i.group])), { 'basmati rice': 'Pantry', 'red onion': 'Produce', eggs: 'Dairy & Eggs' });
+    const rice = s.shopping.find(i => i.name === 'basmati rice');
+    s = applyCommand(s, 'shopping.save', { ...rice, group: 'International' }, 'move-rice-0001');
+    s = applyCommand(s, 'shopping.generate', { week: '2026-11-30' }, 'gen-0002');
+    s = applyCommand(s, 'plan.save', { id: 'p2', recipeId: 'r', date: '2026-11-30', cookServings: 2, eatServings: 2 }, 'plan-p2-0001');
+    s = applyCommand(s, 'shopping.generate', { week: '2026-11-30' }, 'gen-0003');
+    assert.equal(s.shopping.find(i => i.name === 'basmati rice' && !i.override).group, 'International', 'the corrected aisle is remembered');
+    const order = aisleOrder(['Dairy & Eggs', 'Produce']);
+    assert.deepEqual(['Produce', 'Other', 'Dairy & Eggs'].sort((a, b) => order(a) - order(b)), ['Dairy & Eggs', 'Produce', 'Other']);
+});
+
+test('meals move between days without leftovers coming before their cooking day', async () => {
+    const { initialState, blankRecipe, parseIngredient } = await import('../supabase/functions/_shared/domain.ts');
+    const { applyCommand } = await import('../supabase/functions/_shared/commands.ts');
+    let s = applyCommand(initialState(), 'recipe.save', { ...blankRecipe(), id: 'r', title: 'Stew', servings: 4, ingredients: [parseIngredient('1 kg beef')], steps: ['Braise.'] }, 'save-r-0001');
+    s = applyCommand(s, 'plan.save', { id: 'cook', recipeId: 'r', date: '2026-11-23', cookServings: 4, eatServings: 2 }, 'plan-cook-0001');
+    s = applyCommand(s, 'plan.save', { id: 'left', kind: 'leftover', batchId: 'cook', date: '2026-11-24', eatServings: 2 }, 'plan-left-0001');
+    assert.throws(() => applyCommand(s, 'plan.move', { id: 'cook', date: '2026-11-25' }, 'move-0001'), /leftover meals first/);
+    assert.throws(() => applyCommand(s, 'plan.move', { id: 'left', date: '2026-11-22' }, 'move-0002'), /on or after/);
+    s = applyCommand(s, 'plan.move', { id: 'left', date: '2026-11-28', slot: 'Lunch' }, 'move-0003');
+    s = applyCommand(s, 'plan.move', { id: 'cook', date: '2026-11-26' }, 'move-0004');
+    assert.deepEqual(s.plan.map(p => [p.id, p.date, p.slot]), [['cook', '2026-11-26', 'Dinner'], ['left', '2026-11-28', 'Lunch']]);
+});

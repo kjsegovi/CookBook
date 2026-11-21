@@ -1,0 +1,8 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "clipper",
+  "description": "Recipe browser pages may only send their own address back to CookBook.",
+  "windows": ["clipper"],
+  "remote": { "urls": ["https://*/*", "http://*/*"] },
+  "permissions": ["allow-clip"]
+}

@@ -21,7 +21,7 @@ if docker exec -i "$test_container" psql -U postgres -v ON_ERROR_STOP=1 -q < sup
   echo 'Expected migration to refuse two populated cookbooks.' >&2
   exit 1
 fi
-if ! rg -q 'Multiple populated cookbooks exist' "$migration_log"; then cat "$migration_log"; rm -f "$migration_log"; exit 1; fi
+if ! grep -q 'Multiple populated cookbooks exist' "$migration_log"; then cat "$migration_log"; rm -f "$migration_log"; exit 1; fi
 rm -f "$migration_log"
 docker exec -i "$test_container" psql -U postgres -v ON_ERROR_STOP=1 -q <<'SQL'
 do $$ begin if to_regclass('public.cookbook_meta') is not null then raise exception 'Failed migration was not atomic.'; end if; end $$;
@@ -29,10 +29,15 @@ update public.households set state = jsonb_set(state,'{recipes}','[]') where nam
 SQL
 docker exec -i "$test_container" psql -U postgres -v ON_ERROR_STOP=1 -q < supabase/migrations/20261103000000_shared_cookbook.sql
 docker exec -i "$test_container" psql -U postgres -v ON_ERROR_STOP=1 -q < tests/shared-database.sql
+docker exec -i "$test_container" psql -U postgres -v ON_ERROR_STOP=1 -q < supabase/migrations/20261121000000_rebase_sync.sql
+docker exec -i "$test_container" psql -U postgres -v ON_ERROR_STOP=1 -q < supabase/migrations/20261121010000_menus.sql
+docker exec -i "$test_container" psql -U postgres -v ON_ERROR_STOP=1 -q < <(printf "\\o /dev/null\nselect set_config('test.cookbook',(select household_id::text from public.cookbook_meta),false);\n"; cat tests/rebase-database.sql)
 node tests/shared-concurrency.mjs "$test_container"
 docker exec "$test_container" createdb -U postgres cookbook_fresh
 docker exec -i "$test_container" psql -U postgres -d cookbook_fresh -v ON_ERROR_STOP=1 -q < <(sed '/^create role /d' tests/database-bootstrap.sql)
 docker exec -i "$test_container" psql -U postgres -d cookbook_fresh -v ON_ERROR_STOP=1 --single-transaction -q < supabase/migrations/20261101000000_households.sql
 docker exec -i "$test_container" psql -U postgres -d cookbook_fresh -v ON_ERROR_STOP=1 -q < supabase/migrations/20261103000000_shared_cookbook.sql
+docker exec -i "$test_container" psql -U postgres -d cookbook_fresh -v ON_ERROR_STOP=1 -q < supabase/migrations/20261121000000_rebase_sync.sql
+docker exec -i "$test_container" psql -U postgres -d cookbook_fresh -v ON_ERROR_STOP=1 -q < supabase/migrations/20261121010000_menus.sql
 docker exec -i "$test_container" psql -U postgres -d cookbook_fresh -v ON_ERROR_STOP=1 -q < tests/fresh-database.sql
-echo 'Database checks passed: archive preservation, universal confirmed-login access, anonymous/write denial, atomic record updates, duplicate retries, conflict checks, and unchanged-record preservation.'
+echo 'Database checks passed: archive preservation, universal confirmed-login access, anonymous/write denial, atomic record updates, duplicate retries, per-record conflict checks, rebase sync and change feeds, and unchanged-record preservation.'

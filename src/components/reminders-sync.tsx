@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { Copy, Download, ExternalLink, ListChecks, RefreshCw } from 'lucide-react';
 import type { ShoppingItem } from '../lib/domain';
 import { request } from '../lib/api';
-import { appUrl } from '../lib/supabase';
+import { appUrl , nativeApp } from '../lib/supabase';
 import { remindersHandoff, remindersReturnId, REMINDERS_SHORTCUT, type RemindersEnvelope, type RemindersStatus } from '../lib/reminders';
 
 export default function RemindersSync({ items, household, busy, onUpdated }: { items: ShoppingItem[]; household: string; busy: boolean; onUpdated: () => Promise<void> }) {
@@ -60,7 +60,7 @@ export default function RemindersSync({ items, household, busy, onUpdated }: { i
         if (!ready || inFlight.current) return;
         inFlight.current = true; setPreparing(true); setError(''); setMessage('Preparing your grocery sync…'); setEnvelope(undefined); setCopiedText('');
         try {
-            const next = await request<RemindersEnvelope>('reminders/begin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ list: list.trim(), returnUrl: appUrl() }) });
+            const next = await request<RemindersEnvelope>('reminders/begin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ list: list.trim(), returnUrl: nativeApp() ? 'cookbook://app/' : appUrl() }) });
             remember(); setEnvelope(next); setPending(next.scope.id);
             try { localStorage.setItem(pendingKey, next.scope.id); } catch { /* Return links also identify the sync. */ }
             setMessage('Ready. Open Shortcuts below to exchange checkmarks. This connection expires in 15 minutes.');

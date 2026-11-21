@@ -1,4 +1,5 @@
 import type { RemindersConnection } from './reminders-domain.ts';
+import { aisleFor } from './aisles.ts';
 
 export const DEFAULT_CATEGORIES = ['Breakfast', 'Entrées', 'Sauces', 'Sides', 'Snacks', 'Pastries & Desserts'];
 export type IngredientLine = {
@@ -29,7 +30,20 @@ export type Recipe = {
     notes: string;
     createdAt: string;
     updatedAt: string;
+    // Organisation. `category` and `image` stay as the first entries of
+    // `categories` and `images` so older screens and clients keep working.
+    rating: number;
+    categories: string[];
+    images: string[];
+    related: string[];
+    nutrition: Nutrition | null;
 };
+// Per serving. `estimated` marks values an assistant estimated rather than the source stating them.
+export type Nutrition = { calories?: number; protein?: number; carbs?: number; fat?: number; fiber?: number; sugar?: number; sodium?: number; servingSize?: string; text?: string; estimated?: boolean };
+export const NUTRIENTS = ['calories', 'protein', 'carbs', 'fat', 'fiber', 'sugar', 'sodium'] as const;
+export type MenuItem = { recipeId: string; day: number; slot: 'Breakfast' | 'Lunch' | 'Dinner' | 'Snack' };
+// A reusable set of recipes, such as a holiday dinner or a week of lunches.
+export type Menu = { id: string; name: string; description: string; items: MenuItem[]; createdAt: string; updatedAt: string };
 export type PantryItem = {
     id: string;
     name: string;
@@ -91,10 +105,13 @@ export type State = {
     batches: PreparedBatch[];
     shopping: ShoppingItem[];
     shoppingWeek: string;
+    menus: Menu[];
     ingredients: {
         id: string;
         name: string;
         aliases: string[];
+        // The grocery aisle you chose for this ingredient, remembered for future lists.
+        aisle?: string;
     }[];
     drafts: ImportDraft[];
     movements: {
@@ -111,6 +128,8 @@ export type State = {
         servings: number;
         weekStartsOn: number;
         autoLeftovers?: boolean;
+        // Your shop's aisle order for the shopping list.
+        aisles?: string[];
     };
 };
 export class DomainError extends Error {
@@ -118,7 +137,7 @@ export class DomainError extends Error {
     constructor(message: string, status = 400) { super(message); this.status = status; }
 }
 export const uid = () => crypto.randomUUID();
-export const initialState = (): State => ({ recipes: [], pantry: [], plan: [], batches: [], shopping: [], shoppingWeek: '', ingredients: [], drafts: [], movements: [], operations: [], settings: { categories: [...DEFAULT_CATEGORIES], servings: 2, weekStartsOn: 1, autoLeftovers: true } });
+export const initialState = (): State => ({ recipes: [], pantry: [], plan: [], batches: [], shopping: [], shoppingWeek: '', menus: [], ingredients: [], drafts: [], movements: [], operations: [], settings: { categories: [...DEFAULT_CATEGORIES], servings: 2, weekStartsOn: 1, autoLeftovers: true } });
 export const clean = (v: unknown, max = 500): string => String(v ?? '').trim().slice(0, max);
 export function number(v: unknown, fallback = 0) { const n = Number(v); return Number.isFinite(n) ? n : fallback; }
 export function positive(v: unknown, label: string, allowZero = false) { const n = Number(v); if (!Number.isFinite(n) || n < (allowZero ? 0 : 0.000001) || n > 1000000)
@@ -174,7 +193,7 @@ export function parseIngredient(raw: string): IngredientLine {
     }
     return { id: uid(), name: name || text, amount, unit, group: '', note, raw: text };
 }
-export function blankRecipe(): Recipe { return { id: uid(), title: '', description: '', servings: 2, prepMinutes: 0, cookMinutes: 0, category: 'Entrées', tags: [], favorite: false, wantToTry: true, image: '', sourceUrl: '', author: '', ingredients: [], steps: [], notes: '', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }; }
+export function blankRecipe(): Recipe { return { rating: 0, categories: ['Entrées'], images: [], related: [], nutrition: null, id: uid(), title: '', description: '', servings: 2, prepMinutes: 0, cookMinutes: 0, category: 'Entrées', tags: [], favorite: false, wantToTry: true, image: '', sourceUrl: '', author: '', ingredients: [], steps: [], notes: '', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }; }
 export function httpUrl(input: unknown) { const s = clean(input, 2000); if (!s)
     return ''; try {
     const u = new URL(s);
@@ -185,8 +204,36 @@ export function httpUrl(input: unknown) { const s = clean(input, 2000); if (!s)
 catch {
     throw new DomainError('Enter a valid http or https link.');
 } }
-export function normalizeRecipe(input: any, allowIncomplete = false): Recipe { if (!input || typeof input !== 'object')
-    throw new DomainError('Recipe details are required.'); const now = new Date().toISOString(); const recipe: Recipe = { id: clean(input.id, 100) || uid(), title: clean(input.title, 200), description: clean(input.description, 3000), servings: positive(input.servings ?? 2, 'Servings'), prepMinutes: positive(input.prepMinutes ?? 0, 'Preparation time', true), cookMinutes: positive(input.cookMinutes ?? 0, 'Cooking time', true), category: clean(input.category, 80) || 'Entrées', tags: (Array.isArray(input.tags) ? input.tags : []).slice(0, 30).map((x: unknown) => clean(x, 60)).filter(Boolean), favorite: !!input.favorite, wantToTry: !!input.wantToTry, image: /^photo:[0-9a-f-]{36}\/[0-9a-f-]{36}\.(jpg|png|webp)$/.test(clean(input.image, 2000)) ? clean(input.image, 2000) : httpUrl(input.image), sourceUrl: httpUrl(input.sourceUrl), author: clean(input.author, 200), ingredients: (Array.isArray(input.ingredients) ? input.ingredients : []).slice(0, 200).map((x: any) => ({ id: clean(x.id, 100) || uid(), name: clean(x.name, 200), amount: x.amount === null || x.amount === '' || x.amount === undefined ? null : positive(x.amount, 'Ingredient amount', true), unit: clean(x.unit, 40), group: clean(x.group, 120), note: clean(x.note, 500), raw: clean(x.raw, 1000) })), steps: (Array.isArray(input.steps) ? input.steps : []).slice(0, 100).map((x: unknown) => clean(x, 5000)).filter(Boolean), notes: clean(input.notes, 10000), createdAt: clean(input.createdAt, 40) || now, updatedAt: now }; if (!allowIncomplete && (!recipe.title || !recipe.ingredients.length || recipe.ingredients.some(i => !i.name) || !recipe.steps.length))
+const validImage = (value: unknown) => { const v = clean(value, 2000); return /^photo:[0-9a-f-]{36}\/[0-9a-f-]{36}\.(jpg|png|webp)$/.test(v) ? v : httpUrl(v); };
+// The first entry is primary. When only the single field was changed (older
+// clients, or editing just the main photo), it becomes the first entry.
+function primaryFirst(list: unknown, single: unknown, normalize: (v: unknown) => string, max: number) {
+    let items = (Array.isArray(list) ? list : []).map(normalize).filter(Boolean);
+    if (typeof single === 'string') { const first = normalize(single); if (first !== (items[0] ?? '')) items = first ? [first, ...items.filter(x => x !== first)] : items.slice(1); }
+    return [...new Set(items)].slice(0, max);
+}
+export function normalizeNutrition(input: any): Nutrition | null {
+    if (!input || typeof input !== 'object') return null;
+    const n: Nutrition = {};
+    for (const key of NUTRIENTS) { const v = Number(input[key]); if (input[key] !== '' && input[key] !== null && input[key] !== undefined && Number.isFinite(v) && v >= 0 && v <= 1000000) n[key] = Math.round(v * 10) / 10; }
+    const servingSize = clean(input.servingSize, 80), text = clean(input.text, 1000);
+    if (servingSize) n.servingSize = servingSize;
+    if (text) n.text = text;
+    if (Object.keys(n).length && input.estimated) n.estimated = true;
+    return Object.keys(n).length ? n : null;
+}
+function organisation(input: any) {
+    const rating = Math.round(Number(input.rating));
+    return {
+        rating: Number.isFinite(rating) ? Math.min(5, Math.max(0, rating)) : 0,
+        categories: primaryFirst(input.categories, input.category, v => clean(v, 80), 10),
+        images: primaryFirst(input.images, input.image, validImage, 12),
+        related: [...new Set((Array.isArray(input.related) ? input.related : []).map((v: unknown) => clean(v, 100)).filter(Boolean))].slice(0, 30) as string[],
+        nutrition: normalizeNutrition(input.nutrition),
+    };
+}
+export function normalizeRecipe(input: any, allowIncomplete = false, now = new Date().toISOString()): Recipe { if (!input || typeof input !== 'object')
+    throw new DomainError('Recipe details are required.'); const recipe: Recipe = { id: clean(input.id, 100) || uid(), title: clean(input.title, 200), description: clean(input.description, 3000), servings: positive(input.servings ?? 2, 'Servings'), prepMinutes: positive(input.prepMinutes ?? 0, 'Preparation time', true), cookMinutes: positive(input.cookMinutes ?? 0, 'Cooking time', true), category: clean(input.category, 80) || 'Entrées', tags: (Array.isArray(input.tags) ? input.tags : []).slice(0, 30).map((x: unknown) => clean(x, 60)).filter(Boolean), favorite: !!input.favorite, wantToTry: !!input.wantToTry, image: /^photo:[0-9a-f-]{36}\/[0-9a-f-]{36}\.(jpg|png|webp)$/.test(clean(input.image, 2000)) ? clean(input.image, 2000) : httpUrl(input.image), sourceUrl: httpUrl(input.sourceUrl), author: clean(input.author, 200), ingredients: (Array.isArray(input.ingredients) ? input.ingredients : []).slice(0, 200).map((x: any) => ({ id: clean(x.id, 100) || uid(), name: clean(x.name, 200), amount: x.amount === null || x.amount === '' || x.amount === undefined ? null : positive(x.amount, 'Ingredient amount', true), unit: clean(x.unit, 40), group: clean(x.group, 120), note: clean(x.note, 500), raw: clean(x.raw, 1000) })), steps: (Array.isArray(input.steps) ? input.steps : []).slice(0, 100).map((x: unknown) => clean(x, 5000)).filter(Boolean), notes: clean(input.notes, 10000), createdAt: clean(input.createdAt, 40) || now, updatedAt: now, ...organisation(input) }; if (!recipe.categories.length) recipe.categories = [recipe.category]; recipe.category = recipe.categories[0]; recipe.image = recipe.images[0] ?? ''; recipe.related = recipe.related.filter(id => id !== recipe.id); if (!allowIncomplete && (!recipe.title || !recipe.ingredients.length || recipe.ingredients.some(i => !i.name) || !recipe.steps.length))
     throw new DomainError('Add a title, at least one named ingredient, and instructions before saving.'); return recipe; }
 export type InventoryIndex = { canonical: (name: string) => string; pantry: Map<string, PantryItem[]> };
 export function inventoryIndex(state: Pick<State, 'pantry' | 'ingredients'>): InventoryIndex {
@@ -268,4 +315,8 @@ export function autoLeftovers(state: State, batchId: string, remaining: number, 
     }
     return meals;
 }
-export function generatedShopping(state: State, week: string): ShoppingItem[] { const inputs = state.plan.filter(p => p.date >= week && p.date <= weekEnd(week) && p.kind === 'cook' && !p.done).map(p => ({ recipe: state.recipes.find(r => r.id === p.recipeId)!, servings: p.cookServings })).filter(x => x.recipe); return requirements(state, inputs).filter(r => r.missing === null ? !r.present : r.missing > 0.00001 || r.uncertain).map<ShoppingItem>(r => ({ id: uid(), key: r.key, name: r.name, amount: r.missing, unit: r.unit, note: r.uncertain ? 'Check amount against your pantry.' : '', group: 'Ingredients', checked: false, manual: false, override: false, needed: r.missing, uncertain: r.uncertain, addedToPantry: false } satisfies ShoppingItem)); }
+export function rememberedAisle(state: Pick<State, 'ingredients'>, key: string, name: string) {
+    const lower = name.toLowerCase().trim();
+    return state.ingredients.find(i => i.id === key || i.name.toLowerCase() === lower || i.aliases.some(a => a.toLowerCase() === lower))?.aisle;
+}
+export function generatedShopping(state: State, week: string, makeId: () => string = uid): ShoppingItem[] { const inputs = state.plan.filter(p => p.date >= week && p.date <= weekEnd(week) && p.kind === 'cook' && !p.done).map(p => ({ recipe: state.recipes.find(r => r.id === p.recipeId)!, servings: p.cookServings })).filter(x => x.recipe); return requirements(state, inputs).filter(r => r.missing === null ? !r.present : r.missing > 0.00001 || r.uncertain).map<ShoppingItem>(r => ({ id: makeId(), key: r.key, name: r.name, amount: r.missing, unit: r.unit, note: r.uncertain ? 'Check amount against your pantry.' : '', group: aisleFor(r.name, rememberedAisle(state, r.key, r.name)), checked: false, manual: false, override: false, needed: r.missing, uncertain: r.uncertain, addedToPantry: false } satisfies ShoppingItem)); }

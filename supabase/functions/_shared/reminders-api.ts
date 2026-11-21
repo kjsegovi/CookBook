@@ -10,7 +10,10 @@ export async function beginRemindersSync(request: Request, admin: SupabaseClient
     if (typeof input?.list !== 'string' || typeof input?.returnUrl !== 'string') throw new DomainError('Enter your grocery list name and open sync from CookBook.');
     let returnUrl: URL;
     try { returnUrl = new URL(input.returnUrl); } catch { throw new DomainError('Open grocery sync from the CookBook website.'); }
-    if (!allowedOrigins.includes(returnUrl.origin) || returnUrl.username || returnUrl.password) throw new DomainError('Return to the CookBook website to start this sync.', 403);
+    // The desktop and phone apps return through their own link (cookbook://), whose
+    // URL origin is "null", so app schemes are matched by scheme instead.
+    const appReturn = returnUrl.protocol === 'cookbook:' || (returnUrl.origin === 'null' && allowedOrigins.includes(returnUrl.protocol + '//' + returnUrl.host));
+    if (!(appReturn || allowedOrigins.includes(returnUrl.origin)) || returnUrl.username || returnUrl.password) throw new DomainError('Return to the CookBook website to start this sync.', 403);
     const current = await householdStore(admin, household).snapshot();
     const scope = createSyncScope(current.state, household, userId, input.list);
     returnUrl.search = ''; returnUrl.hash = '/shopping?reminders-sync=' + scope.id;

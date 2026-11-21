@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cookbook": {
+      "type": "http",
+      "url": "https://xnnomwmfjibtbgitnwcl.supabase.co/functions/v1/cookbook/mcp"
+    }
+  }
+}

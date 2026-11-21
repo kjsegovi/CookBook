@@ -1,43 +1,30 @@
-import { z } from 'zod';
+import { recipeChangesSchema } from './recipe-schema.ts';
 import { acknowledgeRemindersSync, applyRemindersSync } from './reminders-domain.ts';
 import { stableJson } from './state-patch.ts';
-import { autoLeftovers, blankRecipe, canonical, clean, convert, DomainError, generatedShopping, normalizeRecipe, positive, reserved, shiftDate, uid, validDate, weekEnd, type State, type PantryItem, type PlanEntry, type PreparedBatch, type ShoppingItem, type ImportDraft, type Recipe } from './domain.ts';
+import { autoLeftovers, canonical, clean, convert, DomainError, generatedShopping, normalizeRecipe, positive, reserved, shiftDate, validDate, weekEnd, type State, type PantryItem, type PlanEntry, type PreparedBatch, type ShoppingItem, type ImportDraft, type Recipe, type Menu, type MenuItem } from './domain.ts';
 
-const recipeChangesSchema = z.object({
-    title: z.string().trim().min(1).max(200),
-    description: z.string().max(3000),
-    servings: z.number().min(0.000001).max(1000000),
-    prepMinutes: z.number().min(0).max(1000000),
-    cookMinutes: z.number().min(0).max(1000000),
-    category: z.string().trim().min(1).max(80),
-    tags: z.array(z.string().trim().min(1).max(60)).max(30),
-    favorite: z.boolean(),
-    wantToTry: z.boolean(),
-    image: z.string().max(2000),
-    sourceUrl: z.string().max(2000),
-    author: z.string().max(200),
-    ingredients: z.array(z.object({
-        id: z.string().trim().min(1).max(100).optional(),
-        name: z.string().trim().min(1).max(200),
-        amount: z.number().min(0).max(1000000).nullable(),
-        unit: z.string().max(40),
-        group: z.string().max(120).optional(),
-        note: z.string().max(500).optional(),
-        raw: z.string().max(1000).optional(),
-    }).strict()).min(1).max(200),
-    steps: z.array(z.string().trim().min(1).max(5000)).min(1).max(100),
-    notes: z.string().max(10000),
-}).partial().strict().refine(changes => Object.keys(changes).length > 0, 'Include at least one field to edit.');
-export function applyCommand(original: State, type: string, p: any, operationId: string): State {
+// Compares a record with the JSON a form captured, ignoring key order (database
+// and browser copies of the same record can list keys differently).
+// updatedAt is the per-recipe conflict check, so each save must move it forward
+// even when two saves land in the same millisecond.
+const later = (previous: string | undefined, at: string) => previous && Date.parse(at) <= Date.parse(previous) ? new Date(Date.parse(previous) + 1).toISOString() : at;
+const sameRecord = (record: unknown, expected: string) => { try { return stableJson(record) === stableJson(JSON.parse(expected)); } catch { return false; } };
+// `clock` lets an offline device replay a queued change with the time it was made.
+export function applyCommand(original: State, type: string, p: any, operationId: string, clock?: string): State {
     if (original.operations.includes(operationId))
         return original;
     if (!p || typeof p !== 'object')
         throw new DomainError('Action details are required.');
     const s: State = structuredClone(original);
-    const at = new Date().toISOString();
+    if (!Array.isArray(s.menus)) s.menus = []; // cookbooks saved before menus existed
+    const at = clock ?? new Date().toISOString();
+    // Ids created by a command derive from its operation id, so an offline
+    // client replaying the same command predicts the ids the server creates.
+    let created = 0;
+    const nextId = () => `${operationId.slice(0, 90)}-${(++created).toString(36)}`;
     const recipeById = (id: string) => { const r = s.recipes.find(r => r.id === id); if (!r)
         throw new DomainError('This recipe was removed. Refresh and choose another.', 404); return r; };
-    const movement = (name: string, amount: number | null, unit: string, reason: string) => s.movements.push({ id: uid(), name, amount, unit, reason, at });
+    const movement = (name: string, amount: number | null, unit: string, reason: string) => s.movements.push({ id: nextId(), name, amount, unit, reason, at });
     const expectedRecord = type === 'pantry.save' ? s.pantry.find(x => x.id === p.id) : type === 'shopping.save' ? s.shopping.find(x => x.id === p.id) : type === 'plan.save' ? s.plan.find(x => x.id === p.id) : type === 'batch.update' ? s.batches.find(x => x.id === p.id) : type === 'settings.save' ? s.settings : undefined;
     if (p.__expected) {
         let expected: unknown;
@@ -48,9 +35,69 @@ export function applyCommand(original: State, type: string, p: any, operationId:
         case 'recipe.favorite': {
             const recipe = recipeById(p.id);
             if (typeof p.favorite !== 'boolean') throw new DomainError('Choose whether to favorite this recipe.');
-            if (!p.expectedUpdatedAt || p.expectedUpdatedAt !== recipe.updatedAt) throw new DomainError('This recipe changed. Load the latest version before saving.', 409);
+            // Last writer wins and updatedAt is untouched, so favouriting never
+            // conflicts with someone editing the recipe.
             recipe.favorite = p.favorite;
-            recipe.updatedAt = at;
+            break;
+        }
+        case 'recipe.rate': {
+            const recipe = recipeById(p.id), rating = Number(p.rating);
+            if (!Number.isInteger(rating) || rating < 0 || rating > 5) throw new DomainError('Choose a rating from 0 to 5 stars.');
+            // Like favourites: last writer wins and updatedAt is untouched.
+            recipe.rating = rating;
+            break;
+        }
+        case 'recipes.import': {
+            // A batch from another app (Paprika). Re-importing is safe: ids are
+            // stable, and existing recipes are skipped unless replace is chosen.
+            if (!Array.isArray(p.recipes) || !p.recipes.length || p.recipes.length > 25) throw new DomainError('Import between 1 and 25 recipes at a time.');
+            const replace = p.mode === 'replace';
+            for (const input of p.recipes) {
+                const id = clean(input?.id, 100);
+                if (!id) throw new DomainError('Each imported recipe needs an id.');
+                const recipe = normalizeRecipe({ ...input, id }, true, at);
+                const complete = !!recipe.title && recipe.ingredients.length > 0 && recipe.ingredients.every(i => i.name) && recipe.steps.length > 0;
+                const index = s.recipes.findIndex(r => r.id === id);
+                if (index >= 0) {
+                    if (replace && complete) s.recipes[index] = { ...recipe, createdAt: s.recipes[index].createdAt, updatedAt: later(s.recipes[index].updatedAt, at) };
+                    continue;
+                }
+                if (!complete) {
+                    const draftId = 'draft-' + id.slice(0, 90);
+                    if (!s.drafts.some(d => d.id === draftId)) s.drafts.push({ id: draftId, recipe, text: '', warnings: ['Imported without ingredients or steps. Add them, then save it to your library.'], createdAt: at });
+                    continue;
+                }
+                if (s.recipes.length >= 2000) throw new DomainError('Export your collection before adding more than 2,000 recipes.');
+                s.recipes.push(recipe);
+            }
+            break;
+        }
+        case 'menu.save': {
+            const existing = s.menus.find(m => m.id === p.id);
+            if (existing && p.expectedUpdatedAt && existing.updatedAt !== p.expectedUpdatedAt) throw new DomainError('This menu changed. Reopen it to review the latest version.', 409);
+            const name = clean(p.name, 200);
+            if (!name) throw new DomainError('Give the menu a name.');
+            const items = (Array.isArray(p.items) ? p.items : []).slice(0, 200).map((item: any) => ({ recipeId: clean(item?.recipeId, 100), day: Math.min(31, Math.max(1, Math.round(Number(item?.day) || 1))), slot: (['Breakfast', 'Lunch', 'Dinner', 'Snack'].includes(item?.slot) ? item.slot : 'Dinner') as MenuItem['slot'] }));
+            for (const item of items) recipeById(item.recipeId);
+            if (!items.length) throw new DomainError('Add at least one recipe to the menu.');
+            if (!existing && s.menus.length >= 500) throw new DomainError('Remove a menu before adding more than 500.');
+            const menu: Menu = { id: clean(p.id, 100) || nextId(), name, description: clean(p.description, 2000), items, createdAt: existing?.createdAt ?? at, updatedAt: later(existing?.updatedAt, at) };
+            s.menus = existing ? s.menus.map(m => m.id === menu.id ? menu : m) : [...s.menus, menu];
+            break;
+        }
+        case 'menu.delete':
+            s.menus = s.menus.filter(m => m.id !== p.id);
+            break;
+        case 'menu.plan': {
+            // Adds every recipe in the menu to the meal plan, day 1 on the chosen date.
+            const menu = s.menus.find(m => m.id === p.menuId);
+            if (!menu) throw new DomainError('This menu was removed. Refresh and choose another.', 404);
+            const start = validDate(p.date);
+            for (const item of menu.items) {
+                const recipe = recipeById(item.recipeId);
+                const servings = positive(p.servings ?? s.settings.servings, 'Servings');
+                s.plan.push({ id: nextId(), date: shiftDate(start, item.day - 1), slot: item.slot, kind: 'cook', recipeId: recipe.id, batchId: '', cookServings: Math.max(servings, recipe.servings), eatServings: servings, done: false, note: menu.name });
+            }
             break;
         }
         case 'reminders.sync':
@@ -66,13 +113,18 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             const changes = recipeChangesSchema.safeParse(p.changes);
             if (!changes.success)
                 throw new DomainError('Invalid recipe changes: ' + changes.error.issues[0].message);
-            const updated = normalizeRecipe({ ...existing, ...changes.data });
+            const merged: any = { ...existing, ...changes.data };
+            // Changing only the list keeps its first entry as the primary photo or category.
+            if ('images' in changes.data && !('image' in changes.data)) merged.image = changes.data.images?.[0] ?? '';
+            if ('categories' in changes.data && !('category' in changes.data)) merged.category = changes.data.categories?.[0] ?? existing.category;
+            const updated = normalizeRecipe(merged, false, later(existing.updatedAt, at));
             s.recipes[s.recipes.findIndex(r => r.id === existing.id)] = updated;
             break;
         }
         case 'recipe.save': {
-            const r = normalizeRecipe(p);
+            const r = normalizeRecipe({ ...p, id: clean(p.id, 100) || nextId() }, false, at);
             const old = s.recipes.findIndex(x => x.id === r.id);
+            if (old >= 0) r.updatedAt = later(s.recipes[old].updatedAt, r.updatedAt);
             if (old >= 0 && p.expectedUpdatedAt && s.recipes[old].updatedAt !== p.expectedUpdatedAt)
                 throw new DomainError('This recipe changed. Load the latest version before saving.', 409);
             if (old < 0) {
@@ -90,10 +142,13 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             if (s.plan.some(x => x.recipeId === p.id && !x.done) || s.batches.some(b => b.recipeId === p.id && b.remaining > 0))
                 throw new DomainError('Remove upcoming meals and use or discard this recipe’s leftovers first.');
             s.recipes = s.recipes.filter(r => r.id !== p.id);
+            // Links and menus no longer point at the removed recipe.
+            for (const r of s.recipes) if (r.related?.includes(p.id)) r.related = r.related.filter(id => id !== p.id);
+            s.menus = s.menus.map(m => m.items.some(i => i.recipeId === p.id) ? { ...m, items: m.items.filter(i => i.recipeId !== p.id) } : m).filter(m => m.items.length);
             break;
         }
         case 'pantry.save': {
-            const item: PantryItem = { id: clean(p.id, 100) || uid(), name: clean(p.name, 200), amount: p.amount === null || p.amount === '' ? null : positive(p.amount, 'Amount', true), unit: clean(p.unit, 40), location: ['Pantry', 'Fridge', 'Freezer'].includes(p.location) ? p.location : 'Pantry', note: clean(p.note, 500) };
+            const item: PantryItem = { id: clean(p.id, 100) || nextId(), name: clean(p.name, 200), amount: p.amount === null || p.amount === '' ? null : positive(p.amount, 'Amount', true), unit: clean(p.unit, 40), location: ['Pantry', 'Fridge', 'Freezer'].includes(p.location) ? p.location : 'Pantry', note: clean(p.note, 500) };
             if (!item.name)
                 throw new DomainError('Enter an ingredient name.');
             const i = s.pantry.findIndex(x => x.id === item.id);
@@ -111,19 +166,20 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             const name = clean(p.name, 200), aliases = clean(p.aliases, 2000).split(',').map(a => a.trim()).filter(Boolean);
             if (!name)
                 throw new DomainError('Enter a canonical ingredient name.');
-            const id = clean(p.id, 100) || uid();
+            const id = clean(p.id, 100) || nextId();
             for (const existing of s.ingredients.filter(x => x.id !== id)) {
                 const names = [existing.name, ...existing.aliases].map(x => x.toLowerCase());
                 if ([name, ...aliases].some(x => names.includes(x.toLowerCase())))
                     throw new DomainError('That ingredient name or alias already belongs to another ingredient.');
             }
+            const aisle = s.ingredients.find(x => x.id === id)?.aisle;
             s.ingredients = s.ingredients.filter(x => x.id !== id);
-            s.ingredients.push({ id, name, aliases });
+            s.ingredients.push({ id, name, aliases, ...(aisle ? { aisle } : {}) });
             break;
         }
         case 'plan.save': {
             const kind = p.kind === 'leftover' ? 'leftover' : 'cook';
-            const entry: PlanEntry = { id: clean(p.id, 100) || uid(), date: validDate(p.date), slot: ['Breakfast', 'Lunch', 'Dinner', 'Snack'].includes(p.slot) ? p.slot : 'Dinner', kind, recipeId: clean(p.recipeId, 100), batchId: clean(p.batchId, 100), cookServings: kind === 'cook' ? positive(p.cookServings, 'Servings to cook') : 0, eatServings: positive(p.eatServings, 'Servings to eat', kind === 'cook'), done: false, note: clean(p.note, 500) };
+            const entry: PlanEntry = { id: clean(p.id, 100) || nextId(), date: validDate(p.date), slot: ['Breakfast', 'Lunch', 'Dinner', 'Snack'].includes(p.slot) ? p.slot : 'Dinner', kind, recipeId: clean(p.recipeId, 100), batchId: clean(p.batchId, 100), cookServings: kind === 'cook' ? positive(p.cookServings, 'Servings to cook') : 0, eatServings: positive(p.eatServings, 'Servings to eat', kind === 'cook'), done: false, note: clean(p.note, 500) };
             const old = s.plan.find(x => x.id === entry.id);
             if (old?.done)
                 throw new DomainError('A completed meal cannot be edited.');
@@ -156,6 +212,19 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             s.plan.push(entry);
             break;
         }
+        case 'plan.move': {
+            // Drag a meal to another day. Leftovers stay on or after their cooking day.
+            const entry = s.plan.find(x => x.id === p.id);
+            if (!entry) throw new DomainError('This meal was removed. Refresh and choose another.', 404);
+            if (entry.done) throw new DomainError('A completed meal cannot be moved.');
+            const date = validDate(p.date);
+            if (entry.kind === 'cook' && s.plan.some(x => x.batchId === entry.id && !x.done && x.date < date)) throw new DomainError('Move this batch’s leftover meals first: they would come before the cooking day.');
+            const cooking = entry.kind === 'leftover' ? s.plan.find(x => x.id === entry.batchId && x.kind === 'cook' && !x.done) : undefined;
+            if (cooking && date < cooking.date) throw new DomainError('Leftovers have to come on or after the day the batch is cooked.');
+            entry.date = date;
+            if (['Breakfast', 'Lunch', 'Dinner', 'Snack'].includes(p.slot)) entry.slot = p.slot;
+            break;
+        }
         case 'plan.delete': {
             const old = s.plan.find(x => x.id === p.id);
             if (old?.done)
@@ -186,7 +255,7 @@ export function applyCommand(original: State, type: string, p: any, operationId:
                 const stock = s.pantry.find(x => x.id === u.pantryId);
                 if (!stock)
                     throw new DomainError('A pantry item changed. Refresh and review usage.');
-                if (u.expected && JSON.stringify(stock) !== u.expected)
+                if (u.expected && !sameRecord(stock, u.expected))
                     throw new DomainError('An ingredient changed. Close this review and reopen it to check the latest pantry amounts.', 409);
                 if (u.amount === null)
                     continue;
@@ -202,7 +271,7 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             if (entry)
                 entry.done = true;
             for (const meal of autoLeftovers(s, batchId, cooked - eaten, entry?.date ?? at.slice(0, 10)))
-                s.plan.push({ id: uid(), date: meal.date, slot: entry?.slot ?? 'Dinner', kind: 'leftover', recipeId: r.id, batchId, cookServings: 0, eatServings: meal.portions, done: false, note: '', auto: true });
+                s.plan.push({ id: nextId(), date: meal.date, slot: entry?.slot ?? 'Dinner', kind: 'leftover', recipeId: r.id, batchId, cookServings: 0, eatServings: meal.portions, done: false, note: '', auto: true });
             r.wantToTry = false;
             break;
         }
@@ -247,7 +316,7 @@ export function applyCommand(original: State, type: string, p: any, operationId:
         }
         case 'shopping.generate': {
             const week = validDate(p.week);
-            const generated = generatedShopping(s, week), old = s.shopping;
+            const generated = generatedShopping(s, week, nextId), old = s.shopping;
             for (const item of generated) {
                 const previous = old.find(x => !x.manual && x.key === item.key && !x.addedToPantry);
                 if (previous) {
@@ -273,11 +342,17 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             const old = s.shopping.find(x => x.id === p.id);
             if (old?.addedToPantry)
                 throw new DomainError('This purchase is already in the pantry. Add a new item for another purchase.');
-            const item: ShoppingItem = { id: clean(p.id, 100) || uid(), key: old?.key ?? uid(), name: clean(p.name, 200), amount: p.amount === null || p.amount === '' ? null : positive(p.amount, 'Purchase amount', true), unit: clean(p.unit, 40), note: clean(p.note, 500), group: clean(p.group, 100) || 'Other', checked: !!p.checked, manual: old?.manual ?? true, override: old ? !old.manual : false, needed: old?.needed ?? null, uncertain: old?.uncertain ?? false, addedToPantry: false };
+            const item: ShoppingItem = { id: clean(p.id, 100) || nextId(), key: old?.key ?? nextId(), name: clean(p.name, 200), amount: p.amount === null || p.amount === '' ? null : positive(p.amount, 'Purchase amount', true), unit: clean(p.unit, 40), note: clean(p.note, 500), group: clean(p.group, 100) || 'Other', checked: !!p.checked, manual: old?.manual ?? true, override: old ? !old.manual : false, needed: old?.needed ?? null, uncertain: old?.uncertain ?? false, addedToPantry: false };
             if (!item.name)
                 throw new DomainError('Enter an item name.');
             s.shopping = s.shopping.filter(x => x.id !== item.id);
             s.shopping.push(item);
+            // Moving an item to another aisle is remembered for that ingredient.
+            if (clean(p.group, 100) && item.group !== (old?.group ?? '') && !['Other', 'Ingredients'].includes(item.group)) {
+                const lower = item.name.toLowerCase(), known = s.ingredients.find(i => i.id === item.key || i.name.toLowerCase() === lower || i.aliases.some(a => a.toLowerCase() === lower));
+                if (known) known.aisle = item.group;
+                else if (s.ingredients.length < 10000) s.ingredients.push({ id: nextId(), name: item.name, aliases: [], aisle: item.group });
+            }
             break;
         }
         case 'shopping.toggle': {
@@ -307,7 +382,7 @@ export function applyCommand(original: State, type: string, p: any, operationId:
                 if (existing && amount !== null)
                     existing.amount = existing.amount! + convert(amount, unit, existing.unit)!;
                 else
-                    s.pantry.push({ id: uid(), name: item.name, amount, unit, location: ['Pantry', 'Fridge', 'Freezer'].includes(row.location) ? row.location : 'Pantry', note: '' });
+                    s.pantry.push({ id: nextId(), name: item.name, amount, unit, location: ['Pantry', 'Fridge', 'Freezer'].includes(row.location) ? row.location : 'Pantry', note: '' });
                 item.addedToPantry = true;
                 movement(item.name, amount, unit, 'Purchased');
             }
@@ -317,7 +392,7 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             const existing = s.drafts.find(x => x.id === p.id);
             if (p.expectedUpdatedAt && existing?.recipe.updatedAt !== p.expectedUpdatedAt)
                 throw new DomainError('This draft changed. Load the latest version before saving.', 409);
-            const recipe = normalizeRecipe(p.recipe, true), draft: ImportDraft = { id: clean(p.id, 100) || uid(), recipe, text: clean(p.text, 60000), warnings: (Array.isArray(p.warnings) ? p.warnings : []).slice(0, 20).map((v: unknown) => clean(v, 500)), createdAt: at };
+            const recipe = normalizeRecipe(p.recipe && typeof p.recipe === 'object' ? { ...p.recipe, id: clean(p.recipe.id, 100) || nextId() } : p.recipe, true, at), draft: ImportDraft = { id: clean(p.id, 100) || nextId(), recipe: existing ? { ...recipe, updatedAt: later(existing.recipe.updatedAt, recipe.updatedAt) } : recipe, text: clean(p.text, 60000), warnings: (Array.isArray(p.warnings) ? p.warnings : []).slice(0, 20).map((v: unknown) => clean(v, 500)), createdAt: at };
             s.drafts = s.drafts.filter(x => x.id !== draft.id);
             s.drafts.push(draft);
             break;
@@ -330,9 +405,15 @@ export function applyCommand(original: State, type: string, p: any, operationId:
             s.settings.weekStartsOn = p.weekStartsOn === 0 ? 0 : 1;
             s.settings.autoLeftovers = p.autoLeftovers === undefined ? s.settings.autoLeftovers !== false : !!p.autoLeftovers;
             const cats = clean(p.categories, 2000).split('\n').map(c => c.trim()).filter(Boolean);
-            if (!cats.length || cats.length > 40)
-                throw new DomainError('Enter between 1 and 40 categories.');
+            if (!cats.length || cats.length > 100)
+                throw new DomainError('Enter between 1 and 100 categories. Use “Dinner / Pasta” for a category inside another.');
             s.settings.categories = [...new Set(cats)];
+            if (p.aisles !== undefined) {
+                const aisles = [...new Set(clean(p.aisles, 3000).split('\n').map(a => a.trim().slice(0, 100)).filter(Boolean))];
+                if (aisles.length > 60) throw new DomainError('Enter up to 60 aisles.');
+                s.settings.aisles = aisles.length ? aisles : undefined;
+                if (!s.settings.aisles) delete s.settings.aisles;
+            }
             break;
         }
         default: throw new DomainError('Unknown action.');
