@@ -5,7 +5,7 @@ import { householdStore } from './store.ts';
 import { readBackup } from './backup.ts';
 import { handleMcp } from './mcp.ts';
 import { challenge, protectedResource } from './oauth.ts';
-import { photoKey, signedPhotos, uploadPhotos } from './photos.ts';
+import { photoKey, rehostImage, signedPhotos, uploadPhotos } from './photos.ts';
 export { photoExtension } from './photos.ts';
 import { beginRemindersSync, finishRemindersSync, remindersSyncStatus } from './reminders-api.ts';
 
@@ -85,14 +85,7 @@ export function createHandler(admin: SupabaseClient, allowedOrigins: string[], r
                 return respond(json({ url: data.signedUrl }));
             }
             if (path === 'mcp' && request.method === 'POST') {
-                // rehostImage lands with the importer rewrite; until then photos stay linked.
-                const photoTools: any = await import('./photos.ts');
-                const rehost = typeof photoTools.rehostImage === 'function' ? photoTools.rehostImage : null;
-                return respond(await handleMcp(request, store, { rehost: async (link: string) => {
-                    if (!rehost) return { reference: null };
-                    const copied = await rehost(admin, householdId, link);
-                    return typeof copied === 'string' ? { reference: copied } : { reference: copied?.reference ?? null, reason: copied?.reason };
-                } }));
+                return respond(await handleMcp(request, store, { rehost: link => rehostImage(admin, householdId, link) }));
             }
             if (path === 'mcp') return respond(new Response(null, { status: 405, headers: { Allow: 'POST' } }));
             throw new DomainError('This action is not available.', 404);
