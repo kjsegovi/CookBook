@@ -295,6 +295,23 @@ class SyncEngineTest {
         assertEquals(listOf("rice", "salt"), s.server.state.pantry.map { it.id })
     }
 
+    @Test fun anAnswerArrivingAfterCloseIsNotSaved() = runTest {
+        val s = setup()
+        val answer = kotlinx.coroutines.CompletableDeferred<Unit>()
+        val engine = s.make(sender = { type, payload, id, revision -> answer.await(); s.server.send(type, payload, id, revision) })
+        engine.enqueue("pantry.save", pantry("rice", "rice", 1, "kg"))
+        runCurrent()
+        assertTrue(engine.status.value.syncing, "the send is waiting for the server")
+        // Signing out: the engine closes and the account's data is removed while the request is in flight.
+        engine.close()
+        s.store.clearAccount("user")
+        answer.complete(Unit)
+        runCurrent()
+        assertNull(s.store.readSnapshot("user"), "the signed-out account's cookbook is not written back")
+        assertEquals(0, s.store.outbox("user").size)
+        assertEquals(0, s.store.problems("user").size)
+    }
+
     @Test fun acceptIgnoresOlderAndForeignSnapshots() = runTest {
         val s = setup()
         val engine = s.make()

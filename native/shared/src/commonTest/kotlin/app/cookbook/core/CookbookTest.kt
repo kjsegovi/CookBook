@@ -14,7 +14,9 @@ import app.cookbook.core.sync.SyncFailure
 import app.cookbook.core.sync.sample
 import app.cookbook.core.sync.seedWith
 import app.cookbook.core.sync.statePatch
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
@@ -46,6 +48,10 @@ private class FakeApi(val server: FakeServer) : CookbookApi {
     var signedIn = true
     /** The next flag answer claims a base revision this device never had. */
     var staleDelta = false
+    /** Reads fail with this status (a server error) while set. */
+    var readFailure: Int? = null
+    /** Commands wait for this before reaching the server while set. */
+    var gate: CompletableDeferred<Unit>? = null
     val calls = mutableListOf<String>()
 
     private fun check() {
@@ -54,12 +60,15 @@ private class FakeApi(val server: FakeServer) : CookbookApi {
     }
 
     override suspend fun read(knownRevision: Long?): ReadResult {
-        check(); calls += "read:$knownRevision"
+        check()
+        readFailure?.let { throw SyncFailure("The cookbook is busy. Please try again.", it) }
+        calls += "read:$knownRevision"
         return if (knownRevision == server.revision) ReadResult.Unchanged(server.revision, HOUSEHOLD) else ReadResult.Full(server.snapshot)
     }
 
     override suspend fun command(type: String, payload: JsonElement, id: String, revision: Long, household: String): ReadResult {
         check(); calls += "command:$type"
+        gate?.await()
         return ReadResult.Full(server.send(type, payload, id, revision))
     }
 
@@ -236,6 +245,37 @@ class CookbookTest {
         assertEquals(listOf("read:null", "command:recipe.rate", "import"), w.api.calls)
         assertEquals(listOf("draft-1"), w.cookbook.state.drafts.map { it.id })
         assertEquals(w.server.revision, w.cookbook.view.value!!.revision)
+    }
+
+    @Test fun aServerErrorOnRefreshKeepsTheSavedCopyOpen() = runTest {
+        val first = World(this)
+        first.cookbook.open()
+        first.api.readFailure = 503
+        val cookbook = Cookbook(CONFIG, first.session, first.store, first.api, backgroundScope, { true })
+        cookbook.open()  // returns normally
+        assertEquals(listOf("rice"), cookbook.state.recipes.map { it.id }, "the saved copy")
+        assertEquals("The cookbook is busy. Please try again.", cookbook.lastError.value)
+        first.api.readFailure = null
+        first.server.edit("pantry.save", buildJsonObject { put("name", "rice"); put("amount", 1); put("unit", "kg") })
+        cookbook.refresh()
+        assertNull(cookbook.lastError.value, "cleared after a successful read")
+        assertEquals(1, cookbook.state.pantry.size)
+    }
+
+    @Test fun signingOutDuringASendDoesNotWriteTheAccountBack() = runTest {
+        val w = World(this)
+        w.cookbook.open()
+        val gate = CompletableDeferred<Unit>()
+        w.api.gate = gate
+        w.cookbook.save("recipe.rate", buildJsonObject { put("id", "rice"); put("rating", 5) }).getOrThrow()
+        runCurrent()
+        assertTrue(w.cookbook.status.value.syncing)
+        assertTrue(w.cookbook.signOut(force = true))
+        gate.complete(Unit)
+        runCurrent()
+        assertNull(w.store.readSnapshot("user"))
+        assertEquals(0, w.store.outbox("user").size)
+        assertNull(w.cookbook.view.value)
     }
 
     @Test fun signOutWaitsForUnsentChangesUnlessForced() = runTest {

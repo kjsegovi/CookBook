@@ -80,6 +80,9 @@ class Cookbook(
     val status: StateFlow<SyncStatus> = _status.asStateFlow()
     /** The saved sign-in is missing or the server refused it (401). Unsent changes are kept; sign in to send them. */
     val needsSignIn: StateFlow<Boolean> = _needsSignIn.asStateFlow()
+    private val _lastError = MutableStateFlow<String?>(null)
+    /** The latest failed read (refresh, open, import) shown beside the cookbook; null after the next successful read. */
+    val lastError: StateFlow<String?> = _lastError.asStateFlow()
 
     private fun currentStatus(): SyncStatus {
         val engineStatus = engine?.status?.value ?: SyncStatus(0, emptyList(), !online(), false)
@@ -93,6 +96,7 @@ class Cookbook(
     }
 
     private fun failed(e: SyncFailure) {
+        _lastError.value = e.message
         if (e.status == 0) unreachable = true
         if (e.status == 401) _needsSignIn.value = true
         sync()
@@ -100,6 +104,7 @@ class Cookbook(
 
     private fun reachedServer() {
         unreachable = false
+        _lastError.value = null
         _needsSignIn.value = false
     }
 
@@ -114,8 +119,8 @@ class Cookbook(
 
     /**
      * Opens the cookbook of the signed-in account, or of the last signed-in account when the sign-in can't be checked
-     * (offline). A saved copy opens without the network, then a refresh is tried; connection and sign-in failures are
-     * shown through [status] and [needsSignIn]. With no saved copy the cookbook is read from the server, and a failure
+     * (offline). A saved copy opens without the network, then a refresh is tried; any refresh failure is
+     * shown through [status], [needsSignIn] and [lastError]. With no saved copy the cookbook is read from the server, and a failure
      * is thrown ([SyncFailure]) with [view] left null.
      */
     suspend fun open() {
@@ -137,7 +142,8 @@ class Cookbook(
             }
             start(account, saved)
         }
-        try { refresh() } catch (e: SyncFailure) { if (e.status != 0 && e.status != 401) throw e }
+        // A saved copy is showing: a failed refresh is reported through status, needsSignIn and lastError.
+        try { refresh() } catch (e: SyncFailure) { }
     }
 
     private fun start(account: String, snapshot: Snapshot) {
@@ -319,6 +325,7 @@ class Cookbook(
         _account.value = null
         unreachable = false
         _needsSignIn.value = false
+        _lastError.value = null
         sync()
         return true
     }

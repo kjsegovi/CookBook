@@ -161,6 +161,7 @@ class SyncEngine(
 
     /** A newer cookbook from the server, for example after a refresh. */
     fun accept(snapshot: Snapshot) {
+        if (closed) return
         if (snapshot.householdId != confirmed.householdId || snapshot.revision < confirmed.revision) return
         confirmed = snapshot
         persistConfirmed()
@@ -192,6 +193,8 @@ class SyncEngine(
                     throw e
                 } catch (e: Exception) {
                     sending = null
+                    // Closed (signed out) while waiting: the account's data may already be gone; write nothing back.
+                    if (closed) return
                     val status = failureStatus(e)
                     if (isRejection(status)) {
                         queue = queue.filter { it.id != item.id }
@@ -205,6 +208,7 @@ class SyncEngine(
                     return
                 }
                 sending = null; lastError = false; failures = 0
+                if (closed) return
                 acknowledge(item, saved)
             }
         } finally {
