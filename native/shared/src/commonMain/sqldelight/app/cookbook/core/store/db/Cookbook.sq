@@ -1,0 +1,71 @@
+CREATE TABLE snapshot (
+    account TEXT PRIMARY KEY,
+    household TEXT NOT NULL,
+    revision INTEGER NOT NULL,
+    state TEXT NOT NULL
+);
+
+CREATE TABLE outbox (
+    seq INTEGER PRIMARY KEY AUTOINCREMENT,
+    account TEXT NOT NULL,
+    id TEXT NOT NULL UNIQUE,
+    type TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    at INTEGER NOT NULL
+);
+
+CREATE TABLE problem (
+    id TEXT PRIMARY KEY,
+    account TEXT NOT NULL,
+    type TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    at INTEGER NOT NULL,
+    message TEXT NOT NULL,
+    status INTEGER NOT NULL
+);
+
+CREATE TABLE pending_upload (
+    id TEXT PRIMARY KEY,
+    account TEXT NOT NULL,
+    photo_path TEXT NOT NULL,
+    thumb_path TEXT
+);
+
+selectSnapshot:
+SELECT household, revision, state FROM snapshot WHERE account = ?;
+
+upsertSnapshot:
+INSERT OR REPLACE INTO snapshot(account, household, revision, state) VALUES (?, ?, ?, ?);
+
+deleteSnapshot:
+DELETE FROM snapshot WHERE account = ?;
+
+selectOutbox:
+SELECT id, type, payload, at FROM outbox WHERE account = ? ORDER BY seq;
+
+insertOutbox:
+INSERT OR REPLACE INTO outbox(account, id, type, payload, at) VALUES (?, ?, ?, ?, ?);
+
+deleteOutbox:
+DELETE FROM outbox WHERE account = ?;
+
+selectProblems:
+SELECT id, type, payload, at, message, status FROM problem WHERE account = ? ORDER BY at, id;
+
+insertProblem:
+INSERT OR REPLACE INTO problem(id, account, type, payload, at, message, status) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+deleteProblems:
+DELETE FROM problem WHERE account = ?;
+
+selectUploads:
+SELECT id, photo_path, thumb_path FROM pending_upload WHERE account = ?;
+
+insertUpload:
+INSERT OR REPLACE INTO pending_upload(id, account, photo_path, thumb_path) VALUES (?, ?, ?, ?);
+
+deleteUpload:
+DELETE FROM pending_upload WHERE id = ?;
+
+deleteUploads:
+DELETE FROM pending_upload WHERE account = ?;

@@ -2,6 +2,15 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.sqldelight)
+}
+
+sqldelight {
+    databases {
+        create("CookbookDatabase") {
+            packageName.set("app.cookbook.core.store")
+        }
+    }
 }
 
 kotlin {
@@ -31,7 +40,11 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.sqldelight.runtime)
         }
+        androidMain.dependencies { implementation(libs.sqldelight.android.driver) }
+        iosMain.dependencies { implementation(libs.sqldelight.native.driver) }
+        jvmMain.dependencies { implementation(libs.sqldelight.sqlite.driver) }
         commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
