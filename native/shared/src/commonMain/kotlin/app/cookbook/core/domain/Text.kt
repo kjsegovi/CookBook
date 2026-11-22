@@ -82,9 +82,9 @@ private val dateShape = Regex("[0-9]{4}-[0-9]{2}-[0-9]{2}")
 
 private fun isLeap(y: Int) = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0
 
-private fun daysIn(y: Int, m: Int) = when (m) { 2 -> if (isLeap(y)) 29 else 28; 4, 6, 9, 11 -> 30; else -> 31 }
+internal fun daysIn(y: Int, m: Int) = when (m) { 2 -> if (isLeap(y)) 29 else 28; 4, 6, 9, 11 -> 30; else -> 31 }
 
-private fun daysFromCivil(year: Int, month: Int, day: Int): Long {
+internal fun daysFromCivil(year: Int, month: Int, day: Int): Long {
     val y = (if (month <= 2) year - 1 else year).toLong()
     val era = floorDiv(y, 400)
     val yoe = y - era * 400
@@ -93,9 +93,9 @@ private fun daysFromCivil(year: Int, month: Int, day: Int): Long {
     return era * 146097 + doe - 719468
 }
 
-private fun floorDiv(a: Long, b: Long): Long = if (a >= 0) a / b else -((-a + b - 1) / b)
+internal fun floorDiv(a: Long, b: Long): Long = if (a >= 0) a / b else -((-a + b - 1) / b)
 
-private fun civilFromDays(z0: Long): Triple<Int, Int, Int> {
+internal fun civilFromDays(z0: Long): Triple<Int, Int, Int> {
     val z = z0 + 719468
     val era = floorDiv(z, 146097)
     val doe = z - era * 146097

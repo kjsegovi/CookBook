@@ -1,0 +1,1483 @@
+{
+  "initial": {
+    "batches": [],
+    "drafts": [],
+    "ingredients": [],
+    "menus": [],
+    "movements": [],
+    "operations": [],
+    "pantry": [],
+    "plan": [],
+    "recipes": [],
+    "settings": {
+      "autoLeftovers": true,
+      "categories": [
+        "Breakfast",
+        "Entrées",
+        "Sauces",
+        "Sides",
+        "Snacks",
+        "Pastries & Desserts"
+      ],
+      "servings": 2,
+      "weekStartsOn": 1
+    },
+    "shopping": [],
+    "shoppingWeek": ""
+  },
+  "name": "payload-shapes",
+  "steps": [
+    {
+      "after": null,
+      "clock": "2026-11-21T10:01:00.000Z",
+      "error": {
+        "message": "Recipe details are required.",
+        "status": 400
+      },
+      "operationId": "op-0001",
+      "patch": null,
+      "payload": {
+        "id": "d1",
+        "recipe": "Soup"
+      },
+      "type": "draft.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:02:00.000Z",
+      "error": {
+        "message": "Recipe details are required.",
+        "status": 400
+      },
+      "operationId": "op-0002",
+      "patch": null,
+      "payload": {
+        "id": "d1",
+        "recipe": 0
+      },
+      "type": "draft.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:03:00.000Z",
+      "error": {
+        "message": "Recipe details are required.",
+        "status": 400
+      },
+      "operationId": "op-0003",
+      "patch": null,
+      "payload": {
+        "id": "d1",
+        "recipe": true
+      },
+      "type": "draft.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:04:00.000Z",
+      "error": {
+        "message": "Recipe details are required.",
+        "status": 400
+      },
+      "operationId": "op-0004",
+      "patch": null,
+      "payload": {
+        "id": "d1",
+        "recipe": ""
+      },
+      "type": "draft.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "d1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0005-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          }
+        ],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0005"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:05:00.000Z",
+      "error": null,
+      "operationId": "op-0005",
+      "patch": {
+        "appendOperations": [
+          "op-0005"
+        ],
+        "collections": {
+          "drafts": {
+            "order": [
+              "d1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "createdAt": "2026-11-21T10:05:00.000Z",
+                "id": "d1",
+                "recipe": {
+                  "author": "",
+                  "categories": [
+                    "Entrées"
+                  ],
+                  "category": "Entrées",
+                  "cookMinutes": 0,
+                  "createdAt": "2026-11-21T10:05:00.000Z",
+                  "description": "",
+                  "favorite": false,
+                  "id": "op-0005-1",
+                  "image": "",
+                  "images": [],
+                  "ingredients": [],
+                  "notes": "",
+                  "nutrition": null,
+                  "prepMinutes": 0,
+                  "rating": 0,
+                  "related": [],
+                  "servings": 2,
+                  "sourceUrl": "",
+                  "steps": [],
+                  "tags": [],
+                  "title": "",
+                  "updatedAt": "2026-11-21T10:05:00.000Z",
+                  "wantToTry": false
+                },
+                "text": "",
+                "warnings": []
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "d1",
+        "recipe": []
+      },
+      "type": "draft.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "d1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0005-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          },
+          {
+            "createdAt": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:06:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0006-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:06:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          }
+        ],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0005",
+          "op-0006"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:06:00.000Z",
+      "error": null,
+      "operationId": "op-0006",
+      "patch": {
+        "appendOperations": [
+          "op-0006"
+        ],
+        "collections": {
+          "drafts": {
+            "order": [
+              "d1",
+              "op-0006-2"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "createdAt": "2026-11-21T10:06:00.000Z",
+                "id": "op-0006-2",
+                "recipe": {
+                  "author": "",
+                  "categories": [
+                    "Entrées"
+                  ],
+                  "category": "Entrées",
+                  "cookMinutes": 0,
+                  "createdAt": "2026-11-21T10:06:00.000Z",
+                  "description": "",
+                  "favorite": false,
+                  "id": "op-0006-1",
+                  "image": "",
+                  "images": [],
+                  "ingredients": [],
+                  "notes": "",
+                  "nutrition": null,
+                  "prepMinutes": 0,
+                  "rating": 0,
+                  "related": [],
+                  "servings": 2,
+                  "sourceUrl": "",
+                  "steps": [],
+                  "tags": [],
+                  "title": "",
+                  "updatedAt": "2026-11-21T10:06:00.000Z",
+                  "wantToTry": false
+                },
+                "text": "",
+                "warnings": []
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "recipe": [
+          {
+            "title": "ignored"
+          },
+          "x"
+        ]
+      },
+      "type": "draft.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:07:00.000Z",
+      "error": {
+        "message": "Each imported recipe needs an id.",
+        "status": 400
+      },
+      "operationId": "op-0007",
+      "patch": null,
+      "payload": {
+        "recipes": [
+          [
+            "a"
+          ]
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:08:00.000Z",
+      "error": {
+        "message": "Each imported recipe needs an id.",
+        "status": 400
+      },
+      "operationId": "op-0008",
+      "patch": null,
+      "payload": {
+        "recipes": [
+          "abc"
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:09:00.000Z",
+      "error": {
+        "message": "Each imported recipe needs an id.",
+        "status": 400
+      },
+      "operationId": "op-0009",
+      "patch": null,
+      "payload": {
+        "recipes": [
+          null
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:10:00.000Z",
+      "error": {
+        "message": "Import between 1 and 25 recipes at a time.",
+        "status": 400
+      },
+      "operationId": "op-0010",
+      "patch": null,
+      "payload": {
+        "recipes": "abc"
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:11:00.000Z",
+      "error": {
+        "message": "Add a title, at least one named ingredient, and instructions before saving.",
+        "status": 400
+      },
+      "operationId": "op-0011",
+      "patch": null,
+      "payload": {
+        "id": "r1",
+        "ingredients": "rice",
+        "steps": [
+          "Cook."
+        ],
+        "title": "Shaped"
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "d1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0005-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          },
+          {
+            "createdAt": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:06:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0006-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:06:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          }
+        ],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0005",
+          "op-0006",
+          "op-0012"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 0,
+            "rating": 0,
+            "related": [],
+            "servings": 2,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Shaped",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:12:00.000Z",
+      "error": null,
+      "operationId": "op-0012",
+      "patch": {
+        "appendOperations": [
+          "op-0012"
+        ],
+        "collections": {
+          "recipes": {
+            "order": [
+              "r1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 0,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 0,
+                "rating": 0,
+                "related": [],
+                "servings": 2,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Shaped",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": false
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "expectedUpdatedAt": "1999-01-01T00:00:00.000Z",
+        "id": "r1",
+        "ingredients": [
+          {
+            "amount": "",
+            "id": "i1",
+            "name": "rice"
+          }
+        ],
+        "steps": [
+          "Cook."
+        ],
+        "title": "Shaped"
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:13:00.000Z",
+      "error": {
+        "message": "This recipe changed. Load the latest version before saving.",
+        "status": 409
+      },
+      "operationId": "op-0013",
+      "patch": null,
+      "payload": {
+        "expectedUpdatedAt": 5,
+        "id": "r1",
+        "ingredients": [
+          {
+            "id": "i1",
+            "name": "rice"
+          }
+        ],
+        "steps": [
+          "Cook."
+        ],
+        "title": "Again"
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "d1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0005-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          },
+          {
+            "createdAt": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:06:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0006-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:06:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          }
+        ],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:14:00.000Z",
+            "description": "",
+            "id": "7",
+            "items": [
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "Numbered",
+            "updatedAt": "2026-11-21T10:14:00.000Z"
+          }
+        ],
+        "movements": [],
+        "operations": [
+          "op-0005",
+          "op-0006",
+          "op-0012",
+          "op-0014"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 0,
+            "rating": 0,
+            "related": [],
+            "servings": 2,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Shaped",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:14:00.000Z",
+      "error": null,
+      "operationId": "op-0014",
+      "patch": {
+        "appendOperations": [
+          "op-0014"
+        ],
+        "collections": {
+          "menus": {
+            "order": [
+              "7"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "createdAt": "2026-11-21T10:14:00.000Z",
+                "description": "",
+                "id": "7",
+                "items": [
+                  {
+                    "day": 1,
+                    "recipeId": "r1",
+                    "slot": "Dinner"
+                  }
+                ],
+                "name": "Numbered",
+                "updatedAt": "2026-11-21T10:14:00.000Z"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": 7,
+        "items": [
+          {
+            "day": 1,
+            "recipeId": "r1"
+          }
+        ],
+        "name": "Numbered"
+      },
+      "type": "menu.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:15:00.000Z",
+      "error": {
+        "message": "This recipe was removed. Refresh and choose another.",
+        "status": 404
+      },
+      "operationId": "op-0015",
+      "patch": null,
+      "payload": {
+        "id": 7,
+        "items": [
+          {
+            "recipeId": "r1"
+          },
+          "not an item"
+        ],
+        "name": "Numbered again"
+      },
+      "type": "menu.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "d1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0005-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          },
+          {
+            "createdAt": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:06:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0006-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:06:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          }
+        ],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:14:00.000Z",
+            "description": "",
+            "id": "7",
+            "items": [
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "Numbered",
+            "updatedAt": "2026-11-21T10:14:00.000Z"
+          }
+        ],
+        "movements": [],
+        "operations": [
+          "op-0005",
+          "op-0006",
+          "op-0012",
+          "op-0014",
+          "op-0016"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 0,
+            "rating": 0,
+            "related": [],
+            "servings": 2,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Shaped",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:16:00.000Z",
+      "error": null,
+      "operationId": "op-0016",
+      "patch": {
+        "appendOperations": [
+          "op-0016"
+        ],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "id": 7
+      },
+      "type": "menu.delete"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "d1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0005-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          },
+          {
+            "createdAt": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:06:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0006-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:06:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          }
+        ],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0005",
+          "op-0006",
+          "op-0012",
+          "op-0014",
+          "op-0016",
+          "op-0017"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 0,
+            "rating": 0,
+            "related": [],
+            "servings": 2,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Shaped",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:17:00.000Z",
+      "error": null,
+      "operationId": "op-0017",
+      "patch": {
+        "appendOperations": [
+          "op-0017"
+        ],
+        "collections": {
+          "menus": {
+            "order": [],
+            "remove": [
+              "7"
+            ],
+            "upsert": []
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "7"
+      },
+      "type": "menu.delete"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:18:00.000Z",
+      "error": {
+        "message": "This item changed. Close this form and reopen it to review the latest version.",
+        "status": 409
+      },
+      "operationId": "op-0018",
+      "patch": null,
+      "payload": {
+        "__expected": "null",
+        "favorite": true,
+        "id": "r1"
+      },
+      "type": "recipe.favorite"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:19:00.000Z",
+      "error": {
+        "message": "Reopen this form before saving.",
+        "status": 409
+      },
+      "operationId": "op-0019",
+      "patch": null,
+      "payload": {
+        "__expected": "{\"a\":",
+        "id": "r1",
+        "rating": 3
+      },
+      "type": "recipe.rate"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "d1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0005-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          },
+          {
+            "createdAt": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:06:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "op-0006-1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "",
+              "updatedAt": "2026-11-21T10:06:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": []
+          }
+        ],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0005",
+          "op-0006",
+          "op-0012",
+          "op-0014",
+          "op-0016",
+          "op-0017",
+          "op-0020"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 0,
+            "rating": 3,
+            "related": [],
+            "servings": 2,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Shaped",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:20:00.000Z",
+      "error": null,
+      "operationId": "op-0020",
+      "patch": {
+        "appendOperations": [
+          "op-0020"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 0,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 0,
+                "rating": 3,
+                "related": [],
+                "servings": 2,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Shaped",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": false
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "__expected": "",
+        "id": "r1",
+        "rating": 3
+      },
+      "type": "recipe.rate"
+    }
+  ]
+}

@@ -80,7 +80,8 @@ private fun write(e: JsonElement, out: StringBuilder) {
         is JsonNull -> out.append("null")
         is JsonPrimitive -> {
             val number = if (e.isString || e.content == "true" || e.content == "false") null else e.content.toDoubleOrNull()
-            out.append(if (number != null) jsNumberString(number) else e.toString())
+            // JSON.stringify writes a non-finite number (JSON.parse('1e400') is Infinity) as null.
+            out.append(if (number == null) e.toString() else if (jsIsFinite(number)) jsNumberString(number) else "null")
         }
     }
 }

@@ -1,0 +1,4767 @@
+{
+  "initial": {
+    "batches": [],
+    "drafts": [],
+    "ingredients": [],
+    "menus": [],
+    "movements": [],
+    "operations": [],
+    "pantry": [],
+    "plan": [],
+    "recipes": [
+      {
+        "author": "",
+        "categories": [
+          "Entrées",
+          "Dinner"
+        ],
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "createdAt": "2026-11-21T10:00:00.000Z",
+        "description": "",
+        "favorite": false,
+        "id": "r1",
+        "image": "",
+        "images": [],
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r1-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "nutrition": null,
+        "prepMinutes": 10,
+        "rating": 0,
+        "related": [],
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r1",
+        "updatedAt": "2026-11-21T10:00:00.000Z",
+        "wantToTry": true
+      },
+      {
+        "author": "",
+        "categories": [
+          "Entrées"
+        ],
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "createdAt": "2026-11-21T10:00:00.000Z",
+        "description": "",
+        "favorite": false,
+        "id": "r2",
+        "image": "",
+        "images": [],
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r2-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "nutrition": null,
+        "prepMinutes": 10,
+        "rating": 0,
+        "related": [],
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r2",
+        "updatedAt": "2026-11-21T10:00:00.000Z",
+        "wantToTry": true
+      }
+    ],
+    "settings": {
+      "autoLeftovers": true,
+      "categories": [
+        "Breakfast",
+        "Entrées",
+        "Sauces",
+        "Sides",
+        "Snacks",
+        "Pastries & Desserts"
+      ],
+      "servings": 2,
+      "weekStartsOn": 1
+    },
+    "shopping": [],
+    "shoppingWeek": ""
+  },
+  "name": "recipe-changes",
+  "steps": [
+    {
+      "after": null,
+      "clock": "2026-11-21T10:01:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected object, received undefined",
+        "status": 400
+      },
+      "operationId": "op-0001",
+      "patch": null,
+      "payload": {
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:02:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected object, received null",
+        "status": 400
+      },
+      "operationId": "op-0002",
+      "patch": null,
+      "payload": {
+        "changes": null,
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:03:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected object, received string",
+        "status": 400
+      },
+      "operationId": "op-0003",
+      "patch": null,
+      "payload": {
+        "changes": "title",
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:04:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected object, received number",
+        "status": 400
+      },
+      "operationId": "op-0004",
+      "patch": null,
+      "payload": {
+        "changes": 5,
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:05:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected object, received boolean",
+        "status": 400
+      },
+      "operationId": "op-0005",
+      "patch": null,
+      "payload": {
+        "changes": true,
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:06:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected object, received array",
+        "status": 400
+      },
+      "operationId": "op-0006",
+      "patch": null,
+      "payload": {
+        "changes": [],
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:07:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Include at least one field to edit.",
+        "status": 400
+      },
+      "operationId": "op-0007",
+      "patch": null,
+      "payload": {
+        "changes": {},
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:08:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Unrecognized key: \"bogus\"",
+        "status": 400
+      },
+      "operationId": "op-0008",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "bogus": 1
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:09:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Unrecognized keys: \"bogus\", \"zz\"",
+        "status": 400
+      },
+      "operationId": "op-0009",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "bogus": 1,
+          "zz": 2
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:10:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Unrecognized key: \"bogus\"",
+        "status": 400
+      },
+      "operationId": "op-0010",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "bogus": 1,
+          "title": "ok"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:11:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0011",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "title": "   "
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:12:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=200 characters",
+        "status": 400
+      },
+      "operationId": "op-0012",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "title": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:13:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected string, received number",
+        "status": 400
+      },
+      "operationId": "op-0013",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "title": 5
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:14:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected string, received null",
+        "status": 400
+      },
+      "operationId": "op-0014",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "title": null
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:15:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=3000 characters",
+        "status": 400
+      },
+      "operationId": "op-0015",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:16:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected number to be >=0.000001",
+        "status": 400
+      },
+      "operationId": "op-0016",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "servings": 0
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:17:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected number to be <=1000000",
+        "status": 400
+      },
+      "operationId": "op-0017",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "servings": 2000000
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:18:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected number, received string",
+        "status": 400
+      },
+      "operationId": "op-0018",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "servings": "2"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:19:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected number to be >=0",
+        "status": 400
+      },
+      "operationId": "op-0019",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "prepMinutes": -1
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:20:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected number to be <=1000000",
+        "status": 400
+      },
+      "operationId": "op-0020",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "cookMinutes": 1000001
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:21:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0021",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "category": " "
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:22:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=80 characters",
+        "status": 400
+      },
+      "operationId": "op-0022",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "category": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:23:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected array, received string",
+        "status": 400
+      },
+      "operationId": "op-0023",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "tags": "quick"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:24:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected string, received number",
+        "status": 400
+      },
+      "operationId": "op-0024",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "tags": [
+            1
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:25:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0025",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "tags": [
+            "ok",
+            " "
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:26:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=60 characters",
+        "status": 400
+      },
+      "operationId": "op-0026",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "tags": [
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:27:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected array to have <=30 items",
+        "status": 400
+      },
+      "operationId": "op-0027",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "tags": [
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            "ok",
+            5
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:28:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected boolean, received string",
+        "status": 400
+      },
+      "operationId": "op-0028",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "favorite": "yes"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:29:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected boolean, received number",
+        "status": 400
+      },
+      "operationId": "op-0029",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "wantToTry": 0
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:30:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=2000 characters",
+        "status": 400
+      },
+      "operationId": "op-0030",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "image": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:31:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=2000 characters",
+        "status": 400
+      },
+      "operationId": "op-0031",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "sourceUrl": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:32:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=200 characters",
+        "status": 400
+      },
+      "operationId": "op-0032",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "author": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:33:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected array to have >=1 items",
+        "status": 400
+      },
+      "operationId": "op-0033",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": []
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:34:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected array to have <=200 items",
+        "status": 400
+      },
+      "operationId": "op-0034",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            },
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:35:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected object, received null",
+        "status": 400
+      },
+      "operationId": "op-0035",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            null
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:36:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected number, received undefined",
+        "status": 400
+      },
+      "operationId": "op-0036",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:37:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected string, received undefined",
+        "status": 400
+      },
+      "operationId": "op-0037",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:38:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0038",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": " ",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:39:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0039",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "id": " ",
+              "name": "rice",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:40:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected number to be >=0",
+        "status": 400
+      },
+      "operationId": "op-0040",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": -1,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:41:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected number to be <=1000000",
+        "status": 400
+      },
+      "operationId": "op-0041",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 1000001,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:42:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected number, received string",
+        "status": 400
+      },
+      "operationId": "op-0042",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": "1",
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:43:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=40 characters",
+        "status": 400
+      },
+      "operationId": "op-0043",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:44:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected string, received number",
+        "status": 400
+      },
+      "operationId": "op-0044",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "group": 5,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:45:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=500 characters",
+        "status": 400
+      },
+      "operationId": "op-0045",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "note": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:46:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=1000 characters",
+        "status": 400
+      },
+      "operationId": "op-0046",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "id": "r1-i1",
+              "name": "rice",
+              "raw": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:47:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Unrecognized key: \"extra\"",
+        "status": 400
+      },
+      "operationId": "op-0047",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "extra": 1,
+              "id": "r1-i1",
+              "name": "rice",
+              "unit": "g"
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:48:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0048",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "id": " ",
+              "zz": 1
+            }
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:49:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected array to have >=1 items",
+        "status": 400
+      },
+      "operationId": "op-0049",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "steps": []
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:50:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected array to have <=100 items",
+        "status": 400
+      },
+      "operationId": "op-0050",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "steps": [
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook.",
+            "Cook."
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:51:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0051",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "steps": [
+            " ",
+            5
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:52:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=5000 characters",
+        "status": 400
+      },
+      "operationId": "op-0052",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "steps": [
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:53:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=10000 characters",
+        "status": 400
+      },
+      "operationId": "op-0053",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "notes": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:54:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected int, received number",
+        "status": 400
+      },
+      "operationId": "op-0054",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "rating": 2.5
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:55:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected int, received number",
+        "status": 400
+      },
+      "operationId": "op-0055",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "rating": 9.5
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:56:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected number to be <=5",
+        "status": 400
+      },
+      "operationId": "op-0056",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "rating": 9
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:57:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected number to be >=0",
+        "status": 400
+      },
+      "operationId": "op-0057",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "rating": -1
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:58:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected int to be <=9007199254740991",
+        "status": 400
+      },
+      "operationId": "op-0058",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "rating": 1e+300
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:59:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected int to be >=-9007199254740991",
+        "status": 400
+      },
+      "operationId": "op-0059",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "rating": -1e+300
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:00:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected number, received string",
+        "status": 400
+      },
+      "operationId": "op-0060",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "rating": "3"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:01:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0061",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "categories": [
+            " "
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:02:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected array to have <=10 items",
+        "status": 400
+      },
+      "operationId": "op-0062",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "categories": [
+            "Sides",
+            "Sides",
+            "Sides",
+            "Sides",
+            "Sides",
+            "Sides",
+            "Sides",
+            "Sides",
+            "Sides",
+            "Sides",
+            "Sides"
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:03:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected array to have <=12 items",
+        "status": 400
+      },
+      "operationId": "op-0063",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "images": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:04:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected string, received number",
+        "status": 400
+      },
+      "operationId": "op-0064",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "images": [
+            5
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:05:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected array to have <=30 items",
+        "status": 400
+      },
+      "operationId": "op-0065",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "related": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:06:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=100 characters",
+        "status": 400
+      },
+      "operationId": "op-0066",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "related": [
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:07:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected object, received string",
+        "status": 400
+      },
+      "operationId": "op-0067",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "nutrition": "lots"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:08:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected object, received array",
+        "status": 400
+      },
+      "operationId": "op-0068",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "nutrition": []
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:09:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected number to be >=0",
+        "status": 400
+      },
+      "operationId": "op-0069",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "nutrition": {
+            "calories": -1
+          }
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:10:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected number to be <=1000000",
+        "status": 400
+      },
+      "operationId": "op-0070",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "nutrition": {
+            "sodium": 1000001
+          }
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:11:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected string to have <=80 characters",
+        "status": 400
+      },
+      "operationId": "op-0071",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "nutrition": {
+            "servingSize": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:12:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected string, received number",
+        "status": 400
+      },
+      "operationId": "op-0072",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "nutrition": {
+            "text": 5
+          }
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:13:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Invalid input: expected boolean, received number",
+        "status": 400
+      },
+      "operationId": "op-0073",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "nutrition": {
+            "estimated": 1
+          }
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:14:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Unrecognized key: \"foo\"",
+        "status": 400
+      },
+      "operationId": "op-0074",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "nutrition": {
+            "foo": 1
+          }
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:15:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected number to be <=5",
+        "status": 400
+      },
+      "operationId": "op-0075",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "bogus": 1,
+          "rating": 9
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:16:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0076",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "servings": 0,
+          "title": ""
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:17:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too small: expected string to have >=1 characters",
+        "status": 400
+      },
+      "operationId": "op-0077",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "images": [
+            "a"
+          ],
+          "title": "",
+          "zz": 1
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T11:18:00.000Z",
+      "error": {
+        "message": "Invalid recipe changes: Too big: expected array to have <=30 items",
+        "status": 400
+      },
+      "operationId": "op-0078",
+      "patch": null,
+      "payload": {
+        "changes": {
+          "tags": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0079"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées",
+              "Dinner"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Trimmed title",
+            "updatedAt": "2026-11-21T11:19:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r2",
+            "updatedAt": "2026-11-21T10:00:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T11:19:00.000Z",
+      "error": null,
+      "operationId": "op-0079",
+      "patch": {
+        "appendOperations": [
+          "op-0079"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées",
+                  "Dinner"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Trimmed title",
+                "updatedAt": "2026-11-21T11:19:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "title": "  Trimmed title  "
+        },
+        "expectedUpdatedAt": "2026-11-21T10:00:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0079",
+          "op-0080"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées",
+              "Dinner"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Trimmed title",
+            "updatedAt": "2026-11-21T11:20:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r2",
+            "updatedAt": "2026-11-21T10:00:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T11:20:00.000Z",
+      "error": null,
+      "operationId": "op-0080",
+      "patch": {
+        "appendOperations": [
+          "op-0080"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées",
+                  "Dinner"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Trimmed title",
+                "updatedAt": "2026-11-21T11:20:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "nutrition": null
+        },
+        "expectedUpdatedAt": "2026-11-21T11:19:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0079",
+          "op-0080",
+          "op-0081"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées",
+              "Dinner"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Trimmed title",
+            "updatedAt": "2026-11-21T11:21:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r2",
+            "updatedAt": "2026-11-21T10:00:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T11:21:00.000Z",
+      "error": null,
+      "operationId": "op-0081",
+      "patch": {
+        "appendOperations": [
+          "op-0081"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées",
+                  "Dinner"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Trimmed title",
+                "updatedAt": "2026-11-21T11:21:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "nutrition": {}
+        },
+        "expectedUpdatedAt": "2026-11-21T11:20:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0079",
+          "op-0080",
+          "op-0081",
+          "op-0082"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées",
+              "Dinner"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 120.4,
+              "servingSize": "1 bowl"
+            },
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Trimmed title",
+            "updatedAt": "2026-11-21T11:22:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r2",
+            "updatedAt": "2026-11-21T10:00:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T11:22:00.000Z",
+      "error": null,
+      "operationId": "op-0082",
+      "patch": {
+        "appendOperations": [
+          "op-0082"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées",
+                  "Dinner"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": {
+                  "calories": 120.4,
+                  "servingSize": "1 bowl"
+                },
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Trimmed title",
+                "updatedAt": "2026-11-21T11:22:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "nutrition": {
+            "calories": 120.44,
+            "estimated": false,
+            "servingSize": " 1 bowl "
+          }
+        },
+        "expectedUpdatedAt": "2026-11-21T11:21:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0079",
+          "op-0080",
+          "op-0081",
+          "op-0082",
+          "op-0083"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Sides",
+              "Snacks"
+            ],
+            "category": "Sides",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 120.4,
+              "servingSize": "1 bowl"
+            },
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Trimmed title",
+            "updatedAt": "2026-11-21T11:23:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r2",
+            "updatedAt": "2026-11-21T10:00:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T11:23:00.000Z",
+      "error": null,
+      "operationId": "op-0083",
+      "patch": {
+        "appendOperations": [
+          "op-0083"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Sides",
+                  "Snacks"
+                ],
+                "category": "Sides",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": {
+                  "calories": 120.4,
+                  "servingSize": "1 bowl"
+                },
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Trimmed title",
+                "updatedAt": "2026-11-21T11:23:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "categories": [
+            " Sides ",
+            "Snacks"
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T11:22:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0079",
+          "op-0080",
+          "op-0081",
+          "op-0082",
+          "op-0083",
+          "op-0084"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Sides",
+              "Snacks"
+            ],
+            "category": "Sides",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "https://example.com/x.jpg",
+            "images": [
+              "https://example.com/x.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 120.4,
+              "servingSize": "1 bowl"
+            },
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Trimmed title",
+            "updatedAt": "2026-11-21T11:24:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r2",
+            "updatedAt": "2026-11-21T10:00:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T11:24:00.000Z",
+      "error": null,
+      "operationId": "op-0084",
+      "patch": {
+        "appendOperations": [
+          "op-0084"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Sides",
+                  "Snacks"
+                ],
+                "category": "Sides",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "https://example.com/x.jpg",
+                "images": [
+                  "https://example.com/x.jpg"
+                ],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": {
+                  "calories": 120.4,
+                  "servingSize": "1 bowl"
+                },
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Trimmed title",
+                "updatedAt": "2026-11-21T11:24:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "images": [
+            "https://example.com/x.jpg"
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T11:23:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0079",
+          "op-0080",
+          "op-0081",
+          "op-0082",
+          "op-0083",
+          "op-0084",
+          "op-0085"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Sides",
+              "Snacks"
+            ],
+            "category": "Sides",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "https://example.com/y.jpg",
+            "images": [
+              "https://example.com/y.jpg",
+              "https://example.com/x.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 120.4,
+              "servingSize": "1 bowl"
+            },
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Trimmed title",
+            "updatedAt": "2026-11-21T11:25:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r2",
+            "updatedAt": "2026-11-21T10:00:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T11:25:00.000Z",
+      "error": null,
+      "operationId": "op-0085",
+      "patch": {
+        "appendOperations": [
+          "op-0085"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Sides",
+                  "Snacks"
+                ],
+                "category": "Sides",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "https://example.com/y.jpg",
+                "images": [
+                  "https://example.com/y.jpg",
+                  "https://example.com/x.jpg"
+                ],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": {
+                  "calories": 120.4,
+                  "servingSize": "1 bowl"
+                },
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Trimmed title",
+                "updatedAt": "2026-11-21T11:25:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "image": "https://example.com/y.jpg",
+          "images": [
+            "https://example.com/x.jpg"
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T11:24:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0079",
+          "op-0080",
+          "op-0081",
+          "op-0082",
+          "op-0083",
+          "op-0084",
+          "op-0085",
+          "op-0086"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Sides",
+              "Snacks"
+            ],
+            "category": "Sides",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "https://example.com/y.jpg",
+            "images": [
+              "https://example.com/y.jpg",
+              "https://example.com/x.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "Main",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "rinsed",
+                "raw": "400 g rice",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 120.4,
+              "servingSize": "1 bowl"
+            },
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Rinse.",
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Trimmed title",
+            "updatedAt": "2026-11-21T11:26:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r2",
+            "updatedAt": "2026-11-21T10:00:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T11:26:00.000Z",
+      "error": null,
+      "operationId": "op-0086",
+      "patch": {
+        "appendOperations": [
+          "op-0086"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Sides",
+                  "Snacks"
+                ],
+                "category": "Sides",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "https://example.com/y.jpg",
+                "images": [
+                  "https://example.com/y.jpg",
+                  "https://example.com/x.jpg"
+                ],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "Main",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "rinsed",
+                    "raw": "400 g rice",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": {
+                  "calories": 120.4,
+                  "servingSize": "1 bowl"
+                },
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Rinse.",
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Trimmed title",
+                "updatedAt": "2026-11-21T11:26:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "ingredients": [
+            {
+              "amount": 400,
+              "group": "Main",
+              "id": "r1-i1",
+              "name": "  rice  ",
+              "note": "rinsed",
+              "raw": "400 g rice",
+              "unit": "g"
+            }
+          ],
+          "steps": [
+            "  Rinse.  ",
+            "Cook."
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T11:25:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0079",
+          "op-0080",
+          "op-0081",
+          "op-0082",
+          "op-0083",
+          "op-0084",
+          "op-0085",
+          "op-0086",
+          "op-0087"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Sides",
+              "Snacks"
+            ],
+            "category": "Sides",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "https://example.com/y.jpg",
+            "images": [
+              "https://example.com/y.jpg",
+              "https://example.com/x.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "Main",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "rinsed",
+                "raw": "400 g rice",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 120.4,
+              "servingSize": "1 bowl"
+            },
+            "prepMinutes": 10,
+            "rating": 5,
+            "related": [
+              "r2"
+            ],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Rinse.",
+              "Cook."
+            ],
+            "tags": [
+              "quick"
+            ],
+            "title": "Trimmed title",
+            "updatedAt": "2026-11-21T11:27:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r2",
+            "updatedAt": "2026-11-21T10:00:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T11:27:00.000Z",
+      "error": null,
+      "operationId": "op-0087",
+      "patch": {
+        "appendOperations": [
+          "op-0087"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Sides",
+                  "Snacks"
+                ],
+                "category": "Sides",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "https://example.com/y.jpg",
+                "images": [
+                  "https://example.com/y.jpg",
+                  "https://example.com/x.jpg"
+                ],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "Main",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "rinsed",
+                    "raw": "400 g rice",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": {
+                  "calories": 120.4,
+                  "servingSize": "1 bowl"
+                },
+                "prepMinutes": 10,
+                "rating": 5,
+                "related": [
+                  "r2"
+                ],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Rinse.",
+                  "Cook."
+                ],
+                "tags": [
+                  "quick"
+                ],
+                "title": "Trimmed title",
+                "updatedAt": "2026-11-21T11:27:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "rating": 5,
+          "related": [
+            " r2 ",
+            "r1"
+          ],
+          "tags": [
+            " quick "
+          ]
+        },
+        "expectedUpdatedAt": "2026-11-21T11:26:00.000Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    }
+  ]
+}

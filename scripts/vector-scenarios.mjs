@@ -97,6 +97,137 @@ const recipesLimit = scenario('recipes-limit', [
     no('recipes.import', { recipes: [rec('imported-too-many')] }, 'Export your collection before adding more than 2,000'),
 ], { ...initialState(), recipes: bulkRecipes });
 
+// ---- recipe-changes ----
+// recipe.update validates `changes` with recipeChangesSchema (zod) and reports its first issue. One step per rule,
+// so the Kotlin port pins zod's exact message for each. Vector files sort keys, so multi-key payloads list their
+// keys alphabetically here too: the order zod sees is then the order the Kotlin port sees.
+const change = (changes, expect) => {
+    const payload = s => ({ recipeId: 'r1', expectedUpdatedAt: updatedAt('r1')(s), ...(changes === undefined ? {} : { changes }) });
+    return expect ? no('recipe.update', payload, expect) : ok('recipe.update', payload);
+};
+const many = (n, value) => Array.from({ length: n }, () => value);
+const line = (over = {}) => ({ id: 'r1-i1', name: 'rice', amount: 400, unit: 'g', ...over });
+const recipeChanges = scenario('recipe-changes', [
+    change(undefined, 'Invalid recipe changes: Invalid input: expected object, received undefined'),
+    change(null, 'Invalid recipe changes: Invalid input: expected object, received null'),
+    change('title', 'Invalid recipe changes: Invalid input: expected object, received string'),
+    change(5, 'Invalid recipe changes: Invalid input: expected object, received number'),
+    change(true, 'Invalid recipe changes: Invalid input: expected object, received boolean'),
+    change([], 'Invalid recipe changes: Invalid input: expected object, received array'),
+    change({}, 'Invalid recipe changes: Include at least one field to edit.'),
+    change({ bogus: 1 }, 'Invalid recipe changes: Unrecognized key: "bogus"'),
+    change({ bogus: 1, zz: 2 }, 'Invalid recipe changes: Unrecognized keys: "bogus", "zz"'),
+    change({ bogus: 1, title: 'ok' }, 'Invalid recipe changes: Unrecognized key: "bogus"'),
+    change({ title: '   ' }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ title: 'x'.repeat(201) }, 'Invalid recipe changes: Too big: expected string to have <=200 characters'),
+    change({ title: 5 }, 'Invalid recipe changes: Invalid input: expected string, received number'),
+    change({ title: null }, 'Invalid recipe changes: Invalid input: expected string, received null'),
+    change({ description: 'x'.repeat(3001) }, 'Invalid recipe changes: Too big: expected string to have <=3000 characters'),
+    change({ servings: 0 }, 'Invalid recipe changes: Too small: expected number to be >=0.000001'),
+    change({ servings: 2000000 }, 'Invalid recipe changes: Too big: expected number to be <=1000000'),
+    change({ servings: '2' }, 'Invalid recipe changes: Invalid input: expected number, received string'),
+    change({ prepMinutes: -1 }, 'Invalid recipe changes: Too small: expected number to be >=0'),
+    change({ cookMinutes: 1000001 }, 'Invalid recipe changes: Too big: expected number to be <=1000000'),
+    change({ category: ' ' }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ category: 'x'.repeat(81) }, 'Invalid recipe changes: Too big: expected string to have <=80 characters'),
+    change({ tags: 'quick' }, 'Invalid recipe changes: Invalid input: expected array, received string'),
+    change({ tags: [1] }, 'Invalid recipe changes: Invalid input: expected string, received number'),
+    change({ tags: ['ok', ' '] }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ tags: ['x'.repeat(61)] }, 'Invalid recipe changes: Too big: expected string to have <=60 characters'),
+    change({ tags: [...many(30, 'ok'), 5] }, 'Invalid recipe changes: Too big: expected array to have <=30 items'),
+    change({ favorite: 'yes' }, 'Invalid recipe changes: Invalid input: expected boolean, received string'),
+    change({ wantToTry: 0 }, 'Invalid recipe changes: Invalid input: expected boolean, received number'),
+    change({ image: 'x'.repeat(2001) }, 'Invalid recipe changes: Too big: expected string to have <=2000 characters'),
+    change({ sourceUrl: 'x'.repeat(2001) }, 'Invalid recipe changes: Too big: expected string to have <=2000 characters'),
+    change({ author: 'x'.repeat(201) }, 'Invalid recipe changes: Too big: expected string to have <=200 characters'),
+    change({ ingredients: [] }, 'Invalid recipe changes: Too small: expected array to have >=1 items'),
+    change({ ingredients: many(201, line()) }, 'Invalid recipe changes: Too big: expected array to have <=200 items'),
+    change({ ingredients: [null] }, 'Invalid recipe changes: Invalid input: expected object, received null'),
+    change({ ingredients: [line({ amount: undefined })] }, 'Invalid recipe changes: Invalid input: expected number, received undefined'),
+    change({ ingredients: [line({ unit: undefined })] }, 'Invalid recipe changes: Invalid input: expected string, received undefined'),
+    change({ ingredients: [line({ name: ' ' })] }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ ingredients: [line({ id: ' ' })] }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ ingredients: [line({ amount: -1 })] }, 'Invalid recipe changes: Too small: expected number to be >=0'),
+    change({ ingredients: [line({ amount: 1000001 })] }, 'Invalid recipe changes: Too big: expected number to be <=1000000'),
+    change({ ingredients: [line({ amount: '1' })] }, 'Invalid recipe changes: Invalid input: expected number, received string'),
+    change({ ingredients: [line({ unit: 'x'.repeat(41) })] }, 'Invalid recipe changes: Too big: expected string to have <=40 characters'),
+    change({ ingredients: [line({ group: 5 })] }, 'Invalid recipe changes: Invalid input: expected string, received number'),
+    change({ ingredients: [line({ note: 'x'.repeat(501) })] }, 'Invalid recipe changes: Too big: expected string to have <=500 characters'),
+    change({ ingredients: [line({ raw: 'x'.repeat(1001) })] }, 'Invalid recipe changes: Too big: expected string to have <=1000 characters'),
+    change({ ingredients: [line({ extra: 1 })] }, 'Invalid recipe changes: Unrecognized key: "extra"'),
+    change({ ingredients: [{ id: ' ', zz: 1 }] }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ steps: [] }, 'Invalid recipe changes: Too small: expected array to have >=1 items'),
+    change({ steps: many(101, 'Cook.') }, 'Invalid recipe changes: Too big: expected array to have <=100 items'),
+    change({ steps: [' ', 5] }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ steps: ['x'.repeat(5001)] }, 'Invalid recipe changes: Too big: expected string to have <=5000 characters'),
+    change({ notes: 'x'.repeat(10001) }, 'Invalid recipe changes: Too big: expected string to have <=10000 characters'),
+    change({ rating: 2.5 }, 'Invalid recipe changes: Invalid input: expected int, received number'),
+    change({ rating: 9.5 }, 'Invalid recipe changes: Invalid input: expected int, received number'),
+    change({ rating: 9 }, 'Invalid recipe changes: Too big: expected number to be <=5'),
+    change({ rating: -1 }, 'Invalid recipe changes: Too small: expected number to be >=0'),
+    change({ rating: 1e300 }, 'Invalid recipe changes: Too big: expected int to be <=9007199254740991'),
+    change({ rating: -1e300 }, 'Invalid recipe changes: Too small: expected int to be >=-9007199254740991'),
+    change({ rating: '3' }, 'Invalid recipe changes: Invalid input: expected number, received string'),
+    change({ categories: [' '] }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ categories: many(11, 'Sides') }, 'Invalid recipe changes: Too big: expected array to have <=10 items'),
+    change({ images: many(13, 5) }, 'Invalid recipe changes: Too big: expected array to have <=12 items'),
+    change({ images: [5] }, 'Invalid recipe changes: Invalid input: expected string, received number'),
+    change({ related: many(31, ' ') }, 'Invalid recipe changes: Too big: expected array to have <=30 items'),
+    change({ related: ['x'.repeat(101)] }, 'Invalid recipe changes: Too big: expected string to have <=100 characters'),
+    change({ nutrition: 'lots' }, 'Invalid recipe changes: Invalid input: expected object, received string'),
+    change({ nutrition: [] }, 'Invalid recipe changes: Invalid input: expected object, received array'),
+    change({ nutrition: { calories: -1 } }, 'Invalid recipe changes: Too small: expected number to be >=0'),
+    change({ nutrition: { sodium: 1000001 } }, 'Invalid recipe changes: Too big: expected number to be <=1000000'),
+    change({ nutrition: { servingSize: 'x'.repeat(81) } }, 'Invalid recipe changes: Too big: expected string to have <=80 characters'),
+    change({ nutrition: { text: 5 } }, 'Invalid recipe changes: Invalid input: expected string, received number'),
+    change({ nutrition: { estimated: 1 } }, 'Invalid recipe changes: Invalid input: expected boolean, received number'),
+    change({ nutrition: { foo: 1 } }, 'Invalid recipe changes: Unrecognized key: "foo"'),
+    // Several issues: zod reports the schema's field order first, unknown keys after, and an oversized list before its items.
+    change({ bogus: 1, rating: 9 }, 'Invalid recipe changes: Too big: expected number to be <=5'),
+    change({ servings: 0, title: '' }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ images: ['a'], title: '', zz: 1 }, 'Invalid recipe changes: Too small: expected string to have >=1 characters'),
+    change({ tags: [...many(30, ' '), ' '] }, 'Invalid recipe changes: Too big: expected array to have <=30 items'),
+    // Accepted changes.
+    change({ title: '  Trimmed title  ' }),
+    change({ nutrition: null }),
+    change({ nutrition: {} }),
+    change({ nutrition: { calories: 120.44, estimated: false, servingSize: ' 1 bowl ' } }),
+    change({ categories: [' Sides ', 'Snacks'] }),
+    change({ images: ['https://example.com/x.jpg'] }),
+    change({ image: 'https://example.com/y.jpg', images: ['https://example.com/x.jpg'] }),
+    change({ ingredients: [line({ group: 'Main', name: '  rice  ', note: 'rinsed', raw: '400 g rice' })], steps: ['  Rinse.  ', 'Cook.'] }),
+    change({ rating: 5, related: [' r2 ', 'r1'], tags: [' quick '] }),
+], { ...initialState(), recipes: [normalizeRecipe(rec('r1', { categories: ['Entrées', 'Dinner'] }), false, at(0)), normalizeRecipe(rec('r2'), false, at(0))] });
+
+// ---- payload-shapes ----
+// draft.save takes any object or array as its recipe (JavaScript spreads an array into an object); anything else is refused.
+const payloadShapes = scenario('payload-shapes', [
+    no('draft.save', { id: 'd1', recipe: 'Soup' }, 'Recipe details are required'),
+    no('draft.save', { id: 'd1', recipe: 0 }, 'Recipe details are required'),
+    no('draft.save', { id: 'd1', recipe: true }, 'Recipe details are required'),
+    no('draft.save', { id: 'd1', recipe: '' }, 'Recipe details are required'),
+    ok('draft.save', { id: 'd1', recipe: [] }),
+    ok('draft.save', { recipe: [{ title: 'ignored' }, 'x'] }),
+    no('recipes.import', { recipes: [['a']] }, 'Each imported recipe needs an id'),
+    no('recipes.import', { recipes: ['abc'] }, 'Each imported recipe needs an id'),
+    no('recipes.import', { recipes: [null] }, 'Each imported recipe needs an id'),
+    no('recipes.import', { recipes: 'abc' }, 'Import between 1 and 25 recipes'),
+    no('recipe.save', { id: 'r1', title: 'Shaped', ingredients: 'rice', steps: ['Cook.'] }, 'Add a title, at least one named ingredient'),
+    // A new recipe ignores expectedUpdatedAt; an existing one compares it strictly.
+    ok('recipe.save', { id: 'r1', title: 'Shaped', ingredients: [{ id: 'i1', name: 'rice', amount: '' }], steps: ['Cook.'], expectedUpdatedAt: '1999-01-01T00:00:00.000Z' }),
+    no('recipe.save', { id: 'r1', title: 'Again', ingredients: [{ id: 'i1', name: 'rice' }], steps: ['Cook.'], expectedUpdatedAt: 5 }, 'This recipe changed'),
+    // Ids are looked up strictly but stored cleaned: a numeric id never matches the stored text id. (Saving id 7
+    // again would add a second menu "7", which a state patch cannot carry, so that step is left out.)
+    ok('menu.save', { id: 7, name: 'Numbered', items: [{ recipeId: 'r1', day: 1 }] }),
+    no('menu.save', { id: 7, name: 'Numbered again', items: [{ recipeId: 'r1' }, 'not an item'] }, 'This recipe was removed'),
+    ok('menu.delete', { id: 7 }),
+    ok('menu.delete', { id: '7' }),
+    // The form guard runs for every command; with no record to compare, any snapshot is stale.
+    no('recipe.favorite', { id: 'r1', favorite: true, __expected: 'null' }, 'This item changed'),
+    no('recipe.rate', { id: 'r1', rating: 3, __expected: '{"a":' }, 'Reopen this form before saving'),
+    ok('recipe.rate', { id: 'r1', rating: 3, __expected: '' }),
+]);
+
 // ---- recipes-import ----
 const incomplete = (id, over = {}) => ({ id, title: 'Partial ' + id, ingredients: [], steps: [], ...over });
 const recipesImport = scenario('recipes-import', [
@@ -419,5 +550,5 @@ const sameMillisecond = scenario('same-millisecond', [
 ]);
 
 export const scenarios = [
-    recipesBasic, recipesLimit, recipesImport, drafts, menus, menusLimit, pantryIngredients, shopping, planning, cooking, settingsScenario, coercion, sameMillisecond,
+    recipesBasic, recipesLimit, recipeChanges, payloadShapes, recipesImport, drafts, menus, menusLimit, pantryIngredients, shopping, planning, cooking, settingsScenario, coercion, sameMillisecond,
 ];

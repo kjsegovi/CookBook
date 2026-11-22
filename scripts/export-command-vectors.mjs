@@ -56,6 +56,8 @@ for (const scenario of scenarios) {
     if (files.has(scenario.name + '.json')) throw new Error('Duplicate scenario name: ' + scenario.name);
     files.set(scenario.name + '.json', JSON.stringify(sortKeys(run(scenario)), null, 2) + '\n');
 }
+// The Kotlin tests read the scenario list from here, so a new scenario needs no Kotlin change.
+files.set('index.json', JSON.stringify(scenarios.map(scenario => scenario.name), null, 2) + '\n');
 
 // Helper vectors: [input, output] pairs. Only errors the commands raise on purpose (DomainError) are recorded.
 function helperVectors() {
