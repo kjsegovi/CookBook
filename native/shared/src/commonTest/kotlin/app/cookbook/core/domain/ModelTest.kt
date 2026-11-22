@@ -1,11 +1,11 @@
 package app.cookbook.core.domain
 
 import app.cookbook.core.json.CookbookJson
+import app.cookbook.core.json.sameAs
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
-import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -56,6 +56,13 @@ class ModelTest {
         }
     }
 
-    @Ignore // enabled in Task 3 once stableJson exists
-    @Test fun everyVectorStateDecodesAndReencodesWithoutLoss() {}
+    @Test fun everyVectorStateDecodesAndReencodesWithoutLoss() {
+        for (v in app.cookbook.core.loadVectors()) {
+            for (o in listOf(v.initial) + v.steps.mapNotNull { it.after }) {
+                val st = CookbookJson.decodeFromString<State>(o.toString())
+                val again = CookbookJson.parseToJsonElement(CookbookJson.encodeToString(st))
+                assertTrue(o.sameAs(again), v.name)
+            }
+        }
+    }
 }
