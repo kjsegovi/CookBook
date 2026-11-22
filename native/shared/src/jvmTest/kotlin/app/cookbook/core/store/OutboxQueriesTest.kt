@@ -10,6 +10,7 @@ import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonArray
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
@@ -71,5 +72,48 @@ class OutboxQueriesTest {
         val back = s.readSnapshot("u1")!!
         assertEquals(7, back.revision)
         assertEquals(JsonPrimitive("keep me"), back.state.recipes.single().extra["futureField"])
+    }
+
+    @Test fun sameIdUnderTwoAccountsIsKept() {
+        val s = store()
+        s.replaceOutbox("u1", listOf(item("x", 1)))
+        s.replaceOutbox("u2", listOf(item("x", 2)))
+        s.replaceProblems("u1", listOf(Problem(item("x", 1), "a", 400)))
+        s.replaceProblems("u2", listOf(Problem(item("x", 2), "b", 409)))
+        s.addPendingUpload("u1", PendingUpload("x", "/1", null))
+        s.addPendingUpload("u2", PendingUpload("x", "/2", "/t"))
+        assertEquals(listOf(item("x", 1)), s.outbox("u1"))
+        assertEquals(listOf(item("x", 2)), s.outbox("u2"))
+        assertEquals("a", s.problems("u1").single().message)
+        assertEquals("b", s.problems("u2").single().message)
+        assertEquals("/1", s.pendingUploads("u1").single().photoPath)
+        assertEquals("/2", s.pendingUploads("u2").single().photoPath)
+    }
+
+    @Test fun duplicateIdInOneReplaceThrowsAndKeepsPreviousOutbox() {
+        val s = store()
+        val before = listOf(item("keep", 1))
+        s.replaceOutbox("u1", before)
+        assertFailsWith<Exception> { s.replaceOutbox("u1", listOf(item("d", 1), item("d", 2))) }
+        assertEquals(before, s.outbox("u1"))
+    }
+
+    @Test fun reopeningAFileStoreKeepsTheOutbox() {
+        val file = java.io.File.createTempFile("cookbook", ".db")
+        try {
+            val url = "jdbc:sqlite:${file.absolutePath}"
+            val d1 = DriverFactory(url).create()
+            val s1 = SqlLocalStore(d1)
+            val snap = Snapshot("h", 3, initialState())
+            val items = listOf(item("a", 1), item("b", 2))
+            s1.writeSnapshot("u1", snap)
+            s1.replaceOutbox("u1", items)
+            d1.close()
+            val d2 = DriverFactory(url).create()
+            val s2 = SqlLocalStore(d2)
+            assertEquals(items, s2.outbox("u1"))
+            assertEquals(snap, s2.readSnapshot("u1"))
+            d2.close()
+        } finally { file.delete() }
     }
 }
