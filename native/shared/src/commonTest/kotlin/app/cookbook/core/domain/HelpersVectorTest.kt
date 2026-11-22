@@ -104,6 +104,27 @@ class HelpersVectorTest {
         assertEquals("now", recipe.updatedAt)
     }
 
+    @Test fun unknownKeysSurviveWithTheirValues() {
+        val input = Json.parseToJsonElement(
+            """{"id":"r","title":"T","future":{"a":[1,2]},"ingredients":[{"id":"i","name":"a","amount":1,"swap":"b","tags":[1]}],
+            "steps":["s"],"nutrition":{"calories":10,"fatType":"sat","estimated":true}}""",
+        ).jsonObject
+        val recipe = normalizeRecipe(input, false, "now")
+        assertEquals(setOf("future"), recipe.extra.keys)
+        assertEquals(input["future"], recipe.extra["future"])
+        val line = recipe.ingredients.single()
+        assertEquals(setOf("swap", "tags"), line.extra.keys)
+        assertEquals(JsonPrimitive("b"), line.extra["swap"])
+        assertEquals(input["ingredients"]!!.jsonArray[0].jsonObject["tags"], line.extra["tags"])
+        val nutrition = recipe.nutrition!!
+        assertEquals(setOf("fatType"), nutrition.extra.keys)
+        assertEquals(JsonPrimitive("sat"), nutrition.extra["fatType"])
+        assertEquals(10.0, nutrition.calories)
+        assertEquals(true, nutrition.estimated)
+        // TypeScript yields null when no known nutrient is present, even if unknown keys are.
+        assertEquals(null, normalizeNutrition(Json.parseToJsonElement("""{"fatType":"sat"}""")))
+    }
+
     @Test fun blankRecipeMatchesTheDefaults() {
         val r = blankRecipe("id", "now")
         assertEquals(listOf("Entrées"), r.categories)

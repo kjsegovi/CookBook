@@ -19,6 +19,9 @@ private val RECIPE_KEYS = setOf(
     "sourceUrl", "author", "ingredients", "steps", "notes", "createdAt", "updatedAt", "rating", "categories", "images", "related", "nutrition",
 )
 
+private val INGREDIENT_KEYS = setOf("id", "name", "amount", "unit", "group", "note", "raw")
+private val NUTRITION_KEYS = NUTRIENTS.toSet() + setOf("servingSize", "text", "estimated")
+
 private val photoImage = Regex("photo:[0-9a-f-]{36}/[0-9a-f-]{36}\\.(jpg|png|webp)")
 
 private fun validImage(value: JsonElement?): String {
@@ -66,6 +69,7 @@ fun normalizeNutrition(v: JsonElement?): Nutrition? {
         fiber = values["fiber"], sugar = values["sugar"], sodium = values["sodium"],
         servingSize = servingSize, text = text,
         estimated = if (jsTruthy(v["estimated"])) true else null,
+        extra = JsonObject(v.filterKeys { it !in NUTRITION_KEYS }),
     )
 }
 
@@ -102,6 +106,7 @@ fun normalizeRecipe(input: JsonObject, allowIncomplete: Boolean = false, now: St
             group = clean(x.field("group"), 120),
             note = clean(x.field("note"), 500),
             raw = clean(x.field("raw"), 1000),
+            extra = JsonObject((x as? JsonObject)?.filterKeys { it !in INGREDIENT_KEYS } ?: emptyMap()),
         )
     }
     val steps = input["steps"].items().take(100).map { clean(it, 5000) }.filter { it.isNotEmpty() }
