@@ -1,6 +1,6 @@
-import { blankRecipe, clean, DomainError, parseIngredient, httpUrl, type ImportDraft, type Recipe, uid } from './domain.ts';
+import { blankRecipe, clean, DomainError, normalizeNutrition, parseIngredient, httpUrl, type ImportDraft, type Recipe, uid } from './domain.ts';
 
-// Some sites serve stripped-down or blocked pages to obvious bots, so present as a current desktop browser.
+// User agents: see IMPORTER_USER_AGENT below (honest first, browser retry after a refusal).
 // Sites behind Cloudflare often accept an honest client but block a request that
 // claims to be Chrome without behaving like it (budgetbytes.com does), while a
 // few only accept a browser. So: honest first, browser once after a refusal.
@@ -216,9 +216,54 @@ function microdataRecipes(html: string): any[] {
     });
 }
 
-function structuredDraft(html: string, url: string): { draft: ImportDraft; found: boolean } { const r = blankRecipe(), warnings: string[] = []; r.sourceUrl = url; const candidates: any[] = []; for (const m of html.matchAll(/<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+// Structured data often points at shared entries by "@id" (Yoast puts the
+// author in a separate Person node), so every node with an @id is indexed.
+function indexNodes(v: any, index: Map<string, any>) {
+    if (Array.isArray(v)) { for (const x of v) indexNodes(x, index); return; }
+    if (!v || typeof v !== 'object') return;
+    if (typeof v['@id'] === 'string' && Object.keys(v).length > 1) index.set(v['@id'], v);
+    for (const value of Object.values(v)) if (value && typeof value === 'object') indexNodes(value, index);
+}
+const resolve = (v: any, index: Map<string, any>) => v && typeof v === 'object' && !Array.isArray(v) && typeof v['@id'] === 'string' && Object.keys(v).length === 1 ? index.get(v['@id']) ?? v : v;
+function authorName(v: any, index: Map<string, any>): string {
+    if (Array.isArray(v)) return v.map(a => authorName(a, index)).filter(Boolean).join(', ');
+    const a = resolve(v, index);
+    return typeof a === 'string' ? plain(a) : plain(a?.name ?? '');
+}
+// schema.org NutritionInformation uses text such as "198 kcal", "12 g", "819 mg".
+export function nutritionFromSchema(v: any) {
+    if (!v || typeof v !== 'object') return null;
+    const amount = (value: unknown, unit: 'g' | 'mg' | 'kcal') => {
+        const m = String(value ?? '').replace(',', '.').match(/(\d+(?:\.\d+)?)\s*(kcal|cal|mg|g)?/i);
+        if (!m) return undefined;
+        const n = Number(m[1]), given = (m[2] ?? '').toLowerCase();
+        if (unit === 'mg' && given === 'g') return n * 1000;
+        if (unit === 'g' && given === 'mg') return n / 1000;
+        return n;
+    };
+    return normalizeNutrition({
+        calories: amount(v.calories, 'kcal'), protein: amount(v.proteinContent, 'g'), carbs: amount(v.carbohydrateContent, 'g'), fat: amount(v.fatContent, 'g'),
+        fiber: amount(v.fiberContent, 'g'), sugar: amount(v.sugarContent, 'g'), sodium: amount(v.sodiumContent, 'mg'), servingSize: plain(v.servingSize ?? ''),
+    });
+}
+// Budget sites list a price after each ingredient: "2 garlic cloves (minced, $0.16)".
+export function withoutPrices(line: string) {
+    return line.replace(/,?\s*\$\d+(?:\.\d+)?\**/g, '').replace(/\(\s*\)/g, '').replace(/\(\s*,\s*/g, '(').replace(/\s+\)/g, ')').replace(/\s{2,}/g, ' ').trim();
+}
+// WP Recipe Maker pages name ingredient sections in the HTML but not in the
+// structured data. Used only when the counts line up exactly.
+function wprmGroups(html: string, count: number): string[] | null {
+    const groups: string[] = []; let current = '';
+    for (const m of html.matchAll(/wprm-recipe-group-name[^>]*>([^<]*)<|<li\b[^>]*class="[^"]*\bwprm-recipe-ingredient\b/g)) {
+        if (m[1] !== undefined) current = plain(m[1]); else groups.push(current);
+    }
+    return groups.length === count && groups.some(Boolean) ? groups : null;
+}
+function structuredDraft(html: string, url: string): { draft: ImportDraft; found: boolean } { const r = blankRecipe(), warnings: string[] = []; r.sourceUrl = url; const candidates: any[] = [], nodes = new Map<string, any>(); for (const m of html.matchAll(/<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     try {
-        candidates.push(...findRecipes(JSON.parse(m[1])));
+        const parsed = JSON.parse(m[1]);
+        indexNodes(parsed, nodes);
+        candidates.push(...findRecipes(parsed));
     }
     catch {
         warnings.push('Some recipe metadata could not be read.');
@@ -229,12 +274,12 @@ function structuredDraft(html: string, url: string): { draft: ImportDraft; found
     }
     catch { /* Microdata is a best-effort fallback. */ }
 } const data = candidates[0]; if (candidates.length > 1)
-    warnings.push('This page contains multiple recipes. Review the selected recipe before saving.'); const meta = (key: string) => metaContent(html, key); r.title = plain(data?.name) || plain(meta('og:title')) || plain(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? ''); r.description = plain(data?.description); r.image = imageUrl(data?.image, url) || imageUrl(meta('og:image'), url); r.author = plain(typeof data?.author === 'string' ? data.author : Array.isArray(data?.author) ? data.author.map((a: any) => a.name).join(', ') : data?.author?.name); r.prepMinutes = duration(data?.prepTime); r.cookMinutes = duration(data?.cookTime) || Math.max(0, duration(data?.totalTime) - r.prepMinutes); const yieldText = String(Array.isArray(data?.recipeYield) ? data.recipeYield[0] : data?.recipeYield ?? ''); const servings = yieldText.match(/\d+(?:\.\d+)?/); if (servings && Number(servings[0]) > 0) {
+    warnings.push('This page contains multiple recipes. Review the selected recipe before saving.'); const meta = (key: string) => metaContent(html, key); r.title = plain(data?.name) || plain(meta('og:title')) || plain(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? ''); r.description = plain(data?.description); r.image = imageUrl(data?.image, url) || imageUrl(meta('og:image'), url); r.author = authorName(data?.author, nodes).slice(0, 200); r.nutrition = nutritionFromSchema(resolve(data?.nutrition, nodes)); r.prepMinutes = duration(data?.prepTime); r.cookMinutes = duration(data?.cookTime) || Math.max(0, duration(data?.totalTime) - r.prepMinutes); const yieldText = String(Array.isArray(data?.recipeYield) ? data.recipeYield[0] : data?.recipeYield ?? ''); const servings = yieldText.match(/\d+(?:\.\d+)?/); if (servings && Number(servings[0]) > 0) {
     r.servings = Number(servings[0]);
     warnings.push('Original yield: ' + yieldText + '. Confirm what counts as one serving before scaling.');
 }
 else
-    warnings.push('Original serving yield was unavailable; confirm the serving count.'); r.ingredients = (Array.isArray(data?.recipeIngredient) ? data.recipeIngredient : []).map((x: any) => plain(x)).filter(Boolean).map(parseIngredient); r.steps = steps(data?.recipeInstructions); const cat = Array.isArray(data?.recipeCategory) ? data.recipeCategory[0] : data?.recipeCategory; if (cat)
+    warnings.push('Original serving yield was unavailable; confirm the serving count.'); r.ingredients = (Array.isArray(data?.recipeIngredient) ? data.recipeIngredient : []).map((x: any) => withoutPrices(plain(x))).filter(Boolean).map(parseIngredient); const sections = wprmGroups(html, r.ingredients.length); if (sections) r.ingredients = r.ingredients.map((line, i) => ({ ...line, group: sections[i] })); r.steps = steps(data?.recipeInstructions); const cat = Array.isArray(data?.recipeCategory) ? data.recipeCategory[0] : data?.recipeCategory; if (cat)
     r.category = plain(cat); r.tags = typeof data?.keywords === 'string' && data.keywords.trim() ? data.keywords.split(',').map((s: string) => s.trim()).filter(Boolean).slice(0, 20) : []; if (!r.ingredients.length || !r.steps.length)
     warnings.push('Paste the recipe text or transcript and ask the connected assistant to finish this draft.'); if (!r.image)
     warnings.push('No recipe image was found. You can upload a photo.'); return { draft: { id: uid(), recipe: r, text: plain(data?.description) || '', warnings, createdAt: new Date().toISOString() }, found: candidates.length > 0 }; }
