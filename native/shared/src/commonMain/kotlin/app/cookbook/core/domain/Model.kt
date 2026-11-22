@@ -302,7 +302,7 @@ fun State.withoutExtras(): State = copy(
 
 private val NO_EXTRA = JsonObject(emptyMap())
 
-private fun Recipe.withoutExtras(): Recipe = copy(
+fun Recipe.withoutExtras(): Recipe = copy(
     ingredients = ingredients.map { it.copy(extra = NO_EXTRA) },
     nutrition = nutrition?.copy(extra = NO_EXTRA),
     extra = NO_EXTRA,

@@ -13,7 +13,7 @@ private fun isJsSpace(c: Char): Boolean = when (c) {
     else -> c in ' '..' '
 }
 
-private fun jsTrim(s: String): String = s.dropWhile(::isJsSpace).dropLastWhile(::isJsSpace)
+internal fun jsTrim(s: String): String = s.dropWhile(::isJsSpace).dropLastWhile(::isJsSpace)
 
 private val decimalLiteral = Regex("""[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?""")
 
