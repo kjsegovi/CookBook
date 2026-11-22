@@ -71,3 +71,25 @@ test('a site that refuses the importer is retried once as a browser', async () =
     try { const s = await fetchSource('https://example.com/soup'); assert.equal(s.title, 'Soup'); assert.deepEqual(agents, [IMPORTER_USER_AGENT, BROWSER_USER_AGENT]); }
     finally { globalThis.fetch = original; }
 });
+
+test('author references, nutrition, prices and recipe-card sections come through', async () => {
+    const { extractPage, withoutPrices, nutritionFromSchema } = await import('../supabase/functions/_shared/importer.ts');
+    const graph = { '@context': 'https://schema.org', '@graph': [
+        { '@type': 'Person', '@id': 'https://example.com/#/person/1', name: 'Sam Cook' },
+        { '@type': 'Recipe', name: 'Soup', author: { '@id': 'https://example.com/#/person/1' }, recipeYield: '4',
+            recipeIngredient: ['1 cup stock ($0.40)', '2 garlic cloves (minced, $0.16)', '1 onion'], recipeInstructions: ['Simmer.'],
+            nutrition: { '@type': 'NutritionInformation', calories: '210 kcal', proteinContent: '6 g', sodiumContent: '0.5 g', servingSize: '1 bowl' } },
+    ] };
+    const card = '<div class="wprm-recipe-ingredient-group"><h4 class="wprm-recipe-group-name">Broth</h4><ul><li class="wprm-recipe-ingredient">a</li><li class="wprm-recipe-ingredient">b</li></ul></div><div class="wprm-recipe-ingredient-group"><h4 class="wprm-recipe-group-name">Base</h4><ul><li class="wprm-recipe-ingredient">c</li></ul></div>';
+    const draft = extractPage('<html><head><script type="application/ld+json">' + JSON.stringify(graph) + '</script></head><body>' + card + '</body></html>', 'https://example.com/soup');
+    const r = draft.recipe;
+    assert.equal(r.author, 'Sam Cook');
+    assert.deepEqual(r.nutrition, { calories: 210, protein: 6, sodium: 500, servingSize: '1 bowl' });
+    assert.deepEqual(r.ingredients.map(i => [i.group, i.name]), [['Broth', 'stock'], ['Broth', 'garlic cloves (minced)'], ['Base', 'onion']]);
+    assert.equal(withoutPrices('2 chicken breasts (boneless, skinless (about 1.5 lb. total) $3.85*)'), '2 chicken breasts (boneless, skinless (about 1.5 lb. total))');
+    assert.equal(withoutPrices('1 tbsp oil'), '1 tbsp oil');
+    assert.equal(nutritionFromSchema(null), null);
+    // Sections are only applied when the card and the structured data list the same number of ingredients.
+    const mismatch = extractPage('<script type="application/ld+json">' + JSON.stringify(graph) + '</script><h4 class="wprm-recipe-group-name">Only</h4><li class="wprm-recipe-ingredient">x</li>', 'https://example.com/soup');
+    assert.ok(mismatch.recipe.ingredients.every(i => i.group === ''));
+});
