@@ -41,14 +41,26 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
             implementation(libs.sqldelight.runtime)
+            implementation(libs.ktor.client.core)
+            implementation(libs.supabase.auth)
         }
-        androidMain.dependencies { implementation(libs.sqldelight.android.driver) }
-        iosMain.dependencies { implementation(libs.sqldelight.native.driver) }
-        jvmMain.dependencies { implementation(libs.sqldelight.sqlite.driver) }
+        androidMain.dependencies { 
+            implementation(libs.sqldelight.android.driver)
+            implementation(libs.ktor.client.okhttp)
+        }
+        iosMain.dependencies { 
+            implementation(libs.sqldelight.native.driver)
+            implementation(libs.ktor.client.darwin)
+        }
+        jvmMain.dependencies { 
+            implementation(libs.sqldelight.sqlite.driver)
+            implementation(libs.ktor.client.okhttp)
+        }
         commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
                 implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.ktor.client.mock)
             }
         }
     }
