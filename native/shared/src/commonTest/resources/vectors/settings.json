@@ -1,0 +1,1218 @@
+{
+  "initial": {
+    "batches": [],
+    "drafts": [],
+    "ingredients": [],
+    "menus": [],
+    "movements": [],
+    "operations": [],
+    "pantry": [],
+    "plan": [],
+    "recipes": [],
+    "settings": {
+      "autoLeftovers": true,
+      "categories": [
+        "Breakfast",
+        "Entrées",
+        "Sauces",
+        "Sides",
+        "Snacks",
+        "Pastries & Desserts"
+      ],
+      "servings": 2,
+      "weekStartsOn": 1
+    },
+    "shopping": [],
+    "shoppingWeek": ""
+  },
+  "name": "settings",
+  "steps": [
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Produce",
+            "Dairy",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Dinner / Pasta"
+          ],
+          "servings": 3,
+          "weekStartsOn": 0
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:00.000Z",
+      "error": null,
+      "operationId": "op-0001",
+      "patch": {
+        "appendOperations": [
+          "op-0001"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "aisles": [
+              "Produce",
+              "Dairy",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "autoLeftovers": true,
+            "categories": [
+              "Breakfast",
+              "Dinner / Pasta"
+            ],
+            "servings": 3,
+            "weekStartsOn": 0
+          }
+        }
+      },
+      "payload": {
+        "aisles": "Produce\n Dairy \nProduce\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "categories": "  Breakfast \n\nDinner / Pasta\nBreakfast",
+        "servings": 3,
+        "weekStartsOn": 0
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Produce",
+            "Dairy",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 4,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:02:00.000Z",
+      "error": null,
+      "operationId": "op-0002",
+      "patch": {
+        "appendOperations": [
+          "op-0002"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "aisles": [
+              "Produce",
+              "Dairy",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "autoLeftovers": false,
+            "categories": [
+              "Entrées"
+            ],
+            "servings": 4,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "__expected": "{\"categories\":[\"Breakfast\",\"Dinner / Pasta\"],\"servings\":3,\"weekStartsOn\":0,\"autoLeftovers\":true,\"aisles\":[\"Produce\",\"Dairy\",\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"]}",
+        "autoLeftovers": false,
+        "categories": "Entrées",
+        "servings": "4",
+        "weekStartsOn": 5
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:03:00.000Z",
+      "error": {
+        "message": "This item changed. Close this form and reopen it to review the latest version.",
+        "status": 409
+      },
+      "operationId": "op-0003",
+      "patch": null,
+      "payload": {
+        "__expected": "{\"categories\":[],\"servings\":1,\"weekStartsOn\":1}",
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:04:00.000Z",
+      "error": {
+        "message": "Reopen this form before saving.",
+        "status": 409
+      },
+      "operationId": "op-0004",
+      "patch": null,
+      "payload": {
+        "__expected": "not json",
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:05:00.000Z",
+      "error": {
+        "message": "Enter between 1 and 100 categories. Use “Dinner / Pasta” for a category inside another.",
+        "status": 400
+      },
+      "operationId": "op-0005",
+      "patch": null,
+      "payload": {
+        "categories": "",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:06:00.000Z",
+      "error": {
+        "message": "Enter between 1 and 100 categories. Use “Dinner / Pasta” for a category inside another.",
+        "status": 400
+      },
+      "operationId": "op-0006",
+      "patch": null,
+      "payload": {
+        "categories": " \n \n",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:07:00.000Z",
+      "error": {
+        "message": "Enter between 1 and 100 categories. Use “Dinner / Pasta” for a category inside another.",
+        "status": 400
+      },
+      "operationId": "op-0007",
+      "patch": null,
+      "payload": {
+        "categories": "Category 0\nCategory 1\nCategory 2\nCategory 3\nCategory 4\nCategory 5\nCategory 6\nCategory 7\nCategory 8\nCategory 9\nCategory 10\nCategory 11\nCategory 12\nCategory 13\nCategory 14\nCategory 15\nCategory 16\nCategory 17\nCategory 18\nCategory 19\nCategory 20\nCategory 21\nCategory 22\nCategory 23\nCategory 24\nCategory 25\nCategory 26\nCategory 27\nCategory 28\nCategory 29\nCategory 30\nCategory 31\nCategory 32\nCategory 33\nCategory 34\nCategory 35\nCategory 36\nCategory 37\nCategory 38\nCategory 39\nCategory 40\nCategory 41\nCategory 42\nCategory 43\nCategory 44\nCategory 45\nCategory 46\nCategory 47\nCategory 48\nCategory 49\nCategory 50\nCategory 51\nCategory 52\nCategory 53\nCategory 54\nCategory 55\nCategory 56\nCategory 57\nCategory 58\nCategory 59\nCategory 60\nCategory 61\nCategory 62\nCategory 63\nCategory 64\nCategory 65\nCategory 66\nCategory 67\nCategory 68\nCategory 69\nCategory 70\nCategory 71\nCategory 72\nCategory 73\nCategory 74\nCategory 75\nCategory 76\nCategory 77\nCategory 78\nCategory 79\nCategory 80\nCategory 81\nCategory 82\nCategory 83\nCategory 84\nCategory 85\nCategory 86\nCategory 87\nCategory 88\nCategory 89\nCategory 90\nCategory 91\nCategory 92\nCategory 93\nCategory 94\nCategory 95\nCategory 96\nCategory 97\nCategory 98\nCategory 99\nCategory 100",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0008"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Produce",
+            "Dairy",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "autoLeftovers": false,
+          "categories": [
+            "Category 0",
+            "Category 1",
+            "Category 2",
+            "Category 3",
+            "Category 4",
+            "Category 5",
+            "Category 6",
+            "Category 7",
+            "Category 8",
+            "Category 9",
+            "Category 10",
+            "Category 11",
+            "Category 12",
+            "Category 13",
+            "Category 14",
+            "Category 15",
+            "Category 16",
+            "Category 17",
+            "Category 18",
+            "Category 19",
+            "Category 20",
+            "Category 21",
+            "Category 22",
+            "Category 23",
+            "Category 24",
+            "Category 25",
+            "Category 26",
+            "Category 27",
+            "Category 28",
+            "Category 29",
+            "Category 30",
+            "Category 31",
+            "Category 32",
+            "Category 33",
+            "Category 34",
+            "Category 35",
+            "Category 36",
+            "Category 37",
+            "Category 38",
+            "Category 39",
+            "Category 40",
+            "Category 41",
+            "Category 42",
+            "Category 43",
+            "Category 44",
+            "Category 45",
+            "Category 46",
+            "Category 47",
+            "Category 48",
+            "Category 49",
+            "Category 50",
+            "Category 51",
+            "Category 52",
+            "Category 53",
+            "Category 54",
+            "Category 55",
+            "Category 56",
+            "Category 57",
+            "Category 58",
+            "Category 59",
+            "Category 60",
+            "Category 61",
+            "Category 62",
+            "Category 63",
+            "Category 64",
+            "Category 65",
+            "Category 66",
+            "Category 67",
+            "Category 68",
+            "Category 69",
+            "Category 70",
+            "Category 71",
+            "Category 72",
+            "Category 73",
+            "Category 74",
+            "Category 75",
+            "Category 76",
+            "Category 77",
+            "Category 78",
+            "Category 79",
+            "Category 80",
+            "Category 81",
+            "Category 82",
+            "Category 83",
+            "Category 84",
+            "Category 85",
+            "Category 86",
+            "Category 87",
+            "Category 88",
+            "Category 89",
+            "Category 90",
+            "Category 91",
+            "Category 92",
+            "Category 93",
+            "Category 94",
+            "Category 95",
+            "Category 96",
+            "Category 97",
+            "Category 98",
+            "Category 99"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:08:00.000Z",
+      "error": null,
+      "operationId": "op-0008",
+      "patch": {
+        "appendOperations": [
+          "op-0008"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "aisles": [
+              "Produce",
+              "Dairy",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "autoLeftovers": false,
+            "categories": [
+              "Category 0",
+              "Category 1",
+              "Category 2",
+              "Category 3",
+              "Category 4",
+              "Category 5",
+              "Category 6",
+              "Category 7",
+              "Category 8",
+              "Category 9",
+              "Category 10",
+              "Category 11",
+              "Category 12",
+              "Category 13",
+              "Category 14",
+              "Category 15",
+              "Category 16",
+              "Category 17",
+              "Category 18",
+              "Category 19",
+              "Category 20",
+              "Category 21",
+              "Category 22",
+              "Category 23",
+              "Category 24",
+              "Category 25",
+              "Category 26",
+              "Category 27",
+              "Category 28",
+              "Category 29",
+              "Category 30",
+              "Category 31",
+              "Category 32",
+              "Category 33",
+              "Category 34",
+              "Category 35",
+              "Category 36",
+              "Category 37",
+              "Category 38",
+              "Category 39",
+              "Category 40",
+              "Category 41",
+              "Category 42",
+              "Category 43",
+              "Category 44",
+              "Category 45",
+              "Category 46",
+              "Category 47",
+              "Category 48",
+              "Category 49",
+              "Category 50",
+              "Category 51",
+              "Category 52",
+              "Category 53",
+              "Category 54",
+              "Category 55",
+              "Category 56",
+              "Category 57",
+              "Category 58",
+              "Category 59",
+              "Category 60",
+              "Category 61",
+              "Category 62",
+              "Category 63",
+              "Category 64",
+              "Category 65",
+              "Category 66",
+              "Category 67",
+              "Category 68",
+              "Category 69",
+              "Category 70",
+              "Category 71",
+              "Category 72",
+              "Category 73",
+              "Category 74",
+              "Category 75",
+              "Category 76",
+              "Category 77",
+              "Category 78",
+              "Category 79",
+              "Category 80",
+              "Category 81",
+              "Category 82",
+              "Category 83",
+              "Category 84",
+              "Category 85",
+              "Category 86",
+              "Category 87",
+              "Category 88",
+              "Category 89",
+              "Category 90",
+              "Category 91",
+              "Category 92",
+              "Category 93",
+              "Category 94",
+              "Category 95",
+              "Category 96",
+              "Category 97",
+              "Category 98",
+              "Category 99"
+            ],
+            "servings": 2,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "categories": "Category 0\nCategory 1\nCategory 2\nCategory 3\nCategory 4\nCategory 5\nCategory 6\nCategory 7\nCategory 8\nCategory 9\nCategory 10\nCategory 11\nCategory 12\nCategory 13\nCategory 14\nCategory 15\nCategory 16\nCategory 17\nCategory 18\nCategory 19\nCategory 20\nCategory 21\nCategory 22\nCategory 23\nCategory 24\nCategory 25\nCategory 26\nCategory 27\nCategory 28\nCategory 29\nCategory 30\nCategory 31\nCategory 32\nCategory 33\nCategory 34\nCategory 35\nCategory 36\nCategory 37\nCategory 38\nCategory 39\nCategory 40\nCategory 41\nCategory 42\nCategory 43\nCategory 44\nCategory 45\nCategory 46\nCategory 47\nCategory 48\nCategory 49\nCategory 50\nCategory 51\nCategory 52\nCategory 53\nCategory 54\nCategory 55\nCategory 56\nCategory 57\nCategory 58\nCategory 59\nCategory 60\nCategory 61\nCategory 62\nCategory 63\nCategory 64\nCategory 65\nCategory 66\nCategory 67\nCategory 68\nCategory 69\nCategory 70\nCategory 71\nCategory 72\nCategory 73\nCategory 74\nCategory 75\nCategory 76\nCategory 77\nCategory 78\nCategory 79\nCategory 80\nCategory 81\nCategory 82\nCategory 83\nCategory 84\nCategory 85\nCategory 86\nCategory 87\nCategory 88\nCategory 89\nCategory 90\nCategory 91\nCategory 92\nCategory 93\nCategory 94\nCategory 95\nCategory 96\nCategory 97\nCategory 98\nCategory 99",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:09:00.000Z",
+      "error": {
+        "message": "Default servings must be a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0009",
+      "patch": null,
+      "payload": {
+        "categories": "Entrées",
+        "servings": 0,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0008",
+          "op-0010"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Produce",
+            "Dairy",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:10:00.000Z",
+      "error": null,
+      "operationId": "op-0010",
+      "patch": {
+        "appendOperations": [
+          "op-0010"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "aisles": [
+              "Produce",
+              "Dairy",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "autoLeftovers": false,
+            "categories": [
+              "Entrées"
+            ],
+            "servings": 2,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0008",
+          "op-0010",
+          "op-0011"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Produce",
+            "Dairy"
+          ],
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:11:00.000Z",
+      "error": null,
+      "operationId": "op-0011",
+      "patch": {
+        "appendOperations": [
+          "op-0011"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "aisles": [
+              "Produce",
+              "Dairy"
+            ],
+            "autoLeftovers": false,
+            "categories": [
+              "Entrées"
+            ],
+            "servings": 2,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "aisles": "Produce\nDairy",
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0008",
+          "op-0010",
+          "op-0011",
+          "op-0012"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Produce",
+            "Dairy"
+          ],
+          "autoLeftovers": true,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:12:00.000Z",
+      "error": null,
+      "operationId": "op-0012",
+      "patch": {
+        "appendOperations": [
+          "op-0012"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "aisles": [
+              "Produce",
+              "Dairy"
+            ],
+            "autoLeftovers": true,
+            "categories": [
+              "Entrées"
+            ],
+            "servings": 2,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "autoLeftovers": true,
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0008",
+          "op-0010",
+          "op-0011",
+          "op-0012",
+          "op-0013"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Produce",
+            "Dairy"
+          ],
+          "autoLeftovers": true,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:13:00.000Z",
+      "error": null,
+      "operationId": "op-0013",
+      "patch": {
+        "appendOperations": [
+          "op-0013"
+        ],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0008",
+          "op-0010",
+          "op-0011",
+          "op-0012",
+          "op-0013",
+          "op-0014"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:14:00.000Z",
+      "error": null,
+      "operationId": "op-0014",
+      "patch": {
+        "appendOperations": [
+          "op-0014"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "autoLeftovers": true,
+            "categories": [
+              "Entrées"
+            ],
+            "servings": 2,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "aisles": "",
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0008",
+          "op-0010",
+          "op-0011",
+          "op-0012",
+          "op-0013",
+          "op-0014",
+          "op-0015"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Produce"
+          ],
+          "autoLeftovers": true,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:15:00.000Z",
+      "error": null,
+      "operationId": "op-0015",
+      "patch": {
+        "appendOperations": [
+          "op-0015"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "aisles": [
+              "Produce"
+            ],
+            "autoLeftovers": true,
+            "categories": [
+              "Entrées"
+            ],
+            "servings": 2,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "aisles": "Produce",
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:16:00.000Z",
+      "error": {
+        "message": "Enter up to 60 aisles.",
+        "status": 400
+      },
+      "operationId": "op-0016",
+      "patch": null,
+      "payload": {
+        "aisles": "Aisle 0\nAisle 1\nAisle 2\nAisle 3\nAisle 4\nAisle 5\nAisle 6\nAisle 7\nAisle 8\nAisle 9\nAisle 10\nAisle 11\nAisle 12\nAisle 13\nAisle 14\nAisle 15\nAisle 16\nAisle 17\nAisle 18\nAisle 19\nAisle 20\nAisle 21\nAisle 22\nAisle 23\nAisle 24\nAisle 25\nAisle 26\nAisle 27\nAisle 28\nAisle 29\nAisle 30\nAisle 31\nAisle 32\nAisle 33\nAisle 34\nAisle 35\nAisle 36\nAisle 37\nAisle 38\nAisle 39\nAisle 40\nAisle 41\nAisle 42\nAisle 43\nAisle 44\nAisle 45\nAisle 46\nAisle 47\nAisle 48\nAisle 49\nAisle 50\nAisle 51\nAisle 52\nAisle 53\nAisle 54\nAisle 55\nAisle 56\nAisle 57\nAisle 58\nAisle 59\nAisle 60",
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0008",
+          "op-0010",
+          "op-0011",
+          "op-0012",
+          "op-0013",
+          "op-0014",
+          "op-0015",
+          "op-0017"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Aisle 0",
+            "Aisle 1",
+            "Aisle 2",
+            "Aisle 3",
+            "Aisle 4",
+            "Aisle 5",
+            "Aisle 6",
+            "Aisle 7",
+            "Aisle 8",
+            "Aisle 9",
+            "Aisle 10",
+            "Aisle 11",
+            "Aisle 12",
+            "Aisle 13",
+            "Aisle 14",
+            "Aisle 15",
+            "Aisle 16",
+            "Aisle 17",
+            "Aisle 18",
+            "Aisle 19",
+            "Aisle 20",
+            "Aisle 21",
+            "Aisle 22",
+            "Aisle 23",
+            "Aisle 24",
+            "Aisle 25",
+            "Aisle 26",
+            "Aisle 27",
+            "Aisle 28",
+            "Aisle 29",
+            "Aisle 30",
+            "Aisle 31",
+            "Aisle 32",
+            "Aisle 33",
+            "Aisle 34",
+            "Aisle 35",
+            "Aisle 36",
+            "Aisle 37",
+            "Aisle 38",
+            "Aisle 39",
+            "Aisle 40",
+            "Aisle 41",
+            "Aisle 42",
+            "Aisle 43",
+            "Aisle 44",
+            "Aisle 45",
+            "Aisle 46",
+            "Aisle 47",
+            "Aisle 48",
+            "Aisle 49",
+            "Aisle 50",
+            "Aisle 51",
+            "Aisle 52",
+            "Aisle 53",
+            "Aisle 54",
+            "Aisle 55",
+            "Aisle 56",
+            "Aisle 57",
+            "Aisle 58",
+            "Aisle 59"
+          ],
+          "autoLeftovers": true,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:17:00.000Z",
+      "error": null,
+      "operationId": "op-0017",
+      "patch": {
+        "appendOperations": [
+          "op-0017"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "aisles": [
+              "Aisle 0",
+              "Aisle 1",
+              "Aisle 2",
+              "Aisle 3",
+              "Aisle 4",
+              "Aisle 5",
+              "Aisle 6",
+              "Aisle 7",
+              "Aisle 8",
+              "Aisle 9",
+              "Aisle 10",
+              "Aisle 11",
+              "Aisle 12",
+              "Aisle 13",
+              "Aisle 14",
+              "Aisle 15",
+              "Aisle 16",
+              "Aisle 17",
+              "Aisle 18",
+              "Aisle 19",
+              "Aisle 20",
+              "Aisle 21",
+              "Aisle 22",
+              "Aisle 23",
+              "Aisle 24",
+              "Aisle 25",
+              "Aisle 26",
+              "Aisle 27",
+              "Aisle 28",
+              "Aisle 29",
+              "Aisle 30",
+              "Aisle 31",
+              "Aisle 32",
+              "Aisle 33",
+              "Aisle 34",
+              "Aisle 35",
+              "Aisle 36",
+              "Aisle 37",
+              "Aisle 38",
+              "Aisle 39",
+              "Aisle 40",
+              "Aisle 41",
+              "Aisle 42",
+              "Aisle 43",
+              "Aisle 44",
+              "Aisle 45",
+              "Aisle 46",
+              "Aisle 47",
+              "Aisle 48",
+              "Aisle 49",
+              "Aisle 50",
+              "Aisle 51",
+              "Aisle 52",
+              "Aisle 53",
+              "Aisle 54",
+              "Aisle 55",
+              "Aisle 56",
+              "Aisle 57",
+              "Aisle 58",
+              "Aisle 59"
+            ],
+            "autoLeftovers": true,
+            "categories": [
+              "Entrées"
+            ],
+            "servings": 2,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "aisles": "Aisle 0\nAisle 1\nAisle 2\nAisle 3\nAisle 4\nAisle 5\nAisle 6\nAisle 7\nAisle 8\nAisle 9\nAisle 10\nAisle 11\nAisle 12\nAisle 13\nAisle 14\nAisle 15\nAisle 16\nAisle 17\nAisle 18\nAisle 19\nAisle 20\nAisle 21\nAisle 22\nAisle 23\nAisle 24\nAisle 25\nAisle 26\nAisle 27\nAisle 28\nAisle 29\nAisle 30\nAisle 31\nAisle 32\nAisle 33\nAisle 34\nAisle 35\nAisle 36\nAisle 37\nAisle 38\nAisle 39\nAisle 40\nAisle 41\nAisle 42\nAisle 43\nAisle 44\nAisle 45\nAisle 46\nAisle 47\nAisle 48\nAisle 49\nAisle 50\nAisle 51\nAisle 52\nAisle 53\nAisle 54\nAisle 55\nAisle 56\nAisle 57\nAisle 58\nAisle 59",
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:18:00.000Z",
+      "error": {
+        "message": "This item changed. Close this form and reopen it to review the latest version.",
+        "status": 409
+      },
+      "operationId": "op-0018",
+      "patch": null,
+      "payload": {
+        "__expected": "{}",
+        "favorite": true,
+        "id": "r1"
+      },
+      "type": "recipe.favorite"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:19:00.000Z",
+      "error": {
+        "message": "Unknown action.",
+        "status": 400
+      },
+      "operationId": "op-0019",
+      "patch": null,
+      "payload": {},
+      "type": "nonsense.command"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0008",
+          "op-0010",
+          "op-0011",
+          "op-0012",
+          "op-0013",
+          "op-0014",
+          "op-0015",
+          "op-0017"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "aisles": [
+            "Aisle 0",
+            "Aisle 1",
+            "Aisle 2",
+            "Aisle 3",
+            "Aisle 4",
+            "Aisle 5",
+            "Aisle 6",
+            "Aisle 7",
+            "Aisle 8",
+            "Aisle 9",
+            "Aisle 10",
+            "Aisle 11",
+            "Aisle 12",
+            "Aisle 13",
+            "Aisle 14",
+            "Aisle 15",
+            "Aisle 16",
+            "Aisle 17",
+            "Aisle 18",
+            "Aisle 19",
+            "Aisle 20",
+            "Aisle 21",
+            "Aisle 22",
+            "Aisle 23",
+            "Aisle 24",
+            "Aisle 25",
+            "Aisle 26",
+            "Aisle 27",
+            "Aisle 28",
+            "Aisle 29",
+            "Aisle 30",
+            "Aisle 31",
+            "Aisle 32",
+            "Aisle 33",
+            "Aisle 34",
+            "Aisle 35",
+            "Aisle 36",
+            "Aisle 37",
+            "Aisle 38",
+            "Aisle 39",
+            "Aisle 40",
+            "Aisle 41",
+            "Aisle 42",
+            "Aisle 43",
+            "Aisle 44",
+            "Aisle 45",
+            "Aisle 46",
+            "Aisle 47",
+            "Aisle 48",
+            "Aisle 49",
+            "Aisle 50",
+            "Aisle 51",
+            "Aisle 52",
+            "Aisle 53",
+            "Aisle 54",
+            "Aisle 55",
+            "Aisle 56",
+            "Aisle 57",
+            "Aisle 58",
+            "Aisle 59"
+          ],
+          "autoLeftovers": true,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:20:00.000Z",
+      "error": null,
+      "operationId": "op-0001",
+      "patch": {
+        "appendOperations": [],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "categories": "Entrées",
+        "servings": 9,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    }
+  ]
+}

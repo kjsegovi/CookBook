@@ -1,0 +1,17 @@
+[
+  "recipes-basic",
+  "recipes-limit",
+  "recipe-changes",
+  "payload-shapes",
+  "recipes-import",
+  "drafts",
+  "menus",
+  "menus-limit",
+  "pantry-ingredients",
+  "shopping",
+  "planning",
+  "cooking",
+  "settings",
+  "coercion",
+  "same-millisecond"
+]

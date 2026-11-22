@@ -1,0 +1,89 @@
+CREATE TABLE snapshot (
+    account TEXT PRIMARY KEY,
+    household TEXT NOT NULL,
+    revision INTEGER NOT NULL,
+    state TEXT NOT NULL
+);
+
+CREATE TABLE outbox (
+    seq INTEGER PRIMARY KEY AUTOINCREMENT,
+    account TEXT NOT NULL,
+    id TEXT NOT NULL,
+    type TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    at INTEGER NOT NULL,
+    UNIQUE(account, id)
+);
+
+CREATE TABLE problem (
+    id TEXT NOT NULL,
+    account TEXT NOT NULL,
+    type TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    at INTEGER NOT NULL,
+    message TEXT NOT NULL,
+    status INTEGER NOT NULL,
+    PRIMARY KEY(account, id)
+);
+
+CREATE TABLE pending_upload (
+    id TEXT NOT NULL,
+    account TEXT NOT NULL,
+    photo_path TEXT NOT NULL,
+    thumb_path TEXT,
+    PRIMARY KEY(account, id)
+);
+
+-- Small device settings, such as the last signed-in account for opening offline.
+CREATE TABLE preference (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL
+);
+
+selectSnapshot:
+SELECT household, revision, state FROM snapshot WHERE account = ?;
+
+upsertSnapshot:
+INSERT OR REPLACE INTO snapshot(account, household, revision, state) VALUES (?, ?, ?, ?);
+
+deleteSnapshot:
+DELETE FROM snapshot WHERE account = ?;
+
+selectOutbox:
+SELECT id, type, payload, at FROM outbox WHERE account = ? ORDER BY seq;
+
+insertOutbox:
+INSERT INTO outbox(account, id, type, payload, at) VALUES (?, ?, ?, ?, ?);
+
+deleteOutbox:
+DELETE FROM outbox WHERE account = ?;
+
+selectProblems:
+SELECT id, type, payload, at, message, status FROM problem WHERE account = ? ORDER BY at, id;
+
+insertProblem:
+INSERT INTO problem(id, account, type, payload, at, message, status) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+deleteProblems:
+DELETE FROM problem WHERE account = ?;
+
+selectUploads:
+SELECT id, photo_path, thumb_path FROM pending_upload WHERE account = ?;
+
+insertUpload:
+INSERT INTO pending_upload(id, account, photo_path, thumb_path) VALUES (?, ?, ?, ?);
+
+deleteUpload:
+DELETE FROM pending_upload WHERE id = ?;
+
+deleteUploads:
+DELETE FROM pending_upload WHERE account = ?;
+
+selectPreference:
+SELECT value FROM preference WHERE key = ?;
+
+upsertPreference:
+INSERT OR REPLACE INTO preference(key, value) VALUES (?, ?);
+
+deletePreference:
+DELETE FROM preference WHERE key = ?;
