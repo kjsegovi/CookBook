@@ -13,6 +13,8 @@ data class PendingUpload(val id: String, val photoPath: String, val thumbPath: S
 interface LocalStore {
     fun readSnapshot(account: String): Snapshot?
     fun writeSnapshot(account: String, snapshot: Snapshot)
+    /** Saves a confirmed cookbook and the outbox left after it in one transaction, so they never disagree. */
+    fun writeConfirmed(account: String, snapshot: Snapshot, outbox: List<OutboxItem>)
     fun outbox(account: String): List<OutboxItem>
     fun replaceOutbox(account: String, items: List<OutboxItem>)
     fun problems(account: String): List<Problem>
@@ -37,6 +39,13 @@ class SqlLocalStore(driver: SqlDriver) : LocalStore {
 
     override fun writeSnapshot(account: String, snapshot: Snapshot) {
         q.upsertSnapshot(account, snapshot.householdId, snapshot.revision, CookbookJson.encodeToString(State.serializer(), snapshot.state))
+    }
+
+    override fun writeConfirmed(account: String, snapshot: Snapshot, outbox: List<OutboxItem>) {
+        db.transaction {
+            writeSnapshot(account, snapshot)
+            replaceOutbox(account, outbox)
+        }
     }
 
     override fun outbox(account: String): List<OutboxItem> =

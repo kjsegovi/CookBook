@@ -27,6 +27,19 @@ class OutboxQueriesTest {
         assertEquals(listOf(item("z", 9)), s.outbox("u1"))
     }
 
+    @Test fun writeConfirmedSavesSnapshotAndOutboxTogether() {
+        val s = store()
+        s.writeSnapshot("u1", Snapshot("h", 1, initialState()))
+        s.replaceOutbox("u1", listOf(item("a", 1), item("b", 2)))
+        s.writeConfirmed("u1", Snapshot("h", 2, initialState()), listOf(item("b", 2)))
+        assertEquals(2, s.readSnapshot("u1")!!.revision)
+        assertEquals(listOf(item("b", 2)), s.outbox("u1"))
+        // One transaction: an outbox that can't be written leaves the snapshot as it was.
+        assertFailsWith<Exception> { s.writeConfirmed("u1", Snapshot("h", 3, initialState()), listOf(item("c", 3), item("c", 4))) }
+        assertEquals(2, s.readSnapshot("u1")!!.revision)
+        assertEquals(listOf(item("b", 2)), s.outbox("u1"))
+    }
+
     @Test fun accountsAreIsolated() {
         val s = store()
         s.replaceOutbox("u1", listOf(item("a", 1)))

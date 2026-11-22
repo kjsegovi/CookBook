@@ -234,7 +234,7 @@ class KtorCookbookApiTest {
 
     @Test fun networkFailureIsStatusZero() = runTest {
         val e = assertFailsWith<SyncFailure> { Harness { throw IOException("offline") }.api.read(null) }
-        assertEquals(0, e.status); assertTrue(e.message!!.contains("offline"))
+        assertEquals(0, e.status); assertEquals("You’re offline.", e.message, "the website's text, not the exception's")
         assertEquals(0, assertFailsWith<SyncFailure> { Harness { throw IOException("offline") }.api.command("x", JsonObject(emptyMap()), "i", 1, "h1") }.status)
     }
 
@@ -250,5 +250,28 @@ class KtorCookbookApiTest {
         val e = assertFailsWith<SyncFailure> { Harness { ok("null") }.api.read(null) }
         assertEquals(503, e.status)
         assertEquals(502, assertFailsWith<SyncFailure> { Harness { ok("nope") }.api.command("x", JsonObject(emptyMap()), "i", 1, "h1") }.status)
+    }
+
+    @Test fun aCookbookThisVersionCannotDecodeIsA426() = runTest {
+        val newer = buildJsonObject { put("householdId", "h1"); put("revision", 9); putJsonObject("state") { put("recipes", "a newer shape") }; put("draftId", "d1") }.toString()
+        val update = "This cookbook was saved by a newer version of CookBook. Update the app to continue."
+        val command = assertFailsWith<SyncFailure> { Harness { ok(newer) }.api.command("x", JsonObject(emptyMap()), "i", 1, "h1") }
+        assertEquals(426, command.status); assertEquals(update, command.message)
+        val read = assertFailsWith<SyncFailure> { Harness { ok(newer) }.api.read(null) }
+        assertEquals(426, read.status)
+        val import = assertFailsWith<SyncFailure> { Harness { ok(newer) }.api.importLink("https://example.com/r", "d1", "h1") }
+        assertEquals(426, import.status); assertEquals(update, import.message)
+        val restore = assertFailsWith<SyncFailure> { Harness { ok(newer) }.api.restore(buildJsonObject { put("format", "cookbook-household-v1") }) }
+        assertEquals(426, restore.status)
+    }
+
+    @Test fun resetForgetsTheHousehold() = runTest {
+        val h = Harness { request -> if (request.url.encodedPath.endsWith("read_cookbook")) ok(snapshotBody()) else ok("""{"urls":{}}""") }
+        h.api.read(null)
+        h.api.photoUrls(listOf("photo:h1/a.webp"), "thumbnail")
+        assertEquals("h1", h.requests[1].headers["x-household-id"])
+        h.api.reset()
+        h.api.photoUrls(listOf("photo:h1/a.webp"), "thumbnail")
+        assertNull(h.requests[2].headers["x-household-id"], "the previous account's household is never sent")
     }
 }

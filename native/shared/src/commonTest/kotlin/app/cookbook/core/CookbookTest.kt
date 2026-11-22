@@ -1,28 +1,12 @@
 package app.cookbook.core
 
-import app.cookbook.core.api.BackendConfig
-import app.cookbook.core.api.CookbookApi
-import app.cookbook.core.api.ReadResult
-import app.cookbook.core.api.Session
 import app.cookbook.core.domain.DomainError
-import app.cookbook.core.store.Snapshot
-import app.cookbook.core.sync.FakeServer
-import app.cookbook.core.sync.HOUSEHOLD
-import app.cookbook.core.sync.MemoryStore
-import app.cookbook.core.sync.SEED_TIME
 import app.cookbook.core.sync.SyncFailure
-import app.cookbook.core.sync.sample
-import app.cookbook.core.sync.seedWith
-import app.cookbook.core.sync.statePatch
+import app.cookbook.core.sync.UPDATE_APP
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runCurrent
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlin.test.Test
@@ -31,96 +15,6 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-
-private class FakeSession(signedIn: Boolean = true) : Session {
-    var token: String? = if (signedIn) "token" else null
-    private val user = MutableStateFlow(if (signedIn) "user" else null)
-    override val userId: StateFlow<String?> = user
-    override suspend fun accessToken() = token
-    override suspend fun signIn(email: String, password: String) { token = "token"; user.value = "user" }
-    override suspend fun signOut() { token = null; user.value = null }
-    override suspend fun sendPasswordReset(email: String) {}
-}
-
-/** The cookbook API over [FakeServer]: flags answer with a delta, as set_cookbook_flag does. */
-private class FakeApi(val server: FakeServer) : CookbookApi {
-    var online = true
-    var signedIn = true
-    /** The next flag answer claims a base revision this device never had. */
-    var staleDelta = false
-    /** Reads fail with this status (a server error) while set. */
-    var readFailure: Int? = null
-    /** Commands wait for this before reaching the server while set. */
-    var gate: CompletableDeferred<Unit>? = null
-    val calls = mutableListOf<String>()
-
-    private fun check() {
-        if (!online) throw SyncFailure("Failed to fetch", 0)
-        if (!signedIn) throw SyncFailure("Please sign in to open your cookbook.", 401)
-    }
-
-    override suspend fun read(knownRevision: Long?): ReadResult {
-        check()
-        readFailure?.let { throw SyncFailure("The cookbook is busy. Please try again.", it) }
-        calls += "read:$knownRevision"
-        return if (knownRevision == server.revision) ReadResult.Unchanged(server.revision, HOUSEHOLD) else ReadResult.Full(server.snapshot)
-    }
-
-    override suspend fun command(type: String, payload: JsonElement, id: String, revision: Long, household: String): ReadResult {
-        check(); calls += "command:$type"
-        gate?.await()
-        return ReadResult.Full(server.send(type, payload, id, revision))
-    }
-
-    override suspend fun setFlag(
-        type: String, recordId: String, checked: Boolean, operationId: String, revision: Long, expectedUpdatedAt: String?,
-    ): ReadResult {
-        check(); calls += "flag:$type:$recordId:$checked"
-        val before = server.snapshot
-        val payload = buildJsonObject {
-            put("id", recordId); put(if (type == "shopping.toggle") "checked" else "favorite", checked)
-            expectedUpdatedAt?.let { put("expectedUpdatedAt", it) }
-        }
-        val after = server.send(type, payload, operationId, revision)
-        val base = if (staleDelta) revision - 1 else revision
-        staleDelta = false
-        return ReadResult.Changes(base, after.revision, HOUSEHOLD, statePatch(before.state, after.state))
-    }
-
-    override suspend fun importLink(url: String, id: String, household: String): Pair<Snapshot, String> {
-        check(); calls += "import"
-        val recipe = JsonObject(sample() + mapOf("id" to JsonPrimitive("imported"), "sourceUrl" to JsonPrimitive(url)))
-        val snapshot = server.edit("draft.save", buildJsonObject { put("id", "draft-1"); put("recipe", recipe) })
-        return snapshot to "draft-1"
-    }
-
-    override suspend fun photoUrls(references: List<String>, variant: String) = error("unused")
-    override suspend fun uploadPhoto(id: String, photo: ByteArray, photoType: String, thumbnail: ByteArray?) = error("unused")
-    override suspend fun export() = error("unused")
-    override suspend fun restore(backup: JsonObject) = error("unused")
-    override suspend fun remindersBegin(list: String, returnUrl: String) = error("unused")
-    override suspend fun remindersStatus(syncId: String) = error("unused")
-}
-
-private val CONFIG = BackendConfig("https://backend.example.test", "publishable", "https://kitchen.example.test")
-
-private fun shoppingSeed() = seedWith(
-    Triple("recipe.save", sample(), "seed-recipe-1"),
-    Triple("shopping.save", buildJsonObject { put("id", "lemons"); put("name", "Lemons"); put("amount", 2); put("unit", "") }, "seed-shop-1"),
-)
-
-private class World(scope: TestScope, signedIn: Boolean = true) {
-    val server = FakeServer(shoppingSeed())
-    val api = FakeApi(server)
-    val session = FakeSession(signedIn)
-    val store = MemoryStore()
-    var online = true
-    var time = SEED_TIME + 1_000_000
-    val cookbook = Cookbook(CONFIG, session, store, api, scope.backgroundScope, { online && api.online }, { time += 5; time })
-
-    fun goOffline() { online = false; api.online = false; cookbook.connectivityChanged() }
-    fun goOnline() { online = true; api.online = true; cookbook.connectivityChanged() }
-}
 
 class CookbookTest {
     private val Cookbook.state get() = view.value!!.state
@@ -140,7 +34,7 @@ class CookbookTest {
         first.cookbook.open()
         // A new launch: no saved sign-in and no network.
         val api = FakeApi(first.server).also { it.online = false }
-        val cookbook = Cookbook(CONFIG, FakeSession(signedIn = false), first.store, api, backgroundScope, { false })
+        val cookbook = Cookbook(CONFIG, FakeSession(signedIn = false), first.store, api, backgroundScope, { false }, dispatcher = dispatcher)
         cookbook.open()
         assertEquals("user", cookbook.account.value)
         assertEquals(listOf("rice"), cookbook.state.recipes.map { it.id })
@@ -251,7 +145,7 @@ class CookbookTest {
         val first = World(this)
         first.cookbook.open()
         first.api.readFailure = 503
-        val cookbook = Cookbook(CONFIG, first.session, first.store, first.api, backgroundScope, { true })
+        val cookbook = Cookbook(CONFIG, first.session, first.store, first.api, backgroundScope, { true }, dispatcher = dispatcher)
         cookbook.open()  // returns normally
         assertEquals(listOf("rice"), cookbook.state.recipes.map { it.id }, "the saved copy")
         assertEquals("The cookbook is busy. Please try again.", cookbook.lastError.value)
@@ -293,5 +187,81 @@ class CookbookTest {
         assertNull(w.store.readSnapshot("user"))
         assertEquals(0, w.store.outbox("user").size)
         assertNull(w.store.lastAccount())
+    }
+
+    @Test fun anExpiredTokenIsRefreshedOnceBeforeAskingToSignIn() = runTest {
+        val w = World(this)
+        w.session.token = "expired"; w.session.refreshedToken = "fresh"; w.api.requiredToken = "fresh"
+        w.cookbook.open()
+        assertFalse(w.cookbook.needsSignIn.value)
+        assertEquals(1, w.session.refreshes)
+        assertEquals(listOf("read:null"), w.api.calls)
+        // The token expires again while a change waits: one refresh, then the change is sent.
+        w.session.refreshedToken = "fresher"; w.api.requiredToken = "fresher"
+        w.cookbook.save("recipe.rate", buildJsonObject { put("id", "rice"); put("rating", 4) }).getOrThrow()
+        assertTrue(w.cookbook.flush())
+        assertFalse(w.cookbook.needsSignIn.value)
+        assertEquals(2, w.session.refreshes)
+        assertEquals(4, w.server.state.recipes.single().rating)
+        // A sign-in the server still refuses after refreshing asks to sign in again.
+        w.session.refreshedToken = "refused"; w.api.requiredToken = "never"
+        w.cookbook.save("recipe.rate", buildJsonObject { put("id", "rice"); put("rating", 2) }).getOrThrow()
+        assertFalse(w.cookbook.flush())
+        assertTrue(w.cookbook.needsSignIn.value)
+        assertEquals(3, w.session.refreshes)
+        assertEquals(1, w.cookbook.status.value.pending)
+    }
+
+    @Test fun aDeltaThatCannotBeAppliedFallsBackToAFullRead() = runTest {
+        val w = World(this)
+        w.cookbook.open()
+        w.api.brokenDelta = true
+        w.cookbook.save("shopping.toggle", buildJsonObject { put("id", "lemons"); put("checked", true) }).getOrThrow()
+        assertTrue(w.cookbook.flush())
+        assertEquals("read:null", w.api.calls.last())
+        assertTrue(w.cookbook.state.shopping.single().checked)
+        assertTrue(w.cookbook.status.value.problems.isEmpty())
+    }
+
+    @Test fun anAnswerThisVersionCannotReadIsShownOnceInsteadOfRetrying() = runTest {
+        val w = World(this)
+        w.cookbook.open()
+        w.api.undecodable = true
+        w.cookbook.save("recipe.rate", buildJsonObject { put("id", "rice"); put("rating", 4) }).getOrThrow()
+        assertTrue(w.cookbook.flush())
+        val problem = w.cookbook.status.value.problems.single()
+        assertEquals(426, problem.status)
+        assertEquals(UPDATE_APP, problem.message)
+        val calls = w.api.calls.size
+        advanceTimeBy(10 * 60_000L)
+        runCurrent()
+        assertEquals(calls, w.api.calls.size, "no retry loop")
+    }
+
+    @Test fun unexpectedFailuresWhileSavingAreReturned() = runTest {
+        val w = World(this)
+        w.cookbook.open()
+        w.server.failNext(409)
+        w.cookbook.save("recipe.rate", buildJsonObject { put("id", "rice"); put("rating", 4) }).getOrThrow()
+        assertTrue(w.cookbook.flush())
+        val problem = w.cookbook.status.value.problems.single()
+        w.clockFailure = IllegalArgumentException("Invalid time value")
+        val saved = w.cookbook.save("recipe.rate", buildJsonObject { put("id", "rice"); put("rating", 5) })
+        assertTrue(saved.exceptionOrNull() is IllegalArgumentException)
+        val retried = w.cookbook.retry(problem.item.id, problem.item.payload)
+        assertTrue(retried.exceptionOrNull() is IllegalArgumentException)
+        assertEquals(0, w.cookbook.status.value.pending)
+    }
+
+    @Test fun signingOutOrSwitchingAccountsForgetsTheHousehold() = runTest {
+        val w = World(this)
+        w.cookbook.open()
+        val opened = w.api.resets
+        w.session.become("someone-else")
+        w.cookbook.open()
+        assertEquals("someone-else", w.cookbook.account.value)
+        assertEquals(opened + 1, w.api.resets, "switching accounts")
+        assertTrue(w.cookbook.signOut(force = true))
+        assertEquals(opened + 2, w.api.resets, "signing out")
     }
 }

@@ -13,6 +13,8 @@ sealed interface ReadResult {
 
 /** The cookbook backend. Failures are thrown as [app.cookbook.core.sync.SyncFailure] (status 0 = unreachable). */
 interface CookbookApi {
+    /** Forgets what was learned about the signed-in account (its household); called on sign-out and account switch. */
+    fun reset() {}
     /** `read_cookbook_changes(since)` when [knownRevision] is set, else `read_cookbook`; falls back on 404/PGRST202. */
     suspend fun read(knownRevision: Long?): ReadResult
     suspend fun command(type: String, payload: JsonElement, id: String, revision: Long, household: String): ReadResult

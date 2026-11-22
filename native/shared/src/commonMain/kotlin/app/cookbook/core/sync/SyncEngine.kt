@@ -45,10 +45,15 @@ class SyncFailure(message: String, val status: Int) : Exception(message)
 
 data class SyncStatus(val pending: Int, val problems: List<Problem>, val offline: Boolean, val syncing: Boolean)
 
-private fun failureStatus(error: Throwable): Int = when (error) {
-    is SyncFailure -> error.status
-    is DomainError -> error.status
-    else -> 0
+/** Shown when the server sent something this version can't read; 426 makes it a problem, not an endless retry. */
+const val UPDATE_APP = "This cookbook was saved by a newer version of CookBook. Update the app to continue."
+
+/** Any failure as a [SyncFailure]; data that can't be decoded (IllegalArgumentException, SerializationException) is 426. */
+internal fun asSyncFailure(error: Throwable): SyncFailure = when (error) {
+    is SyncFailure -> error
+    is DomainError -> SyncFailure(error.message ?: "This change could not be saved.", error.status)
+    is IllegalArgumentException -> SyncFailure(UPDATE_APP, 426)
+    else -> SyncFailure(error.message ?: "This change could not be saved.", 0)
 }
 
 // Rejections the server will repeat: show them instead of retrying forever.
@@ -56,8 +61,9 @@ private fun isRejection(status: Int) = status in 400..499 && status != 401 && st
 private val COALESCIBLE = setOf("shopping.toggle", "recipe.favorite")
 
 /**
- * Threading: like the website's engine this is single-threaded. Call the non-suspending methods and collect from the
- * thread [scope] runs on (the main thread in the apps); [sender], [reader] and [beforeSend] may switch dispatchers.
+ * Threading: like the website's engine this is single-threaded. Call every method from [scope]'s dispatcher, which must
+ * run one task at a time: in the apps that is [app.cookbook.core.Cookbook]'s confined background dispatcher, never the
+ * UI thread. The flows may be collected anywhere; [sender], [reader] and [beforeSend] may switch dispatchers.
  */
 class SyncEngine(
     initial: Snapshot,
@@ -195,10 +201,11 @@ class SyncEngine(
                     sending = null
                     // Closed (signed out) while waiting: the account's data may already be gone; write nothing back.
                     if (closed) return
-                    val status = failureStatus(e)
+                    val failure = asSyncFailure(e)
+                    val status = failure.status
                     if (isRejection(status)) {
                         queue = queue.filter { it.id != item.id }
-                        problemList = problemList.filter { it.item.id != item.id } + Problem(item, e.message ?: "This change could not be saved.", status)
+                        problemList = problemList.filter { it.item.id != item.id } + Problem(item, failure.message ?: "This change could not be saved.", status)
                         persistQueue(); persistProblems(); changed()
                         continue
                     }
@@ -259,10 +266,8 @@ class SyncEngine(
         }
         queue = queue.filter { it.id != item.id }.map { it.copy(payload = rewriteGuards(it.payload, replacements, versions)) }
         confirmed = saved
-        // The confirmed cookbook is saved before the outbox, so a crash in between replays an already applied
-        // operation, which applyCommand skips, instead of losing one.
-        persistConfirmed()
-        persistQueue()
+        // One transaction, so the saved cookbook and outbox never disagree after a crash.
+        try { store.writeConfirmed(account, confirmed, queue) } catch (e: Exception) { }
         changed()
     }
 

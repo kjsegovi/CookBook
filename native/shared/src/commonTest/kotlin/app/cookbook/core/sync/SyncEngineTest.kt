@@ -312,6 +312,42 @@ class SyncEngineTest {
         assertEquals(0, s.store.problems("user").size)
     }
 
+    @Test fun aConfirmedChangeSavesTheCookbookAndOutboxInOneWrite() = runTest {
+        val calls = mutableListOf<String>()
+        val store = object : LocalStore by MemoryStore() {
+            override fun writeConfirmed(account: String, snapshot: Snapshot, outbox: List<app.cookbook.core.store.OutboxItem>) {
+                calls += "writeConfirmed:${snapshot.revision}:${outbox.size}"
+            }
+            override fun writeSnapshot(account: String, snapshot: Snapshot) { calls += "writeSnapshot" }
+            override fun replaceOutbox(account: String, items: List<app.cookbook.core.store.OutboxItem>) { calls += "replaceOutbox:${items.size}" }
+        }
+        val s = Setup(backgroundScope, store = store)
+        val engine = s.make()
+        s.server.online = false
+        engine.enqueue("pantry.save", pantry("rice", "rice", 1, "kg"))
+        engine.enqueue("pantry.save", pantry("salt", "salt", 1, "tsp"))
+        runCurrent()
+        calls.clear()
+        s.server.online = true
+        assertTrue(engine.flush())
+        assertEquals(listOf("writeConfirmed:1:1", "writeConfirmed:2:0"), calls)
+    }
+
+    @Test fun anAnswerThisVersionCannotReadBecomesAProblemInsteadOfRetrying() = runTest {
+        val s = setup()
+        var sends = 0
+        val engine = s.make(sender = CommandSender { _, _, _, _ -> sends++; throw kotlinx.serialization.SerializationException("Unexpected JSON token") })
+        engine.enqueue("pantry.save", pantry("rice", "rice", 1, "kg"))
+        runCurrent()
+        advanceTimeBy(10 * 60_000L)
+        runCurrent()
+        assertEquals(1, sends, "not retried")
+        assertEquals(0, engine.pending)
+        val problem = engine.status.value.problems.single()
+        assertEquals(426, problem.status)
+        assertEquals("This cookbook was saved by a newer version of CookBook. Update the app to continue.", problem.message)
+    }
+
     @Test fun acceptIgnoresOlderAndForeignSnapshots() = runTest {
         val s = setup()
         val engine = s.make()

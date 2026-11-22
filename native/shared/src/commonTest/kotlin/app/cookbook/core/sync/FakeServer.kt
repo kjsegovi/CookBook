@@ -77,6 +77,11 @@ class MemoryStore : LocalStore {
 
     override fun readSnapshot(account: String) = snapshots[account]
     override fun writeSnapshot(account: String, snapshot: Snapshot) { snapshots[account] = snapshot }
+    override fun writeConfirmed(account: String, snapshot: Snapshot, outbox: List<OutboxItem>) {
+        require(outbox.map { it.id }.toSet().size == outbox.size) { "Duplicate outbox id" }
+        snapshots[account] = snapshot
+        outboxes[account] = outbox.toList()
+    }
     override fun outbox(account: String) = outboxes[account] ?: emptyList()
     override fun replaceOutbox(account: String, items: List<OutboxItem>) {
         require(items.map { it.id }.toSet().size == items.size) { "Duplicate outbox id" }

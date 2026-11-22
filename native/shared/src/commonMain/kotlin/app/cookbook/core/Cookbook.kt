@@ -19,14 +19,18 @@ import app.cookbook.core.sync.SyncEngine
 import app.cookbook.core.sync.SyncFailure
 import app.cookbook.core.sync.SyncStatus
 import app.cookbook.core.sync.applyStatePatch
+import app.cookbook.core.sync.asSyncFailure
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
@@ -42,6 +46,8 @@ import kotlin.time.Clock
 private const val SIGN_IN = "Please sign in to open your cookbook."
 private const val NOT_OPEN = "Open your cookbook first."
 private const val UNREADABLE = "The cookbook response could not be read. Please try again."
+// Copied from the website (src/app.tsx).
+private const val OFFLINE = "You’re offline."
 // Copied from the website (src/components/kitchen.tsx, importUrl).
 private const val OFFLINE_IMPORT =
     "Saved while offline. When you’re back online, use Import a link with this address to bring in the recipe."
@@ -51,18 +57,26 @@ private val FLAGS = setOf("shopping.toggle", "recipe.favorite")
  * The one object the app screens use: the signed-in cookbook, saved on this device and synced in the background.
  * Port of the website's flows in src/lib/api.ts, src/app.tsx and src/components/kitchen.tsx.
  *
- * Threading: [scope] must run on a single thread (the main dispatcher in the apps; a test or single-thread dispatcher
- * in tests). Call every public method and collect every flow from that dispatcher; the sync engine runs there too.
+ * Threading: all of the cookbook's work (the sync engine, JSON and the local database) runs one task at a time on
+ * [dispatcher], a confined background dispatcher, never on the UI thread. Every public method may be called from any
+ * thread: suspend functions switch to [dispatcher] themselves, and the others ([connectivityChanged], [dismiss],
+ * [pause]) hand their work to it and return at once. Screens collect the StateFlows from wherever they like (the main
+ * thread in the apps). [scope] only bounds the cookbook's lifetime (cancel it to stop all background work); its own
+ * dispatcher is not used. Tests pass their test dispatcher as [dispatcher].
  */
 class Cookbook(
     val config: BackendConfig,
     private val session: Session,
     private val store: LocalStore,
     private val api: CookbookApi,
-    private val scope: CoroutineScope,
+    scope: CoroutineScope,
     private val online: () -> Boolean,
     private val now: () -> Long = { Clock.System.now().toEpochMilliseconds() },
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Default.limitedParallelism(1),
 ) {
+    /** Where the engine and every state change run: [scope]'s lifetime on the confined [dispatcher]. */
+    private val scope = CoroutineScope(scope.coroutineContext + dispatcher)
+
     private var engine: SyncEngine? = null
     private var watchers: Job? = null
     // The last read failed for lack of a connection; the engine only notices that while sending.
@@ -123,22 +137,25 @@ class Cookbook(
      * shown through [status], [needsSignIn] and [lastError]. With no saved copy the cookbook is read from the server, and a failure
      * is thrown ([SyncFailure]) with [view] left null.
      */
-    suspend fun open() {
+    suspend fun open(): Unit = withContext(dispatcher) {
         val user = signedInUser()
         if (user == null) _needsSignIn.value = true
         val account = user ?: store.lastAccount() ?: run { sync(); throw SyncFailure(SIGN_IN, 401) }
         if (user != null) store.setLastAccount(user)
         if (engine == null || _account.value != account) {
             stop()
+            // The previous account's household must never be sent for this one.
+            if (_account.value != account) api.reset()
             _account.value = account
-            val saved = store.readSnapshot(account)
+            // A saved copy that can't be read (damaged, or from a newer version) is read again; the outbox is kept.
+            val saved = try { store.readSnapshot(account) } catch (e: CancellationException) { throw e } catch (e: Exception) { null }
             if (saved == null) {
                 val snapshot = try { full() } catch (e: SyncFailure) { failed(e); throw e }
                 store.writeSnapshot(account, snapshot)
                 start(account, snapshot)
                 reachedServer()
                 sync()
-                return
+                return@withContext
             }
             start(account, saved)
         }
@@ -173,11 +190,38 @@ class Cookbook(
 
     // --- server mapping ---
 
-    private suspend fun <T> call(block: suspend () -> T): T = try {
+    /**
+     * A server call. A refused sign-in (401) is refreshed once and the call repeated (commands carry their operation
+     * id, so a repeat is safe); only a second refusal asks to sign in again. Data this version can't decode is a 426.
+     */
+    private suspend fun <T> call(block: suspend () -> T): T {
+        try {
+            return decoded(block)
+        } catch (e: SyncFailure) {
+            if (e.status != 401) throw e
+            val token = try {
+                session.refreshAccessToken()
+            } catch (c: CancellationException) {
+                throw c
+            } catch (x: Exception) {
+                // The refresh itself couldn't reach the server: try again later rather than asking to sign in.
+                throw SyncFailure(OFFLINE, 0)
+            }
+            if (token == null) { _needsSignIn.value = true; throw e }
+        }
+        try {
+            return decoded(block)
+        } catch (e: SyncFailure) {
+            if (e.status == 401) _needsSignIn.value = true
+            throw e
+        }
+    }
+
+    private suspend fun <T> decoded(block: suspend () -> T): T = try {
         block()
-    } catch (e: SyncFailure) {
-        if (e.status == 401) _needsSignIn.value = true
-        throw e
+    } catch (e: IllegalArgumentException) {
+        // SerializationException is an IllegalArgumentException: a cookbook from a newer version of the server.
+        throw asSyncFailure(e)
     }
 
     private suspend fun full(): Snapshot =
@@ -188,7 +232,14 @@ class Cookbook(
         is ReadResult.Full -> result.snapshot
         is ReadResult.Changes ->
             if (result.baseRevision == base.revision && result.householdId == base.householdId) {
-                try { Snapshot(result.householdId, result.revision, applyStatePatch(base.state, result.patch)) } catch (e: DomainError) { full() }
+                // Any delta that can't be applied (incomplete, or rows this version can't read) means a full read.
+                try {
+                    Snapshot(result.householdId, result.revision, applyStatePatch(base.state, result.patch))
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    full()
+                }
             } else full()
         is ReadResult.Unchanged ->
             if (result.revision == base.revision && result.householdId == base.householdId) base else full()
@@ -215,78 +266,97 @@ class Cookbook(
 
     // --- using the cookbook ---
 
-    /** Applies the change here at once and queues it for the server. An invalid change fails with its [DomainError]. */
-    fun save(type: String, payload: JsonElement): Result<Unit> {
-        val engine = engine ?: return Result.failure(DomainError(NOT_OPEN, 409))
-        return try {
+    /**
+     * Applies the change here at once and queues it for the server. An invalid change fails with its [DomainError]
+     * (any other unexpected error is returned the same way). Returns once the change is shown in [view].
+     */
+    suspend fun save(type: String, payload: JsonElement): Result<Unit> = withContext(dispatcher) {
+        val engine = engine ?: return@withContext Result.failure(DomainError(NOT_OPEN, 409))
+        try {
             engine.enqueue(type, payload)
             sync()
             Result.success(Unit)
-        } catch (e: DomainError) {
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
             Result.failure(e)
         }
     }
 
     /** Gets the latest cookbook from the server; throws [SyncFailure] when it can't. */
-    suspend fun refresh() {
-        val engine = engine ?: return open()
+    suspend fun refresh(): Unit = withContext(dispatcher) {
+        val engine = engine ?: return@withContext open()
         try { engine.refresh() } catch (e: SyncFailure) { failed(e); throw e }
         reachedServer()
         sync()
     }
 
     /** Waits for unsent changes; false while any remain (offline or signed out). Rejected changes become problems. */
-    suspend fun flush(): Boolean {
-        val engine = engine ?: return true
+    suspend fun flush(): Boolean = withContext(dispatcher) {
+        val engine = engine ?: return@withContext true
         val done = engine.flush()
         if (done) unreachable = false
         sync()
-        return done
+        done
     }
 
-    /** Call when the device's connection changes: sends waiting changes and updates [status]. */
+    /** Call when the device's connection changes (from any thread): sends waiting changes and updates [status]. */
     fun connectivityChanged() {
-        if (online()) unreachable = false
-        sync()
-        val engine = engine ?: return
-        scope.launch { engine.drain(); sync() }
+        scope.launch {
+            if (online()) unreachable = false
+            sync()
+            val engine = engine ?: return@launch
+            engine.drain()
+            sync()
+        }
     }
 
     /** Discards a rejected change. */
-    fun dismiss(problemId: String) { engine?.dismiss(problemId); sync() }
+    fun dismiss(problemId: String) {
+        scope.launch { engine?.dismiss(problemId); sync() }
+    }
 
-    /** Keep mine: resends a rejected change with [payload] against the latest version. */
-    fun retry(problemId: String, payload: JsonElement): Result<String?> = try {
-        Result.success(engine?.retry(problemId, payload)).also { sync() }
-    } catch (e: DomainError) {
-        Result.failure(e)
+    /**
+     * Keep mine: resends a rejected change with [payload] against the latest version. Returns the new change's id, or
+     * the failure (a [DomainError] when the change is invalid).
+     */
+    suspend fun retry(problemId: String, payload: JsonElement): Result<String?> = withContext(dispatcher) {
+        try {
+            Result.success(engine?.retry(problemId, payload)).also { sync() }
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
     /** Stops retry timers while no screen shows the cookbook. */
-    fun pause() { engine?.pause() }
+    fun pause() {
+        scope.launch { engine?.pause() }
+    }
 
     /**
      * Imports a recipe link as a draft and returns the draft's id. Offline, the link is kept as a draft holding only
      * its address, to import again later, as on the website.
      */
-    suspend fun importLink(url: String): String {
+    suspend fun importLink(url: String): String = withContext(dispatcher) {
         val engine = engine ?: throw DomainError(NOT_OPEN, 409)
-        if (!online()) return offlineDraft(url)
+        if (!online()) return@withContext offlineDraft(url)
         engine.flush()
         val (snapshot, draftId) = try {
             call { api.importLink(url, Ids.uuid(), engine.confirmedSnapshot.householdId) }
         } catch (e: SyncFailure) {
             failed(e)
-            if (e.status == 0) return offlineDraft(url)
+            if (e.status == 0) return@withContext offlineDraft(url)
             throw e
         }
         engine.accept(snapshot)
         reachedServer()
         sync()
-        return draftId
+        draftId
     }
 
-    private fun offlineDraft(url: String): String {
+    private suspend fun offlineDraft(url: String): String {
         val id = Ids.uuid()
         val host = parseHttpUrl(url)?.substringAfter("://")?.substringBefore('/')
             ?.let { if (it.startsWith("[")) it.substringBefore(']') + "]" else it.substringBefore(':') }
@@ -305,7 +375,7 @@ class Cookbook(
     // --- account ---
 
     /** Signs in, then opens that account's cookbook and sends any changes waiting from before. */
-    suspend fun signIn(email: String, password: String) {
+    suspend fun signIn(email: String, password: String): Unit = withContext(dispatcher) {
         session.signIn(email, password)
         _needsSignIn.value = false
         open()
@@ -315,10 +385,11 @@ class Cookbook(
      * Signs out and forgets this device's copy of the cookbook. Returns false, doing nothing, while changes are unsent
      * unless [force] is set (the screen first warns that they will be lost).
      */
-    suspend fun signOut(force: Boolean = false): Boolean {
-        if (status.value.pending > 0 && !force) return false
+    suspend fun signOut(force: Boolean = false): Boolean = withContext(dispatcher) {
+        if (status.value.pending > 0 && !force) return@withContext false
         val account = _account.value
         stop()
+        api.reset()
         try { session.signOut() } catch (e: CancellationException) { throw e } catch (e: Exception) { /* forgotten locally regardless */ }
         account?.let { store.clearAccount(it) }
         store.setLastAccount(null)
@@ -327,6 +398,6 @@ class Cookbook(
         _needsSignIn.value = false
         _lastError.value = null
         sync()
-        return true
+        true
     }
 }

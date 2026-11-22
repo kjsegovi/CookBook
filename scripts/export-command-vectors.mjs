@@ -10,10 +10,12 @@ import { applyCommand } from '../supabase/functions/_shared/commands.ts';
 import { DomainError, convert, formatAmount, fraction, httpUrl, initialState, normalizeRecipe, parseIngredient } from '../supabase/functions/_shared/domain.ts';
 import { statePatch } from '../supabase/functions/_shared/state-patch.ts';
 import { scenarios } from './vector-scenarios.mjs';
+import { assertCovered } from './command-coverage.mjs';
 import { convertCases, formatCases, fractionInputs, incompleteCases, parseLines, recipeCases, recipeNow, urlInputs } from './helper-vectors.mjs';
 
 const outDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'native', 'shared', 'src', 'commonTest', 'resources', 'vectors');
 const check = process.argv.includes('--check');
+assertCovered(readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', 'supabase', 'functions', '_shared', 'commands.ts'), 'utf8'), scenarios);
 
 // Scenario payloads must give every record an id, so a run never depends on chance.
 let current = '';

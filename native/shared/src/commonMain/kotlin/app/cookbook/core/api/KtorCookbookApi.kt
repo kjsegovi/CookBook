@@ -5,6 +5,7 @@ import app.cookbook.core.json.CookbookJson
 import app.cookbook.core.store.Snapshot
 import app.cookbook.core.sync.StatePatch
 import app.cookbook.core.sync.SyncFailure
+import app.cookbook.core.sync.UPDATE_APP
 import io.ktor.client.HttpClient
 import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.forms.formData
@@ -41,7 +42,8 @@ private const val SIGN_IN = "Please sign in to open your cookbook."
 private const val LOAD_FAILED = "Your cookbook could not be loaded. Please try again."
 private const val SAVE_FAILED = "Your changes could not be confirmed. Please try again."
 private const val UNREADABLE = "The cookbook response could not be read. Please try again."
-private const val OFFLINE = "The cookbook could not be reached. Check your connection and try again."
+// Copied from the website (src/app.tsx); the exception's own text is not shown.
+private const val OFFLINE = "You’re offline."
 
 class KtorCookbookApi(
     private val config: BackendConfig,
@@ -79,7 +81,7 @@ class KtorCookbookApi(
         } catch (e: SyncFailure) {
             throw e
         } catch (e: Exception) {
-            throw SyncFailure(e.message?.takeIf { it.isNotBlank() } ?: OFFLINE, 0)
+            throw SyncFailure(OFFLINE, 0)
         }
     }
 
@@ -122,8 +124,12 @@ class KtorCookbookApi(
         val state = o["state"] as? JsonObject ?: return null
         val id = o.field("householdId") ?: return null
         val revision = (o["revision"] as? JsonPrimitive)?.longOrNull ?: return null
-        return Snapshot(id, revision, CookbookJson.decodeFromJsonElement(State.serializer(), state)).also { household = id }
+        return Snapshot(id, revision, decoded { CookbookJson.decodeFromJsonElement(State.serializer(), state) }).also { household = id }
     }
+
+    /** A cookbook this version can't decode (SerializationException is an IllegalArgumentException) won't change on retry. */
+    private inline fun <T> decoded(block: () -> T): T =
+        try { block() } catch (e: IllegalArgumentException) { throw SyncFailure(UPDATE_APP, 426) }
 
     private fun requireSnapshot(o: JsonObject) = snapshot(o) ?: throw SyncFailure(UNREADABLE, 502)
 
@@ -140,7 +146,7 @@ class KtorCookbookApi(
                 val baseRevision = (o["baseRevision"] as? JsonPrimitive)?.longOrNull
                 if (baseRevision != null) {
                     household = id
-                    return ReadResult.Changes(baseRevision, revision, id, CookbookJson.decodeFromJsonElement(StatePatch.serializer(), o["patch"]!!))
+                    return ReadResult.Changes(baseRevision, revision, id, decoded { CookbookJson.decodeFromJsonElement(StatePatch.serializer(), o["patch"]!!) })
                 }
             }
             snapshot(o)?.let { return ReadResult.Full(it) }
@@ -153,6 +159,8 @@ class KtorCookbookApi(
     }
 
     // --- CookbookApi ---
+
+    override fun reset() { household = null }
 
     override suspend fun read(knownRevision: Long?): ReadResult {
         if (knownRevision != null && changesAvailable) {

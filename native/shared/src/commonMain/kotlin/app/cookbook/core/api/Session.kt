@@ -7,6 +7,7 @@ import io.github.jan.supabase.auth.exception.NoSessionFoundException
 import io.github.jan.supabase.auth.user.UserSession
 import io.github.jan.supabase.auth.SessionManager
 import io.github.jan.supabase.createSupabaseClient
+import io.github.jan.supabase.exceptions.RestException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,13 +17,37 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
+import kotlin.time.Clock
+import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Instant
 
 interface Session {
+    /** The saved sign-in's access token, refreshed first when it has expired or is about to; null when signed out. */
     suspend fun accessToken(): String?
+    /**
+     * Refreshes the sign-in now (after the server refused the token) and returns the new token; null when there is no
+     * saved sign-in or the server refused the refresh. Throws when the server can't be reached.
+     */
+    suspend fun refreshAccessToken(): String? = null
     val userId: StateFlow<String?>
     suspend fun signIn(email: String, password: String)
     suspend fun signOut()
     suspend fun sendPasswordReset(email: String)
+}
+
+/** Tokens this close to expiry are refreshed before use, as the website's getSession() does. */
+private val EXPIRY_MARGIN = 60.seconds
+
+/**
+ * The token to send: refreshed first when it expires within a minute. A refresh that fails (offline) keeps the saved
+ * token; the server then decides, and a 401 is refreshed once more before asking to sign in.
+ */
+internal suspend fun freshAccessToken(expiresAt: Instant?, now: Instant, refresh: suspend () -> Unit, current: () -> String?): String? {
+    if (expiresAt == null) return current()
+    if (expiresAt - now < EXPIRY_MARGIN) {
+        try { refresh() } catch (e: CancellationException) { throw e } catch (e: Exception) { /* use the saved token */ }
+    }
+    return current()
 }
 
 /** A tiny persistent string slot for the saved sign-in. Android: SharedPreferences, iOS: Keychain, tests: memory. */
@@ -64,6 +89,21 @@ class SupabaseSession(config: BackendConfig, storage: SessionStorage) : Session 
 
     override suspend fun accessToken(): String? {
         auth.awaitInitialization()
+        // After the app was suspended past the token's lifetime the library may not have refreshed it yet.
+        return freshAccessToken(auth.currentSessionOrNull()?.expiresAt, Clock.System.now(), { auth.refreshCurrentSession() }) {
+            auth.currentAccessTokenOrNull()
+        }
+    }
+
+    override suspend fun refreshAccessToken(): String? {
+        auth.awaitInitialization()
+        if (auth.currentSessionOrNull() == null) return null
+        try {
+            auth.refreshCurrentSession()
+        } catch (e: RestException) {
+            // The server refused the refresh token: the saved sign-in is no longer valid.
+            return null
+        }
         return auth.currentAccessTokenOrNull()
     }
 
