@@ -32,6 +32,30 @@ class ModelTest {
         }
     }
 
+    @Test fun reencodedVectorStatesKeepTheSourceKeys() {
+        for (v in app.cookbook.core.loadVectors()) {
+            for (o in listOf(v.initial) + v.steps.mapNotNull { it.after }) {
+                val st = CookbookJson.decodeFromString<State>(o.toString())
+                val again = CookbookJson.parseToJsonElement(CookbookJson.encodeToString(st))
+                // Per-record key sets: every object keeps exactly its source keys.
+                fun same(a: kotlinx.serialization.json.JsonElement, b: kotlinx.serialization.json.JsonElement, at: String) {
+                    when {
+                        a is JsonObject && b is JsonObject -> {
+                            assertEquals(a.keys, b.keys, "${v.name} $at")
+                            a.forEach { (k, x) -> same(x, b.getValue(k), "$at/$k") }
+                        }
+                        a is kotlinx.serialization.json.JsonArray && b is kotlinx.serialization.json.JsonArray -> {
+                            assertEquals(a.size, b.size, "${v.name} $at")
+                            a.indices.forEach { same(a[it], b[it], "$at[$it]") }
+                        }
+                        else -> {}
+                    }
+                }
+                same(o, again, "")
+            }
+        }
+    }
+
     @Ignore // enabled in Task 3 once stableJson exists
     @Test fun everyVectorStateDecodesAndReencodesWithoutLoss() {}
 }

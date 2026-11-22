@@ -1,6 +1,7 @@
 package app.cookbook.core.domain
 
 import app.cookbook.core.json.PreservingSerializer
+import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Serializer
@@ -30,16 +31,16 @@ object IngredientLineSerializer : PreservingSerializer<IngredientLine>(Ingredien
 
 @Serializable(with = NutritionSerializer::class)
 data class Nutrition(
-    val calories: Double? = null,
-    val protein: Double? = null,
-    val carbs: Double? = null,
-    val fat: Double? = null,
-    val fiber: Double? = null,
-    val sugar: Double? = null,
-    val sodium: Double? = null,
-    val servingSize: String? = null,
-    val text: String? = null,
-    val estimated: Boolean? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val calories: Double? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val protein: Double? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val carbs: Double? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val fat: Double? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val fiber: Double? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val sugar: Double? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val sodium: Double? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val servingSize: String? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val text: String? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val estimated: Boolean? = null,
     val extra: JsonObject = JsonObject(emptyMap()),
 )
 
@@ -112,7 +113,7 @@ data class PlanEntry(
     val eatServings: Double,
     val done: Boolean,
     val note: String,
-    val auto: Boolean? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val auto: Boolean? = null,
     val extra: JsonObject = JsonObject(emptyMap()),
 )
 
@@ -217,7 +218,7 @@ data class Ingredient(
     val id: String,
     val name: String,
     val aliases: List<String>,
-    val aisle: String? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val aisle: String? = null,
     val extra: JsonObject = JsonObject(emptyMap()),
 )
 
@@ -249,8 +250,8 @@ data class Settings(
     val categories: List<String>,
     val servings: Double,
     val weekStartsOn: Int,
-    val autoLeftovers: Boolean? = null,
-    val aisles: List<String>? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val autoLeftovers: Boolean? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val aisles: List<String>? = null,
     val extra: JsonObject = JsonObject(emptyMap()),
 )
 
@@ -274,7 +275,7 @@ data class State(
     val movements: List<Movement>,
     val operations: List<String>,
     val settings: Settings,
-    val reminders: JsonArray? = null,
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val reminders: JsonArray? = null,
     val extra: JsonObject = JsonObject(emptyMap()),
 )
 
