@@ -92,6 +92,7 @@ tests/fixtures/preview-backend.mjs                   (modify, Task 11)
                "error": null | { "message": "…", "status": 409 } } ] }
 ```
 - Produces: `fun loadVectors(): List<Vector>` in `commonTest` (`VectorSupport.kt`), with `data class Vector(val name: String, val initial: JsonObject, val steps: List<VectorStep>)` and `data class VectorStep(val type: String, val payload: JsonObject, val operationId: String, val clock: String, val after: JsonObject?, val patch: JsonObject?, val error: VectorError?)`, plus `data class VectorError(val message: String, val status: Int)`. Resources are read through a `expect fun readResource(path: String): String`, with actuals for JVM, Android and iOS test source sets.
+- Produces: `fun forEachVectorStep(implemented: Set<String>, check: (previous: State, step: VectorStep) -> State)` in `VectorSupport.kt`. It decodes each vector's `initial` as `State`, skips any scenario with an unimplemented step type (recording it in `skippedScenarios: List<String>`), and chains the state returned by `check` into the next step.
 
 - [ ] **Step 1:** Install the Gradle wrapper. Download the latest stable Gradle 9.x distribution zip from `https://services.gradle.org/distributions/` into the scratchpad, unpack it, and from `native/` run `<unpacked>/bin/gradle wrapper --gradle-version <same>`. Expected: `native/gradlew` exists and `./gradlew --version` prints that version, using the JBR JVM.
 - [ ] **Step 2:** Configure `shared/build.gradle.kts`:
@@ -125,6 +126,7 @@ test('committed command vectors match the TypeScript commands', () => {
 });
 ```
 - [ ] **Step 6: Run** `npm run vectors:export && npm test`. Expected: 11+ vector files written, and all tests pass (145+).
+  - Note for everyone changing `commands.ts` from now on: `npm test` (and so the website's Pages deploy) fails until `npm run vectors:export` is run and the new vectors are committed. This is the intended drift guard. The Kotlin side is checked in Plan 3's `native.yml`.
 - [ ] **Step 7: Write `VectorsLoadTest`:** `loadVectors()` returns every scenario name from Step 3, and every step has exactly one of `after` or `error`.
 - [ ] **Step 8: Run** `cd native && ./gradlew :shared:jvmTest`. Expected: PASS.
 - [ ] **Step 9: Commit.**
@@ -147,6 +149,7 @@ git commit -m "native: KMP shared module and TypeScript golden command vectors"
   - `PantryItem`, `PlanEntry(… auto: Boolean? = null)`, `PreparedBatch`, `ShoppingItem`, `ImportDraft(id, recipe: Recipe, text, warnings: List<String>, createdAt)`, `MenuItem(recipeId, day: Int, slot)`, `Menu`, `Ingredient(id, name, aliases: List<String>, aisle: String? = null)`, `Movement(id, name, amount: Double?, unit, reason, at)`, `Settings(categories: List<String>, servings: Double, weekStartsOn: Int, autoLeftovers: Boolean? = null, aisles: List<String>? = null)`
   - `State(recipes, pantry, plan, batches, shopping, shoppingWeek: String, menus: List<Menu> = emptyList(), ingredients, drafts, movements, operations: List<String>, settings: Settings, reminders: JsonArray? = null)`
   - Every class above also has `val extra: JsonObject = JsonObject(emptyMap())`, carrying unknown keys through `Preserving`.
+  - `fun State.withoutExtras(): State` clears `extra` on the state and every nested record. Vector comparisons use it, because TypeScript output never carries unknown keys.
 - Produces, in `json/Preserving.kt`: `open class PreservingSerializer<T>(base: KSerializer<T>) : KSerializer<T>`. When decoding, keys not in `base.descriptor` move into `extra`; when encoding, `extra` keys are merged back. Each model class annotates `@Serializable(with = …Serializer::class)`, using an `object` subclass.
 - Produces: `val CookbookJson: Json` (`ignoreUnknownKeys = false`, `explicitNulls = true`, `encodeDefaults = true`).
 - Produces, in `domain/DomainError.kt`: `class DomainError(message: String, val status: Int = 400) : Exception(message)`; `object Ids { fun uuid(): String }` (expect/actual: `java.util.UUID` on JVM/Android, `NSUUID` on iOS); `fun initialState(): State` with `DEFAULT_CATEGORIES = listOf("Breakfast", "Entrées", "Sauces", "Sides", "Snacks", "Pastries & Desserts")`, servings 2.0, weekStartsOn 1, autoLeftovers true.
@@ -177,7 +180,6 @@ git commit -m "native: KMP shared module and TypeScript golden command vectors"
   - `fun stableJson(e: JsonElement): String`: sorted keys, and numbers written as `jsNumberString`.
   - `fun jsNumberString(d: Double): String`: matches JavaScript `Number#toString`.
   - `fun JsonElement.sameAs(other: JsonElement): Boolean = stableJson(this) == stableJson(other)`.
-  - `fun JsonElement.declaredOnly(): JsonElement`: strips `extra`-only keys using model descriptors, for vector comparison.
 - Produces, the JavaScript coercions, each argument `JsonElement?` (Kotlin `null` = `undefined`):
   - `jsString(v)` = `String(v ?? '')`
   - `jsNumber(v)` = `Number(v)` (`undefined` → NaN, `null` → 0, `''` → 0, whitespace trimmed, `true` → 1)
@@ -254,7 +256,7 @@ git commit -m "native: KMP shared module and TypeScript golden command vectors"
   - `COLLECTIONS = listOf("recipes","pantry","plan","batches","shopping","ingredients","drafts","movements","menus")`
   - `fun statePatch(before: State, after: State): StatePatch` and `fun applyStatePatch(original: State, patch: StatePatch): State`. The operations window is kept to the last 200, as in TypeScript.
 
-- [ ] **Step 1: Write the tests.** `StatePatchVectorTest`: for every vector step with a `patch`, `statePatch(previous, after)` is `sameAs` the recorded patch (declared fields), and `applyStatePatch(previous, patch)` is `sameAs` `after`. `PlanningTest`: `keywordAisle("frozen peas") == "Frozen"`, `keywordAisle("tomato paste") == "Canned & Jarred"`, `keywordAisle("mystery") == "Other"`, and `aisleOrder(listOf("Dairy & Eggs","Produce"))` sorts `["Produce","Other","Dairy & Eggs"]` into `["Dairy & Eggs","Produce","Other"]`.
+- [ ] **Step 1: Write the tests.** `StatePatchVectorTest`: for every vector step with a `patch`, decode both states, then check that `statePatch(previous, after)` encodes `sameAs` the recorded patch, and that `applyStatePatch(previous, patch).withoutExtras()` encodes `sameAs` `after`. `PlanningTest`: `keywordAisle("frozen peas") == "Frozen"`, `keywordAisle("tomato paste") == "Canned & Jarred"`, `keywordAisle("mystery") == "Other"`, and `aisleOrder(listOf("Dairy & Eggs","Produce"))` sorts `["Produce","Other","Dairy & Eggs"]` into `["Dairy & Eggs","Produce","Other"]`.
 - [ ] **Step 2:** Run. Expected: FAIL.
 - [ ] **Step 3:** Implement by porting the TypeScript. `statePatch` compares rows with `sameAs` (native comparison first is unnecessary in Kotlin).
 - [ ] **Step 4:** Run. Expected: PASS.
@@ -286,7 +288,7 @@ git commit -m "native: KMP shared module and TypeScript golden command vectors"
     val result = runCatching { applyCommand(previous, step.type, step.payload, step.operationId, step.clock) }
     if (step.error != null) {
         val e = assertIs<DomainError>(result.exceptionOrNull()); assertEquals(step.error.message, e.message); assertEquals(step.error.status, e.status); previous
-    } else { val after = result.getOrThrow(); assertTrue(after.declaredJson().sameAs(step.after!!.declaredOnly()), step.name); after }
+    } else { val after = result.getOrThrow(); assertTrue(CookbookJson.encodeToJsonElement(after.withoutExtras()).sameAs(step.after!!), step.type); after }
 }
 ```
 `IMPLEMENTED` is a set of command types that grows in Task 7. A scenario is skipped while any of its step types is missing.
