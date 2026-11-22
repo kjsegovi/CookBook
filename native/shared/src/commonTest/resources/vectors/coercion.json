@@ -1,0 +1,4897 @@
+{
+  "initial": {
+    "batches": [],
+    "drafts": [],
+    "ingredients": [],
+    "menus": [],
+    "movements": [],
+    "operations": [],
+    "pantry": [],
+    "plan": [],
+    "recipes": [],
+    "settings": {
+      "autoLeftovers": true,
+      "categories": [
+        "Breakfast",
+        "Entrées",
+        "Sauces",
+        "Sides",
+        "Snacks",
+        "Pastries & Desserts"
+      ],
+      "servings": 2,
+      "weekStartsOn": 1
+    },
+    "shopping": [],
+    "shoppingWeek": ""
+  },
+  "name": "coercion",
+  "steps": [
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 5,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:00.000Z",
+      "error": null,
+      "operationId": "op-0001",
+      "patch": {
+        "appendOperations": [
+          "op-0001"
+        ],
+        "collections": {
+          "recipes": {
+            "order": [
+              "r1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 0,
+                "createdAt": "2026-11-21T10:01:00.000Z",
+                "description": "",
+                "favorite": true,
+                "id": "r1",
+                "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+                "images": [
+                  "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+                ],
+                "ingredients": [
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i1",
+                    "name": "a",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": 2,
+                    "group": "",
+                    "id": "i2",
+                    "name": "b",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i3",
+                    "name": "c",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i4",
+                    "name": "d",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": 0,
+                    "group": "",
+                    "id": "i5",
+                    "name": "e",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": 2.5,
+                    "group": "",
+                    "id": "i6",
+                    "name": "f",
+                    "note": "",
+                    "raw": "",
+                    "unit": "cups"
+                  }
+                ],
+                "notes": "",
+                "nutrition": {
+                  "calories": 250.5,
+                  "estimated": true,
+                  "servingSize": "1 cup"
+                },
+                "prepMinutes": 5,
+                "rating": 5,
+                "related": [],
+                "servings": 6,
+                "sourceUrl": "",
+                "steps": [
+                  "one",
+                  "2"
+                ],
+                "tags": [
+                  "1",
+                  "a",
+                  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                ],
+                "title": "Padded title",
+                "updatedAt": "2026-11-21T10:01:00.000Z",
+                "wantToTry": false
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "category": "  ",
+        "cookMinutes": "0",
+        "description": null,
+        "favorite": "false",
+        "id": "r1",
+        "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+        "ingredients": [
+          {
+            "amount": "",
+            "id": "i1",
+            "name": "a"
+          },
+          {
+            "amount": "2",
+            "id": "i2",
+            "name": "b"
+          },
+          {
+            "amount": null,
+            "id": "i3",
+            "name": "c"
+          },
+          {
+            "id": "i4",
+            "name": "d"
+          },
+          {
+            "amount": "0",
+            "id": "i5",
+            "name": "e"
+          },
+          {
+            "amount": 2.5,
+            "id": "i6",
+            "name": " f ",
+            "unit": "  cups "
+          }
+        ],
+        "notes": null,
+        "nutrition": {
+          "calories": "250.46",
+          "carbs": "x",
+          "estimated": 1,
+          "fat": null,
+          "protein": "",
+          "servingSize": " 1 cup "
+        },
+        "prepMinutes": "5",
+        "rating": "7",
+        "servings": "6",
+        "steps": [
+          "  one ",
+          " ",
+          2
+        ],
+        "tags": [
+          1,
+          " a ",
+          "",
+          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        ],
+        "title": "  Padded title  ",
+        "wantToTry": ""
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 5,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:02:00.000Z",
+      "error": null,
+      "operationId": "op-0002",
+      "patch": {
+        "appendOperations": [
+          "op-0002"
+        ],
+        "collections": {
+          "recipes": {
+            "order": [
+              "r1",
+              "r2"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:02:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r2",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r2-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [
+                  "r1"
+                ],
+                "servings": 2,
+                "sourceUrl": "https://example.com/page",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+                "updatedAt": "2026-11-21T10:02:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r2",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r2-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "rating": "x",
+        "related": [
+          "r1",
+          "r1",
+          " "
+        ],
+        "sourceUrl": "https://example.com/page",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:03:00.000Z",
+      "error": {
+        "message": "Ingredient amount must be zero or a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0003",
+      "patch": null,
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r3",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": "abc",
+            "id": "i1",
+            "name": "a"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r3",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:04:00.000Z",
+      "error": {
+        "message": "Ingredient amount must be zero or a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0004",
+      "patch": null,
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r3",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": -1,
+            "id": "i1",
+            "name": "a"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r3",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:05:00.000Z",
+      "error": {
+        "message": "Servings must be a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0005",
+      "patch": null,
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r3",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r3-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "servings": "0",
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r3",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:06:00.000Z",
+      "error": {
+        "message": "Preparation time must be zero or a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0006",
+      "patch": null,
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r3",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r3-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": -1,
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r3",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:07:00.000Z",
+      "error": {
+        "message": "Enter a valid http or https link.",
+        "status": 400
+      },
+      "operationId": "op-0007",
+      "patch": null,
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r3",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r3-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "servings": 4,
+        "sourceUrl": "ftp://example.com",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r3",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:08:00.000Z",
+      "error": {
+        "message": "Enter a valid http or https link.",
+        "status": 400
+      },
+      "operationId": "op-0008",
+      "patch": null,
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r3",
+        "image": "not a url",
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r3-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r3",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 3,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:09:00.000Z",
+      "error": null,
+      "operationId": "op-0009",
+      "patch": {
+        "appendOperations": [
+          "op-0009"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 0,
+                "createdAt": "2026-11-21T10:01:00.000Z",
+                "description": "",
+                "favorite": true,
+                "id": "r1",
+                "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+                "images": [
+                  "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+                ],
+                "ingredients": [
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i1",
+                    "name": "a",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": 2,
+                    "group": "",
+                    "id": "i2",
+                    "name": "b",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i3",
+                    "name": "c",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i4",
+                    "name": "d",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": 0,
+                    "group": "",
+                    "id": "i5",
+                    "name": "e",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": 2.5,
+                    "group": "",
+                    "id": "i6",
+                    "name": "f",
+                    "note": "",
+                    "raw": "",
+                    "unit": "cups"
+                  }
+                ],
+                "notes": "",
+                "nutrition": {
+                  "calories": 250.5,
+                  "estimated": true,
+                  "servingSize": "1 cup"
+                },
+                "prepMinutes": 5,
+                "rating": 3,
+                "related": [],
+                "servings": 6,
+                "sourceUrl": "",
+                "steps": [
+                  "one",
+                  "2"
+                ],
+                "tags": [
+                  "1",
+                  "a",
+                  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                ],
+                "title": "Padded title",
+                "updatedAt": "2026-11-21T10:01:00.000Z",
+                "wantToTry": false
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "r1",
+        "rating": "3"
+      },
+      "type": "recipe.rate"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:10:00.000Z",
+      "error": null,
+      "operationId": "op-0010",
+      "patch": {
+        "appendOperations": [
+          "op-0010"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 0,
+                "createdAt": "2026-11-21T10:01:00.000Z",
+                "description": "",
+                "favorite": true,
+                "id": "r1",
+                "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+                "images": [
+                  "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+                ],
+                "ingredients": [
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i1",
+                    "name": "a",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": 2,
+                    "group": "",
+                    "id": "i2",
+                    "name": "b",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i3",
+                    "name": "c",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": null,
+                    "group": "",
+                    "id": "i4",
+                    "name": "d",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": 0,
+                    "group": "",
+                    "id": "i5",
+                    "name": "e",
+                    "note": "",
+                    "raw": "",
+                    "unit": ""
+                  },
+                  {
+                    "amount": 2.5,
+                    "group": "",
+                    "id": "i6",
+                    "name": "f",
+                    "note": "",
+                    "raw": "",
+                    "unit": "cups"
+                  }
+                ],
+                "notes": "",
+                "nutrition": {
+                  "calories": 250.5,
+                  "estimated": true,
+                  "servingSize": "1 cup"
+                },
+                "prepMinutes": 5,
+                "rating": 0,
+                "related": [],
+                "servings": 6,
+                "sourceUrl": "",
+                "steps": [
+                  "one",
+                  "2"
+                ],
+                "tags": [
+                  "1",
+                  "a",
+                  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                ],
+                "title": "Padded title",
+                "updatedAt": "2026-11-21T10:01:00.000Z",
+                "wantToTry": false
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "r1",
+        "rating": ""
+      },
+      "type": "recipe.rate"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:11:00.000Z",
+      "error": null,
+      "operationId": "op-0011",
+      "patch": {
+        "appendOperations": [
+          "op-0011"
+        ],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "id": "r1",
+        "rating": null
+      },
+      "type": "recipe.rate"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:12:00.000Z",
+      "error": {
+        "message": "Choose a rating from 0 to 5 stars.",
+        "status": 400
+      },
+      "operationId": "op-0012",
+      "patch": null,
+      "payload": {
+        "id": "r1"
+      },
+      "type": "recipe.rate"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:13:00.000Z",
+      "error": {
+        "message": "Choose whether to favorite this recipe.",
+        "status": 400
+      },
+      "operationId": "op-0013",
+      "patch": null,
+      "payload": {
+        "favorite": "true",
+        "id": "r1"
+      },
+      "type": "recipe.favorite"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:14:00.000Z",
+      "error": null,
+      "operationId": "op-0014",
+      "patch": {
+        "appendOperations": [
+          "op-0014"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0014-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": null,
+                "at": "2026-11-21T10:14:00.000Z",
+                "id": "op-0014-1",
+                "name": "a",
+                "reason": "Stock adjusted",
+                "unit": ""
+              }
+            ]
+          },
+          "pantry": {
+            "order": [
+              "p1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": null,
+                "id": "p1",
+                "location": "Pantry",
+                "name": "a",
+                "note": "",
+                "unit": ""
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": "",
+        "id": "p1",
+        "name": "a",
+        "unit": ""
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:15:00.000Z",
+            "id": "op-0015-1",
+            "name": "b",
+            "reason": "Stock adjusted",
+            "unit": ""
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014",
+          "op-0015"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Pantry",
+            "name": "b",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:15:00.000Z",
+      "error": null,
+      "operationId": "op-0015",
+      "patch": {
+        "appendOperations": [
+          "op-0015"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0014-1",
+              "op-0015-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": null,
+                "at": "2026-11-21T10:15:00.000Z",
+                "id": "op-0015-1",
+                "name": "b",
+                "reason": "Stock adjusted",
+                "unit": ""
+              }
+            ]
+          },
+          "pantry": {
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": null,
+                "id": "p2",
+                "location": "Pantry",
+                "name": "b",
+                "note": "",
+                "unit": ""
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": null,
+        "id": "p2",
+        "name": "b",
+        "unit": ""
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:15:00.000Z",
+            "id": "op-0015-1",
+            "name": "b",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:16:00.000Z",
+            "id": "op-0016-1",
+            "name": "c",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014",
+          "op-0015",
+          "op-0016"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Pantry",
+            "name": "b",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "c",
+            "note": "",
+            "unit": "g"
+          }
+        ],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:16:00.000Z",
+      "error": null,
+      "operationId": "op-0016",
+      "patch": {
+        "appendOperations": [
+          "op-0016"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0014-1",
+              "op-0015-1",
+              "op-0016-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 2.5,
+                "at": "2026-11-21T10:16:00.000Z",
+                "id": "op-0016-1",
+                "name": "c",
+                "reason": "Stock adjusted",
+                "unit": "g"
+              }
+            ]
+          },
+          "pantry": {
+            "order": [
+              "p1",
+              "p2",
+              "p3"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 2.5,
+                "id": "p3",
+                "location": "Pantry",
+                "name": "c",
+                "note": "",
+                "unit": "g"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": "2.5",
+        "id": "p3",
+        "name": "c",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:17:00.000Z",
+      "error": {
+        "message": "Amount must be zero or a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0017",
+      "patch": null,
+      "payload": {
+        "id": "p4",
+        "name": "d",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:18:00.000Z",
+      "error": {
+        "message": "Amount must be zero or a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0018",
+      "patch": null,
+      "payload": {
+        "amount": "abc",
+        "id": "p4",
+        "name": "d",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:15:00.000Z",
+            "id": "op-0015-1",
+            "name": "b",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:16:00.000Z",
+            "id": "op-0016-1",
+            "name": "c",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0019"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Pantry",
+            "name": "b",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "c",
+            "note": "",
+            "unit": "g"
+          }
+        ],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:19:00.000Z",
+      "error": null,
+      "operationId": "op-0019",
+      "patch": {
+        "appendOperations": [
+          "op-0019"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "c1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "",
+                "cookServings": 4,
+                "date": "2026-11-02",
+                "done": false,
+                "eatServings": 2,
+                "id": "c1",
+                "kind": "cook",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "cookServings": "4",
+        "date": "2026-11-02",
+        "eatServings": "2",
+        "id": "c1",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:15:00.000Z",
+            "id": "op-0015-1",
+            "name": "b",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:16:00.000Z",
+            "id": "op-0016-1",
+            "name": "c",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0019",
+          "op-0020"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Pantry",
+            "name": "b",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "c",
+            "note": "",
+            "unit": "g"
+          }
+        ],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-03",
+            "done": false,
+            "eatServings": 1,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:20:00.000Z",
+      "error": null,
+      "operationId": "op-0020",
+      "patch": {
+        "appendOperations": [
+          "op-0020"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "c1",
+              "l1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "c1",
+                "cookServings": 0,
+                "date": "2026-11-03",
+                "done": false,
+                "eatServings": 1,
+                "id": "l1",
+                "kind": "leftover",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "batchId": "c1",
+        "date": "2026-11-03",
+        "eatServings": "1",
+        "id": "l1",
+        "kind": "leftover"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:15:00.000Z",
+            "id": "op-0015-1",
+            "name": "b",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:16:00.000Z",
+            "id": "op-0016-1",
+            "name": "c",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0019",
+          "op-0020",
+          "op-0021"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Pantry",
+            "name": "b",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "c",
+            "note": "",
+            "unit": "g"
+          }
+        ],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-03",
+            "done": false,
+            "eatServings": 1,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [
+          {
+            "addedToPantry": false,
+            "amount": 3,
+            "checked": true,
+            "group": "Other",
+            "id": "s1",
+            "key": "op-0021-1",
+            "manual": true,
+            "name": "x",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          }
+        ],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:21:00.000Z",
+      "error": null,
+      "operationId": "op-0021",
+      "patch": {
+        "appendOperations": [
+          "op-0021"
+        ],
+        "collections": {
+          "shopping": {
+            "order": [
+              "s1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "addedToPantry": false,
+                "amount": 3,
+                "checked": true,
+                "group": "Other",
+                "id": "s1",
+                "key": "op-0021-1",
+                "manual": true,
+                "name": "x",
+                "needed": null,
+                "note": "",
+                "override": false,
+                "uncertain": false,
+                "unit": ""
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": "3",
+        "checked": "false",
+        "id": "s1",
+        "name": "x",
+        "unit": ""
+      },
+      "type": "shopping.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:15:00.000Z",
+            "id": "op-0015-1",
+            "name": "b",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:16:00.000Z",
+            "id": "op-0016-1",
+            "name": "c",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0019",
+          "op-0020",
+          "op-0021",
+          "op-0022"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Pantry",
+            "name": "b",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "c",
+            "note": "",
+            "unit": "g"
+          }
+        ],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-03",
+            "done": false,
+            "eatServings": 1,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [
+          {
+            "addedToPantry": false,
+            "amount": 3,
+            "checked": true,
+            "group": "Other",
+            "id": "s1",
+            "key": "op-0021-1",
+            "manual": true,
+            "name": "x",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          },
+          {
+            "addedToPantry": false,
+            "amount": null,
+            "checked": false,
+            "group": "Other",
+            "id": "s2",
+            "key": "op-0022-1",
+            "manual": true,
+            "name": "y",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          }
+        ],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:22:00.000Z",
+      "error": null,
+      "operationId": "op-0022",
+      "patch": {
+        "appendOperations": [
+          "op-0022"
+        ],
+        "collections": {
+          "shopping": {
+            "order": [
+              "s1",
+              "s2"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "addedToPantry": false,
+                "amount": null,
+                "checked": false,
+                "group": "Other",
+                "id": "s2",
+                "key": "op-0022-1",
+                "manual": true,
+                "name": "y",
+                "needed": null,
+                "note": "",
+                "override": false,
+                "uncertain": false,
+                "unit": ""
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": "",
+        "checked": 0,
+        "id": "s2",
+        "name": "y",
+        "unit": ""
+      },
+      "type": "shopping.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:23:00.000Z",
+      "error": {
+        "message": "Purchase amount must be zero or a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0023",
+      "patch": null,
+      "payload": {
+        "id": "s3",
+        "name": "z",
+        "unit": ""
+      },
+      "type": "shopping.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:24:00.000Z",
+            "description": "",
+            "id": "m1",
+            "items": [
+              {
+                "day": 3,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              },
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              },
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Snack"
+              },
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "M",
+            "updatedAt": "2026-11-21T10:24:00.000Z"
+          }
+        ],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:15:00.000Z",
+            "id": "op-0015-1",
+            "name": "b",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:16:00.000Z",
+            "id": "op-0016-1",
+            "name": "c",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0019",
+          "op-0020",
+          "op-0021",
+          "op-0022",
+          "op-0024"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Pantry",
+            "name": "b",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "c",
+            "note": "",
+            "unit": "g"
+          }
+        ],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-03",
+            "done": false,
+            "eatServings": 1,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [
+          {
+            "addedToPantry": false,
+            "amount": 3,
+            "checked": true,
+            "group": "Other",
+            "id": "s1",
+            "key": "op-0021-1",
+            "manual": true,
+            "name": "x",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          },
+          {
+            "addedToPantry": false,
+            "amount": null,
+            "checked": false,
+            "group": "Other",
+            "id": "s2",
+            "key": "op-0022-1",
+            "manual": true,
+            "name": "y",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          }
+        ],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:24:00.000Z",
+      "error": null,
+      "operationId": "op-0024",
+      "patch": {
+        "appendOperations": [
+          "op-0024"
+        ],
+        "collections": {
+          "menus": {
+            "order": [
+              "m1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "createdAt": "2026-11-21T10:24:00.000Z",
+                "description": "",
+                "id": "m1",
+                "items": [
+                  {
+                    "day": 3,
+                    "recipeId": "r1",
+                    "slot": "Dinner"
+                  },
+                  {
+                    "day": 1,
+                    "recipeId": "r1",
+                    "slot": "Dinner"
+                  },
+                  {
+                    "day": 1,
+                    "recipeId": "r1",
+                    "slot": "Snack"
+                  },
+                  {
+                    "day": 1,
+                    "recipeId": "r1",
+                    "slot": "Dinner"
+                  }
+                ],
+                "name": "M",
+                "updatedAt": "2026-11-21T10:24:00.000Z"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "m1",
+        "items": [
+          {
+            "day": "3",
+            "recipeId": "r1",
+            "slot": "lunch"
+          },
+          {
+            "day": null,
+            "recipeId": "r1"
+          },
+          {
+            "day": "x",
+            "recipeId": "r1",
+            "slot": "Snack"
+          },
+          {
+            "recipeId": "r1"
+          }
+        ],
+        "name": "M"
+      },
+      "type": "menu.save"
+    },
+    {
+      "after": {
+        "batches": [
+          {
+            "cookedServings": 4,
+            "id": "c1",
+            "location": "Fridge",
+            "planId": "c1",
+            "preparedAt": "2026-11-21T10:25:00.000Z",
+            "recipeId": "r1",
+            "remaining": 4,
+            "title": "Padded title"
+          }
+        ],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:24:00.000Z",
+            "description": "",
+            "id": "m1",
+            "items": [
+              {
+                "day": 3,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              },
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              },
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Snack"
+              },
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "M",
+            "updatedAt": "2026-11-21T10:24:00.000Z"
+          }
+        ],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:15:00.000Z",
+            "id": "op-0015-1",
+            "name": "b",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:16:00.000Z",
+            "id": "op-0016-1",
+            "name": "c",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:25:00.000Z",
+            "id": "op-0025-1",
+            "name": "c",
+            "reason": "Cooked Padded title",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0019",
+          "op-0020",
+          "op-0021",
+          "op-0022",
+          "op-0024",
+          "op-0025"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Pantry",
+            "name": "b",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "c",
+            "note": "",
+            "unit": "g"
+          }
+        ],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": true,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-03",
+            "done": false,
+            "eatServings": 1,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "auto": true,
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-04",
+            "done": false,
+            "eatServings": 2,
+            "id": "op-0025-2",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "auto": true,
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 1,
+            "id": "op-0025-3",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [
+          {
+            "addedToPantry": false,
+            "amount": 3,
+            "checked": true,
+            "group": "Other",
+            "id": "s1",
+            "key": "op-0021-1",
+            "manual": true,
+            "name": "x",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          },
+          {
+            "addedToPantry": false,
+            "amount": null,
+            "checked": false,
+            "group": "Other",
+            "id": "s2",
+            "key": "op-0022-1",
+            "manual": true,
+            "name": "y",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          }
+        ],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:25:00.000Z",
+      "error": null,
+      "operationId": "op-0025",
+      "patch": {
+        "appendOperations": [
+          "op-0025"
+        ],
+        "collections": {
+          "batches": {
+            "order": [
+              "c1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "cookedServings": 4,
+                "id": "c1",
+                "location": "Fridge",
+                "planId": "c1",
+                "preparedAt": "2026-11-21T10:25:00.000Z",
+                "recipeId": "r1",
+                "remaining": 4,
+                "title": "Padded title"
+              }
+            ]
+          },
+          "movements": {
+            "order": [
+              "op-0014-1",
+              "op-0015-1",
+              "op-0016-1",
+              "op-0025-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 0,
+                "at": "2026-11-21T10:25:00.000Z",
+                "id": "op-0025-1",
+                "name": "c",
+                "reason": "Cooked Padded title",
+                "unit": "g"
+              }
+            ]
+          },
+          "plan": {
+            "order": [
+              "c1",
+              "l1",
+              "op-0025-2",
+              "op-0025-3"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "",
+                "cookServings": 4,
+                "date": "2026-11-02",
+                "done": true,
+                "eatServings": 2,
+                "id": "c1",
+                "kind": "cook",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              },
+              {
+                "auto": true,
+                "batchId": "c1",
+                "cookServings": 0,
+                "date": "2026-11-04",
+                "done": false,
+                "eatServings": 2,
+                "id": "op-0025-2",
+                "kind": "leftover",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              },
+              {
+                "auto": true,
+                "batchId": "c1",
+                "cookServings": 0,
+                "date": "2026-11-05",
+                "done": false,
+                "eatServings": 1,
+                "id": "op-0025-3",
+                "kind": "leftover",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "cookServings": "4",
+        "eatServings": "",
+        "planId": "c1",
+        "usage": [
+          {
+            "amount": "",
+            "pantryId": "p3",
+            "unit": "g"
+          }
+        ]
+      },
+      "type": "cook"
+    },
+    {
+      "after": {
+        "batches": [
+          {
+            "cookedServings": 4,
+            "id": "c1",
+            "location": "Fridge",
+            "planId": "c1",
+            "preparedAt": "2026-11-21T10:25:00.000Z",
+            "recipeId": "r1",
+            "remaining": 4,
+            "title": "Padded title"
+          }
+        ],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:24:00.000Z",
+            "description": "",
+            "id": "m1",
+            "items": [
+              {
+                "day": 3,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              },
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              },
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Snack"
+              },
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "M",
+            "updatedAt": "2026-11-21T10:24:00.000Z"
+          }
+        ],
+        "movements": [
+          {
+            "amount": null,
+            "at": "2026-11-21T10:14:00.000Z",
+            "id": "op-0014-1",
+            "name": "a",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:15:00.000Z",
+            "id": "op-0015-1",
+            "name": "b",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:16:00.000Z",
+            "id": "op-0016-1",
+            "name": "c",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:25:00.000Z",
+            "id": "op-0025-1",
+            "name": "c",
+            "reason": "Cooked Padded title",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0009",
+          "op-0010",
+          "op-0011",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0019",
+          "op-0020",
+          "op-0021",
+          "op-0022",
+          "op-0024",
+          "op-0025",
+          "op-0026"
+        ],
+        "pantry": [
+          {
+            "amount": null,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "a",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Pantry",
+            "name": "b",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "c",
+            "note": "",
+            "unit": "g"
+          }
+        ],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": true,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-03",
+            "done": false,
+            "eatServings": 1,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "auto": true,
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-04",
+            "done": false,
+            "eatServings": 2,
+            "id": "op-0025-2",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "auto": true,
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 1,
+            "id": "op-0025-3",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 0,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": true,
+            "id": "r1",
+            "image": "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg",
+            "images": [
+              "photo:11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222.jpg"
+            ],
+            "ingredients": [
+              {
+                "amount": null,
+                "group": "",
+                "id": "i1",
+                "name": "a",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2,
+                "group": "",
+                "id": "i2",
+                "name": "b",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i3",
+                "name": "c",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": null,
+                "group": "",
+                "id": "i4",
+                "name": "d",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 0,
+                "group": "",
+                "id": "i5",
+                "name": "e",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              },
+              {
+                "amount": 2.5,
+                "group": "",
+                "id": "i6",
+                "name": "f",
+                "note": "",
+                "raw": "",
+                "unit": "cups"
+              }
+            ],
+            "notes": "",
+            "nutrition": {
+              "calories": 250.5,
+              "estimated": true,
+              "servingSize": "1 cup"
+            },
+            "prepMinutes": 5,
+            "rating": 0,
+            "related": [],
+            "servings": 6,
+            "sourceUrl": "",
+            "steps": [
+              "one",
+              "2"
+            ],
+            "tags": [
+              "1",
+              "a",
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ],
+            "title": "Padded title",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:02:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [
+              "r1"
+            ],
+            "servings": 2,
+            "sourceUrl": "https://example.com/page",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+            "updatedAt": "2026-11-21T10:02:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 3,
+          "weekStartsOn": 1
+        },
+        "shopping": [
+          {
+            "addedToPantry": false,
+            "amount": 3,
+            "checked": true,
+            "group": "Other",
+            "id": "s1",
+            "key": "op-0021-1",
+            "manual": true,
+            "name": "x",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          },
+          {
+            "addedToPantry": false,
+            "amount": null,
+            "checked": false,
+            "group": "Other",
+            "id": "s2",
+            "key": "op-0022-1",
+            "manual": true,
+            "name": "y",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          }
+        ],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:26:00.000Z",
+      "error": null,
+      "operationId": "op-0026",
+      "patch": {
+        "appendOperations": [
+          "op-0026"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "autoLeftovers": true,
+            "categories": [
+              "Entrées"
+            ],
+            "servings": 3,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "categories": "Entrées",
+        "servings": "3",
+        "weekStartsOn": "0"
+      },
+      "type": "settings.save"
+    }
+  ]
+}

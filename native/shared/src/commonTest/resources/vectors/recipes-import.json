@@ -1,0 +1,5757 @@
+{
+  "initial": {
+    "batches": [],
+    "drafts": [],
+    "ingredients": [],
+    "menus": [],
+    "movements": [],
+    "operations": [],
+    "pantry": [],
+    "plan": [],
+    "recipes": [],
+    "settings": {
+      "autoLeftovers": true,
+      "categories": [
+        "Breakfast",
+        "Entrées",
+        "Sauces",
+        "Sides",
+        "Snacks",
+        "Pastries & Desserts"
+      ],
+      "servings": 2,
+      "weekStartsOn": 1
+    },
+    "shopping": [],
+    "shoppingWeek": ""
+  },
+  "name": "recipes-import",
+  "steps": [
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p2",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:00.000Z",
+      "error": null,
+      "operationId": "op-0001",
+      "patch": {
+        "appendOperations": [
+          "op-0001"
+        ],
+        "collections": {
+          "recipes": {
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-01-01T00:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "p1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "p1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe p1",
+                "updatedAt": "2026-11-21T10:01:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:01:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "p2",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "p2-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe p2",
+                "updatedAt": "2026-11-21T10:01:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "recipes": [
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p1",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "p2",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p2",
+            "wantToTry": true
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p2",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:02:00.000Z",
+      "error": null,
+      "operationId": "op-0002",
+      "patch": {
+        "appendOperations": [
+          "op-0002"
+        ],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "mode": "skip",
+        "recipes": [
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Skipped change",
+            "wantToTry": true
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Replaced",
+            "updatedAt": "2026-11-21T10:03:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p2",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:03:00.000Z",
+      "error": null,
+      "operationId": "op-0003",
+      "patch": {
+        "appendOperations": [
+          "op-0003"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-01-01T00:00:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "p1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "p1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Replaced",
+                "updatedAt": "2026-11-21T10:03:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "mode": "replace",
+        "recipes": [
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Replaced",
+            "wantToTry": true
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Replaced",
+            "updatedAt": "2026-11-21T10:03:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p2",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:04:00.000Z",
+      "error": null,
+      "operationId": "op-0004",
+      "patch": {
+        "appendOperations": [
+          "op-0004"
+        ],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "mode": "replace",
+        "recipes": [
+          {
+            "id": "p2",
+            "ingredients": [],
+            "steps": [],
+            "title": "Replace with incomplete"
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "Partial q1",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          },
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q2",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 1,
+                  "group": "",
+                  "id": "q2-i1",
+                  "name": "flour",
+                  "note": "",
+                  "raw": "",
+                  "unit": "cup"
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "Partial q2",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          },
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q3",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 20,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q3",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 1,
+                  "group": "",
+                  "id": "q3-i1",
+                  "name": "",
+                  "note": "",
+                  "raw": "",
+                  "unit": ""
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 10,
+              "rating": 0,
+              "related": [],
+              "servings": 4,
+              "sourceUrl": "",
+              "steps": [
+                "Cook."
+              ],
+              "tags": [],
+              "title": "Recipe q3",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": true
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          }
+        ],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Replaced",
+            "updatedAt": "2026-11-21T10:03:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p2",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:05:00.000Z",
+      "error": null,
+      "operationId": "op-0005",
+      "patch": {
+        "appendOperations": [
+          "op-0005"
+        ],
+        "collections": {
+          "drafts": {
+            "order": [
+              "draft-q1",
+              "draft-q2",
+              "draft-q3"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "createdAt": "2026-11-21T10:05:00.000Z",
+                "id": "draft-q1",
+                "recipe": {
+                  "author": "",
+                  "categories": [
+                    "Entrées"
+                  ],
+                  "category": "Entrées",
+                  "cookMinutes": 0,
+                  "createdAt": "2026-11-21T10:05:00.000Z",
+                  "description": "",
+                  "favorite": false,
+                  "id": "q1",
+                  "image": "",
+                  "images": [],
+                  "ingredients": [],
+                  "notes": "",
+                  "nutrition": null,
+                  "prepMinutes": 0,
+                  "rating": 0,
+                  "related": [],
+                  "servings": 2,
+                  "sourceUrl": "",
+                  "steps": [],
+                  "tags": [],
+                  "title": "Partial q1",
+                  "updatedAt": "2026-11-21T10:05:00.000Z",
+                  "wantToTry": false
+                },
+                "text": "",
+                "warnings": [
+                  "Imported without ingredients or steps. Add them, then save it to your library."
+                ]
+              },
+              {
+                "createdAt": "2026-11-21T10:05:00.000Z",
+                "id": "draft-q2",
+                "recipe": {
+                  "author": "",
+                  "categories": [
+                    "Entrées"
+                  ],
+                  "category": "Entrées",
+                  "cookMinutes": 0,
+                  "createdAt": "2026-11-21T10:05:00.000Z",
+                  "description": "",
+                  "favorite": false,
+                  "id": "q2",
+                  "image": "",
+                  "images": [],
+                  "ingredients": [
+                    {
+                      "amount": 1,
+                      "group": "",
+                      "id": "q2-i1",
+                      "name": "flour",
+                      "note": "",
+                      "raw": "",
+                      "unit": "cup"
+                    }
+                  ],
+                  "notes": "",
+                  "nutrition": null,
+                  "prepMinutes": 0,
+                  "rating": 0,
+                  "related": [],
+                  "servings": 2,
+                  "sourceUrl": "",
+                  "steps": [],
+                  "tags": [],
+                  "title": "Partial q2",
+                  "updatedAt": "2026-11-21T10:05:00.000Z",
+                  "wantToTry": false
+                },
+                "text": "",
+                "warnings": [
+                  "Imported without ingredients or steps. Add them, then save it to your library."
+                ]
+              },
+              {
+                "createdAt": "2026-11-21T10:05:00.000Z",
+                "id": "draft-q3",
+                "recipe": {
+                  "author": "",
+                  "categories": [
+                    "Entrées"
+                  ],
+                  "category": "Entrées",
+                  "cookMinutes": 20,
+                  "createdAt": "2026-11-21T10:05:00.000Z",
+                  "description": "",
+                  "favorite": false,
+                  "id": "q3",
+                  "image": "",
+                  "images": [],
+                  "ingredients": [
+                    {
+                      "amount": 1,
+                      "group": "",
+                      "id": "q3-i1",
+                      "name": "",
+                      "note": "",
+                      "raw": "",
+                      "unit": ""
+                    }
+                  ],
+                  "notes": "",
+                  "nutrition": null,
+                  "prepMinutes": 10,
+                  "rating": 0,
+                  "related": [],
+                  "servings": 4,
+                  "sourceUrl": "",
+                  "steps": [
+                    "Cook."
+                  ],
+                  "tags": [],
+                  "title": "Recipe q3",
+                  "updatedAt": "2026-11-21T10:05:00.000Z",
+                  "wantToTry": true
+                },
+                "text": "",
+                "warnings": [
+                  "Imported without ingredients or steps. Add them, then save it to your library."
+                ]
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "recipes": [
+          {
+            "id": "q1",
+            "ingredients": [],
+            "steps": [],
+            "title": "Partial q1"
+          },
+          {
+            "id": "q2",
+            "ingredients": [
+              {
+                "amount": 1,
+                "group": "",
+                "id": "q2-i1",
+                "name": "flour",
+                "note": "",
+                "raw": "",
+                "unit": "cup"
+              }
+            ],
+            "steps": [],
+            "title": "Partial q2"
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "q3",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 1,
+                "group": "",
+                "id": "q3-i1",
+                "name": "",
+                "note": "",
+                "raw": "",
+                "unit": ""
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe q3",
+            "wantToTry": true
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "Partial q1",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          },
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q2",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 1,
+                  "group": "",
+                  "id": "q2-i1",
+                  "name": "flour",
+                  "note": "",
+                  "raw": "",
+                  "unit": "cup"
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "Partial q2",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          },
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q3",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 20,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q3",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 1,
+                  "group": "",
+                  "id": "q3-i1",
+                  "name": "",
+                  "note": "",
+                  "raw": "",
+                  "unit": ""
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 10,
+              "rating": 0,
+              "related": [],
+              "servings": 4,
+              "sourceUrl": "",
+              "steps": [
+                "Cook."
+              ],
+              "tags": [],
+              "title": "Recipe q3",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": true
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          }
+        ],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Replaced",
+            "updatedAt": "2026-11-21T10:03:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p2",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:06:00.000Z",
+      "error": null,
+      "operationId": "op-0006",
+      "patch": {
+        "appendOperations": [
+          "op-0006"
+        ],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "recipes": [
+          {
+            "id": "q1",
+            "ingredients": [],
+            "steps": [],
+            "title": "Second pass"
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "Partial q1",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          },
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q2",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 1,
+                  "group": "",
+                  "id": "q2-i1",
+                  "name": "flour",
+                  "note": "",
+                  "raw": "",
+                  "unit": "cup"
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "Partial q2",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          },
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q3",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 20,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q3",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 1,
+                  "group": "",
+                  "id": "q3-i1",
+                  "name": "",
+                  "note": "",
+                  "raw": "",
+                  "unit": ""
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 10,
+              "rating": 0,
+              "related": [],
+              "servings": 4,
+              "sourceUrl": "",
+              "steps": [
+                "Cook."
+              ],
+              "tags": [],
+              "title": "Recipe q3",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": true
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          }
+        ],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Replaced",
+            "updatedAt": "2026-11-21T10:03:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p2",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:07:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "q1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "q1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe q1",
+            "updatedAt": "2026-11-21T10:07:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:07:00.000Z",
+      "error": null,
+      "operationId": "op-0007",
+      "patch": {
+        "appendOperations": [
+          "op-0007"
+        ],
+        "collections": {
+          "recipes": {
+            "order": [
+              "p1",
+              "p2",
+              "q1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:07:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "q1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "q1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe q1",
+                "updatedAt": "2026-11-21T10:07:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "recipes": [
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "q1",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "q1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe q1",
+            "wantToTry": true
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:08:00.000Z",
+      "error": {
+        "message": "Each imported recipe needs an id.",
+        "status": 400
+      },
+      "operationId": "op-0008",
+      "patch": null,
+      "payload": {
+        "recipes": [
+          {
+            "ingredients": [],
+            "steps": [],
+            "title": "No id"
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:09:00.000Z",
+      "error": {
+        "message": "Import between 1 and 25 recipes at a time.",
+        "status": 400
+      },
+      "operationId": "op-0009",
+      "patch": null,
+      "payload": {
+        "recipes": []
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:10:00.000Z",
+      "error": {
+        "message": "Import between 1 and 25 recipes at a time.",
+        "status": 400
+      },
+      "operationId": "op-0010",
+      "patch": null,
+      "payload": {},
+      "type": "recipes.import"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:11:00.000Z",
+      "error": {
+        "message": "Import between 1 and 25 recipes at a time.",
+        "status": 400
+      },
+      "operationId": "op-0011",
+      "patch": null,
+      "payload": {
+        "recipes": [
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-0",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-0-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-0",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-1",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-1",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-2",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-2",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-3",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-3-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-3",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-4",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-4-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-4",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-5",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-5-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-5",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-6",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-6-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-6",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-7",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-7-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-7",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-8",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-8-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-8",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-9",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-9-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-9",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-10",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-10-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-10",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-11",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-11-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-11",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-12",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-12-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-12",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-13",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-13-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-13",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-14",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-14-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-14",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-15",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-15-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-15",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-16",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-16-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-16",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-17",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-17-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-17",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-18",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-18-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-18",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-19",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-19-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-19",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-20",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-20-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-20",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-21",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-21-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-21",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-22",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-22-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-22",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-23",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-23-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-23",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-24",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-24-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-24",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "bulk-25",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "bulk-25-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe bulk-25",
+            "wantToTry": true
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q1",
+              "image": "",
+              "images": [],
+              "ingredients": [],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "Partial q1",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          },
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q2",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 0,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q2",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 1,
+                  "group": "",
+                  "id": "q2-i1",
+                  "name": "flour",
+                  "note": "",
+                  "raw": "",
+                  "unit": "cup"
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 0,
+              "rating": 0,
+              "related": [],
+              "servings": 2,
+              "sourceUrl": "",
+              "steps": [],
+              "tags": [],
+              "title": "Partial q2",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": false
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          },
+          {
+            "createdAt": "2026-11-21T10:05:00.000Z",
+            "id": "draft-q3",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 20,
+              "createdAt": "2026-11-21T10:05:00.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "q3",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 1,
+                  "group": "",
+                  "id": "q3-i1",
+                  "name": "",
+                  "note": "",
+                  "raw": "",
+                  "unit": ""
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 10,
+              "rating": 0,
+              "related": [],
+              "servings": 4,
+              "sourceUrl": "",
+              "steps": [
+                "Cook."
+              ],
+              "tags": [],
+              "title": "Recipe q3",
+              "updatedAt": "2026-11-21T10:05:00.000Z",
+              "wantToTry": true
+            },
+            "text": "",
+            "warnings": [
+              "Imported without ingredients or steps. Add them, then save it to your library."
+            ]
+          }
+        ],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0012"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Replaced",
+            "updatedAt": "2026-11-21T10:03:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "p2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "p2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe p2",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:07:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "q1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "q1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe q1",
+            "updatedAt": "2026-11-21T10:07:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-0",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-0-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-0",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-1",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-2",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-2",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-3",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-3-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-3",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-4",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-4-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-4",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-5",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-5-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-5",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-6",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-6-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-6",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-7",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-7-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-7",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-8",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-8-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-8",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-9",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-9-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-9",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-10",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-10-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-10",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-11",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-11-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-11",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-12",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-12-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-12",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-13",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-13-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-13",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-14",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-14-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-14",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-15",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-15-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-15",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-16",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-16-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-16",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-17",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-17-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-17",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-18",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-18-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-18",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-19",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-19-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-19",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-20",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-20-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-20",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-21",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-21-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-21",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-22",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-22-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-22",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-23",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-23-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-23",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:12:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "batch-24",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-24-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-24",
+            "updatedAt": "2026-11-21T10:12:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:12:00.000Z",
+      "error": null,
+      "operationId": "op-0012",
+      "patch": {
+        "appendOperations": [
+          "op-0012"
+        ],
+        "collections": {
+          "recipes": {
+            "order": [
+              "p1",
+              "p2",
+              "q1",
+              "batch-0",
+              "batch-1",
+              "batch-2",
+              "batch-3",
+              "batch-4",
+              "batch-5",
+              "batch-6",
+              "batch-7",
+              "batch-8",
+              "batch-9",
+              "batch-10",
+              "batch-11",
+              "batch-12",
+              "batch-13",
+              "batch-14",
+              "batch-15",
+              "batch-16",
+              "batch-17",
+              "batch-18",
+              "batch-19",
+              "batch-20",
+              "batch-21",
+              "batch-22",
+              "batch-23",
+              "batch-24"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-0",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-0-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-0",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-1",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-2",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-2-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-2",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-3",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-3-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-3",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-4",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-4-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-4",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-5",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-5-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-5",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-6",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-6-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-6",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-7",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-7-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-7",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-8",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-8-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-8",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-9",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-9-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-9",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-10",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-10-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-10",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-11",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-11-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-11",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-12",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-12-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-12",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-13",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-13-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-13",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-14",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-14-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-14",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-15",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-15-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-15",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-16",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-16-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-16",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-17",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-17-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-17",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-18",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-18-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-18",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-19",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-19-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-19",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-20",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-20-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-20",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-21",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-21-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-21",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-22",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-22-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-22",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-23",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-23-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-23",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              },
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:12:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "batch-24",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "batch-24-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe batch-24",
+                "updatedAt": "2026-11-21T10:12:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "recipes": [
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-0",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-0-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-0",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-1",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-1",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-2",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-2-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-2",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-3",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-3-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-3",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-4",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-4-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-4",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-5",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-5-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-5",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-6",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-6-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-6",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-7",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-7-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-7",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-8",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-8-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-8",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-9",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-9-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-9",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-10",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-10-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-10",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-11",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-11-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-11",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-12",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-12-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-12",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-13",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-13-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-13",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-14",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-14-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-14",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-15",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-15-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-15",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-16",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-16-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-16",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-17",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-17-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-17",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-18",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-18-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-18",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-19",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-19-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-19",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-20",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-20-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-20",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-21",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-21-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-21",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-22",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-22-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-22",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-23",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-23-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-23",
+            "wantToTry": true
+          },
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "batch-24",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "batch-24-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe batch-24",
+            "wantToTry": true
+          }
+        ]
+      },
+      "type": "recipes.import"
+    }
+  ]
+}

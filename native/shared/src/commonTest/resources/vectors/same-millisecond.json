@@ -1,0 +1,1561 @@
+{
+  "initial": {
+    "batches": [],
+    "drafts": [],
+    "ingredients": [],
+    "menus": [],
+    "movements": [],
+    "operations": [],
+    "pantry": [],
+    "plan": [],
+    "recipes": [],
+    "settings": {
+      "autoLeftovers": true,
+      "categories": [
+        "Breakfast",
+        "Entrées",
+        "Sauces",
+        "Sides",
+        "Snacks",
+        "Pastries & Desserts"
+      ],
+      "servings": 2,
+      "weekStartsOn": 1
+    },
+    "shopping": [],
+    "shoppingWeek": ""
+  },
+  "name": "same-millisecond",
+  "steps": [
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:40.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:40.000Z",
+      "error": null,
+      "operationId": "op-0001",
+      "patch": {
+        "appendOperations": [
+          "op-0001"
+        ],
+        "collections": {
+          "recipes": {
+            "order": [
+              "r1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:01:40.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe r1",
+                "updatedAt": "2026-11-21T10:01:40.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r1",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r1-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r1",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Second save",
+            "updatedAt": "2026-11-21T10:01:40.001Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:40.000Z",
+      "error": null,
+      "operationId": "op-0002",
+      "patch": {
+        "appendOperations": [
+          "op-0002"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:01:40.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Second save",
+                "updatedAt": "2026-11-21T10:01:40.001Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r1",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r1-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Second save",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "Update in the same millisecond",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Second save",
+            "updatedAt": "2026-11-21T10:01:40.002Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:40.000Z",
+      "error": null,
+      "operationId": "op-0003",
+      "patch": {
+        "appendOperations": [
+          "op-0003"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:01:40.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "Update in the same millisecond",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Second save",
+                "updatedAt": "2026-11-21T10:01:40.002Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "changes": {
+          "notes": "Update in the same millisecond"
+        },
+        "expectedUpdatedAt": "2026-11-21T10:01:40.001Z",
+        "recipeId": "r1"
+      },
+      "type": "recipe.update"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:50.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Clock went backwards",
+            "updatedAt": "2026-11-21T10:01:40.003Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:00:50.000Z",
+      "error": null,
+      "operationId": "op-0004",
+      "patch": {
+        "appendOperations": [
+          "op-0004"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:50.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Clock went backwards",
+                "updatedAt": "2026-11-21T10:01:40.003Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r1",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r1-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Clock went backwards",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "description": "",
+            "id": "m1",
+            "items": [
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "Menu",
+            "updatedAt": "2026-11-21T10:01:40.000Z"
+          }
+        ],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:50.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Clock went backwards",
+            "updatedAt": "2026-11-21T10:01:40.003Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:40.000Z",
+      "error": null,
+      "operationId": "op-0005",
+      "patch": {
+        "appendOperations": [
+          "op-0005"
+        ],
+        "collections": {
+          "menus": {
+            "order": [
+              "m1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "createdAt": "2026-11-21T10:01:40.000Z",
+                "description": "",
+                "id": "m1",
+                "items": [
+                  {
+                    "day": 1,
+                    "recipeId": "r1",
+                    "slot": "Dinner"
+                  }
+                ],
+                "name": "Menu",
+                "updatedAt": "2026-11-21T10:01:40.000Z"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "m1",
+        "items": [
+          {
+            "day": 1,
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "name": "Menu"
+      },
+      "type": "menu.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "description": "",
+            "id": "m1",
+            "items": [
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "Menu again",
+            "updatedAt": "2026-11-21T10:01:40.001Z"
+          }
+        ],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:50.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Clock went backwards",
+            "updatedAt": "2026-11-21T10:01:40.003Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:40.000Z",
+      "error": null,
+      "operationId": "op-0006",
+      "patch": {
+        "appendOperations": [
+          "op-0006"
+        ],
+        "collections": {
+          "menus": {
+            "remove": [],
+            "upsert": [
+              {
+                "createdAt": "2026-11-21T10:01:40.000Z",
+                "description": "",
+                "id": "m1",
+                "items": [
+                  {
+                    "day": 1,
+                    "recipeId": "r1",
+                    "slot": "Dinner"
+                  }
+                ],
+                "name": "Menu again",
+                "updatedAt": "2026-11-21T10:01:40.001Z"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "m1",
+        "items": [
+          {
+            "day": 1,
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "name": "Menu again"
+      },
+      "type": "menu.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "description": "",
+            "id": "m1",
+            "items": [
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "Menu again",
+            "updatedAt": "2026-11-21T10:01:40.001Z"
+          }
+        ],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:50.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Imported over",
+            "updatedAt": "2026-11-21T10:01:40.004Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:40.000Z",
+      "error": null,
+      "operationId": "op-0007",
+      "patch": {
+        "appendOperations": [
+          "op-0007"
+        ],
+        "collections": {
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:00:50.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Imported over",
+                "updatedAt": "2026-11-21T10:01:40.004Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "mode": "replace",
+        "recipes": [
+          {
+            "author": "",
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "prepMinutes": 10,
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Imported over",
+            "wantToTry": true
+          }
+        ]
+      },
+      "type": "recipes.import"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "id": "d1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 20,
+              "createdAt": "2026-11-21T10:01:40.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "dr1",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 400,
+                  "group": "",
+                  "id": "dr1-i1",
+                  "name": "rice",
+                  "note": "",
+                  "raw": "",
+                  "unit": "g"
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 10,
+              "rating": 0,
+              "related": [],
+              "servings": 4,
+              "sourceUrl": "",
+              "steps": [
+                "Cook."
+              ],
+              "tags": [],
+              "title": "Recipe dr1",
+              "updatedAt": "2026-11-21T10:01:40.000Z",
+              "wantToTry": true
+            },
+            "text": "",
+            "warnings": []
+          }
+        ],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "description": "",
+            "id": "m1",
+            "items": [
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "Menu again",
+            "updatedAt": "2026-11-21T10:01:40.001Z"
+          }
+        ],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0008"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:50.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Imported over",
+            "updatedAt": "2026-11-21T10:01:40.004Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:40.000Z",
+      "error": null,
+      "operationId": "op-0008",
+      "patch": {
+        "appendOperations": [
+          "op-0008"
+        ],
+        "collections": {
+          "drafts": {
+            "order": [
+              "d1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "createdAt": "2026-11-21T10:01:40.000Z",
+                "id": "d1",
+                "recipe": {
+                  "author": "",
+                  "categories": [
+                    "Entrées"
+                  ],
+                  "category": "Entrées",
+                  "cookMinutes": 20,
+                  "createdAt": "2026-11-21T10:01:40.000Z",
+                  "description": "",
+                  "favorite": false,
+                  "id": "dr1",
+                  "image": "",
+                  "images": [],
+                  "ingredients": [
+                    {
+                      "amount": 400,
+                      "group": "",
+                      "id": "dr1-i1",
+                      "name": "rice",
+                      "note": "",
+                      "raw": "",
+                      "unit": "g"
+                    }
+                  ],
+                  "notes": "",
+                  "nutrition": null,
+                  "prepMinutes": 10,
+                  "rating": 0,
+                  "related": [],
+                  "servings": 4,
+                  "sourceUrl": "",
+                  "steps": [
+                    "Cook."
+                  ],
+                  "tags": [],
+                  "title": "Recipe dr1",
+                  "updatedAt": "2026-11-21T10:01:40.000Z",
+                  "wantToTry": true
+                },
+                "text": "",
+                "warnings": []
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "d1",
+        "recipe": {
+          "author": "",
+          "category": "Entrées",
+          "cookMinutes": 20,
+          "description": "",
+          "favorite": false,
+          "id": "dr1",
+          "image": "",
+          "ingredients": [
+            {
+              "amount": 400,
+              "group": "",
+              "id": "dr1-i1",
+              "name": "rice",
+              "note": "",
+              "raw": "",
+              "unit": "g"
+            }
+          ],
+          "notes": "",
+          "prepMinutes": 10,
+          "servings": 4,
+          "sourceUrl": "",
+          "steps": [
+            "Cook."
+          ],
+          "tags": [],
+          "title": "Recipe dr1",
+          "wantToTry": true
+        },
+        "text": ""
+      },
+      "type": "draft.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [
+          {
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "id": "d1",
+            "recipe": {
+              "author": "",
+              "categories": [
+                "Entrées"
+              ],
+              "category": "Entrées",
+              "cookMinutes": 20,
+              "createdAt": "2026-11-21T10:01:40.000Z",
+              "description": "",
+              "favorite": false,
+              "id": "dr1",
+              "image": "",
+              "images": [],
+              "ingredients": [
+                {
+                  "amount": 400,
+                  "group": "",
+                  "id": "dr1-i1",
+                  "name": "rice",
+                  "note": "",
+                  "raw": "",
+                  "unit": "g"
+                }
+              ],
+              "notes": "",
+              "nutrition": null,
+              "prepMinutes": 10,
+              "rating": 0,
+              "related": [],
+              "servings": 4,
+              "sourceUrl": "",
+              "steps": [
+                "Cook."
+              ],
+              "tags": [],
+              "title": "Again",
+              "updatedAt": "2026-11-21T10:01:40.001Z",
+              "wantToTry": true
+            },
+            "text": "",
+            "warnings": []
+          }
+        ],
+        "ingredients": [],
+        "menus": [
+          {
+            "createdAt": "2026-11-21T10:01:40.000Z",
+            "description": "",
+            "id": "m1",
+            "items": [
+              {
+                "day": 1,
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ],
+            "name": "Menu again",
+            "updatedAt": "2026-11-21T10:01:40.001Z"
+          }
+        ],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0008",
+          "op-0009"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:00:50.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Imported over",
+            "updatedAt": "2026-11-21T10:01:40.004Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:40.000Z",
+      "error": null,
+      "operationId": "op-0009",
+      "patch": {
+        "appendOperations": [
+          "op-0009"
+        ],
+        "collections": {
+          "drafts": {
+            "remove": [],
+            "upsert": [
+              {
+                "createdAt": "2026-11-21T10:01:40.000Z",
+                "id": "d1",
+                "recipe": {
+                  "author": "",
+                  "categories": [
+                    "Entrées"
+                  ],
+                  "category": "Entrées",
+                  "cookMinutes": 20,
+                  "createdAt": "2026-11-21T10:01:40.000Z",
+                  "description": "",
+                  "favorite": false,
+                  "id": "dr1",
+                  "image": "",
+                  "images": [],
+                  "ingredients": [
+                    {
+                      "amount": 400,
+                      "group": "",
+                      "id": "dr1-i1",
+                      "name": "rice",
+                      "note": "",
+                      "raw": "",
+                      "unit": "g"
+                    }
+                  ],
+                  "notes": "",
+                  "nutrition": null,
+                  "prepMinutes": 10,
+                  "rating": 0,
+                  "related": [],
+                  "servings": 4,
+                  "sourceUrl": "",
+                  "steps": [
+                    "Cook."
+                  ],
+                  "tags": [],
+                  "title": "Again",
+                  "updatedAt": "2026-11-21T10:01:40.001Z",
+                  "wantToTry": true
+                },
+                "text": "",
+                "warnings": []
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "d1",
+        "recipe": {
+          "author": "",
+          "category": "Entrées",
+          "cookMinutes": 20,
+          "description": "",
+          "favorite": false,
+          "id": "dr1",
+          "image": "",
+          "ingredients": [
+            {
+              "amount": 400,
+              "group": "",
+              "id": "dr1-i1",
+              "name": "rice",
+              "note": "",
+              "raw": "",
+              "unit": "g"
+            }
+          ],
+          "notes": "",
+          "prepMinutes": 10,
+          "servings": 4,
+          "sourceUrl": "",
+          "steps": [
+            "Cook."
+          ],
+          "tags": [],
+          "title": "Again",
+          "wantToTry": true
+        },
+        "text": ""
+      },
+      "type": "draft.save"
+    }
+  ]
+}

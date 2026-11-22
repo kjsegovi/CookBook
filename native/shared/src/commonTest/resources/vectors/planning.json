@@ -1,0 +1,3420 @@
+{
+  "initial": {
+    "batches": [],
+    "drafts": [],
+    "ingredients": [],
+    "menus": [],
+    "movements": [],
+    "operations": [],
+    "pantry": [],
+    "plan": [],
+    "recipes": [],
+    "settings": {
+      "autoLeftovers": true,
+      "categories": [
+        "Breakfast",
+        "Entrées",
+        "Sauces",
+        "Sides",
+        "Snacks",
+        "Pastries & Desserts"
+      ],
+      "servings": 2,
+      "weekStartsOn": 1
+    },
+    "shopping": [],
+    "shoppingWeek": ""
+  },
+  "name": "planning",
+  "steps": [
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001"
+        ],
+        "pantry": [],
+        "plan": [],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:00.000Z",
+      "error": null,
+      "operationId": "op-0001",
+      "patch": {
+        "appendOperations": [
+          "op-0001"
+        ],
+        "collections": {
+          "recipes": {
+            "order": [
+              "r1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:01:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe r1",
+                "updatedAt": "2026-11-21T10:01:00.000Z",
+                "wantToTry": true
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "author": "",
+        "category": "Entrées",
+        "cookMinutes": 20,
+        "description": "",
+        "favorite": false,
+        "id": "r1",
+        "image": "",
+        "ingredients": [
+          {
+            "amount": 400,
+            "group": "",
+            "id": "r1-i1",
+            "name": "rice",
+            "note": "",
+            "raw": "",
+            "unit": "g"
+          }
+        ],
+        "notes": "",
+        "prepMinutes": 10,
+        "servings": 4,
+        "sourceUrl": "",
+        "steps": [
+          "Cook."
+        ],
+        "tags": [],
+        "title": "Recipe r1",
+        "wantToTry": true
+      },
+      "type": "recipe.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "first",
+            "recipeId": "r1",
+            "slot": "Lunch"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:02:00.000Z",
+      "error": null,
+      "operationId": "op-0002",
+      "patch": {
+        "appendOperations": [
+          "op-0002"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "c1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "",
+                "cookServings": 4,
+                "date": "2026-11-02",
+                "done": false,
+                "eatServings": 2,
+                "id": "c1",
+                "kind": "cook",
+                "note": "first",
+                "recipeId": "r1",
+                "slot": "Lunch"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "cookServings": 4,
+        "date": "2026-11-02",
+        "eatServings": 2,
+        "id": "c1",
+        "note": "  first  ",
+        "recipeId": "r1",
+        "slot": "Lunch"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "first",
+            "recipeId": "r1",
+            "slot": "Lunch"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-03",
+            "done": false,
+            "eatServings": 1,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:03:00.000Z",
+      "error": null,
+      "operationId": "op-0003",
+      "patch": {
+        "appendOperations": [
+          "op-0003"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "c1",
+              "l1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "c1",
+                "cookServings": 0,
+                "date": "2026-11-03",
+                "done": false,
+                "eatServings": 1,
+                "id": "l1",
+                "kind": "leftover",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "batchId": "c1",
+        "date": "2026-11-03",
+        "eatServings": 1,
+        "id": "l1",
+        "kind": "leftover",
+        "recipeId": "ignored",
+        "slot": "Brunch"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "first",
+            "recipeId": "r1",
+            "slot": "Lunch"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-04",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Lunch"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:04:00.000Z",
+      "error": null,
+      "operationId": "op-0004",
+      "patch": {
+        "appendOperations": [
+          "op-0004"
+        ],
+        "collections": {
+          "plan": {
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "c1",
+                "cookServings": 0,
+                "date": "2026-11-04",
+                "done": false,
+                "eatServings": 2,
+                "id": "l1",
+                "kind": "leftover",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Lunch"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "batchId": "c1",
+        "date": "2026-11-04",
+        "eatServings": 2,
+        "id": "l1",
+        "kind": "leftover",
+        "slot": "Lunch"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:05:00.000Z",
+      "error": {
+        "message": "Choose a valid date.",
+        "status": 400
+      },
+      "operationId": "op-0005",
+      "patch": null,
+      "payload": {
+        "cookServings": 4,
+        "date": "2026-02-30",
+        "eatServings": 2,
+        "id": "x",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:06:00.000Z",
+      "error": {
+        "message": "Servings to cook must be a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0006",
+      "patch": null,
+      "payload": {
+        "cookServings": 0,
+        "date": "2026-11-02",
+        "eatServings": 0,
+        "id": "x",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:07:00.000Z",
+      "error": {
+        "message": "Servings to eat must be zero or a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0007",
+      "patch": null,
+      "payload": {
+        "cookServings": 4,
+        "date": "2026-11-02",
+        "eatServings": -1,
+        "id": "x",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:08:00.000Z",
+      "error": {
+        "message": "Servings eaten now cannot exceed the batch size.",
+        "status": 400
+      },
+      "operationId": "op-0008",
+      "patch": null,
+      "payload": {
+        "cookServings": 2,
+        "date": "2026-11-02",
+        "eatServings": 3,
+        "id": "x",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:09:00.000Z",
+      "error": {
+        "message": "This recipe was removed. Refresh and choose another.",
+        "status": 404
+      },
+      "operationId": "op-0009",
+      "patch": null,
+      "payload": {
+        "cookServings": 2,
+        "date": "2026-11-02",
+        "eatServings": 1,
+        "id": "x",
+        "recipeId": "ghost"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:10:00.000Z",
+      "error": {
+        "message": "Choose an available or planned batch.",
+        "status": 400
+      },
+      "operationId": "op-0010",
+      "patch": null,
+      "payload": {
+        "batchId": "nope",
+        "date": "2026-11-02",
+        "eatServings": 1,
+        "id": "x",
+        "kind": "leftover"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:11:00.000Z",
+      "error": {
+        "message": "Servings to eat must be a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0011",
+      "patch": null,
+      "payload": {
+        "batchId": "c1",
+        "date": "2026-11-05",
+        "eatServings": 0,
+        "id": "x",
+        "kind": "leftover"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:12:00.000Z",
+      "error": {
+        "message": "There are not enough unassigned portions in that batch.",
+        "status": 400
+      },
+      "operationId": "op-0012",
+      "patch": null,
+      "payload": {
+        "batchId": "c1",
+        "date": "2026-11-05",
+        "eatServings": 1,
+        "id": "l2",
+        "kind": "leftover"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:13:00.000Z",
+      "error": {
+        "message": "The cooking date must be on or before its planned leftovers.",
+        "status": 400
+      },
+      "operationId": "op-0013",
+      "patch": null,
+      "payload": {
+        "cookServings": 4,
+        "date": "2026-11-05",
+        "eatServings": 2,
+        "id": "c1",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:14:00.000Z",
+      "error": {
+        "message": "Remove this batch’s planned leftovers before changing its meal type.",
+        "status": 400
+      },
+      "operationId": "op-0014",
+      "patch": null,
+      "payload": {
+        "batchId": "c1",
+        "date": "2026-11-02",
+        "eatServings": 1,
+        "id": "c1",
+        "kind": "leftover"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:15:00.000Z",
+      "error": {
+        "message": "This batch already has more leftover portions assigned.",
+        "status": 400
+      },
+      "operationId": "op-0015",
+      "patch": null,
+      "payload": {
+        "cookServings": 4,
+        "date": "2026-11-02",
+        "eatServings": 3,
+        "id": "c1",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:16:00.000Z",
+      "error": {
+        "message": "Remove this batch’s planned leftover meals first.",
+        "status": 400
+      },
+      "operationId": "op-0016",
+      "patch": null,
+      "payload": {
+        "id": "c1"
+      },
+      "type": "plan.delete"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "first",
+            "recipeId": "r1",
+            "slot": "Lunch"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:17:00.000Z",
+      "error": null,
+      "operationId": "op-0017",
+      "patch": {
+        "appendOperations": [
+          "op-0017"
+        ],
+        "collections": {
+          "plan": {
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "c1",
+                "cookServings": 0,
+                "date": "2026-11-05",
+                "done": false,
+                "eatServings": 2,
+                "id": "l1",
+                "kind": "leftover",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "date": "2026-11-05",
+        "id": "l1",
+        "slot": "Dinner"
+      },
+      "type": "plan.move"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "first",
+            "recipeId": "r1",
+            "slot": "Lunch"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:18:00.000Z",
+      "error": null,
+      "operationId": "op-0018",
+      "patch": {
+        "appendOperations": [
+          "op-0018"
+        ],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "date": "2026-11-05",
+        "id": "l1",
+        "slot": "Brunch"
+      },
+      "type": "plan.move"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:19:00.000Z",
+      "error": {
+        "message": "Leftovers have to come on or after the day the batch is cooked.",
+        "status": 400
+      },
+      "operationId": "op-0019",
+      "patch": null,
+      "payload": {
+        "date": "2026-11-01",
+        "id": "l1"
+      },
+      "type": "plan.move"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:20:00.000Z",
+      "error": {
+        "message": "Move this batch’s leftover meals first: they would come before the cooking day.",
+        "status": 400
+      },
+      "operationId": "op-0020",
+      "patch": null,
+      "payload": {
+        "date": "2026-11-06",
+        "id": "c1"
+      },
+      "type": "plan.move"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:21:00.000Z",
+      "error": {
+        "message": "This meal was removed. Refresh and choose another.",
+        "status": 404
+      },
+      "operationId": "op-0021",
+      "patch": null,
+      "payload": {
+        "date": "2026-11-02",
+        "id": "ghost"
+      },
+      "type": "plan.move"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:22:00.000Z",
+      "error": {
+        "message": "Choose a valid date.",
+        "status": 400
+      },
+      "operationId": "op-0022",
+      "patch": null,
+      "payload": {
+        "date": "soon",
+        "id": "l1"
+      },
+      "type": "plan.move"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "first",
+            "recipeId": "r1",
+            "slot": "Lunch"
+          },
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 8,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:23:00.000Z",
+      "error": null,
+      "operationId": "op-0023",
+      "patch": {
+        "appendOperations": [
+          "op-0023"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "c1",
+              "l1",
+              "c3"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "",
+                "cookServings": 8,
+                "date": "2026-11-10",
+                "done": false,
+                "eatServings": 2,
+                "id": "c3",
+                "kind": "cook",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "cookServings": 8,
+        "date": "2026-11-10",
+        "eatServings": 2,
+        "id": "c3",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:24:00.000Z",
+      "error": {
+        "message": "Schedule leftovers on or after the cooking date.",
+        "status": 400
+      },
+      "operationId": "op-0024",
+      "patch": null,
+      "payload": {
+        "batchId": "c3",
+        "date": "2026-11-09",
+        "eatServings": 1,
+        "id": "l3",
+        "kind": "leftover"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 8,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-01",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:25:00.000Z",
+      "error": null,
+      "operationId": "op-0025",
+      "patch": {
+        "appendOperations": [
+          "op-0025"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "l1",
+              "c3",
+              "c1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "",
+                "cookServings": 4,
+                "date": "2026-11-01",
+                "done": false,
+                "eatServings": 2,
+                "id": "c1",
+                "kind": "cook",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "cookServings": 4,
+        "date": "2026-11-01",
+        "eatServings": 2,
+        "id": "c1",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 8,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:26:00.000Z",
+      "error": null,
+      "operationId": "op-0026",
+      "patch": {
+        "appendOperations": [
+          "op-0026"
+        ],
+        "collections": {
+          "plan": {
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "",
+                "cookServings": 4,
+                "date": "2026-11-02",
+                "done": false,
+                "eatServings": 2,
+                "id": "c1",
+                "kind": "cook",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "date": "2026-11-02",
+        "id": "c1"
+      },
+      "type": "plan.move"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:27:00.000Z",
+      "error": null,
+      "operationId": "op-0027",
+      "patch": {
+        "appendOperations": [
+          "op-0027"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "l1",
+              "c1",
+              "c3"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "",
+                "cookServings": 6,
+                "date": "2026-11-10",
+                "done": false,
+                "eatServings": 2,
+                "id": "c3",
+                "kind": "cook",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "__expected": "{\"id\":\"c3\",\"date\":\"2026-11-10\",\"slot\":\"Dinner\",\"kind\":\"cook\",\"recipeId\":\"r1\",\"batchId\":\"\",\"cookServings\":8,\"eatServings\":2,\"done\":false,\"note\":\"\"}",
+        "batchId": "",
+        "cookServings": 6,
+        "date": "2026-11-10",
+        "done": false,
+        "eatServings": 2,
+        "id": "c3",
+        "kind": "cook",
+        "note": "",
+        "recipeId": "r1",
+        "slot": "Dinner"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:28:00.000Z",
+      "error": {
+        "message": "This item changed. Close this form and reopen it to review the latest version.",
+        "status": 409
+      },
+      "operationId": "op-0028",
+      "patch": null,
+      "payload": {
+        "__expected": "{\"id\":\"c3\",\"date\":\"2026-11-10\",\"slot\":\"Dinner\",\"kind\":\"cook\",\"recipeId\":\"r1\",\"batchId\":\"\",\"cookServings\":1,\"eatServings\":2,\"done\":false,\"note\":\"\"}",
+        "batchId": "",
+        "cookServings": 5,
+        "date": "2026-11-10",
+        "done": false,
+        "eatServings": 2,
+        "id": "c3",
+        "kind": "cook",
+        "note": "",
+        "recipeId": "r1",
+        "slot": "Dinner"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027",
+          "op-0029"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 2,
+            "date": "2026-11-12",
+            "done": false,
+            "eatServings": 2,
+            "id": "c4",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:29:00.000Z",
+      "error": null,
+      "operationId": "op-0029",
+      "patch": {
+        "appendOperations": [
+          "op-0029"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "l1",
+              "c1",
+              "c3",
+              "c4"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "",
+                "cookServings": 2,
+                "date": "2026-11-12",
+                "done": false,
+                "eatServings": 2,
+                "id": "c4",
+                "kind": "cook",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "cookServings": 2,
+        "date": "2026-11-12",
+        "eatServings": 2,
+        "id": "c4",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027",
+          "op-0029",
+          "op-0030"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 2,
+            "date": "2026-11-12",
+            "done": false,
+            "eatServings": 2,
+            "id": "c4",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": true
+          }
+        ],
+        "settings": {
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:30:00.000Z",
+      "error": null,
+      "operationId": "op-0030",
+      "patch": {
+        "appendOperations": [
+          "op-0030"
+        ],
+        "collections": {},
+        "values": {
+          "settings": {
+            "autoLeftovers": false,
+            "categories": [
+              "Entrées"
+            ],
+            "servings": 2,
+            "weekStartsOn": 1
+          }
+        }
+      },
+      "payload": {
+        "autoLeftovers": false,
+        "categories": "Entrées",
+        "servings": 2,
+        "weekStartsOn": 1
+      },
+      "type": "settings.save"
+    },
+    {
+      "after": {
+        "batches": [
+          {
+            "cookedServings": 2,
+            "id": "c4",
+            "location": "Fridge",
+            "planId": "c4",
+            "preparedAt": "2026-11-21T10:31:00.000Z",
+            "recipeId": "r1",
+            "remaining": 0,
+            "title": "Recipe r1"
+          }
+        ],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027",
+          "op-0029",
+          "op-0030",
+          "op-0031"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 2,
+            "date": "2026-11-12",
+            "done": true,
+            "eatServings": 2,
+            "id": "c4",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:31:00.000Z",
+      "error": null,
+      "operationId": "op-0031",
+      "patch": {
+        "appendOperations": [
+          "op-0031"
+        ],
+        "collections": {
+          "batches": {
+            "order": [
+              "c4"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "cookedServings": 2,
+                "id": "c4",
+                "location": "Fridge",
+                "planId": "c4",
+                "preparedAt": "2026-11-21T10:31:00.000Z",
+                "recipeId": "r1",
+                "remaining": 0,
+                "title": "Recipe r1"
+              }
+            ]
+          },
+          "plan": {
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "",
+                "cookServings": 2,
+                "date": "2026-11-12",
+                "done": true,
+                "eatServings": 2,
+                "id": "c4",
+                "kind": "cook",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          },
+          "recipes": {
+            "remove": [],
+            "upsert": [
+              {
+                "author": "",
+                "categories": [
+                  "Entrées"
+                ],
+                "category": "Entrées",
+                "cookMinutes": 20,
+                "createdAt": "2026-11-21T10:01:00.000Z",
+                "description": "",
+                "favorite": false,
+                "id": "r1",
+                "image": "",
+                "images": [],
+                "ingredients": [
+                  {
+                    "amount": 400,
+                    "group": "",
+                    "id": "r1-i1",
+                    "name": "rice",
+                    "note": "",
+                    "raw": "",
+                    "unit": "g"
+                  }
+                ],
+                "notes": "",
+                "nutrition": null,
+                "prepMinutes": 10,
+                "rating": 0,
+                "related": [],
+                "servings": 4,
+                "sourceUrl": "",
+                "steps": [
+                  "Cook."
+                ],
+                "tags": [],
+                "title": "Recipe r1",
+                "updatedAt": "2026-11-21T10:01:00.000Z",
+                "wantToTry": false
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "cookServings": 2,
+        "eatServings": 2,
+        "planId": "c4",
+        "usage": []
+      },
+      "type": "cook"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:32:00.000Z",
+      "error": {
+        "message": "A completed meal cannot be edited.",
+        "status": 400
+      },
+      "operationId": "op-0032",
+      "patch": null,
+      "payload": {
+        "cookServings": 2,
+        "date": "2026-11-13",
+        "eatServings": 1,
+        "id": "c4",
+        "recipeId": "r1"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:33:00.000Z",
+      "error": {
+        "message": "A completed meal cannot be moved.",
+        "status": 400
+      },
+      "operationId": "op-0033",
+      "patch": null,
+      "payload": {
+        "date": "2026-11-13",
+        "id": "c4"
+      },
+      "type": "plan.move"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:34:00.000Z",
+      "error": {
+        "message": "Completed meals stay in your cooking history.",
+        "status": 400
+      },
+      "operationId": "op-0034",
+      "patch": null,
+      "payload": {
+        "id": "c4"
+      },
+      "type": "plan.delete"
+    },
+    {
+      "after": {
+        "batches": [
+          {
+            "cookedServings": 2,
+            "id": "c4",
+            "location": "Fridge",
+            "planId": "c4",
+            "preparedAt": "2026-11-21T10:31:00.000Z",
+            "recipeId": "r1",
+            "remaining": 0,
+            "title": "Recipe r1"
+          },
+          {
+            "cookedServings": 4,
+            "id": "cook-adhoc",
+            "location": "Fridge",
+            "planId": "",
+            "preparedAt": "2026-11-21T10:35:00.000Z",
+            "recipeId": "r1",
+            "remaining": 3,
+            "title": "Recipe r1"
+          }
+        ],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027",
+          "op-0029",
+          "op-0030",
+          "op-0031",
+          "cook-adhoc"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 2,
+            "date": "2026-11-12",
+            "done": true,
+            "eatServings": 2,
+            "id": "c4",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:35:00.000Z",
+      "error": null,
+      "operationId": "cook-adhoc",
+      "patch": {
+        "appendOperations": [
+          "cook-adhoc"
+        ],
+        "collections": {
+          "batches": {
+            "order": [
+              "c4",
+              "cook-adhoc"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "cookedServings": 4,
+                "id": "cook-adhoc",
+                "location": "Fridge",
+                "planId": "",
+                "preparedAt": "2026-11-21T10:35:00.000Z",
+                "recipeId": "r1",
+                "remaining": 3,
+                "title": "Recipe r1"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "cookServings": 4,
+        "eatServings": 1,
+        "recipeId": "r1",
+        "usage": []
+      },
+      "type": "cook"
+    },
+    {
+      "after": {
+        "batches": [
+          {
+            "cookedServings": 2,
+            "id": "c4",
+            "location": "Fridge",
+            "planId": "c4",
+            "preparedAt": "2026-11-21T10:31:00.000Z",
+            "recipeId": "r1",
+            "remaining": 0,
+            "title": "Recipe r1"
+          },
+          {
+            "cookedServings": 4,
+            "id": "cook-adhoc",
+            "location": "Fridge",
+            "planId": "",
+            "preparedAt": "2026-11-21T10:35:00.000Z",
+            "recipeId": "r1",
+            "remaining": 3,
+            "title": "Recipe r1"
+          }
+        ],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027",
+          "op-0029",
+          "op-0030",
+          "op-0031",
+          "cook-adhoc",
+          "op-0036"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 2,
+            "date": "2026-11-12",
+            "done": true,
+            "eatServings": 2,
+            "id": "c4",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "cook-adhoc",
+            "cookServings": 0,
+            "date": "2026-11-14",
+            "done": false,
+            "eatServings": 2,
+            "id": "l5",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:36:00.000Z",
+      "error": null,
+      "operationId": "op-0036",
+      "patch": {
+        "appendOperations": [
+          "op-0036"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "l1",
+              "c1",
+              "c3",
+              "c4",
+              "l5"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "batchId": "cook-adhoc",
+                "cookServings": 0,
+                "date": "2026-11-14",
+                "done": false,
+                "eatServings": 2,
+                "id": "l5",
+                "kind": "leftover",
+                "note": "",
+                "recipeId": "r1",
+                "slot": "Dinner"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "batchId": "cook-adhoc",
+        "date": "2026-11-14",
+        "eatServings": 2,
+        "id": "l5",
+        "kind": "leftover"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:37:00.000Z",
+      "error": {
+        "message": "There are not enough unassigned portions in that batch.",
+        "status": 400
+      },
+      "operationId": "op-0037",
+      "patch": null,
+      "payload": {
+        "batchId": "cook-adhoc",
+        "date": "2026-11-15",
+        "eatServings": 2,
+        "id": "l6",
+        "kind": "leftover"
+      },
+      "type": "plan.save"
+    },
+    {
+      "after": {
+        "batches": [
+          {
+            "cookedServings": 2,
+            "id": "c4",
+            "location": "Fridge",
+            "planId": "c4",
+            "preparedAt": "2026-11-21T10:31:00.000Z",
+            "recipeId": "r1",
+            "remaining": 0,
+            "title": "Recipe r1"
+          },
+          {
+            "cookedServings": 4,
+            "id": "cook-adhoc",
+            "location": "Fridge",
+            "planId": "",
+            "preparedAt": "2026-11-21T10:35:00.000Z",
+            "recipeId": "r1",
+            "remaining": 3,
+            "title": "Recipe r1"
+          }
+        ],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027",
+          "op-0029",
+          "op-0030",
+          "op-0031",
+          "cook-adhoc",
+          "op-0036",
+          "op-0038"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "c1",
+            "cookServings": 0,
+            "date": "2026-11-05",
+            "done": false,
+            "eatServings": 2,
+            "id": "l1",
+            "kind": "leftover",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 2,
+            "date": "2026-11-12",
+            "done": true,
+            "eatServings": 2,
+            "id": "c4",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:38:00.000Z",
+      "error": null,
+      "operationId": "op-0038",
+      "patch": {
+        "appendOperations": [
+          "op-0038"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "l1",
+              "c1",
+              "c3",
+              "c4"
+            ],
+            "remove": [
+              "l5"
+            ],
+            "upsert": []
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "l5"
+      },
+      "type": "plan.delete"
+    },
+    {
+      "after": {
+        "batches": [
+          {
+            "cookedServings": 2,
+            "id": "c4",
+            "location": "Fridge",
+            "planId": "c4",
+            "preparedAt": "2026-11-21T10:31:00.000Z",
+            "recipeId": "r1",
+            "remaining": 0,
+            "title": "Recipe r1"
+          },
+          {
+            "cookedServings": 4,
+            "id": "cook-adhoc",
+            "location": "Fridge",
+            "planId": "",
+            "preparedAt": "2026-11-21T10:35:00.000Z",
+            "recipeId": "r1",
+            "remaining": 3,
+            "title": "Recipe r1"
+          }
+        ],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027",
+          "op-0029",
+          "op-0030",
+          "op-0031",
+          "cook-adhoc",
+          "op-0036",
+          "op-0038",
+          "op-0039"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 4,
+            "date": "2026-11-02",
+            "done": false,
+            "eatServings": 2,
+            "id": "c1",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 2,
+            "date": "2026-11-12",
+            "done": true,
+            "eatServings": 2,
+            "id": "c4",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:39:00.000Z",
+      "error": null,
+      "operationId": "op-0039",
+      "patch": {
+        "appendOperations": [
+          "op-0039"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "c1",
+              "c3",
+              "c4"
+            ],
+            "remove": [
+              "l1"
+            ],
+            "upsert": []
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "l1"
+      },
+      "type": "plan.delete"
+    },
+    {
+      "after": {
+        "batches": [
+          {
+            "cookedServings": 2,
+            "id": "c4",
+            "location": "Fridge",
+            "planId": "c4",
+            "preparedAt": "2026-11-21T10:31:00.000Z",
+            "recipeId": "r1",
+            "remaining": 0,
+            "title": "Recipe r1"
+          },
+          {
+            "cookedServings": 4,
+            "id": "cook-adhoc",
+            "location": "Fridge",
+            "planId": "",
+            "preparedAt": "2026-11-21T10:35:00.000Z",
+            "recipeId": "r1",
+            "remaining": 3,
+            "title": "Recipe r1"
+          }
+        ],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027",
+          "op-0029",
+          "op-0030",
+          "op-0031",
+          "cook-adhoc",
+          "op-0036",
+          "op-0038",
+          "op-0039",
+          "op-0040"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 2,
+            "date": "2026-11-12",
+            "done": true,
+            "eatServings": 2,
+            "id": "c4",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:40:00.000Z",
+      "error": null,
+      "operationId": "op-0040",
+      "patch": {
+        "appendOperations": [
+          "op-0040"
+        ],
+        "collections": {
+          "plan": {
+            "order": [
+              "c3",
+              "c4"
+            ],
+            "remove": [
+              "c1"
+            ],
+            "upsert": []
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "c1"
+      },
+      "type": "plan.delete"
+    },
+    {
+      "after": {
+        "batches": [
+          {
+            "cookedServings": 2,
+            "id": "c4",
+            "location": "Fridge",
+            "planId": "c4",
+            "preparedAt": "2026-11-21T10:31:00.000Z",
+            "recipeId": "r1",
+            "remaining": 0,
+            "title": "Recipe r1"
+          },
+          {
+            "cookedServings": 4,
+            "id": "cook-adhoc",
+            "location": "Fridge",
+            "planId": "",
+            "preparedAt": "2026-11-21T10:35:00.000Z",
+            "recipeId": "r1",
+            "remaining": 3,
+            "title": "Recipe r1"
+          }
+        ],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0025",
+          "op-0026",
+          "op-0027",
+          "op-0029",
+          "op-0030",
+          "op-0031",
+          "cook-adhoc",
+          "op-0036",
+          "op-0038",
+          "op-0039",
+          "op-0040",
+          "op-0041"
+        ],
+        "pantry": [],
+        "plan": [
+          {
+            "batchId": "",
+            "cookServings": 6,
+            "date": "2026-11-10",
+            "done": false,
+            "eatServings": 2,
+            "id": "c3",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          },
+          {
+            "batchId": "",
+            "cookServings": 2,
+            "date": "2026-11-12",
+            "done": true,
+            "eatServings": 2,
+            "id": "c4",
+            "kind": "cook",
+            "note": "",
+            "recipeId": "r1",
+            "slot": "Dinner"
+          }
+        ],
+        "recipes": [
+          {
+            "author": "",
+            "categories": [
+              "Entrées"
+            ],
+            "category": "Entrées",
+            "cookMinutes": 20,
+            "createdAt": "2026-11-21T10:01:00.000Z",
+            "description": "",
+            "favorite": false,
+            "id": "r1",
+            "image": "",
+            "images": [],
+            "ingredients": [
+              {
+                "amount": 400,
+                "group": "",
+                "id": "r1-i1",
+                "name": "rice",
+                "note": "",
+                "raw": "",
+                "unit": "g"
+              }
+            ],
+            "notes": "",
+            "nutrition": null,
+            "prepMinutes": 10,
+            "rating": 0,
+            "related": [],
+            "servings": 4,
+            "sourceUrl": "",
+            "steps": [
+              "Cook."
+            ],
+            "tags": [],
+            "title": "Recipe r1",
+            "updatedAt": "2026-11-21T10:01:00.000Z",
+            "wantToTry": false
+          }
+        ],
+        "settings": {
+          "autoLeftovers": false,
+          "categories": [
+            "Entrées"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:41:00.000Z",
+      "error": null,
+      "operationId": "op-0041",
+      "patch": {
+        "appendOperations": [
+          "op-0041"
+        ],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "id": "ghost"
+      },
+      "type": "plan.delete"
+    }
+  ]
+}

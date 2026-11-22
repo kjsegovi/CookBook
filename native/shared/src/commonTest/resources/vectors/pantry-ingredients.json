@@ -1,0 +1,2490 @@
+{
+  "initial": {
+    "batches": [],
+    "drafts": [],
+    "ingredients": [],
+    "menus": [],
+    "movements": [],
+    "operations": [],
+    "pantry": [],
+    "plan": [],
+    "recipes": [],
+    "settings": {
+      "autoLeftovers": true,
+      "categories": [
+        "Breakfast",
+        "Entrées",
+        "Sauces",
+        "Sides",
+        "Snacks",
+        "Pastries & Desserts"
+      ],
+      "servings": 2,
+      "weekStartsOn": 1
+    },
+    "shopping": [],
+    "shoppingWeek": ""
+  },
+  "name": "pantry-ingredients",
+  "steps": [
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001"
+        ],
+        "pantry": [
+          {
+            "amount": 500,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "basmati",
+            "unit": "g"
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:01:00.000Z",
+      "error": null,
+      "operationId": "op-0001",
+      "patch": {
+        "appendOperations": [
+          "op-0001"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0001-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 500,
+                "at": "2026-11-21T10:01:00.000Z",
+                "id": "op-0001-1",
+                "name": "rice",
+                "reason": "Stock adjusted",
+                "unit": "g"
+              }
+            ]
+          },
+          "pantry": {
+            "order": [
+              "p1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 500,
+                "id": "p1",
+                "location": "Pantry",
+                "name": "rice",
+                "note": "basmati",
+                "unit": "g"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": 500,
+        "id": "p1",
+        "location": "Pantry",
+        "name": " rice ",
+        "note": " basmati ",
+        "unit": " g "
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002"
+        ],
+        "pantry": [
+          {
+            "amount": 500,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "basmati",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:02:00.000Z",
+      "error": null,
+      "operationId": "op-0002",
+      "patch": {
+        "appendOperations": [
+          "op-0002"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0001-1",
+              "op-0002-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": null,
+                "at": "2026-11-21T10:02:00.000Z",
+                "id": "op-0002-1",
+                "name": "milk",
+                "reason": "Stock adjusted",
+                "unit": "l"
+              }
+            ]
+          },
+          "pantry": {
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": null,
+                "id": "p2",
+                "location": "Fridge",
+                "name": "milk",
+                "note": "",
+                "unit": "l"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": "",
+        "id": "p2",
+        "location": "Fridge",
+        "name": "milk",
+        "unit": "l"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003"
+        ],
+        "pantry": [
+          {
+            "amount": 500,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "basmati",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:03:00.000Z",
+      "error": null,
+      "operationId": "op-0003",
+      "patch": {
+        "appendOperations": [
+          "op-0003"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0001-1",
+              "op-0002-1",
+              "op-0003-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": null,
+                "at": "2026-11-21T10:03:00.000Z",
+                "id": "op-0003-1",
+                "name": "peas",
+                "reason": "Stock adjusted",
+                "unit": ""
+              }
+            ]
+          },
+          "pantry": {
+            "order": [
+              "p1",
+              "p2",
+              "p3"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": null,
+                "id": "p3",
+                "location": "Pantry",
+                "name": "peas",
+                "note": "",
+                "unit": ""
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": null,
+        "id": "p3",
+        "location": "Garage",
+        "name": "peas",
+        "unit": ""
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004"
+        ],
+        "pantry": [
+          {
+            "amount": 500,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "basmati",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p4",
+            "location": "Freezer",
+            "name": "beans",
+            "note": "",
+            "unit": "cans"
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:04:00.000Z",
+      "error": null,
+      "operationId": "op-0004",
+      "patch": {
+        "appendOperations": [
+          "op-0004"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0001-1",
+              "op-0002-1",
+              "op-0003-1",
+              "op-0004-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 2.5,
+                "at": "2026-11-21T10:04:00.000Z",
+                "id": "op-0004-1",
+                "name": "beans",
+                "reason": "Stock adjusted",
+                "unit": "cans"
+              }
+            ]
+          },
+          "pantry": {
+            "order": [
+              "p1",
+              "p2",
+              "p3",
+              "p4"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 2.5,
+                "id": "p4",
+                "location": "Freezer",
+                "name": "beans",
+                "note": "",
+                "unit": "cans"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": "2.5",
+        "id": "p4",
+        "location": "Freezer",
+        "name": "beans",
+        "unit": "cans"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005"
+        ],
+        "pantry": [
+          {
+            "amount": 500,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "basmati",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p4",
+            "location": "Freezer",
+            "name": "beans",
+            "note": "",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:05:00.000Z",
+      "error": null,
+      "operationId": "op-0005",
+      "patch": {
+        "appendOperations": [
+          "op-0005"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0001-1",
+              "op-0002-1",
+              "op-0003-1",
+              "op-0004-1",
+              "op-0005-2"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 0,
+                "at": "2026-11-21T10:05:00.000Z",
+                "id": "op-0005-2",
+                "name": "generated id",
+                "reason": "Stock adjusted",
+                "unit": ""
+              }
+            ]
+          },
+          "pantry": {
+            "order": [
+              "p1",
+              "p2",
+              "p3",
+              "p4",
+              "op-0005-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 0,
+                "id": "op-0005-1",
+                "location": "Pantry",
+                "name": "generated id",
+                "note": "",
+                "unit": ""
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": 0,
+        "name": "generated id",
+        "unit": ""
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 250,
+            "at": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006"
+        ],
+        "pantry": [
+          {
+            "amount": 250,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p4",
+            "location": "Freezer",
+            "name": "beans",
+            "note": "",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:06:00.000Z",
+      "error": null,
+      "operationId": "op-0006",
+      "patch": {
+        "appendOperations": [
+          "op-0006"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0001-1",
+              "op-0002-1",
+              "op-0003-1",
+              "op-0004-1",
+              "op-0005-2",
+              "op-0006-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 250,
+                "at": "2026-11-21T10:06:00.000Z",
+                "id": "op-0006-1",
+                "name": "rice",
+                "reason": "Stock adjusted",
+                "unit": "g"
+              }
+            ]
+          },
+          "pantry": {
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 250,
+                "id": "p1",
+                "location": "Pantry",
+                "name": "rice",
+                "note": "",
+                "unit": "g"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": 250,
+        "id": "p1",
+        "location": "Pantry",
+        "name": "rice",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 250,
+            "at": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 100,
+            "at": "2026-11-21T10:07:00.000Z",
+            "id": "op-0007-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007"
+        ],
+        "pantry": [
+          {
+            "amount": 100,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "id": "p4",
+            "location": "Freezer",
+            "name": "beans",
+            "note": "",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:07:00.000Z",
+      "error": null,
+      "operationId": "op-0007",
+      "patch": {
+        "appendOperations": [
+          "op-0007"
+        ],
+        "collections": {
+          "movements": {
+            "order": [
+              "op-0001-1",
+              "op-0002-1",
+              "op-0003-1",
+              "op-0004-1",
+              "op-0005-2",
+              "op-0006-1",
+              "op-0007-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 100,
+                "at": "2026-11-21T10:07:00.000Z",
+                "id": "op-0007-1",
+                "name": "rice",
+                "reason": "Stock adjusted",
+                "unit": "g"
+              }
+            ]
+          },
+          "pantry": {
+            "remove": [],
+            "upsert": [
+              {
+                "amount": 100,
+                "id": "p1",
+                "location": "Pantry",
+                "name": "rice",
+                "note": "",
+                "unit": "g"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "__expected": "{\"id\":\"p1\",\"name\":\"rice\",\"amount\":250,\"unit\":\"g\",\"location\":\"Pantry\",\"note\":\"\"}",
+        "amount": 100,
+        "id": "p1",
+        "location": "Pantry",
+        "name": "rice",
+        "note": "",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:08:00.000Z",
+      "error": {
+        "message": "This item changed. Close this form and reopen it to review the latest version.",
+        "status": 409
+      },
+      "operationId": "op-0008",
+      "patch": null,
+      "payload": {
+        "__expected": "{\"id\":\"p1\",\"name\":\"rice\",\"amount\":1,\"unit\":\"g\",\"location\":\"Pantry\",\"note\":\"\"}",
+        "amount": 5,
+        "id": "p1",
+        "name": "rice",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:09:00.000Z",
+      "error": {
+        "message": "Reopen this form before saving.",
+        "status": 409
+      },
+      "operationId": "op-0009",
+      "patch": null,
+      "payload": {
+        "__expected": "not json",
+        "amount": 5,
+        "id": "p1",
+        "name": "rice",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:10:00.000Z",
+      "error": {
+        "message": "This item changed. Close this form and reopen it to review the latest version.",
+        "status": 409
+      },
+      "operationId": "op-0010",
+      "patch": null,
+      "payload": {
+        "__expected": "{}",
+        "amount": 1,
+        "id": "p9",
+        "name": "new",
+        "unit": ""
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:11:00.000Z",
+      "error": {
+        "message": "Enter an ingredient name.",
+        "status": 400
+      },
+      "operationId": "op-0011",
+      "patch": null,
+      "payload": {
+        "amount": 1,
+        "id": "p5",
+        "name": "   ",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:12:00.000Z",
+      "error": {
+        "message": "Amount must be zero or a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0012",
+      "patch": null,
+      "payload": {
+        "amount": -1,
+        "id": "p5",
+        "name": "salt",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:13:00.000Z",
+      "error": {
+        "message": "Amount must be zero or a positive number.",
+        "status": 400
+      },
+      "operationId": "op-0013",
+      "patch": null,
+      "payload": {
+        "amount": 2000000,
+        "id": "p5",
+        "name": "salt",
+        "unit": "g"
+      },
+      "type": "pantry.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 250,
+            "at": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 100,
+            "at": "2026-11-21T10:07:00.000Z",
+            "id": "op-0007-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0014"
+        ],
+        "pantry": [
+          {
+            "amount": 100,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:14:00.000Z",
+      "error": null,
+      "operationId": "op-0014",
+      "patch": {
+        "appendOperations": [
+          "op-0014"
+        ],
+        "collections": {
+          "pantry": {
+            "order": [
+              "p1",
+              "p2",
+              "p3",
+              "op-0005-1"
+            ],
+            "remove": [
+              "p4"
+            ],
+            "upsert": []
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "id": "p4"
+      },
+      "type": "pantry.delete"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 250,
+            "at": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 100,
+            "at": "2026-11-21T10:07:00.000Z",
+            "id": "op-0007-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0014",
+          "op-0015"
+        ],
+        "pantry": [
+          {
+            "amount": 100,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:15:00.000Z",
+      "error": null,
+      "operationId": "op-0015",
+      "patch": {
+        "appendOperations": [
+          "op-0015"
+        ],
+        "collections": {},
+        "values": {}
+      },
+      "payload": {
+        "id": "ghost"
+      },
+      "type": "pantry.delete"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [
+          {
+            "aliases": [
+              "green onions",
+              "spring onions"
+            ],
+            "id": "i1",
+            "name": "scallions"
+          }
+        ],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 250,
+            "at": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 100,
+            "at": "2026-11-21T10:07:00.000Z",
+            "id": "op-0007-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0014",
+          "op-0015",
+          "op-0016"
+        ],
+        "pantry": [
+          {
+            "amount": 100,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:16:00.000Z",
+      "error": null,
+      "operationId": "op-0016",
+      "patch": {
+        "appendOperations": [
+          "op-0016"
+        ],
+        "collections": {
+          "ingredients": {
+            "order": [
+              "i1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "aliases": [
+                  "green onions",
+                  "spring onions"
+                ],
+                "id": "i1",
+                "name": "scallions"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "aliases": "green onions, spring onions,, ",
+        "id": "i1",
+        "name": "scallions"
+      },
+      "type": "ingredient.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [
+          {
+            "aliases": [
+              "green onions",
+              "spring onions"
+            ],
+            "id": "i1",
+            "name": "scallions"
+          },
+          {
+            "aliases": [],
+            "id": "op-0017-1",
+            "name": "generated"
+          }
+        ],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 250,
+            "at": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 100,
+            "at": "2026-11-21T10:07:00.000Z",
+            "id": "op-0007-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0017"
+        ],
+        "pantry": [
+          {
+            "amount": 100,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:17:00.000Z",
+      "error": null,
+      "operationId": "op-0017",
+      "patch": {
+        "appendOperations": [
+          "op-0017"
+        ],
+        "collections": {
+          "ingredients": {
+            "order": [
+              "i1",
+              "op-0017-1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "aliases": [],
+                "id": "op-0017-1",
+                "name": "generated"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "aliases": "",
+        "name": "generated"
+      },
+      "type": "ingredient.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [
+          {
+            "aliases": [],
+            "id": "op-0017-1",
+            "name": "generated"
+          },
+          {
+            "aliases": [
+              "green onions",
+              "spring onions",
+              "shallots"
+            ],
+            "id": "i1",
+            "name": "Scallions"
+          }
+        ],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 250,
+            "at": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 100,
+            "at": "2026-11-21T10:07:00.000Z",
+            "id": "op-0007-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0017",
+          "op-0018"
+        ],
+        "pantry": [
+          {
+            "amount": 100,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:18:00.000Z",
+      "error": null,
+      "operationId": "op-0018",
+      "patch": {
+        "appendOperations": [
+          "op-0018"
+        ],
+        "collections": {
+          "ingredients": {
+            "order": [
+              "op-0017-1",
+              "i1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "aliases": [
+                  "green onions",
+                  "spring onions",
+                  "shallots"
+                ],
+                "id": "i1",
+                "name": "Scallions"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "aliases": "green onions, spring onions, shallots",
+        "id": "i1",
+        "name": "Scallions"
+      },
+      "type": "ingredient.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:19:00.000Z",
+      "error": {
+        "message": "That ingredient name or alias already belongs to another ingredient.",
+        "status": 400
+      },
+      "operationId": "op-0019",
+      "patch": null,
+      "payload": {
+        "aliases": "GREEN ONIONS",
+        "id": "i2",
+        "name": "other"
+      },
+      "type": "ingredient.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:20:00.000Z",
+      "error": {
+        "message": "That ingredient name or alias already belongs to another ingredient.",
+        "status": 400
+      },
+      "operationId": "op-0020",
+      "patch": null,
+      "payload": {
+        "aliases": "",
+        "id": "i2",
+        "name": "Spring Onions"
+      },
+      "type": "ingredient.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:21:00.000Z",
+      "error": {
+        "message": "That ingredient name or alias already belongs to another ingredient.",
+        "status": 400
+      },
+      "operationId": "op-0021",
+      "patch": null,
+      "payload": {
+        "aliases": "scallions",
+        "id": "i2",
+        "name": "shallots2"
+      },
+      "type": "ingredient.save"
+    },
+    {
+      "after": null,
+      "clock": "2026-11-21T10:22:00.000Z",
+      "error": {
+        "message": "Enter a canonical ingredient name.",
+        "status": 400
+      },
+      "operationId": "op-0022",
+      "patch": null,
+      "payload": {
+        "aliases": "x",
+        "id": "i2",
+        "name": "  "
+      },
+      "type": "ingredient.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [
+          {
+            "aliases": [],
+            "id": "op-0017-1",
+            "name": "generated"
+          },
+          {
+            "aisle": "Produce",
+            "aliases": [
+              "green onions",
+              "spring onions",
+              "shallots"
+            ],
+            "id": "i1",
+            "name": "Scallions"
+          }
+        ],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 250,
+            "at": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 100,
+            "at": "2026-11-21T10:07:00.000Z",
+            "id": "op-0007-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0017",
+          "op-0018",
+          "op-0023"
+        ],
+        "pantry": [
+          {
+            "amount": 100,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [
+          {
+            "addedToPantry": false,
+            "amount": 2,
+            "checked": false,
+            "group": "Produce",
+            "id": "sh1",
+            "key": "op-0023-1",
+            "manual": true,
+            "name": "scallions",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          }
+        ],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:23:00.000Z",
+      "error": null,
+      "operationId": "op-0023",
+      "patch": {
+        "appendOperations": [
+          "op-0023"
+        ],
+        "collections": {
+          "ingredients": {
+            "remove": [],
+            "upsert": [
+              {
+                "aisle": "Produce",
+                "aliases": [
+                  "green onions",
+                  "spring onions",
+                  "shallots"
+                ],
+                "id": "i1",
+                "name": "Scallions"
+              }
+            ]
+          },
+          "shopping": {
+            "order": [
+              "sh1"
+            ],
+            "remove": [],
+            "upsert": [
+              {
+                "addedToPantry": false,
+                "amount": 2,
+                "checked": false,
+                "group": "Produce",
+                "id": "sh1",
+                "key": "op-0023-1",
+                "manual": true,
+                "name": "scallions",
+                "needed": null,
+                "note": "",
+                "override": false,
+                "uncertain": false,
+                "unit": ""
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "amount": 2,
+        "group": "Produce",
+        "id": "sh1",
+        "name": "scallions",
+        "unit": ""
+      },
+      "type": "shopping.save"
+    },
+    {
+      "after": {
+        "batches": [],
+        "drafts": [],
+        "ingredients": [
+          {
+            "aliases": [],
+            "id": "op-0017-1",
+            "name": "generated"
+          },
+          {
+            "aisle": "Produce",
+            "aliases": [
+              "green onions",
+              "chives"
+            ],
+            "id": "i1",
+            "name": "scallions"
+          }
+        ],
+        "menus": [],
+        "movements": [
+          {
+            "amount": 500,
+            "at": "2026-11-21T10:01:00.000Z",
+            "id": "op-0001-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:02:00.000Z",
+            "id": "op-0002-1",
+            "name": "milk",
+            "reason": "Stock adjusted",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "at": "2026-11-21T10:03:00.000Z",
+            "id": "op-0003-1",
+            "name": "peas",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 2.5,
+            "at": "2026-11-21T10:04:00.000Z",
+            "id": "op-0004-1",
+            "name": "beans",
+            "reason": "Stock adjusted",
+            "unit": "cans"
+          },
+          {
+            "amount": 0,
+            "at": "2026-11-21T10:05:00.000Z",
+            "id": "op-0005-2",
+            "name": "generated id",
+            "reason": "Stock adjusted",
+            "unit": ""
+          },
+          {
+            "amount": 250,
+            "at": "2026-11-21T10:06:00.000Z",
+            "id": "op-0006-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          },
+          {
+            "amount": 100,
+            "at": "2026-11-21T10:07:00.000Z",
+            "id": "op-0007-1",
+            "name": "rice",
+            "reason": "Stock adjusted",
+            "unit": "g"
+          }
+        ],
+        "operations": [
+          "op-0001",
+          "op-0002",
+          "op-0003",
+          "op-0004",
+          "op-0005",
+          "op-0006",
+          "op-0007",
+          "op-0014",
+          "op-0015",
+          "op-0016",
+          "op-0017",
+          "op-0018",
+          "op-0023",
+          "op-0024"
+        ],
+        "pantry": [
+          {
+            "amount": 100,
+            "id": "p1",
+            "location": "Pantry",
+            "name": "rice",
+            "note": "",
+            "unit": "g"
+          },
+          {
+            "amount": null,
+            "id": "p2",
+            "location": "Fridge",
+            "name": "milk",
+            "note": "",
+            "unit": "l"
+          },
+          {
+            "amount": null,
+            "id": "p3",
+            "location": "Pantry",
+            "name": "peas",
+            "note": "",
+            "unit": ""
+          },
+          {
+            "amount": 0,
+            "id": "op-0005-1",
+            "location": "Pantry",
+            "name": "generated id",
+            "note": "",
+            "unit": ""
+          }
+        ],
+        "plan": [],
+        "recipes": [],
+        "settings": {
+          "autoLeftovers": true,
+          "categories": [
+            "Breakfast",
+            "Entrées",
+            "Sauces",
+            "Sides",
+            "Snacks",
+            "Pastries & Desserts"
+          ],
+          "servings": 2,
+          "weekStartsOn": 1
+        },
+        "shopping": [
+          {
+            "addedToPantry": false,
+            "amount": 2,
+            "checked": false,
+            "group": "Produce",
+            "id": "sh1",
+            "key": "op-0023-1",
+            "manual": true,
+            "name": "scallions",
+            "needed": null,
+            "note": "",
+            "override": false,
+            "uncertain": false,
+            "unit": ""
+          }
+        ],
+        "shoppingWeek": ""
+      },
+      "clock": "2026-11-21T10:24:00.000Z",
+      "error": null,
+      "operationId": "op-0024",
+      "patch": {
+        "appendOperations": [
+          "op-0024"
+        ],
+        "collections": {
+          "ingredients": {
+            "remove": [],
+            "upsert": [
+              {
+                "aisle": "Produce",
+                "aliases": [
+                  "green onions",
+                  "chives"
+                ],
+                "id": "i1",
+                "name": "scallions"
+              }
+            ]
+          }
+        },
+        "values": {}
+      },
+      "payload": {
+        "aliases": "green onions, chives",
+        "id": "i1",
+        "name": "scallions"
+      },
+      "type": "ingredient.save"
+    }
+  ]
+}

@@ -12,6 +12,7 @@
     "build:reminders": "node scripts/build-reminders-shortcut.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "test": "node --test tests/*.test.mjs",
+    "vectors:export": "node scripts/export-command-vectors.mjs",
     "test:database": "bash scripts/test-database.sh",
     "check": "tsc --noEmit",
     "verify:pages": "node scripts/verify-pages.mjs",
