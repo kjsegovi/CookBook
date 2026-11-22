@@ -28,15 +28,25 @@ fun jsNumberString(d: Double): String {
     digits = digits.substring(lead)
     n -= lead
     digits = digits.trimEnd('0')
-    // The JDK always prints at least two digits ("4.9E-324"); JavaScript wants the shortest, so try one.
-    if (digits.length == 2) {
-        val abs = if (d < 0) -d else d
-        val d0 = digits[0] - '0'
-        val candidates = if (digits[1] < '5') listOf(d0, d0 + 1) else listOf(d0 + 1, d0)
-        for (c in candidates) {
-            val (digit, point) = if (c == 10) 1 to n + 1 else c to n
-            if (digit != 0 && "${digit}e${point - 1}".toDoubleOrNull() == abs) { digits = digit.toString(); n = point; break }
+    // Platform printers differ in digit count and in which near-equal digits they pick (the JDK before 19 is not
+    // always shortest, and always prints two; Kotlin/Native may pick a 16-digit string that does not round-trip).
+    // So search for the shortest digit count that parses back to exactly this double, trying the half-up rounding
+    // of the platform digits first and then its neighbours.
+    val abs = if (d < 0) -d else d
+    val full = digits.take(17)
+    for (len in 1..full.length) {
+        val head = full.substring(0, len).toLong()
+        val roundUp = len < full.length && full[len] >= '5'
+        val order = when {
+            len == full.length -> listOf(head, head + 1, head - 1)
+            roundUp -> listOf(head + 1, head)
+            else -> listOf(head, head + 1)
         }
+        val hit = order.firstOrNull { it > 0 && "${it}e${n - len}".toDoubleOrNull() == abs } ?: continue
+        val text = hit.toString()
+        digits = text.trimEnd('0')
+        n += text.length - len
+        break
     }
     val k = digits.length
     return sign + when {

@@ -12,6 +12,16 @@ class StableJsonTest {
         assertEquals("1e+21", jsNumberString(1e21)); assertEquals("-0.5", jsNumberString(-0.5))
     }
 
+    @Test fun hardValuesFormatLikeJavaScript() {
+        assertEquals("5.684341886080802e-14", jsNumberString(1.0 / 17592186044416.0))
+        assertEquals("1e+23", jsNumberString(1e23)); assertEquals("4.35", jsNumberString(4.35))
+        assertEquals("5e-324", jsNumberString(5e-324)); assertEquals("9007199254740992", jsNumberString(9007199254740993.0))
+        assertEquals("1.7976931348623157e+308", jsNumberString(1.7976931348623157e308))
+        assertEquals("0.30000000000000004", jsNumberString(0.1 + 0.2))
+        assertEquals("123456789012345680000", jsNumberString(123456789012345680000.0))
+        assertEquals("0.000001", jsNumberString(1e-6)); assertEquals("1.5e-323", jsNumberString(5e-324 * 3))
+    }
+
     @Test fun moreNumberShapes() {
         assertEquals("0", jsNumberString(0.0)); assertEquals("0", jsNumberString(-0.0))
         assertEquals("NaN", jsNumberString(Double.NaN)); assertEquals("-Infinity", jsNumberString(Double.NEGATIVE_INFINITY))
