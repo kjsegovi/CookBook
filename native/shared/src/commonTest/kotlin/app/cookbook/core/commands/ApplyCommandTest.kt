@@ -61,6 +61,7 @@ class ApplyCommandTest {
         fails("Unknown action.") { applyCommand(initialState(), "nonsense.command", JsonObject(emptyMap()), "op-1", clock) }
         // Server-only commands are not part of the apps' core.
         fails("Unknown action.") { applyCommand(initialState(), "reminders.ack", JsonObject(emptyMap()), "op-1", clock) }
+        fails("Unknown action.") { applyCommand(initialState(), "reminders.sync", JsonObject(emptyMap()), "op-1", clock) }
     }
 
     @Test fun draftRecipeMustBeAnObjectOrArray() {

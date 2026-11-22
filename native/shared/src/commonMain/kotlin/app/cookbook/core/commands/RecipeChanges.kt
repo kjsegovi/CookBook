@@ -35,8 +35,6 @@ private fun received(v: JsonElement?): String = when (v) {
 
 private fun expected(type: String, v: JsonElement?) = "Invalid input: expected $type, received ${received(v)}"
 
-private fun JsonElement?.stringValue(): String? = if (this is JsonPrimitive && this !is JsonNull && isString) content else null
-
 private fun JsonElement?.numberValue(): Double? {
     if (this !is JsonPrimitive || this is JsonNull || isString || content == "true" || content == "false") return null
     return content.toDouble().takeIf { !it.isInfinite() && !it.isNaN() }

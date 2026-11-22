@@ -59,7 +59,7 @@ private val vectorCache: List<Vector> by lazy { vectorNames.map { parseVector(re
 
 fun loadVectors(): List<Vector> = vectorCache
 
-/** Scenarios [forEachVectorStep] skipped because a step type is not implemented yet, with the missing types. */
+/** Scenarios [forEachVectorStep] skipped because a step type is known but not ported, with those types. */
 val skippedScenarios: MutableMap<String, Set<String>> = linkedMapOf()
 
 private fun decodeState(o: JsonObject): State = CookbookJson.decodeFromJsonElement(State.serializer(), o)
@@ -76,29 +76,22 @@ private fun runSteps(vector: Vector, steps: List<VectorStep>, check: (previous: 
 }
 
 /**
- * Runs every step of every scenario whose step types are all in [implemented], starting from the scenario's
- * `initial` state and passing the state [check] returns on to the next step. Other scenarios are recorded in
- * [skippedScenarios].
+ * Runs every step of every scenario, starting from the scenario's `initial` state and passing the state [check]
+ * returns on to the next step. A scenario that uses a type in [notPorted] (a known command the apps do not run) is
+ * recorded in [skippedScenarios] instead. Types nobody knows still run: they must fail as "Unknown action.".
+ * Returns the number of steps checked.
  */
-fun forEachVectorStep(implemented: Set<String>, check: (previous: State, step: VectorStep) -> State) {
+fun forEachVectorStep(notPorted: Set<String>, check: (previous: State, step: VectorStep) -> State): Int {
+    var count = 0
     for (vector in loadVectors()) {
-        val missing = vector.steps.map { it.type }.filter { it !in implemented }.toSet()
+        val missing = vector.steps.map { it.type }.filter { it in notPorted }.toSet()
         if (missing.isNotEmpty()) {
             skippedScenarios[vector.name] = missing
             continue
         }
         skippedScenarios.remove(vector.name)
         runSteps(vector, vector.steps, check)
-    }
-}
-
-/** Like [forEachVectorStep], but runs each scenario's steps up to (not including) its first unimplemented step. */
-fun forEachVectorPrefixStep(implemented: Set<String>, check: (previous: State, step: VectorStep) -> State): Int {
-    var count = 0
-    for (vector in loadVectors()) {
-        val prefix = vector.steps.takeWhile { it.type in implemented }
-        runSteps(vector, prefix, check)
-        count += prefix.size
+        count += vector.steps.size
     }
     return count
 }

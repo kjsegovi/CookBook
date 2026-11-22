@@ -3,7 +3,6 @@ package app.cookbook.core.commands
 import app.cookbook.core.domain.DomainError
 import app.cookbook.core.domain.State
 import app.cookbook.core.domain.withoutExtras
-import app.cookbook.core.forEachVectorPrefixStep
 import app.cookbook.core.forEachVectorStep
 import app.cookbook.core.json.CookbookJson
 import app.cookbook.core.json.sameAs
@@ -14,11 +13,16 @@ import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
 
-/** Command types ported so far. Task 7 adds the rest. */
-val IMPLEMENTED = setOf(
-    "recipe.favorite", "recipe.rate", "recipe.update", "recipe.save", "recipe.delete", "recipes.import",
-    "draft.save", "draft.delete", "menu.save", "menu.delete", "menu.plan",
+/** Every command type commands.ts knows. */
+val COMMAND_TYPES = setOf(
+    "recipe.favorite", "recipe.rate", "recipes.import", "menu.save", "menu.delete", "menu.plan", "reminders.sync",
+    "reminders.ack", "recipe.update", "recipe.save", "recipe.delete", "pantry.save", "pantry.delete", "ingredient.save",
+    "plan.save", "plan.move", "plan.delete", "cook", "leftover.eat", "batch.update", "shopping.generate", "shopping.save",
+    "shopping.toggle", "shopping.delete", "shopping.purchase", "draft.save", "draft.delete", "settings.save",
 )
+
+/** Command types the apps run: all but the server-only reminders commands. */
+val IMPLEMENTED = COMMAND_TYPES - setOf("reminders.sync", "reminders.ack")
 
 /** Applies a vector step and checks it against the TypeScript result; returns the state for the next step. */
 fun checkStep(previous: State, step: VectorStep): State {
@@ -39,17 +43,13 @@ fun checkStep(previous: State, step: VectorStep): State {
 
 class CommandVectorTest {
     @Test fun commandsMatchTypeScript() {
-        forEachVectorStep(implemented = IMPLEMENTED, check = ::checkStep)
-        println("SKIPPED_SCENARIOS=$skippedScenarios")
-        for (name in listOf("recipes-limit", "recipe-changes", "payload-shapes", "recipes-import", "drafts", "menus", "menus-limit", "same-millisecond")) {
-            assertTrue(name !in skippedScenarios, "$name should run")
-        }
+        val count = forEachVectorStep(notPorted = COMMAND_TYPES - IMPLEMENTED, check = ::checkStep)
+        println("VECTOR_STEPS_CHECKED=$count")
+        assertTrue(count > 0)
     }
 
-    /** Scenarios that need later commands still check their steps up to the first one not ported yet. */
-    @Test fun scenarioPrefixesMatchTypeScript() {
-        val count = forEachVectorPrefixStep(implemented = IMPLEMENTED, check = ::checkStep)
-        println("PREFIX_STEPS_CHECKED=$count")
-        assertTrue(count > 0)
+    @Test fun everyScenarioRuns() {
+        forEachVectorStep(notPorted = COMMAND_TYPES - IMPLEMENTED, check = ::checkStep)
+        assertTrue(skippedScenarios.isEmpty(), "skipped scenarios: $skippedScenarios")
     }
 }
