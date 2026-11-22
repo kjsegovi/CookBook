@@ -21,6 +21,9 @@ interface LocalStore {
     fun addPendingUpload(account: String, upload: PendingUpload)
     fun removePendingUpload(id: String)
     fun clearAccount(account: String)
+    /** The account that last signed in on this device, so the cookbook opens offline when the sign-in can't be checked. */
+    fun lastAccount(): String?
+    fun setLastAccount(account: String?)
 }
 
 class SqlLocalStore(driver: SqlDriver) : LocalStore {
@@ -81,4 +84,12 @@ class SqlLocalStore(driver: SqlDriver) : LocalStore {
             q.deleteUploads(account)
         }
     }
+
+    override fun lastAccount(): String? = q.selectPreference(LAST_ACCOUNT).executeAsOneOrNull()
+
+    override fun setLastAccount(account: String?) {
+        if (account == null) q.deletePreference(LAST_ACCOUNT) else q.upsertPreference(LAST_ACCOUNT, account)
+    }
+
+    private companion object { const val LAST_ACCOUNT = "last-account" }
 }

@@ -92,6 +92,8 @@ class SyncEngine(
     private val _view = MutableStateFlow(replay())
     private val _status = MutableStateFlow(currentStatus())
     val view: StateFlow<Snapshot> = _view.asStateFlow()
+    /** The last cookbook the server confirmed, without the outbox; server deltas apply to this. */
+    val confirmedSnapshot: Snapshot get() = confirmed
     val status: StateFlow<SyncStatus> = _status.asStateFlow()
 
     private fun replay(): Snapshot {

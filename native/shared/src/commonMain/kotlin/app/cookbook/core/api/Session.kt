@@ -7,6 +7,7 @@ import io.github.jan.supabase.auth.exception.NoSessionFoundException
 import io.github.jan.supabase.auth.user.UserSession
 import io.github.jan.supabase.auth.SessionManager
 import io.github.jan.supabase.createSupabaseClient
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -72,7 +73,8 @@ class SupabaseSession(config: BackendConfig, storage: SessionStorage) : Session 
     }
 
     override suspend fun signOut() {
-        auth.signOut()
+        // Offline the server can't be told; the saved sign-in is still forgotten on this device.
+        try { auth.signOut() } catch (e: CancellationException) { throw e } catch (e: Exception) { auth.clearSession() }
         user.value = null
     }
 

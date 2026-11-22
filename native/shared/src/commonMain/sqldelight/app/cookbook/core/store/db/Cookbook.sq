@@ -34,6 +34,12 @@ CREATE TABLE pending_upload (
     PRIMARY KEY(account, id)
 );
 
+-- Small device settings, such as the last signed-in account for opening offline.
+CREATE TABLE preference (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL
+);
+
 selectSnapshot:
 SELECT household, revision, state FROM snapshot WHERE account = ?;
 
@@ -72,3 +78,12 @@ DELETE FROM pending_upload WHERE id = ?;
 
 deleteUploads:
 DELETE FROM pending_upload WHERE account = ?;
+
+selectPreference:
+SELECT value FROM preference WHERE key = ?;
+
+upsertPreference:
+INSERT OR REPLACE INTO preference(key, value) VALUES (?, ?);
+
+deletePreference:
+DELETE FROM preference WHERE key = ?;

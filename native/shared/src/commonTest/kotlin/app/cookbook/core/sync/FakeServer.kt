@@ -95,4 +95,7 @@ class MemoryStore : LocalStore {
     override fun clearAccount(account: String) {
         snapshots.remove(account); outboxes.remove(account); problemLists.remove(account); uploads.remove(account)
     }
+    private var last: String? = null
+    override fun lastAccount() = last
+    override fun setLastAccount(account: String?) { last = account }
 }

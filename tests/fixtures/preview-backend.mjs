@@ -22,11 +22,10 @@ f.seed(state);
 const userFor=id=>({id,aud:'authenticated',role:'authenticated',email:id==='user'?'qa@example.test':'qa2@example.test',email_confirmed_at:new Date().toISOString(),app_metadata:{provider:'email',providers:['email']},user_metadata:{display_name:id==='user'?'Local QA':'Second account'},created_at:new Date().toISOString()});
 const jwtFor=id=>Buffer.from(JSON.stringify({alg:'HS256',typ:'JWT'})).toString('base64url')+'.'+Buffer.from(JSON.stringify({sub:id,exp:Math.floor(Date.now()/1000)+3600,role:'authenticated',aud:'authenticated'})).toString('base64url')+'.local-test-signature';
 function accountFor(token){try{if(!token?.endsWith('.local-test-signature'))return null;const id=JSON.parse(Buffer.from(token.split('.')[1],'base64url')).sub;return['user','second'].includes(id)?id:null;}catch{return null;}}
-createServer(async(req,res)=>{
+const server=createServer(async(req,res)=>{
     const start=performance.now(), origin=req.headers.origin, url=new URL(req.url,'http://127.0.0.1:54321');
-    const nativeSync=!origin&&/^\/functions\/v1\/cookbook\/reminders\/(finish|ack)$/.test(url.pathname);
-    const localAsset=!origin&&req.method==='GET'&&(url.pathname.startsWith('/storage/')||url.pathname==='/__test/stats');
-    if(origin!=='http://127.0.0.1:4173'&&!nativeSync&&!localAsset){res.writeHead(403);res.end();return;}
+    // Native clients (the apps' contract test, Shortcuts) send no Origin; any other website is refused.
+    if(origin&&origin!=='http://127.0.0.1:4173'){res.writeHead(403);res.end();return;}
     const headers={'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Headers':req.headers['access-control-request-headers']||'authorization,apikey,content-type,x-household-id,x-client-info,x-supabase-api-version,x-region','Access-Control-Allow-Methods':'GET,POST,PUT,OPTIONS','Access-Control-Max-Age':'3600','Content-Type':'application/json'};
     if(!origin)delete headers['Access-Control-Allow-Origin'];
     if(req.method==='OPTIONS'){res.writeHead(204,headers);res.end();return;}
@@ -69,4 +68,6 @@ createServer(async(req,res)=>{
         res.writeHead(200,{'Content-Type':key.endsWith('.webp')?'image/webp':key.endsWith('.png')?'image/png':'image/jpeg','Cache-Control':'public, max-age=3600','Access-Control-Allow-Origin':'*'});res.end(photo);return;
     }else{status=404;data={error:'Not found'};}
     done(status,data);
-}).listen(54321,'127.0.0.1',()=>console.log('Local UI fixture: http://127.0.0.1:54321 (two synthetic accounts, one shared cookbook)'));
+});
+// COOKBOOK_FIXTURE_PORT=0 picks a free port (tests); the printed address is the one to use.
+server.listen(Number(process.env.COOKBOOK_FIXTURE_PORT??54321),'127.0.0.1',()=>console.log('Local UI fixture: http://127.0.0.1:'+server.address().port+' (two synthetic accounts, one shared cookbook)'));
