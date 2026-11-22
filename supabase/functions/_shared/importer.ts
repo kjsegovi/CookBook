@@ -1,6 +1,10 @@
 import { blankRecipe, clean, DomainError, parseIngredient, httpUrl, type ImportDraft, type Recipe, uid } from './domain.ts';
 
 // Some sites serve stripped-down or blocked pages to obvious bots, so present as a current desktop browser.
+// Sites behind Cloudflare often accept an honest client but block a request that
+// claims to be Chrome without behaving like it (budgetbytes.com does), while a
+// few only accept a browser. So: honest first, browser once after a refusal.
+export const IMPORTER_USER_AGENT = 'CookBook Recipe Importer';
 export const BROWSER_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 
 export function isPublicHost(host: string) { const h = host.toLowerCase().replace(/^\[|\]$/g, '').replace(/\.$/, ''); if (!h || h === 'localhost' || !h.includes('.') || /\.(localhost|local|internal|test|invalid)$/.test(h) || h.includes(':') || /^\d+$/.test(h))
@@ -39,7 +43,9 @@ async function guardedFetch(value: string, o: GuardedFetchOptions): Promise<{ da
     let url = safeUrl(value);
     for (let hop = 0; hop < 4; hop++) {
         await verifyDns(url.hostname);
-        const response = await fetch(url.href, { redirect: 'manual', headers: { accept: o.accept, 'accept-language': 'en-US,en;q=0.9', 'user-agent': BROWSER_USER_AGENT }, signal: AbortSignal.timeout(o.timeoutMs ?? 12000) });
+        const request = (agent: string) => fetch(url.href, { redirect: 'manual', headers: { accept: o.accept, 'accept-language': 'en-US,en;q=0.9', 'user-agent': agent }, signal: AbortSignal.timeout(o.timeoutMs ?? 12000) });
+        let response = await request(IMPORTER_USER_AGENT);
+        if (response.status === 403 || response.status === 429) { await response.body?.cancel(); response = await request(BROWSER_USER_AGENT); }
         if (response.status >= 300 && response.status < 400) {
             const loc = response.headers.get('location');
             if (!loc)
